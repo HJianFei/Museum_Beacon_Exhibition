@@ -1,16 +1,11 @@
 package com.qslll.library;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.ViewGroup;
 
 import com.qslll.library.fragments.ExpandingFragment;
-
-import java.lang.ref.WeakReference;
 
 /**
  * Created by Qs on 16/6/20.

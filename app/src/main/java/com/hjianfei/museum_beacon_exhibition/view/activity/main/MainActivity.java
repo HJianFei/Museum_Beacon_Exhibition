@@ -12,7 +12,7 @@ import android.widget.RadioGroup;
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.guide.GuideFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.home.HomeFragment;
-import com.hjianfei.museum_beacon_exhibition.view.fragment.museum.MuseumNewsFragment;
+import com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.MuseumNewsFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

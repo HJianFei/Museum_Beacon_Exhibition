@@ -25,7 +25,7 @@ import com.hjianfei.museum_beacon_exhibition.bean.ViewPager;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.home.HomePresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.home.HomePresenterImpl;
-import com.hjianfei.museum_beacon_exhibition.view.activity.SearchActivity;
+import com.hjianfei.museum_beacon_exhibition.view.activity.search.SearchActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.location.LocationActivity;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;

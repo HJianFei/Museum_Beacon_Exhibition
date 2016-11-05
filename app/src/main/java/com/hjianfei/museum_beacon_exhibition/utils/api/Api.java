@@ -4,6 +4,7 @@ package com.hjianfei.museum_beacon_exhibition.utils.api;
 import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
 import com.hjianfei.museum_beacon_exhibition.bean.Exhibitions;
 import com.hjianfei.museum_beacon_exhibition.bean.Museum;
+import com.hjianfei.museum_beacon_exhibition.bean.MuseumDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.ViewPager;
 import com.hjianfei.museum_beacon_exhibition.canstants.Urls;
 
@@ -73,5 +74,9 @@ public interface Api {
     //获取全部博物馆信息
     @GET(Urls.GET_ALL_MUSEUM)
     Observable<Museum> getAllMuseums();
+
+    //获取博物馆详情信息
+    @GET(Urls.GET_MUSEUM_DETAIL)
+    Observable<MuseumDetail> getMuseumDetail(@Query("museum_name") String museum_name);
 
 }

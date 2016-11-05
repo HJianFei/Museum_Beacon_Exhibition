@@ -2,13 +2,17 @@ package com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.museum;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
@@ -18,6 +22,7 @@ import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.Museum;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.museum_news.museum.MuseumPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.museum_news.museum.MuseumPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.view.activity.museum_detail.MuseumDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,6 +106,22 @@ public class MuseumFragment extends Fragment implements MuseumView {
         museumRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         museumRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         museumRecyclerView.setArrowImageView(R.drawable.ic_pulltorefresh_arrow);
+        mLRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                Intent intent = new Intent(mContext, MuseumDetailActivity.class);
+                intent.putExtra("museum_name", museumsBeanList.get(i).getMuseum_name());
+                ActivityOptionsCompat options =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+                                view.findViewById(R.id.museum_item_img), getString(R.string.transition));
+                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+            }
+
+            @Override
+            public void onItemLongClick(View view, int i) {
+
+            }
+        });
         museumRecyclerView.setLScrollListener(new LRecyclerView.LScrollListener() {
             @Override
             public void onRefresh() {

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.hjianfei.museum_beacon_exhibition.view.activity.SearchActivity">
+    tools:context="com.hjianfei.museum_beacon_exhibition.view.activity.search.SearchActivity">
 
     <include layout="@layout/search_toolbar" />
 

@@ -1,4 +1,4 @@
-package com.hjianfei.museum_beacon_exhibition.view.activity;
+package com.hjianfei.museum_beacon_exhibition.view.activity.search;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;

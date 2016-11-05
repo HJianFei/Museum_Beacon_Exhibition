@@ -28,7 +28,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.location.LocationActivity" />
-        <activity android:name=".view.activity.SearchActivity"></activity>
+        <activity android:name=".view.activity.search.SearchActivity" />
+        <activity android:name=".view.activity.museum_detail.MuseumDetailActivity"></activity>
     </application>
 
 </manifest>

@@ -44,5 +44,8 @@ public class Urls {
     //博物馆
     public static final String GET_ALL_MUSEUM = "museum!getAllMuseum";
 
+    //博物馆详情
+    public static final String GET_MUSEUM_DETAIL = "museumDetail!getMuseumDetails";
+
 }
 

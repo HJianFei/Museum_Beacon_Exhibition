@@ -3,6 +3,7 @@ package com.hjianfei.museum_beacon_exhibition.utils.api;
 
 import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
 import com.hjianfei.museum_beacon_exhibition.bean.Exhibitions;
+import com.hjianfei.museum_beacon_exhibition.bean.Museum;
 import com.hjianfei.museum_beacon_exhibition.bean.ViewPager;
 import com.hjianfei.museum_beacon_exhibition.canstants.Urls;
 
@@ -38,7 +39,12 @@ public interface Api {
     //随机获取文物鉴赏数据（四条）
     @GET(Urls.API_HOME_APPRECIATES_BY_RANDOM)
     Observable<Appreciates> getAllAppreciatesByRandom();
-//
+
+    //获取文物鉴赏数据
+    @GET(Urls.API_HOME_APPRECIATES_BY_TYPE)
+    Observable<Appreciates> getAllAppreciatesByType(@Query("type") String type);
+
+    //
 //    //展览详情
 //    @GET(Urls.APPRECIATE_DETAIL)
 //    Observable<AppreciateDetail> getAppreciateDetails(@Query("detail_url") String detail_url);
@@ -63,5 +69,9 @@ public interface Api {
 //    //导游
 //    @GET(Urls.NAVIGATION_ITEM)
 //    Observable<NavigationInfo> getNavigationInfo(@Query("minor") String minor);
+
+    //获取全部博物馆信息
+    @GET(Urls.GET_ALL_MUSEUM)
+    Observable<Museum> getAllMuseums();
 
 }

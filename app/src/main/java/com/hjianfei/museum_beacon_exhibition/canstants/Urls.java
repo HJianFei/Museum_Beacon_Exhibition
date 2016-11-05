@@ -41,5 +41,8 @@ public class Urls {
     //导游
     public static final String NAVIGATION_ITEM = "navigationInfo!getNavigationInfos";
 
+    //博物馆
+    public static final String GET_ALL_MUSEUM = "museum!getAllMuseum";
+
 }
 

@@ -1,43 +1,54 @@
 package com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.cultural;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.jdsjlzx.recyclerview.HeaderSpanSizeLookup;
+import com.github.jdsjlzx.recyclerview.LRecyclerView;
+import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+import com.github.jdsjlzx.recyclerview.ProgressStyle;
+import com.github.jdsjlzx.util.RecyclerViewUtils;
 import com.hjianfei.museum_beacon_exhibition.R;
+import com.hjianfei.museum_beacon_exhibition.adapter.common.CommonAdapter;
+import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
+import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
+import com.hjianfei.museum_beacon_exhibition.presenter.fragment.museum_news.cultrual.CulturalPresenter;
+import com.hjianfei.museum_beacon_exhibition.presenter.fragment.museum_news.cultrual.CulturalPresenterImpl;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CulturalFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class CulturalFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+
+public class CulturalFragment extends Fragment implements CulturalView {
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    @BindView(R.id.cultural_recyclerView)
+    LRecyclerView culturalRecyclerView;
+    private CommonAdapter<Appreciates.AppreciatesBean> mAdapter;
+    private LRecyclerViewAdapter mLRecyclerViewAdapter = null;
+    private List<Appreciates.AppreciatesBean> appreciatesBeanList = new ArrayList<>();
+    private CulturalPresenter mCulturalPresenter;
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Context mContext;
 
 
     public CulturalFragment() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CulturalFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static CulturalFragment newInstance(String param1, String param2) {
         CulturalFragment fragment = new CulturalFragment();
         Bundle args = new Bundle();
@@ -57,10 +68,112 @@ public class CulturalFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Context context) {
+        this.mContext = context;
+        super.onAttach(context);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cultural, container, false);
+        View view = inflater.inflate(R.layout.fragment_cultural, container, false);
+        ButterKnife.bind(this, view);
+        initData();
+        initView();
+        return view;
+    }
+
+    private void initData() {
+        mCulturalPresenter = new CulturalPresenterImpl(this);
+        mCulturalPresenter.initAppreciatesData();
+
+    }
+
+    private void initView() {
+        mAdapter = new CommonAdapter<Appreciates.AppreciatesBean>(mContext, R.layout.cultural_recyclerview_item, appreciatesBeanList) {
+            @Override
+            public void setData(ViewHolder holder, Appreciates.AppreciatesBean appreciatesBean) {
+                System.out.println(appreciatesBean.getContent());
+                holder.setImageWithUrl(R.id.appreciate_item_image, appreciatesBean.getImg_url());
+                holder.setText(R.id.appreciate_item_title, appreciatesBean.getContent());
+
+            }
+        };
+        mLRecyclerViewAdapter = new LRecyclerViewAdapter(mContext, mAdapter);
+        View head_view = View.inflate(mContext, R.layout.cultural_head_view, null);
+        culturalRecyclerView.setAdapter(mLRecyclerViewAdapter);
+        //setLayoutManager
+        GridLayoutManager manager = new GridLayoutManager(mContext, 2);
+        manager.setSpanSizeLookup(new HeaderSpanSizeLookup((LRecyclerViewAdapter) culturalRecyclerView.getAdapter(), manager.getSpanCount()));
+        culturalRecyclerView.setLayoutManager(manager);
+        culturalRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
+        culturalRecyclerView.setArrowImageView(R.drawable.ic_pulltorefresh_arrow);
+        RecyclerViewUtils.setHeaderView(culturalRecyclerView, head_view);
+        culturalRecyclerView.setLScrollListener(new LRecyclerView.LScrollListener() {
+            @Override
+            public void onRefresh() {
+
+            }
+
+            @Override
+            public void onScrollUp() {
+
+            }
+
+            @Override
+            public void onScrollDown() {
+
+            }
+
+            @Override
+            public void onBottom() {
+
+            }
+
+            @Override
+            public void onScrolled(int i, int i1) {
+
+            }
+        });
+    }
+
+    @Override
+    public void initCulturalData(List<Appreciates.AppreciatesBean> appreciatesBeans) {
+        appreciatesBeanList.addAll(appreciatesBeans);
+        culturalRecyclerView.refreshComplete();
+        mAdapter.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void loadMoreCulturalData(List<Appreciates.AppreciatesBean> appreciatesBeans) {
+
+    }
+
+    @Override
+    public void refreshCulturalData(List<Appreciates.AppreciatesBean> appreciatesBeans) {
+
+    }
+
+
+    @Override
+    public void showDialog() {
+
+    }
+
+    @Override
+    public void hideDialog() {
+
+    }
+
+    @Override
+    public void showError() {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
     }
 
 }

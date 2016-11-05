@@ -1,43 +1,52 @@
 package com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.museum;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.jdsjlzx.recyclerview.LRecyclerView;
+import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.hjianfei.museum_beacon_exhibition.R;
+import com.hjianfei.museum_beacon_exhibition.adapter.common.CommonAdapter;
+import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
+import com.hjianfei.museum_beacon_exhibition.bean.Museum;
+import com.hjianfei.museum_beacon_exhibition.presenter.fragment.museum_news.museum.MuseumPresenter;
+import com.hjianfei.museum_beacon_exhibition.presenter.fragment.museum_news.museum.MuseumPresenterImpl;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MuseumFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class MuseumFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class MuseumFragment extends Fragment implements MuseumView {
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    @BindView(R.id.museum_recyclerView)
+    LRecyclerView museumRecyclerView;
+    private Context mContext;
+    private CommonAdapter<Museum.MuseumsBean> mAdapter;
+    private List<Museum.MuseumsBean> museumsBeanList = new ArrayList<>();
+    private MuseumPresenter mMuseumPresenter;
+    private LRecyclerViewAdapter mLRecyclerViewAdapter = null;
 
-    // TODO: Rename and change types of parameters
+
     private String mParam1;
     private String mParam2;
 
 
     public MuseumFragment() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MuseumFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static MuseumFragment newInstance(String param1, String param2) {
         MuseumFragment fragment = new MuseumFragment();
         Bundle args = new Bundle();
@@ -57,10 +66,106 @@ public class MuseumFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_museum, container, false);
+    public void onAttach(Context context) {
+        mContext = context;
+        super.onAttach(context);
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_museum, container, false);
+        ButterKnife.bind(this, view);
+        initData();
+        initView();
+        return view;
+    }
+
+    private void initData() {
+        mMuseumPresenter = new MuseumPresenterImpl(this);
+        mMuseumPresenter.initMuseumsData();
+    }
+
+    private void initView() {
+        mAdapter = new CommonAdapter<Museum.MuseumsBean>(mContext, R.layout.museum_recyclerview_item, museumsBeanList) {
+            @Override
+            public void setData(ViewHolder holder, Museum.MuseumsBean museumsBean) {
+                holder.setImageWithUrl(R.id.museum_item_img, museumsBean.getMuseum_img());
+                holder.setText(R.id.museum_item_title, museumsBean.getMuseum_title());
+                holder.setText(R.id.museum_item_name, museumsBean.getMuseum_name());
+
+            }
+        };
+        mLRecyclerViewAdapter = new LRecyclerViewAdapter(mContext, mAdapter);
+        museumRecyclerView.setAdapter(mLRecyclerViewAdapter);
+        museumRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        museumRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
+        museumRecyclerView.setArrowImageView(R.drawable.ic_pulltorefresh_arrow);
+        museumRecyclerView.setLScrollListener(new LRecyclerView.LScrollListener() {
+            @Override
+            public void onRefresh() {
+
+            }
+
+            @Override
+            public void onScrollUp() {
+
+            }
+
+            @Override
+            public void onScrollDown() {
+
+            }
+
+            @Override
+            public void onBottom() {
+
+            }
+
+            @Override
+            public void onScrolled(int i, int i1) {
+
+            }
+        });
+
+
+    }
+
+    @Override
+    public void initMuseumData(List<Museum.MuseumsBean> museumsBean) {
+        museumsBeanList.addAll(museumsBean);
+        museumRecyclerView.refreshComplete();
+        mAdapter.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void loadMoreMuseumData(List<Museum.MuseumsBean> museumsBeanList) {
+
+    }
+
+    @Override
+    public void refreshMuseumData(List<Museum.MuseumsBean> museumsBeanList) {
+
+    }
+
+    @Override
+    public void showDialog() {
+
+    }
+
+    @Override
+    public void hideDialog() {
+
+    }
+
+    @Override
+    public void showError() {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
+    }
 }

@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.bean.Exhibitions;
+import com.hjianfei.museum_beacon_exhibition.view.activity.exhibition_detail.ExhibitionDetailActivity;
 
 import java.util.List;
 
@@ -31,6 +33,7 @@ public class HomeExhibitionViewPagerAdapter extends PagerAdapter {
     public int getCount() {
         return exhibitionsList.size();
     }
+
     @Override
     public int getItemPosition(final Object object) {
         return POSITION_NONE;
@@ -57,7 +60,10 @@ public class HomeExhibitionViewPagerAdapter extends PagerAdapter {
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                T.showShort(container.getContext(), "initHomeRecommend：" + position);
+                Intent intent = new Intent(mContext, ExhibitionDetailActivity.class);
+                intent.putExtra("exhibition_detail_url", exhibitionsList.get(position).getDetail_url());
+                intent.putExtra("exhibition_title", exhibitionsList.get(position).getContent());
+                mContext.startActivity(intent);
             }
         });
         container.addView(view);

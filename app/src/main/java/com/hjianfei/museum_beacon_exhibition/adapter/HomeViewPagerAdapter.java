@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.hjianfei.museum_beacon_exhibition.bean.ViewPager;
+import com.hjianfei.museum_beacon_exhibition.canstants.Urls;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class HomeViewPagerAdapter extends StaticPagerAdapter {
         ImageView item_iv = new ImageView(container.getContext());
         item_iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
         Glide.with(container.getContext())
-                .load(mViewPagers.get(position).getImg_url())
+                .load(Urls.API_SERVER + mViewPagers.get(position).getImg_url())
 //                .placeholder(R.drawable.photo)
 //                .error(R.drawable.photo)
                 .into(item_iv);

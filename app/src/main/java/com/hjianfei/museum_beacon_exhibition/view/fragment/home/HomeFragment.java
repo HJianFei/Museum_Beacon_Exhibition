@@ -204,8 +204,6 @@ public class HomeFragment extends Fragment implements HomeView {
         hot_exhibition_view_pager.setAdapter(homeExhibitionViewPagerAdapter);
         hot_exhibition_view_pager.setCurrentItem(1, true);
         hot_exhibition_view_pager.setPageTransformer(true, new ScaleInTransformer(new AlphaPageTransformer(new RotateDownPageTransformer())));
-
-
     }
 
 

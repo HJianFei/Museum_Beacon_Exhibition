@@ -3,6 +3,7 @@ package com.hjianfei.museum_beacon_exhibition.utils.api;
 
 import com.hjianfei.museum_beacon_exhibition.bean.AppreciateDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
+import com.hjianfei.museum_beacon_exhibition.bean.ExhibitionDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Exhibitions;
 import com.hjianfei.museum_beacon_exhibition.bean.Museum;
 import com.hjianfei.museum_beacon_exhibition.bean.MuseumDetail;
@@ -53,7 +54,8 @@ public interface Api {
     //获取全部展览信息(展览预告)
     @GET(Urls.ALL_EXHIBITION_BY_TYPE)
     Observable<Exhibitions> getAllExhibitionByType(@Query("type") String type);
-//
+
+    //
 //    //获取全部教育信息
 //    //小知识
 //    @GET(Urls.ALL_EDUCATION_BY_TYPE)
@@ -63,9 +65,9 @@ public interface Api {
 //    @GET(Urls.EDUCATION_DETAIL)
 //    Observable<EducationDetail> getEducationDetails(@Query("detail_url") String detail_url);
 //
-//    //展览详情
-//    @GET(Urls.EXHIBITION_DETAIL)
-//    Observable<ExhibitionDetail> getExhibitionDetails(@Query("detail_url") String detail_url);
+    //展览详情
+    @GET(Urls.EXHIBITION_DETAIL)
+    Observable<ExhibitionDetail> getExhibitionDetails(@Query("detail_url") String detail_url);
 //
 //    //导游
 //    @GET(Urls.NAVIGATION_ITEM)

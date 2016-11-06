@@ -2,13 +2,17 @@ package com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.cultural
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.recyclerview.HeaderSpanSizeLookup;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
@@ -20,6 +24,7 @@ import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.museum_news.cultrual.CulturalPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.museum_news.cultrual.CulturalPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail.AppreciateDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +98,6 @@ public class CulturalFragment extends Fragment implements CulturalView {
         mAdapter = new CommonAdapter<Appreciates.AppreciatesBean>(mContext, R.layout.cultural_recyclerview_item, appreciatesBeanList) {
             @Override
             public void setData(ViewHolder holder, Appreciates.AppreciatesBean appreciatesBean) {
-                System.out.println(appreciatesBean.getContent());
                 holder.setImageWithUrl(R.id.appreciate_item_image, appreciatesBean.getImg_url());
                 holder.setText(R.id.appreciate_item_title, appreciatesBean.getContent());
 
@@ -109,6 +113,23 @@ public class CulturalFragment extends Fragment implements CulturalView {
         culturalRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         culturalRecyclerView.setArrowImageView(R.drawable.ic_pulltorefresh_arrow);
         RecyclerViewUtils.setHeaderView(culturalRecyclerView, head_view);
+        mLRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                Intent intent = new Intent(getActivity(), AppreciateDetailActivity.class);
+                intent.putExtra("cultural_detail_url", appreciatesBeanList.get(i).getDetail_url());
+                intent.putExtra("cultural_name", appreciatesBeanList.get(i).getContent());
+                ActivityOptionsCompat options =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+                                view.findViewById(R.id.appreciate_item_image), getString(R.string.transition));
+                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+            }
+
+            @Override
+            public void onItemLongClick(View view, int i) {
+
+            }
+        });
         culturalRecyclerView.setLScrollListener(new LRecyclerView.LScrollListener() {
             @Override
             public void onRefresh() {

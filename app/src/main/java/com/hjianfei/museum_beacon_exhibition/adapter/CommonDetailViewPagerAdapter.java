@@ -11,11 +11,11 @@ import com.jude.rollviewpager.adapter.StaticPagerAdapter;
  * Created by HJianFei on 2016/9/20.
  */
 
-public class MuseumDetailViewPagerAdapter extends StaticPagerAdapter {
+public class CommonDetailViewPagerAdapter extends StaticPagerAdapter {
 
     private String[] imgUrl;
 
-    public MuseumDetailViewPagerAdapter(String[] imgUrl) {
+    public CommonDetailViewPagerAdapter(String[] imgUrl) {
         this.imgUrl = imgUrl;
     }
 

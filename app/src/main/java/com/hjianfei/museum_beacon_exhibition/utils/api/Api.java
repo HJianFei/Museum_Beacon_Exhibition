@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.utils.api;
 
 
+import com.hjianfei.museum_beacon_exhibition.bean.AppreciateDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
 import com.hjianfei.museum_beacon_exhibition.bean.Exhibitions;
 import com.hjianfei.museum_beacon_exhibition.bean.Museum;
@@ -45,11 +46,10 @@ public interface Api {
     @GET(Urls.API_HOME_APPRECIATES_BY_TYPE)
     Observable<Appreciates> getAllAppreciatesByType(@Query("type") String type);
 
-    //
-//    //展览详情
-//    @GET(Urls.APPRECIATE_DETAIL)
-//    Observable<AppreciateDetail> getAppreciateDetails(@Query("detail_url") String detail_url);
-//
+    //展览详情
+    @GET(Urls.APPRECIATE_DETAIL)
+    Observable<AppreciateDetail> getAppreciateDetails(@Query("detail_url") String detail_url);
+
     //获取全部展览信息(展览预告)
     @GET(Urls.ALL_EXHIBITION_BY_TYPE)
     Observable<Exhibitions> getAllExhibitionByType(@Query("type") String type);

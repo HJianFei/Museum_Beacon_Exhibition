@@ -10,13 +10,14 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/museum_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
-        app:fabSize="normal"
         android:src="@drawable/ic_action_fab"
-        app:rippleColor="@color/primary_dark"
         app:backgroundTint="@color/primary"
-        app:layout_behavior="com.hjianfei.museum_beacon_exhibition.utils.widget.ScrollAwareFABBehaviorDefault" />
+        app:fabSize="normal"
+        app:layout_behavior="com.hjianfei.museum_beacon_exhibition.utils.widget.ScrollAwareFABBehaviorDefault"
+        app:rippleColor="@color/primary_light" />
 </android.support.design.widget.CoordinatorLayout>

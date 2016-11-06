@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,8 +27,9 @@ import com.hjianfei.museum_beacon_exhibition.bean.ViewPager;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.home.HomePresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.home.HomePresenterImpl;
-import com.hjianfei.museum_beacon_exhibition.view.activity.search.SearchActivity;
+import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail.AppreciateDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.location.LocationActivity;
+import com.hjianfei.museum_beacon_exhibition.view.activity.search.SearchActivity;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
@@ -163,7 +166,7 @@ public class HomeFragment extends Fragment implements HomeView {
     }
 
     @Override
-    public void initAppreciateRecyclerView(List<Appreciates.AppreciatesBean> appreciatesBeans) {
+    public void initAppreciateRecyclerView(final List<Appreciates.AppreciatesBean> appreciatesBeans) {
 
         mAdapter = new CommonAdapter<Appreciates.AppreciatesBean>(mContext, R.layout.appreciate_recycler_view_item, appreciatesBeans) {
             @Override
@@ -174,6 +177,23 @@ public class HomeFragment extends Fragment implements HomeView {
         };
         appreciateRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
         appreciateRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new com.hjianfei.museum_beacon_exhibition.adapter.common.OnItemClickListener() {
+            @Override
+            public void onItemClick(ViewGroup parent, View view, Object o, int position) {
+                Intent intent = new Intent(getActivity(), AppreciateDetailActivity.class);
+                intent.putExtra("cultural_detail_url", appreciatesBeans.get(position).getDetail_url());
+                intent.putExtra("cultural_name", appreciatesBeans.get(position).getContent());
+                ActivityOptionsCompat options =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+                                view.findViewById(R.id.appreciate_item_image), getString(R.string.transition));
+                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+            }
+
+            @Override
+            public boolean onItemLongClick(ViewGroup parent, View view, Object o, int position) {
+                return false;
+            }
+        });
     }
 
     @Override

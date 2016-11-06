@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hjianfei.museum_beacon_exhibition.R;
-import com.hjianfei.museum_beacon_exhibition.adapter.MuseumDetailViewPagerAdapter;
+import com.hjianfei.museum_beacon_exhibition.adapter.CommonDetailViewPagerAdapter;
 import com.hjianfei.museum_beacon_exhibition.bean.MuseumDetail;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.museum_detail.MuseumDetailPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.museum_detail.MuseumDetailPresenterImpl;
@@ -68,7 +68,7 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
         String img_url = museumDetail.getMuseum_Detail().getMuseum_detail_imgs();
         String[] img_urls = img_url.split(",");
         museumDetailViewPager.setPlayDelay(3000);
-        museumDetailViewPager.setAdapter(new MuseumDetailViewPagerAdapter(img_urls));
+        museumDetailViewPager.setAdapter(new CommonDetailViewPagerAdapter(img_urls));
         museumDetailViewPager.setHintView(new ColorPointHintView(this, Color.YELLOW, Color.WHITE));
 
 

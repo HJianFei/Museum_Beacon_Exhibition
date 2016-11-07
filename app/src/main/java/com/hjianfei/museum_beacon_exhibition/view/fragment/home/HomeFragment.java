@@ -27,6 +27,7 @@ import com.hjianfei.museum_beacon_exhibition.bean.ViewPager;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.home.HomePresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.home.HomePresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate.AppreciateActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail.AppreciateDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.location.LocationActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.search.SearchActivity;
@@ -120,7 +121,7 @@ public class HomeFragment extends Fragment implements HomeView {
 
     }
 
-    @OnClick({R.id.home_location, R.id.home_search, R.id.home_person})
+    @OnClick({R.id.home_location, R.id.home_search, R.id.home_person, R.id.home_appreciate_more})
     public void onClickListener(View view) {
         Intent intent;
         switch (view.getId()) {
@@ -134,6 +135,10 @@ public class HomeFragment extends Fragment implements HomeView {
                 startActivity(intent);
                 break;
             case R.id.home_person:
+                break;
+            case R.id.home_appreciate_more:
+                intent = new Intent(mContext, AppreciateActivity.class);
+                startActivity(intent);
                 break;
         }
     }

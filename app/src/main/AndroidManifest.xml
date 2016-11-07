@@ -31,7 +31,8 @@
         <activity android:name=".view.activity.search.SearchActivity" />
         <activity android:name=".view.activity.museum_detail.MuseumDetailActivity" />
         <activity android:name=".view.activity.appreciate_detail.AppreciateDetailActivity" />
-        <activity android:name=".view.activity.exhibition_detail.ExhibitionDetailActivity"></activity>
+        <activity android:name=".view.activity.exhibition_detail.ExhibitionDetailActivity" />
+        <activity android:name=".view.activity.appreciate.AppreciateActivity"/>
     </application>
 
 </manifest>

@@ -3,6 +3,7 @@ package com.hjianfei.museum_beacon_exhibition.view.fragment.appreciate.blue_and_
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
@@ -24,6 +25,7 @@ import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.appreciate.AppreciatePresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.appreciate.AppreciatePresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail.AppreciateDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.appreciate.AppreciateView;
 
@@ -32,6 +34,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import me.wangyuwei.flipshare.FlipShareView;
+import me.wangyuwei.flipshare.ShareItem;
 
 public class Blue_And_White_ChinaFragment extends Fragment implements AppreciateView {
 
@@ -192,6 +197,33 @@ public class Blue_And_White_ChinaFragment extends Fragment implements Appreciate
 
     @Override
     public void showEmpty() {
+
+    }
+
+    @OnClick(R.id.blue_and_white_search)
+    public void onClickListener(View v) {
+        switch (v.getId()) {
+            case R.id.blue_and_white_search:
+                FlipShareView flipShareView = new FlipShareView.Builder(getActivity(), blueAndWhiteSearch)
+                        .addItem(new ShareItem("刷新", Color.WHITE, 0xff43549C))
+                        .addItem(new ShareItem("搜索", Color.WHITE, 0xff4999F0))
+                        .addItem(new ShareItem("国内", Color.WHITE, 0xffD9392D))
+                        .addItem(new ShareItem("国外", Color.WHITE, 0xff57708A))
+                        .setAnimType(FlipShareView.TYPE_HORIZONTAL)
+                        .create();
+                flipShareView.setOnFlipClickListener(new FlipShareView.OnFlipClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        ToastUtil.showToast(mContext, position + "");
+                    }
+
+                    @Override
+                    public void dismiss() {
+
+                    }
+                });
+                break;
+        }
 
     }
 }

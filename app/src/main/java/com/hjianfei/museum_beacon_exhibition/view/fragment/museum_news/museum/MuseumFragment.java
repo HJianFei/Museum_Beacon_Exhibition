@@ -3,7 +3,10 @@ package com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.museum;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
@@ -22,6 +25,7 @@ import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.Museum;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.museum_news.museum.MuseumPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.museum_news.museum.MuseumPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.view.activity.museum_detail.MuseumDetailActivity;
 
 import java.util.ArrayList;
@@ -29,6 +33,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import me.wangyuwei.flipshare.FlipShareView;
+import me.wangyuwei.flipshare.ShareItem;
 
 public class MuseumFragment extends Fragment implements MuseumView {
 
@@ -36,6 +43,10 @@ public class MuseumFragment extends Fragment implements MuseumView {
     private static final String ARG_PARAM2 = "param2";
     @BindView(R.id.museum_recyclerView)
     LRecyclerView museumRecyclerView;
+    @BindView(R.id.museum_search)
+    FloatingActionButton museumSearch;
+    @BindView(R.id.museum_root_layout)
+    CoordinatorLayout museumRootLayout;
     private Context mContext;
     private CommonAdapter<Museum.MuseumsBean> mAdapter;
     private List<Museum.MuseumsBean> museumsBeanList = new ArrayList<>();
@@ -187,6 +198,34 @@ public class MuseumFragment extends Fragment implements MuseumView {
 
     @Override
     public void showEmpty() {
+
+    }
+
+    @OnClick(R.id.museum_search)
+    public void onClickListener(View v) {
+        switch (v.getId()) {
+            case R.id.museum_search:
+                FlipShareView flipShareView = new FlipShareView.Builder(getActivity(), museumSearch)
+                        .addItem(new ShareItem("刷新", Color.WHITE, 0xff43549C))
+                        .addItem(new ShareItem("搜索", Color.WHITE, 0xff4999F0))
+                        .addItem(new ShareItem("国内", Color.WHITE, 0xffD9392D))
+                        .addItem(new ShareItem("国外", Color.WHITE, 0xff57708A))
+                        .setAnimType(FlipShareView.TYPE_SLIDE)
+                        .create();
+                flipShareView.setOnFlipClickListener(new FlipShareView.OnFlipClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        ToastUtil.showToast(mContext, position+"");
+                    }
+
+                    @Override
+                    public void dismiss() {
+
+                    }
+                });
+
+                break;
+        }
 
     }
 }

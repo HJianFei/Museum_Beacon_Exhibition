@@ -9,7 +9,6 @@
     tools:context="com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail.AppreciateDetailActivity">
 
     <include layout="@layout/cultural_detail_toolbar" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

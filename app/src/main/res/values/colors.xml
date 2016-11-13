@@ -11,4 +11,10 @@
     <color name="primary_dark">#fbc402</color>
     <color name="primary_light">#B2DFDB</color>
     <color name="accent">#ffb74d</color>
+    <color name="gray">#eeeeee</color>
+    <color name="orange_background">#F57C00</color>
+    <color name="red_background">#D32F2F</color>
+    <color name="purple_background">#7B1FA2</color>
+    <color name="text_toolbar">#f9f8fa</color>
+    <color name="blue_background">#1976D2</color>
 </resources>

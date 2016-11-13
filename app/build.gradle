@@ -18,6 +18,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
@@ -26,6 +31,20 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile files('libs/rebound-0.3.8.jar')
+    compile files('libs/pinyin4android1.0.jar')
+    compile files('libs/pinyin4j-2.5.0.jar')
+    compile files('libs/BaiduLBS_Android.jar')
+    compile files('libs/ShareSDK-Core-2.7.10.jar')
+    compile files('libs/ShareSDK-Douban-2.7.10.jar')
+    compile files('libs/ShareSDK-Email-2.7.10.jar')
+    compile files('libs/ShareSDK-QQ-2.7.10.jar')
+    compile files('libs/ShareSDK-QZone-2.7.10.jar')
+    compile files('libs/ShareSDK-ShortMessage-2.7.10.jar')
+    compile files('libs/ShareSDK-SinaWeibo-2.7.10.jar')
+    compile files('libs/ShareSDK-Wechat-2.7.10.jar')
+    compile files('libs/ShareSDK-Wechat-Core-2.7.10.jar')
+    compile files('libs/ShareSDK-Wechat-Favorite-2.7.10.jar')
+    compile files('libs/ShareSDK-Wechat-Moments-2.7.10.jar')
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.jakewharton:butterknife:8.1.0'
     compile 'com.android.support:support-v4:24.2.1'
@@ -43,6 +62,9 @@ dependencies {
     compile 'com.zhy:magic-viewpager:1.0.1'
     compile 'com.7heaven.widgets:segmentcontrol:1.16'
     compile 'com.github.jdsjlzx:LRecyclerView:1.1.0'
+    compile 'me.wangyuwei:FlipShare:1.0.2'
+    compile 'com.yalantis:contextmenu:1.0.7'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
+    compile 'com.stephentuso:welcome:0.7.2'
 }

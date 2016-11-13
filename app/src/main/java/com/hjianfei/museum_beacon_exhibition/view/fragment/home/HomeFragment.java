@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.adapter.HomeExhibitionViewPagerAdapter;
@@ -30,6 +31,7 @@ import com.hjianfei.museum_beacon_exhibition.presenter.fragment.home.HomePresent
 import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate.AppreciateActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail.AppreciateDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.location.LocationActivity;
+import com.hjianfei.museum_beacon_exhibition.view.activity.personal.PersonalActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.search.SearchActivity;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
@@ -57,10 +59,14 @@ public class HomeFragment extends Fragment implements HomeView {
     LinearLayout homeSearch;
     @BindView(R.id.home_person)
     ImageView homePerson;
+    @BindView(R.id.home_local_city)
+    TextView home_local_city;
     @BindView(R.id.home_location)
     LinearLayout homeLocation;
     @BindView(R.id.home_appreciate_more)
     LinearLayout homeAppreciateMore;
+    @BindView(R.id.hot_exhibition_more)
+    ImageView hot_exhibition_more;
     @BindView(R.id.home_hot_exhibition)
     android.support.v4.view.ViewPager hot_exhibition_view_pager;
 
@@ -114,6 +120,7 @@ public class HomeFragment extends Fragment implements HomeView {
     }
 
     private void initView() {
+
         mHomePresenter = new HomePresenterImpl(this);
         mHomePresenter.loadHomeViewPager();
         mHomePresenter.loadAppreciateRecyclerView();
@@ -121,7 +128,7 @@ public class HomeFragment extends Fragment implements HomeView {
 
     }
 
-    @OnClick({R.id.home_location, R.id.home_search, R.id.home_person, R.id.home_appreciate_more})
+    @OnClick({R.id.home_location, R.id.home_search, R.id.home_person, R.id.home_appreciate_more, R.id.hot_exhibition_more})
     public void onClickListener(View view) {
         Intent intent;
         switch (view.getId()) {
@@ -135,16 +142,26 @@ public class HomeFragment extends Fragment implements HomeView {
                 startActivity(intent);
                 break;
             case R.id.home_person:
+                intent = new Intent(mContext, PersonalActivity.class);
+                startActivity(intent);
                 break;
             case R.id.home_appreciate_more:
                 intent = new Intent(mContext, AppreciateActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.hot_exhibition_more:
                 break;
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Constants.HOME_RESULT_CODE) {
+            if (requestCode == Constants.HOME_LOCATION) {
+                String result = data.getStringExtra("city");
+                home_local_city.setText(result);
+            }
+        }
         super.onActivityResult(requestCode, resultCode, data);
     }
 

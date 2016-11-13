@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context="com.hjianfei.museum_beacon_exhibition.view.activity.museum_detail.MuseumDetailActivity">
 
-    <include layout="@layout/museum_detail_toolbar" />
+    <include layout="@layout/default_toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"

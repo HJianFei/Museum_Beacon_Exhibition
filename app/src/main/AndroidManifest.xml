@@ -30,7 +30,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-
     <uses-permission android:name="android.permission.SET_DEBUG_APP" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
@@ -44,18 +43,21 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--百度地图 start-->
+
+        <!-- 百度地图 start -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="6uyoUlvctUCgxYWzMMo3aPkkB3zQFaSb" />
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
-        <!--百度地图 end-->
+        <!-- 百度地图 end -->
         <activity android:name=".view.activity.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -72,7 +74,7 @@
         <activity android:name=".view.activity.appreciate.AppreciateActivity" />
         <activity android:name=".view.activity.personal.PersonalActivity" />
 
-        <!--有盟分享 start-->
+        <!-- 有盟分享 start -->
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -104,8 +106,9 @@
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="5827d41e5312dd979e003193"/>
-        <!--有盟分享 end-->
+            android:value="5827d41e5312dd979e003193" />
+        <!-- 有盟分享 end -->
+        <activity android:name=".view.activity.radar.RadarActivity"></activity>
     </application>
 
 </manifest>

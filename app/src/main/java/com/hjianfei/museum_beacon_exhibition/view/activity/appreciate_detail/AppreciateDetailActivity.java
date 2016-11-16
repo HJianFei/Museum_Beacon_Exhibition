@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +22,7 @@ import com.hjianfei.museum_beacon_exhibition.adapter.CommonDetailViewPagerAdapte
 import com.hjianfei.museum_beacon_exhibition.bean.AppreciateDetail;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.appreciate_detail.AppreciateDetailPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.appreciate_detail.AppreciateDetailPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.umeng.socialize.ShareAction;
@@ -50,6 +51,8 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
     TextView culturalDetailName;
     @BindView(R.id.cultural_detail_content)
     TextView culturalDetailContent;
+    @BindView(R.id.activity_appreciate_detail)
+    LinearLayout activityAppreciateDetail;
     private String cultural_detail_url;
     private String cultural_name;
     private AppreciateDetailPresenter mAppreciateDetailPresenter;
@@ -78,12 +81,19 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
         mMenuDialogFragment.setItemClickListener(new OnMenuItemClickListener() {
             @Override
             public void onMenuItemClick(View clickedView, int position) {
-                new ShareAction(AppreciateDetailActivity.this)
-                        .withText("hello")
-                        .withTitle("博物展")
-                        .withMedia(new UMImage(AppreciateDetailActivity.this,"http://s1.dwstatic.com/group1/M00/4F/64/18be5ea21970cf8858771b89b8ffe3f3.jpg"))
-                        .setDisplayList(SHARE_MEDIA.SINA, SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
-                        .setCallback(umShareListener).open();
+                if (position == 1) {
+                    new ShareAction(AppreciateDetailActivity.this)
+                            .withText("博物展")
+                            .withTitle("博物展")
+                            .withMedia(new UMImage(AppreciateDetailActivity.this, "http://s1.dwstatic.com/group1/M00/4F/64/18be5ea21970cf8858771b89b8ffe3f3.jpg"))
+                            .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)
+                            .setCallback(umShareListener).open();
+                } else if (position == 2) {
+                    ToastUtil.showToast(AppreciateDetailActivity.this, "收藏");
+
+                } else if (position == 3) {
+                    ToastUtil.showToast(AppreciateDetailActivity.this, "点赞");
+                }
             }
         });
     }
@@ -92,32 +102,21 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
         List<MenuObject> menuObjects = new ArrayList<>();
 
         MenuObject close = new MenuObject();
-        close.setResource(R.drawable.icn_close);
+        close.setResource(R.drawable.menu_close);
 
-        MenuObject send = new MenuObject("Send message");
-        send.setResource(R.drawable.icn_1);
+        MenuObject send = new MenuObject("分享");
+        send.setResource(R.drawable.menu_share);
 
-        MenuObject like = new MenuObject("Like profile");
-        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.icn_2);
+        MenuObject like = new MenuObject("收藏");
+        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.menu_love);
         like.setBitmap(b);
-
-        MenuObject addFr = new MenuObject("Add to friends");
-        BitmapDrawable bd = new BitmapDrawable(getResources(),
-                BitmapFactory.decodeResource(getResources(), R.drawable.icn_3));
-        addFr.setDrawable(bd);
-
-        MenuObject addFav = new MenuObject("Add to favorites");
-        addFav.setResource(R.drawable.icn_4);
-
-        MenuObject block = new MenuObject("Block user");
-        block.setResource(R.drawable.icn_5);
+        MenuObject addFav = new MenuObject("点赞");
+        addFav.setResource(R.drawable.menu_favorites);
 
         menuObjects.add(close);
         menuObjects.add(send);
         menuObjects.add(like);
-        menuObjects.add(addFr);
         menuObjects.add(addFav);
-        menuObjects.add(block);
         return menuObjects;
     }
 
@@ -146,6 +145,7 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
         culturalDetailName.setText(appreciateDetail.getAppreciateDetail().getTitle());
         culturalDetailContent.setText(appreciateDetail.getAppreciateDetail().getContent());
         String img_url = appreciateDetail.getAppreciateDetail().getImg_url();
+        img_url = img_url.substring(1, img_url.length() - 1);
         String[] img_urls = img_url.split(",");
         culturalDetailViewPager.setPlayDelay(3000);
         culturalDetailViewPager.setAdapter(new CommonDetailViewPagerAdapter(img_urls));

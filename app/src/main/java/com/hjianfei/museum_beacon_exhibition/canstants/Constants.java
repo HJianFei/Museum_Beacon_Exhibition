@@ -11,4 +11,8 @@ public class Constants {
 
     //home页面定位返回码
     public static final int HOME_RESULT_CODE = 10002;
+    //日志输出标志
+    public static final String TAG = "onResponse";
+    //手机号码国家区域zone
+    public static final String MOBILE = "86";
 }

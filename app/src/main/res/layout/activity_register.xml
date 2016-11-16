@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/register_activity_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <FrameLayout
+        android:id="@+id/frame_layout"
         android:layout_width="320dp"
         android:layout_height="400dp"
         android:layout_centerInParent="true"
-        android:paddingTop="45dp">
+        android:paddingTop="43dp">
 
         <android.support.v7.widget.CardView
             android:id="@+id/cv_add"
@@ -54,8 +56,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_bg_edit_2"
-                            android:hint="用户名"
-                            android:inputType="textPersonName"
+                            android:hint="手机号"
+                            android:inputType="phone"
                             android:paddingBottom="2dp"
                             android:textColor="#f0f7f4"
                             android:textCursorDrawable="@drawable/bg_input_cursor_2"
@@ -79,6 +81,7 @@
                         android:theme="@style/TextLabel">
 
                         <EditText
+                            android:id="@+id/security_code"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_bg_edit_2"
@@ -92,9 +95,14 @@
 
                     <Button
                         android:id="@+id/btn_get_code"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="获取" />
+                        android:layout_width="56dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="6dp"
+                        android:layout_marginRight="1dp"
+                        android:background="@drawable/register_btn_shape"
+                        android:text="获取"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -154,14 +162,14 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/bt_go"
+                    android:id="@+id/btn_register"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/bt_shape_2"
                     android:stateListAnimator="@drawable/state_list_animator_z"
-                    android:text="next"
+                    android:text="注册"
                     android:textColor="#2fa881" />
 
             </LinearLayout>

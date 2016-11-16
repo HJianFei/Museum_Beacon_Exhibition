@@ -1,13 +1,14 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.museum_detail;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,6 +23,11 @@ import com.hjianfei.museum_beacon_exhibition.presenter.activity.museum_detail.Mu
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.museum_detail.MuseumDetailPresenterImpl;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
 import com.yalantis.contextmenu.lib.MenuObject;
 import com.yalantis.contextmenu.lib.MenuParams;
@@ -70,40 +76,35 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
         mMenuDialogFragment.setItemClickListener(new OnMenuItemClickListener() {
             @Override
             public void onMenuItemClick(View clickedView, int position) {
-                Toast.makeText(MuseumDetailActivity.this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
+                new ShareAction(MuseumDetailActivity.this)
+                        .withText("hello")
+                        .withTitle("博物展")
+                        .withMedia(new UMImage(MuseumDetailActivity.this, "http://s1.dwstatic.com/group1/M00/4F/64/18be5ea21970cf8858771b89b8ffe3f3.jpg"))
+                        .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)
+                        .setCallback(umShareListener).open();
             }
         });
     }
+
     private List<MenuObject> getMenuObjects() {
         List<MenuObject> menuObjects = new ArrayList<>();
 
         MenuObject close = new MenuObject();
-        close.setResource(R.drawable.icn_close);
+        close.setResource(R.drawable.menu_close);
 
-        MenuObject send = new MenuObject("Send message");
-        send.setResource(R.drawable.icn_1);
+        MenuObject send = new MenuObject("分享");
+        send.setResource(R.drawable.menu_share);
 
-        MenuObject like = new MenuObject("Like profile");
-        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.icn_2);
+        MenuObject like = new MenuObject("收藏");
+        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.menu_love);
         like.setBitmap(b);
-
-        MenuObject addFr = new MenuObject("Add to friends");
-        BitmapDrawable bd = new BitmapDrawable(getResources(),
-                BitmapFactory.decodeResource(getResources(), R.drawable.icn_3));
-        addFr.setDrawable(bd);
-
-        MenuObject addFav = new MenuObject("Add to favorites");
-        addFav.setResource(R.drawable.icn_4);
-
-        MenuObject block = new MenuObject("Block user");
-        block.setResource(R.drawable.icn_5);
+        MenuObject addFav = new MenuObject("点赞");
+        addFav.setResource(R.drawable.menu_favorites);
 
         menuObjects.add(close);
         menuObjects.add(send);
         menuObjects.add(like);
-        menuObjects.add(addFr);
         menuObjects.add(addFav);
-        menuObjects.add(block);
         return menuObjects;
     }
 
@@ -158,6 +159,7 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
     public void showEmpty() {
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -177,4 +179,33 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
+
+    private UMShareListener umShareListener = new UMShareListener() {
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+            Log.d("plat", "platform" + platform);
+
+            Toast.makeText(MuseumDetailActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            Toast.makeText(MuseumDetailActivity.this, platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            if (t != null) {
+                Log.d("throw", "throw:" + t.getMessage());
+            }
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+            Toast.makeText(MuseumDetailActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+        }
+    };
 }

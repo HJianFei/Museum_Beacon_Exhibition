@@ -37,6 +37,11 @@ android {
             keyPassword "123456"
         }
     }
+    repositories{
+        flatDir{
+            dirs 'libs' //就是你放aar的目录地址
+        }
+    }
 }
 
 dependencies {
@@ -76,4 +81,8 @@ dependencies {
     compile files('libs/umeng_social_net.jar')
     compile files('libs/umeng_social_view.jar')
     compile 'com.github.baoyachi:StepView:1.9'
+    compile files('libs/MobTools-2016.1012.1447.jar')
+    compile files('libs/MobCommons-2016.1012.1447.jar')
+    compile name:'SMSSDK-2.1.2',ext:'aar'
+    compile name:'SMSSDKGUI-2.1.2',ext:'aar'
 }

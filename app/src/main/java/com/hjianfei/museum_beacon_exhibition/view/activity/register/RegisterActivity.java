@@ -5,6 +5,8 @@ import android.animation.AnimatorListenerAdapter;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -19,11 +21,20 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.hjianfei.museum_beacon_exhibition.R;
+import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
+import com.hjianfei.museum_beacon_exhibition.bean.SecurityResultCode;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
+import com.hjianfei.museum_beacon_exhibition.presenter.activity.register.RegisterPresenter;
+import com.hjianfei.museum_beacon_exhibition.presenter.activity.register.RegisterPresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.utils.ValidatorUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +43,7 @@ import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements RegisterView {
     @BindView(R.id.fab)
     FloatingActionButton fab;
     @BindView(R.id.cv_add)
@@ -58,6 +69,36 @@ public class RegisterActivity extends AppCompatActivity {
     private String password;
     private String repeat_password;
     private TimeCount time;
+    private RegisterPresenter mRegisterPrsenter;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            String data = (String) msg.obj;
+            data = data.substring(21);
+            Gson gson = new Gson();
+            SecurityResultCode resultCode = gson.fromJson(data, new TypeToken<SecurityResultCode>() {
+            }.getType());
+            if (resultCode.getStatus() == 400) {
+                ToastUtil.showToast(RegisterActivity.this, "客户端请求不能被识别");
+            } else if (resultCode.getStatus() == 418) {
+                ToastUtil.showToast(RegisterActivity.this, "内部接口调用失败");
+            } else if (resultCode.getStatus() == 458) {
+                ToastUtil.showToast(RegisterActivity.this, "手机号码在发送黑名单中");
+            } else if (resultCode.getStatus() == 460) {
+                ToastUtil.showToast(RegisterActivity.this, "无权限发送短信");
+            } else if (resultCode.getStatus() == 462) {
+                ToastUtil.showToast(RegisterActivity.this, "每分钟发送次数超限");
+            } else if (resultCode.getStatus() == 463) {
+                ToastUtil.showToast(RegisterActivity.this, "号码每天发送次数超限");
+            } else if (resultCode.getStatus() == 464) {
+                ToastUtil.showToast(RegisterActivity.this, "号码每天发送次数超限");
+            } else if (resultCode.getStatus() == 467) {
+                ToastUtil.showToast(RegisterActivity.this, "5分钟内校验错误超过3次，验证码失效");
+            } else if (resultCode.getStatus() == 468) {
+                ToastUtil.showToast(RegisterActivity.this, "验证码错误");
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
         SMSSDK.registerEventHandler(eh); //注册短信回调
         time = new TimeCount(60000, 1000);
+        mRegisterPrsenter = new RegisterPresenterImpl(this);
     }
 
     private void ShowEnterAnimation() {
@@ -163,13 +205,13 @@ public class RegisterActivity extends AppCompatActivity {
                 if (mobile) {
                     //请求获取短信验证码，在监听中返回
                     SMSSDK.getVerificationCode(Constants.MOBILE, user_phone);
-                    time.start();
                 } else {
                     ToastUtil.showToast(RegisterActivity.this, "手机号码格式不正确");
                 }
                 break;
             case R.id.btn_register:
-                security_code = securityCode.getText().toString().toString();
+                security_code = securityCode.getText().toString();
+                user_phone = etUsername.getText().toString().trim();
                 password = etPassword.getText().toString().trim();
                 repeat_password = etRepeatpassword.getText().toString().trim();
                 if (TextUtils.isEmpty(security_code)) {
@@ -180,6 +222,7 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 } else {
                     SMSSDK.registerEventHandler(eh); //注册短信回调
+                    //提交验证码，检验验证码输入输入是否正确
                     SMSSDK.submitVerificationCode(Constants.MOBILE, user_phone, security_code);
                 }
                 break;
@@ -196,23 +239,28 @@ public class RegisterActivity extends AppCompatActivity {
 
             if (result == SMSSDK.RESULT_COMPLETE) {
                 //回调完成
-                if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
-
+                if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) { //提交验证码成功
                     LogUtils.d("onResponse", "提交验证码成功");
-                    //提交验证码成功
-                } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("user_phone", user_phone);
+                    map.put("user_password", password);
+                    mRegisterPrsenter.registerUser(map);
+
+                } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) { //获取验证码成功
 
                     LogUtils.d("onResponse", "获取验证码成功");
+                    time.start();
 
-                    //获取验证码成功
-                } else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES) {
+                } else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES) { //返回支持发送验证码的国家列表
 
                     LogUtils.d("onResponse", data.toString());
-                    //返回支持发送验证码的国家列表
+
                 }
             } else {
+                Message message = Message.obtain();
+                message.obj = data.toString();
+                handler.sendMessage(message);
                 LogUtils.d(Constants.TAG, data.toString());
-                ((Throwable) data).printStackTrace();
             }
         }
     };
@@ -222,6 +270,39 @@ public class RegisterActivity extends AppCompatActivity {
         SMSSDK.unregisterEventHandler(eh);
         super.onDestroy();
     }
+
+    @Override
+    public void registerUserFinished(ResultCode resultCode) {
+        LogUtils.d(Constants.TAG, resultCode.toString());
+        if (resultCode.code == 200) {
+            ToastUtil.showToast(RegisterActivity.this, resultCode.msg);
+            animateRevealClose();
+        } else {
+            ToastUtil.showToast(RegisterActivity.this, "操作失败，稍后再试");
+        }
+
+    }
+
+    @Override
+    public void showDialog() {
+
+    }
+
+    @Override
+    public void hideDialog() {
+
+    }
+
+    @Override
+    public void showError() {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
+    }
+
 
     class TimeCount extends CountDownTimer {
 

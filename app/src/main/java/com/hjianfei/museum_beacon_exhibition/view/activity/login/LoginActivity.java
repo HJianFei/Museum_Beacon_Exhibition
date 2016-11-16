@@ -12,18 +12,12 @@ import android.transition.Explode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.view.activity.main.MainActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.register.RegisterActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.splash.SplashActivity;
 import com.stephentuso.welcome.WelcomeScreenHelper;
-import com.umeng.socialize.UMAuthListener;
-import com.umeng.socialize.UMShareAPI;
-import com.umeng.socialize.bean.SHARE_MEDIA;
-
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,14 +36,12 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.fab)
     FloatingActionButton fab;
     private WelcomeScreenHelper welcomeScreen;
-    private UMShareAPI mShareAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        mShareAPI = UMShareAPI.get( LoginActivity.this );
         welcomeScreen = new WelcomeScreenHelper(this, SplashActivity.class);
         welcomeScreen.show(savedInstanceState);
     }
@@ -72,34 +64,15 @@ public class LoginActivity extends AppCompatActivity {
             case R.id.bt_go:
                 Explode explode = new Explode();
                 explode.setDuration(500);
-
                 getWindow().setExitTransition(explode);
                 getWindow().setEnterTransition(explode);
                 ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(this);
                 Intent i2 = new Intent(this, MainActivity.class);
                 startActivity(i2, oc2.toBundle());
                 this.finish();
-//                mShareAPI.doOauthVerify(LoginActivity.this, SHARE_MEDIA.SINA, umAuthListener);
                 break;
         }
     }
-    private UMAuthListener umAuthListener = new UMAuthListener() {
-        @Override
-        public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
-            Toast.makeText(getApplicationContext(), "Authorize succeed", Toast.LENGTH_SHORT).show();
-
-        }
-
-        @Override
-        public void onError(SHARE_MEDIA platform, int action, Throwable t) {
-            Toast.makeText( getApplicationContext(), "Authorize fail", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onCancel(SHARE_MEDIA platform, int action) {
-            Toast.makeText( getApplicationContext(), "Authorize cancel", Toast.LENGTH_SHORT).show();
-        }
-    };
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);

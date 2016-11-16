@@ -7,10 +7,16 @@ import com.hjianfei.museum_beacon_exhibition.bean.ExhibitionDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Exhibitions;
 import com.hjianfei.museum_beacon_exhibition.bean.Museum;
 import com.hjianfei.museum_beacon_exhibition.bean.MuseumDetail;
+import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
 import com.hjianfei.museum_beacon_exhibition.bean.ViewPager;
 import com.hjianfei.museum_beacon_exhibition.canstants.Urls;
 
+import java.util.Map;
+
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -80,5 +86,10 @@ public interface Api {
     //获取博物馆详情信息
     @GET(Urls.GET_MUSEUM_DETAIL)
     Observable<MuseumDetail> getMuseumDetail(@Query("museum_name") String museum_name);
+
+    //用户注册
+    @POST(Urls.REGISTER_USER)
+    @FormUrlEncoded
+    Observable<ResultCode> registerUser(@FieldMap Map<String, Object> map);
 
 }

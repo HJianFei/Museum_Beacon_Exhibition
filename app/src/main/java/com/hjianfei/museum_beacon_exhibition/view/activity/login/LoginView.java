@@ -1,5 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.login;
 
+import com.hjianfei.museum_beacon_exhibition.bean.LoginResult;
 import com.hjianfei.museum_beacon_exhibition.view.base.BaseView;
 
 /**
@@ -11,6 +12,6 @@ public interface LoginView extends BaseView {
     /**
      * 用户登录成功
      */
-    void loginSuccess();
+    void loginSuccess(LoginResult loginResult);
 
 }

@@ -45,6 +45,9 @@ public class Urls {
      * 用户注册
      */
     public static final String REGISTER_USER = "user!saveUser";
-
+    /**
+     * 用户登录
+     */
+    public static final String LOGIN_USER = "user!getUserByPhone";
 }
 

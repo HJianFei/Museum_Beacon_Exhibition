@@ -5,6 +5,7 @@ import com.hjianfei.museum_beacon_exhibition.bean.AppreciateDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
 import com.hjianfei.museum_beacon_exhibition.bean.ExhibitionDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Exhibitions;
+import com.hjianfei.museum_beacon_exhibition.bean.LoginResult;
 import com.hjianfei.museum_beacon_exhibition.bean.Museum;
 import com.hjianfei.museum_beacon_exhibition.bean.MuseumDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
@@ -91,5 +92,12 @@ public interface Api {
     @POST(Urls.REGISTER_USER)
     @FormUrlEncoded
     Observable<ResultCode> registerUser(@FieldMap Map<String, Object> map);
+
+    /**
+     * 用户登录
+     */
+    @POST(Urls.LOGIN_USER)
+    @FormUrlEncoded
+    Observable<LoginResult> loginUser(@FieldMap Map<String, Object> map);
 
 }

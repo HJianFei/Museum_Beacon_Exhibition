@@ -52,7 +52,7 @@ public interface Api {
 
     //获取文物鉴赏数据
     @GET(Urls.API_HOME_APPRECIATES_BY_TYPE)
-    Observable<Appreciates> getAllAppreciatesByType(@Query("type") String type);
+    Observable<Appreciates> getAllAppreciatesByType(@Query("type") String type, @Query("page") String page);
 
     //展览详情
     @GET(Urls.APPRECIATE_DETAIL)

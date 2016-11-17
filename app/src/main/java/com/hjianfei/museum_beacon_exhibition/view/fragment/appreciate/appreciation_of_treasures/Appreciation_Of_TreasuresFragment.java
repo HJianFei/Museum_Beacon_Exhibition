@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -19,6 +21,8 @@ import com.github.jdsjlzx.recyclerview.HeaderSpanSizeLookup;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
+import com.github.jdsjlzx.util.RecyclerViewStateUtils;
+import com.github.jdsjlzx.view.LoadingFooter;
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.CommonAdapter;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
@@ -35,6 +39,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import me.wangyuwei.flipshare.FlipShareView;
 import me.wangyuwei.flipshare.ShareItem;
 
@@ -54,6 +59,11 @@ public class Appreciation_Of_TreasuresFragment extends Fragment implements Appre
 
     private String mParam1;
     private String mParam2;
+    private int page = 1;
+    private static final String TYPE = "珍品鉴赏";
+    private SweetAlertDialog dialog;
+    private long startTime;
+    private long stopTime;
 
 
     public Appreciation_Of_TreasuresFragment() {
@@ -130,6 +140,8 @@ public class Appreciation_Of_TreasuresFragment extends Fragment implements Appre
         appreciateOfTreasuresRecyclerView.setLScrollListener(new LRecyclerView.LScrollListener() {
             @Override
             public void onRefresh() {
+                page = 1;
+                mAppreciatePresenter.refreshAppreciatesData(TYPE, page + "");
 
             }
 
@@ -145,7 +157,12 @@ public class Appreciation_Of_TreasuresFragment extends Fragment implements Appre
 
             @Override
             public void onBottom() {
-
+                LoadingFooter.State state = RecyclerViewStateUtils.getFooterViewState(appreciateOfTreasuresRecyclerView);
+                if (state == LoadingFooter.State.Loading) {
+                    return;
+                }
+                page++;
+                mAppreciatePresenter.loadMoreAppreciatesData(TYPE, page + "");
             }
 
             @Override
@@ -157,7 +174,7 @@ public class Appreciation_Of_TreasuresFragment extends Fragment implements Appre
 
     private void initData() {
         mAppreciatePresenter = new AppreciatePresenterImpl(this);
-        mAppreciatePresenter.onInitAppreciateData("珍品鉴赏");
+        mAppreciatePresenter.onInitAppreciateData(TYPE, page + "");
     }
 
     @Override
@@ -169,22 +186,48 @@ public class Appreciation_Of_TreasuresFragment extends Fragment implements Appre
 
     @Override
     public void refreshAppreciateData(List<Appreciates.AppreciatesBean> appreciatesBeans) {
-
+        appreciatesBeanList.clear();
+        appreciatesBeanList.addAll(appreciatesBeans);
+        appreciateOfTreasuresRecyclerView.refreshComplete();
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void loadMoreAppreciateData(List<Appreciates.AppreciatesBean> appreciatesBeans) {
-
+        if (null != appreciatesBeans) {
+            appreciatesBeanList.addAll(appreciatesBeans);
+            appreciateOfTreasuresRecyclerView.refreshComplete();
+            mAdapter.notifyDataSetChanged();
+        } else {
+            appreciateOfTreasuresRecyclerView.refreshComplete();
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
     public void showDialog() {
-
+        dialog = new SweetAlertDialog(mContext, SweetAlertDialog.PROGRESS_TYPE);
+        dialog.setTitleText("加载中");
+        dialog.show();
+        startTime = SystemClock.currentThreadTimeMillis();
     }
 
     @Override
     public void hideDialog() {
-
+        stopTime = SystemClock.currentThreadTimeMillis();
+        if (stopTime - startTime > 500) {
+            if (null != dialog) {
+                dialog.dismiss();
+            }
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                public void run() {
+                    if (null != dialog) {
+                        dialog.dismiss();
+                    }
+                }
+            }, 500);
+        }
     }
 
     @Override

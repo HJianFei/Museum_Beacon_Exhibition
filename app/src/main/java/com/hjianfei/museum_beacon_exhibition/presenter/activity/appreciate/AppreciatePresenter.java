@@ -8,13 +8,13 @@ package com.hjianfei.museum_beacon_exhibition.presenter.activity.appreciate;
 
 public interface AppreciatePresenter {
 
-    void onInitAppreciateData(String tag);
+    void onInitAppreciateData(String tag, String page);
 
     //下拉刷新页面
-    void refreshAppreciatesData(String tag);
+    void refreshAppreciatesData(String tag, String page);
 
     //上拉加载更多
-    void loadMoreAppreciatesData(String tag);
+    void loadMoreAppreciatesData(String tag, String page);
 
     void onDestroy();
 

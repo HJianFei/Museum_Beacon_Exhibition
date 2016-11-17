@@ -13,8 +13,8 @@ import rx.schedulers.Schedulers;
 
 public class CulturalIndicatorImpl implements CulturalIndicator {
     @Override
-    public void getInitAppreciatesData(final onFinishedListener listener) {
-        NetWorkUtils.getApi().getAllAppreciatesByType("珍品鉴赏")
+    public void getInitAppreciatesData(String type, String page, final onFinishedListener listener) {
+        NetWorkUtils.getApi().getAllAppreciatesByType(type, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Appreciates>() {
@@ -25,6 +25,7 @@ public class CulturalIndicatorImpl implements CulturalIndicator {
 
                     @Override
                     public void onError(Throwable e) {
+                        listener.onError();
 
                     }
 
@@ -39,12 +40,52 @@ public class CulturalIndicatorImpl implements CulturalIndicator {
     }
 
     @Override
-    public void getRefreshAppreciatesData(onFinishedListener listener) {
+    public void getRefreshAppreciatesData(String type, String page, final onFinishedListener listener) {
+        NetWorkUtils.getApi().getAllAppreciatesByType(type, page)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Appreciates>() {
+                    @Override
+                    public void onCompleted() {
 
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        listener.onError();
+                    }
+
+                    @Override
+                    public void onNext(Appreciates appreciates) {
+                        listener.onInitAppreciatesFinished(appreciates.getAppreciates());
+
+
+                    }
+                });
     }
 
     @Override
-    public void getLoadAppreciatesData(onFinishedListener listener) {
+    public void getLoadAppreciatesData(String type, String page, final onFinishedListener listener) {
+        NetWorkUtils.getApi().getAllAppreciatesByType(type, page)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Appreciates>() {
+                    @Override
+                    public void onCompleted() {
 
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        listener.onError();
+                    }
+
+                    @Override
+                    public void onNext(Appreciates appreciates) {
+                        listener.onInitAppreciatesFinished(appreciates.getAppreciates());
+
+
+                    }
+                });
     }
 }

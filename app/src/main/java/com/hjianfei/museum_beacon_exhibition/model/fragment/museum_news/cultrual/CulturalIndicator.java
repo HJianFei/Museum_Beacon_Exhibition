@@ -26,11 +26,11 @@ public interface CulturalIndicator {
     }
 
     //首次加载数据
-    void getInitAppreciatesData(onFinishedListener listener);
+    void getInitAppreciatesData(String type, String page, onFinishedListener listener);
 
     //刷新
-    void getRefreshAppreciatesData(onFinishedListener listener);
+    void getRefreshAppreciatesData(String type, String page, onFinishedListener listener);
 
     //加载更多
-    void getLoadAppreciatesData(onFinishedListener listener);
+    void getLoadAppreciatesData(String type, String page, onFinishedListener listener);
 }

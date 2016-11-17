@@ -10,8 +10,8 @@ public class Urls {
 
     //服务器地址
 //    public static final String API_SERVER = "http://115.159.24.65:8080/BeaconSys/";
-//    public static final String API_SERVER = "http://192.168.1.110:8080/BeaconSys/";
-    public static final String API_SERVER = "http://192.168.16.117:8080/BeaconSys/";
+    public static final String API_SERVER = "http://192.168.1.106:8080/BeaconSys/";
+//    public static final String API_SERVER = "http://123.207.250.79:8080/BeaconSys/";
     //首页ViewPager数据地址
     public static final String API_VIEWPAGER = "viewPager!getAllViewPager";
     //获取全部青花瓷之约、珍品鉴赏、专题鉴赏、自然标本的信息

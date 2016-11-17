@@ -17,8 +17,8 @@ import rx.schedulers.Schedulers;
 public class AppreciateIndicatorImpl implements AppreciateIndicator {
 
     @Override
-    public void onInitAppreciateByType(String tag, final onFinishListener listener) {
-        NetWorkUtils.getApi().getAllAppreciatesByType(tag)
+    public void onInitAppreciateByType(String tag, final onFinishListener listener, String page) {
+        NetWorkUtils.getApi().getAllAppreciatesByType(tag, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Appreciates>() {
@@ -43,12 +43,54 @@ public class AppreciateIndicatorImpl implements AppreciateIndicator {
     }
 
     @Override
-    public void refreshAppreciateByType(String tag, onFinishListener listener) {
+    public void refreshAppreciateByType(String tag, final onFinishListener listener, String page) {
+        NetWorkUtils.getApi().getAllAppreciatesByType(tag, page)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Appreciates>() {
+                    @Override
+                    public void onCompleted() {
 
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        listener.onError();
+
+                    }
+
+                    @Override
+                    public void onNext(Appreciates appreciates) {
+                        listener.onRefreshAppreciateSuccess(appreciates.getAppreciates());
+
+
+                    }
+                });
     }
 
     @Override
-    public void loadMoreAppreciateByType(String tag, onFinishListener listener) {
+    public void loadMoreAppreciateByType(String tag, final onFinishListener listener, String page) {
+        NetWorkUtils.getApi().getAllAppreciatesByType(tag, page)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Appreciates>() {
+                    @Override
+                    public void onCompleted() {
 
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        listener.onError();
+
+                    }
+
+                    @Override
+                    public void onNext(Appreciates appreciates) {
+                        listener.onLoadMoreAppreciateSuccess(appreciates.getAppreciates());
+
+
+                    }
+                });
     }
 }

@@ -37,7 +37,6 @@ import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.zhy.magicviewpager.transformer.AlphaPageTransformer;
-import com.zhy.magicviewpager.transformer.RotateDownPageTransformer;
 import com.zhy.magicviewpager.transformer.ScaleInTransformer;
 
 import java.util.List;
@@ -225,7 +224,7 @@ public class HomeFragment extends Fragment implements HomeView {
         hot_exhibition_view_pager.setOffscreenPageLimit(5);
         hot_exhibition_view_pager.setAdapter(homeExhibitionViewPagerAdapter);
         hot_exhibition_view_pager.setCurrentItem(1, true);
-        hot_exhibition_view_pager.setPageTransformer(true, new ScaleInTransformer(new AlphaPageTransformer(new RotateDownPageTransformer())));
+        hot_exhibition_view_pager.setPageTransformer(true, new ScaleInTransformer(new AlphaPageTransformer()));
     }
 
 

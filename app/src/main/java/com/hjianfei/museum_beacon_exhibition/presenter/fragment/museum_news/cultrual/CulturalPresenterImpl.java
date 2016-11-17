@@ -14,44 +14,62 @@ import java.util.List;
 public class CulturalPresenterImpl implements CulturalPresenter, CulturalIndicator.onFinishedListener {
 
     private CulturalView mCulturalView;
-    private CulturalIndicator mCultrualIndicator;
+    private CulturalIndicator mCulturalIndicator;
 
     public CulturalPresenterImpl(CulturalView mCulturalView) {
         this.mCulturalView = mCulturalView;
-        mCultrualIndicator = new CulturalIndicatorImpl();
+        mCulturalIndicator = new CulturalIndicatorImpl();
     }
 
     @Override
-    public void initAppreciatesData() {
-        mCultrualIndicator.getInitAppreciatesData(this);
+    public void initAppreciatesData(String tag, String page) {
+        if (null != mCulturalView) {
+            mCulturalView.showDialog();
+        }
+        mCulturalIndicator.getInitAppreciatesData(tag, page, this);
 
     }
 
     @Override
-    public void loadAppreciatesMore() {
-        mCultrualIndicator.getLoadAppreciatesData(this);
+    public void loadAppreciatesMore(String tag, String page) {
+        if (null != mCulturalView) {
+            mCulturalView.showDialog();
+        }
+        mCulturalIndicator.getLoadAppreciatesData(tag, page, this);
 
     }
 
     @Override
-    public void refreshAppreciatesData() {
-        mCultrualIndicator.getRefreshAppreciatesData(this);
+    public void refreshAppreciatesData(String tag, String page) {
+        if (null != mCulturalView) {
+            mCulturalView.showDialog();
+        }
+        mCulturalIndicator.getRefreshAppreciatesData(tag, page, this);
 
     }
 
 
     @Override
     public void onInitAppreciatesFinished(List<Appreciates.AppreciatesBean> appreciatesBeans) {
+        if (null != mCulturalView) {
+            mCulturalView.hideDialog();
+        }
         mCulturalView.initCulturalData(appreciatesBeans);
     }
 
     @Override
     public void onRefreshAppreciatesFinished(List<Appreciates.AppreciatesBean> appreciatesBeans) {
+        if (null != mCulturalView) {
+            mCulturalView.hideDialog();
+        }
         mCulturalView.refreshCulturalData(appreciatesBeans);
     }
 
     @Override
     public void onLoadAppreciatesFinished(List<Appreciates.AppreciatesBean> appreciatesBeans) {
+        if (null != mCulturalView) {
+            mCulturalView.hideDialog();
+        }
         mCulturalView.refreshCulturalData(appreciatesBeans);
     }
 

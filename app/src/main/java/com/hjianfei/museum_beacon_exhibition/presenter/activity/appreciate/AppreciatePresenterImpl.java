@@ -27,17 +27,26 @@ public class AppreciatePresenterImpl implements AppreciatePresenter, AppreciateI
 
     @Override
     public void onInitAppreciateFinished(List<Appreciates.AppreciatesBean> appreciatesBeans) {
+        if (null != mAppreciateView) {
+            mAppreciateView.hideDialog();
+        }
         mAppreciateView.initAppreciateData(appreciatesBeans);
 
     }
 
     @Override
     public void onRefreshAppreciateSuccess(List<Appreciates.AppreciatesBean> appreciatesBeans) {
+        if (null != mAppreciateView) {
+            mAppreciateView.hideDialog();
+        }
         mAppreciateView.refreshAppreciateData(appreciatesBeans);
     }
 
     @Override
     public void onLoadMoreAppreciateSuccess(List<Appreciates.AppreciatesBean> appreciatesBeans) {
+        if (null != mAppreciateView) {
+            mAppreciateView.hideDialog();
+        }
         mAppreciateView.loadMoreAppreciateData(appreciatesBeans);
     }
 
@@ -47,20 +56,29 @@ public class AppreciatePresenterImpl implements AppreciatePresenter, AppreciateI
     }
 
     @Override
-    public void onInitAppreciateData(String tag) {
-        mAppreciateIndicator.onInitAppreciateByType(tag, this);
+    public void onInitAppreciateData(String tag, String page) {
+        if (null != mAppreciateView) {
+            mAppreciateView.showDialog();
+        }
+        mAppreciateIndicator.onInitAppreciateByType(tag, this, page);
 
     }
 
     @Override
-    public void refreshAppreciatesData(String tag) {
-        mAppreciateIndicator.refreshAppreciateByType(tag, this);
+    public void refreshAppreciatesData(String tag, String page) {
+        if (null != mAppreciateView) {
+            mAppreciateView.showDialog();
+        }
+        mAppreciateIndicator.refreshAppreciateByType(tag, this, page);
 
     }
 
     @Override
-    public void loadMoreAppreciatesData(String tag) {
-        mAppreciateIndicator.loadMoreAppreciateByType(tag, this);
+    public void loadMoreAppreciatesData(String tag, String page) {
+        if (null != mAppreciateView) {
+            mAppreciateView.showDialog();
+        }
+        mAppreciateIndicator.loadMoreAppreciateByType(tag, this, page);
 
     }
 

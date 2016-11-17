@@ -26,10 +26,10 @@ public interface AppreciateIndicator {
         void onError();
     }
 
-    void onInitAppreciateByType(String tag, onFinishListener listener);
+    void onInitAppreciateByType(String tag, onFinishListener listener,String page);
 
-    void refreshAppreciateByType(String tag, onFinishListener listener);
+    void refreshAppreciateByType(String tag, onFinishListener listener,String page);
 
-    void loadMoreAppreciateByType(String tag, onFinishListener listener);
+    void loadMoreAppreciateByType(String tag, onFinishListener listener,String page);
 
 }

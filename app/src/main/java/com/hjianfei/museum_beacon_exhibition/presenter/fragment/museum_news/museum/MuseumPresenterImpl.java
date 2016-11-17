@@ -22,36 +22,54 @@ public class MuseumPresenterImpl implements MuseumPresenter, MuseumIndicator.onF
     }
 
     @Override
-    public void initMuseumsData() {
-        mMuseumIndicator.getInitMuseumsData(this);
+    public void initMuseumsData(String type, String page) {
+        if (null != mMuseumView) {
+            mMuseumView.showDialog();
+        }
+        mMuseumIndicator.getInitMuseumsData(type, page, this);
 
     }
 
     @Override
-    public void loadMuseumsMore() {
-        mMuseumIndicator.getLoadMuseumsData(this);
+    public void loadMuseumsMore(String type, String page) {
+        if (null != mMuseumView) {
+            mMuseumView.showDialog();
+        }
+        mMuseumIndicator.getLoadMuseumsData(type, page, this);
 
     }
 
     @Override
-    public void refreshMuseumsData() {
-        mMuseumIndicator.getRefreshMuseumsData(this);
+    public void refreshMuseumsData(String type, String page) {
+        if (null != mMuseumView) {
+            mMuseumView.showDialog();
+        }
+        mMuseumIndicator.getRefreshMuseumsData(type, page, this);
 
     }
 
     @Override
     public void onInitMuseumsFinished(List<Museum.MuseumsBean> museumsBeanList) {
+        if (null != mMuseumView) {
+            mMuseumView.hideDialog();
+        }
         mMuseumView.initMuseumData(museumsBeanList);
 
     }
 
     @Override
     public void onRefreshMuseumsFinished(List<Museum.MuseumsBean> museumsBeanList) {
+        if (null != mMuseumView) {
+            mMuseumView.hideDialog();
+        }
         mMuseumView.refreshMuseumData(museumsBeanList);
     }
 
     @Override
     public void onLoadMuseumsFinished(List<Museum.MuseumsBean> museumsBeanList) {
+        if (null != mMuseumView) {
+            mMuseumView.hideDialog();
+        }
         mMuseumView.loadMoreMuseumData(museumsBeanList);
     }
 

@@ -13,8 +13,8 @@ import rx.schedulers.Schedulers;
 
 public class MuseumIndicatorImpl implements MuseumIndicator {
     @Override
-    public void getInitMuseumsData(final onFinishedListener listener) {
-        NetWorkUtils.getApi().getAllMuseums()
+    public void getInitMuseumsData(String type, String page, final onFinishedListener listener) {
+        NetWorkUtils.getApi().getAllMuseums(type, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Museum>() {
@@ -34,17 +34,53 @@ public class MuseumIndicatorImpl implements MuseumIndicator {
 
                     }
                 });
-
-
     }
 
     @Override
-    public void getRefreshMuseumsData(onFinishedListener listener) {
+    public void getRefreshMuseumsData(String type, String page, final onFinishedListener listener) {
+        NetWorkUtils.getApi().getAllMuseums(type, page)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Museum>() {
+                    @Override
+                    public void onCompleted() {
 
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Museum museum) {
+                        listener.onRefreshMuseumsFinished(museum.getMuseums());
+
+                    }
+                });
     }
 
     @Override
-    public void getLoadMuseumsData(onFinishedListener listener) {
+    public void getLoadMuseumsData(String type, String page, final onFinishedListener listener) {
+        NetWorkUtils.getApi().getAllMuseums(type, page)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Museum>() {
+                    @Override
+                    public void onCompleted() {
 
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Museum museum) {
+                        listener.onLoadMuseumsFinished(museum.getMuseums());
+
+                    }
+                });
     }
 }

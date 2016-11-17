@@ -7,11 +7,11 @@ package com.hjianfei.museum_beacon_exhibition.presenter.fragment.museum_news.mus
 public interface MuseumPresenter {
 
     //页面可见，首次加载
-    void initMuseumsData();
+    void initMuseumsData(String type,String page);
 
     //上拉加载更多
-    void loadMuseumsMore();
+    void loadMuseumsMore(String type,String page);
 
     //下拉刷新
-    void refreshMuseumsData();
+    void refreshMuseumsData(String type,String page);
 }

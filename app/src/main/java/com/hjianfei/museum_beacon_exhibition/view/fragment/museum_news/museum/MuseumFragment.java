@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
@@ -19,6 +21,8 @@ import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
+import com.github.jdsjlzx.util.RecyclerViewStateUtils;
+import com.github.jdsjlzx.view.LoadingFooter;
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.CommonAdapter;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
@@ -34,6 +38,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import me.wangyuwei.flipshare.FlipShareView;
 import me.wangyuwei.flipshare.ShareItem;
 
@@ -56,6 +61,11 @@ public class MuseumFragment extends Fragment implements MuseumView {
 
     private String mParam1;
     private String mParam2;
+    private int page = 1;
+    private static final String TYPE = "博物馆";
+    private SweetAlertDialog dialog;
+    private long startTime;
+    private long stopTime;
 
 
     public MuseumFragment() {
@@ -99,7 +109,7 @@ public class MuseumFragment extends Fragment implements MuseumView {
 
     private void initData() {
         mMuseumPresenter = new MuseumPresenterImpl(this);
-        mMuseumPresenter.initMuseumsData();
+        mMuseumPresenter.initMuseumsData(TYPE, page + "");
     }
 
     private void initView() {
@@ -136,7 +146,8 @@ public class MuseumFragment extends Fragment implements MuseumView {
         museumRecyclerView.setLScrollListener(new LRecyclerView.LScrollListener() {
             @Override
             public void onRefresh() {
-
+                page = 1;
+                mMuseumPresenter.refreshMuseumsData(TYPE, page + "");
             }
 
             @Override
@@ -151,7 +162,12 @@ public class MuseumFragment extends Fragment implements MuseumView {
 
             @Override
             public void onBottom() {
-
+                LoadingFooter.State state = RecyclerViewStateUtils.getFooterViewState(museumRecyclerView);
+                if (state == LoadingFooter.State.Loading) {
+                    return;
+                }
+                page++;
+                mMuseumPresenter.loadMuseumsMore(TYPE, page + "");
             }
 
             @Override
@@ -172,23 +188,49 @@ public class MuseumFragment extends Fragment implements MuseumView {
     }
 
     @Override
-    public void loadMoreMuseumData(List<Museum.MuseumsBean> museumsBeanList) {
-
+    public void loadMoreMuseumData(List<Museum.MuseumsBean> museumsBean) {
+        if (null != museumsBean) {
+            museumsBeanList.addAll(museumsBean);
+            museumRecyclerView.refreshComplete();
+            mAdapter.notifyDataSetChanged();
+        } else {
+            museumRecyclerView.refreshComplete();
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
-    public void refreshMuseumData(List<Museum.MuseumsBean> museumsBeanList) {
-
+    public void refreshMuseumData(List<Museum.MuseumsBean> museumsBean) {
+        museumsBeanList.clear();
+        museumsBeanList.addAll(museumsBean);
+        museumRecyclerView.refreshComplete();
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void showDialog() {
-
+        dialog = new SweetAlertDialog(mContext, SweetAlertDialog.PROGRESS_TYPE);
+        dialog.setTitleText("加载中");
+        dialog.show();
+        startTime = SystemClock.currentThreadTimeMillis();
     }
 
     @Override
     public void hideDialog() {
-
+        stopTime = SystemClock.currentThreadTimeMillis();
+        if (stopTime - startTime > 500) {
+            if (null != dialog) {
+                dialog.dismiss();
+            }
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                public void run() {
+                    if (null != dialog) {
+                        dialog.dismiss();
+                    }
+                }
+            }, 500);
+        }
     }
 
     @Override
@@ -215,7 +257,7 @@ public class MuseumFragment extends Fragment implements MuseumView {
                 flipShareView.setOnFlipClickListener(new FlipShareView.OnFlipClickListener() {
                     @Override
                     public void onItemClick(int position) {
-                        ToastUtil.showToast(mContext, position+"");
+                        ToastUtil.showToast(mContext, position + "");
                     }
 
                     @Override

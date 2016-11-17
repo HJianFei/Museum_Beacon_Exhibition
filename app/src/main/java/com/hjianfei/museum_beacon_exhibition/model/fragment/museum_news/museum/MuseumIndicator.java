@@ -26,11 +26,11 @@ public interface MuseumIndicator {
     }
 
     //首次加载数据
-    void getInitMuseumsData(onFinishedListener listener);
+    void getInitMuseumsData(String type,String page,onFinishedListener listener);
 
     //刷新
-    void getRefreshMuseumsData(onFinishedListener listener);
+    void getRefreshMuseumsData(String type,String page,onFinishedListener listener);
 
     //加载更多
-    void getLoadMuseumsData(onFinishedListener listener);
+    void getLoadMuseumsData(String type,String page,onFinishedListener listener);
 }

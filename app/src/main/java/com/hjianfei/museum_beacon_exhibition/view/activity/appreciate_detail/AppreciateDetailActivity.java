@@ -58,6 +58,8 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
     private AppreciateDetailPresenter mAppreciateDetailPresenter;
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
+    private String[] img_urls;
+    private AppreciateDetail appreciate_detail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,9 +85,9 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
             public void onMenuItemClick(View clickedView, int position) {
                 if (position == 1) {
                     new ShareAction(AppreciateDetailActivity.this)
-                            .withText("博物展")
                             .withTitle("博物展")
-                            .withMedia(new UMImage(AppreciateDetailActivity.this, "http://s1.dwstatic.com/group1/M00/4F/64/18be5ea21970cf8858771b89b8ffe3f3.jpg"))
+                            .withText(appreciate_detail.getAppreciateDetail().getTitle())
+                            .withMedia(new UMImage(AppreciateDetailActivity.this, img_urls[0]))
                             .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)
                             .setCallback(umShareListener).open();
                 } else if (position == 2) {
@@ -142,11 +144,12 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
 
     @Override
     public void initAppreciateDetailData(AppreciateDetail appreciateDetail) {
+        appreciate_detail = appreciateDetail;
         culturalDetailName.setText(appreciateDetail.getAppreciateDetail().getTitle());
         culturalDetailContent.setText(appreciateDetail.getAppreciateDetail().getContent());
         String img_url = appreciateDetail.getAppreciateDetail().getImg_url();
         img_url = img_url.substring(1, img_url.length() - 1);
-        String[] img_urls = img_url.split(",");
+        img_urls = img_url.split(",");
         culturalDetailViewPager.setPlayDelay(3000);
         culturalDetailViewPager.setAdapter(new CommonDetailViewPagerAdapter(img_urls));
         culturalDetailViewPager.setHintView(new ColorPointHintView(this, Color.YELLOW, Color.WHITE));

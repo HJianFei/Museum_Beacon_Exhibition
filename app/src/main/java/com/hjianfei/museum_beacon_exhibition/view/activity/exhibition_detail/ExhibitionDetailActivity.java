@@ -3,7 +3,6 @@ package com.hjianfei.museum_beacon_exhibition.view.activity.exhibition_detail;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -18,10 +17,17 @@ import android.widget.Toast;
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.adapter.CommonDetailViewPagerAdapter;
 import com.hjianfei.museum_beacon_exhibition.bean.ExhibitionDetail;
+import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.exhibition_detail.ExhibitionDetailPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.exhibition_detail.ExhibitionDetailPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
+import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
 import com.yalantis.contextmenu.lib.MenuObject;
 import com.yalantis.contextmenu.lib.MenuParams;
@@ -52,6 +58,8 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
     private ExhibitionDetailPresenter mExhibitionDetailPresenter;
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
+    private ExhibitionDetail exhibition_detail;
+    private String[] img_urls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,40 +83,43 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
         mMenuDialogFragment.setItemClickListener(new OnMenuItemClickListener() {
             @Override
             public void onMenuItemClick(View clickedView, int position) {
-                Toast.makeText(ExhibitionDetailActivity.this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
+                if (position == 1) {
+                    new ShareAction(ExhibitionDetailActivity.this)
+                            .withTitle("博物展")
+                            .withText(exhibition_detail.getExhibitionDetail().getTitle())
+                            .withMedia(new UMImage(ExhibitionDetailActivity.this, img_urls[0]))
+                            .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)
+                            .setCallback(umShareListener).open();
+                } else if (position == 2) {
+                    ToastUtil.showToast(ExhibitionDetailActivity.this, "收藏");
+
+                } else if (position == 3) {
+                    ToastUtil.showToast(ExhibitionDetailActivity.this, "点赞");
+                }
+
             }
         });
     }
+
     private List<MenuObject> getMenuObjects() {
         List<MenuObject> menuObjects = new ArrayList<>();
 
         MenuObject close = new MenuObject();
-        close.setResource(R.drawable.icn_close);
+        close.setResource(R.drawable.menu_close);
 
-        MenuObject send = new MenuObject("Send message");
-        send.setResource(R.drawable.icn_1);
+        MenuObject send = new MenuObject("分享");
+        send.setResource(R.drawable.menu_share);
 
-        MenuObject like = new MenuObject("Like profile");
-        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.icn_2);
+        MenuObject like = new MenuObject("收藏");
+        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.menu_love);
         like.setBitmap(b);
-
-        MenuObject addFr = new MenuObject("Add to friends");
-        BitmapDrawable bd = new BitmapDrawable(getResources(),
-                BitmapFactory.decodeResource(getResources(), R.drawable.icn_3));
-        addFr.setDrawable(bd);
-
-        MenuObject addFav = new MenuObject("Add to favorites");
-        addFav.setResource(R.drawable.icn_4);
-
-        MenuObject block = new MenuObject("Block user");
-        block.setResource(R.drawable.icn_5);
+        MenuObject addFav = new MenuObject("点赞");
+        addFav.setResource(R.drawable.menu_favorites);
 
         menuObjects.add(close);
         menuObjects.add(send);
         menuObjects.add(like);
-        menuObjects.add(addFr);
         menuObjects.add(addFav);
-        menuObjects.add(block);
         return menuObjects;
     }
 
@@ -132,13 +143,14 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
 
     @Override
     public void initExhibitionDetailData(ExhibitionDetail exhibitionDetail) {
+        exhibition_detail = exhibitionDetail;
         exhibitionDetailName.setText(exhibitionDetail.getExhibitionDetail().getTitle());
         exhibitionDetailTime.setText(exhibitionDetail.getExhibitionDetail().getShow_time());
         exhibitionDetailAddress.setText(exhibitionDetail.getExhibitionDetail().getAddress());
         exhibitionDetailContent.setText(exhibitionDetail.getExhibitionDetail().getContent());
         String img_url = exhibitionDetail.getExhibitionDetail().getImg_url();
-//        img_url = img_url.substring(1, img_url.length() - 1);
-        String[] img_urls = img_url.split(",");
+        img_url = img_url.substring(1, img_url.length() - 1);
+        img_urls = img_url.split(",");
         exhibitionDetailViewPager.setPlayDelay(3000);
         exhibitionDetailViewPager.setAdapter(new CommonDetailViewPagerAdapter(img_urls));
         exhibitionDetailViewPager.setHintView(new ColorPointHintView(this, Color.YELLOW, Color.WHITE));
@@ -164,6 +176,7 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
     public void showEmpty() {
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -183,4 +196,27 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
 
         return super.onOptionsItemSelected(item);
     }
+
+    private UMShareListener umShareListener = new UMShareListener() {
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+            LogUtils.d(Constants.TAG, "platform" + platform);
+
+            Toast.makeText(ExhibitionDetailActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            Toast.makeText(ExhibitionDetailActivity.this, platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            if (t != null) {
+                LogUtils.d(Constants.TAG, "throw:" + t.getMessage());
+            }
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+            Toast.makeText(ExhibitionDetailActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+        }
+    };
 }

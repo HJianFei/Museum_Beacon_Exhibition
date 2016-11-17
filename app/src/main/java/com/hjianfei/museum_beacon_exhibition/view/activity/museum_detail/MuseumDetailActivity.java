@@ -53,6 +53,7 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
     private String museum_name;
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
+    private MuseumDetail museum_detail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +78,9 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
             @Override
             public void onMenuItemClick(View clickedView, int position) {
                 new ShareAction(MuseumDetailActivity.this)
-                        .withText("hello")
                         .withTitle("博物展")
-                        .withMedia(new UMImage(MuseumDetailActivity.this, "http://s1.dwstatic.com/group1/M00/4F/64/18be5ea21970cf8858771b89b8ffe3f3.jpg"))
+                        .withText(museum_detail.getMuseum_Detail().getMuseum_detail_name())
+                        .withMedia(new UMImage(MuseumDetailActivity.this, museum_detail.getMuseum_Detail().getMuseum_detail_imgs()))
                         .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)
                         .setCallback(umShareListener).open();
             }
@@ -129,6 +130,7 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
 
     @Override
     public void initMuseumDetailData(MuseumDetail museumDetail) {
+        museum_detail = museumDetail;
         museumDetailName.setText(museumDetail.getMuseum_Detail().getMuseum_detail_name());
         museumDetailContent.setText(museumDetail.getMuseum_Detail().getMuseum_detail_content());
         String img_url = museumDetail.getMuseum_Detail().getMuseum_detail_imgs();

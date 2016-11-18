@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -72,9 +73,14 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     private TimeCount time;
     private RegisterPresenter mRegisterPrsenter;
     private SweetAlertDialog dialog;
+    private long startTime;
+    private long stopTime;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
+            if (null != dialog) {
+                dialog.dismiss();
+            }
             String data = (String) msg.obj;
             data = data.substring(21);
             Gson gson = new Gson();
@@ -229,6 +235,10 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
                     SMSSDK.registerEventHandler(eh); //注册短信回调
                     //提交验证码，检验验证码输入输入是否正确
                     SMSSDK.submitVerificationCode(Constants.MOBILE, user_phone, security_code);
+                    dialog = new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.PROGRESS_TYPE);
+                    dialog.setTitleText("注册中");
+                    dialog.show();
+                    startTime = SystemClock.currentThreadTimeMillis();
                 }
                 break;
         }
@@ -284,7 +294,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
             ToastUtil.showToast(RegisterActivity.this, resultCode.msg);
             animateRevealClose();
         } else {
-            ToastUtil.showToast(RegisterActivity.this, "操作失败，稍后再试");
+            ToastUtil.showToast(RegisterActivity.this, resultCode.msg);
         }
 
     }
@@ -296,7 +306,20 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
 
     @Override
     public void hideDialog() {
-
+        stopTime = SystemClock.currentThreadTimeMillis();
+        if (stopTime - startTime > 500) {
+            if (null != dialog) {
+                dialog.dismiss();
+            }
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                public void run() {
+                    if (null != dialog) {
+                        dialog.dismiss();
+                    }
+                }
+            }, 500);
+        }
     }
 
     @Override

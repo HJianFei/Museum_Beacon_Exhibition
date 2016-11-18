@@ -1,10 +1,8 @@
 package com.hjianfei.museum_beacon_exhibition.presenter.activity.register;
 
 import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
-import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.model.activity.register.RegisterIndicator;
 import com.hjianfei.museum_beacon_exhibition.model.activity.register.RegisterIndicatorImpl;
-import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
 import com.hjianfei.museum_beacon_exhibition.view.activity.register.RegisterView;
 
 import java.util.Map;
@@ -25,7 +23,7 @@ public class RegisterPresenterImpl implements RegisterPresenter, RegisterIndicat
 
     @Override
     public void registerUser(Map<String, Object> map) {
-        LogUtils.d(Constants.TAG,"注册点击Presenter");
+
         mRegisterIndicator.registerUser(map, this);
 
     }
@@ -33,6 +31,9 @@ public class RegisterPresenterImpl implements RegisterPresenter, RegisterIndicat
     @Override
     public void onRegisterSuccess(ResultCode resultCode) {
 
+        if (null != mRegisterView) {
+            mRegisterView.hideDialog();
+        }
         mRegisterView.registerUserFinished(resultCode);
 
     }

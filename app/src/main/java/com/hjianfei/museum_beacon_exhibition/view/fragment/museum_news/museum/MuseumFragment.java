@@ -139,6 +139,7 @@ public class MuseumFragment extends Fragment implements MuseumView {
                 Map<String, Object> map = new HashMap<>();
                 map.put("id", museumsBeanList.get(i).getMuseum_id());
                 map.put("view_count", museumsBeanList.get(i).getView_count() + 1);
+                intent.putExtra("post_type", TYPE);
                 mMuseumPresenter.updateMuseumViewCount(map);
                 ActivityOptionsCompat options =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),

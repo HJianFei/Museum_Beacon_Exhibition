@@ -1,8 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -20,8 +18,11 @@ import android.widget.Toast;
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.adapter.CommonDetailViewPagerAdapter;
 import com.hjianfei.museum_beacon_exhibition.bean.AppreciateDetail;
+import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
+import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.appreciate_detail.AppreciateDetailPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.appreciate_detail.AppreciateDetailPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.utils.SPUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
@@ -36,7 +37,9 @@ import com.yalantis.contextmenu.lib.MenuParams;
 import com.yalantis.contextmenu.lib.interfaces.OnMenuItemClickListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,6 +58,7 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
     LinearLayout activityAppreciateDetail;
     private String cultural_detail_url;
     private String cultural_name;
+    private String post_type = "";
     private AppreciateDetailPresenter mAppreciateDetailPresenter;
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
@@ -68,6 +72,7 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
         ButterKnife.bind(this);
         cultural_detail_url = getIntent().getStringExtra("cultural_detail_url");
         cultural_name = getIntent().getStringExtra("cultural_name");
+        post_type = getIntent().getStringExtra("post_type");
         initData();
         initView();
         initMenuFragment();
@@ -91,10 +96,12 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
                             .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)
                             .setCallback(umShareListener).open();
                 } else if (position == 2) {
-                    ToastUtil.showToast(AppreciateDetailActivity.this, "收藏");
-
-                } else if (position == 3) {
-                    ToastUtil.showToast(AppreciateDetailActivity.this, "点赞");
+                    String phone = (String) SPUtils.getParam(AppreciateDetailActivity.this, Constants.PHONE, "");
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("user_phone", phone);
+                    map.put("post_id", appreciate_detail.getAppreciateDetail().getDetail_url());
+                    map.put("post_type", post_type);
+                    mAppreciateDetailPresenter.onSaveCollection(map);
                 }
             }
         });
@@ -110,15 +117,11 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
         send.setResource(R.drawable.menu_share);
 
         MenuObject like = new MenuObject("收藏");
-        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.menu_love);
-        like.setBitmap(b);
-        MenuObject addFav = new MenuObject("点赞");
-        addFav.setResource(R.drawable.menu_favorites);
+        like.setResource(R.drawable.menu_love);
 
         menuObjects.add(close);
         menuObjects.add(send);
         menuObjects.add(like);
-        menuObjects.add(addFav);
         return menuObjects;
     }
 
@@ -153,6 +156,16 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
         culturalDetailViewPager.setPlayDelay(3000);
         culturalDetailViewPager.setAdapter(new CommonDetailViewPagerAdapter(img_urls));
         culturalDetailViewPager.setHintView(new ColorPointHintView(this, Color.YELLOW, Color.WHITE));
+
+    }
+
+    @Override
+    public void onSaveCollectionSuccess(ResultCode resultCode) {
+        if (resultCode.code == 200) {
+            ToastUtil.showToast(AppreciateDetailActivity.this, resultCode.msg);
+        } else {
+            ToastUtil.showToast(AppreciateDetailActivity.this, resultCode.msg);
+        }
 
     }
 

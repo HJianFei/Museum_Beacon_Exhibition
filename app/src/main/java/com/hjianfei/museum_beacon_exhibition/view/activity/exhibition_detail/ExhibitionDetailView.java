@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.exhibition_detail;
 
 import com.hjianfei.museum_beacon_exhibition.bean.ExhibitionDetail;
+import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
 import com.hjianfei.museum_beacon_exhibition.view.base.BaseView;
 
 /**
@@ -10,4 +11,6 @@ import com.hjianfei.museum_beacon_exhibition.view.base.BaseView;
 public interface ExhibitionDetailView extends BaseView {
 
     void initExhibitionDetailData(ExhibitionDetail exhibitionDetail);
+
+    void onSaveCollectionSuccess(ResultCode resultCode);
 }

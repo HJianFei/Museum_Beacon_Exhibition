@@ -7,7 +7,7 @@ import android.content.SharedPreferences;
  * Created by HJianFei on 2016/10/14.
  */
 
-public class SharedPreferencesUtils {
+public class SPUtils {
     /**
      * 保存在手机里面的文件名
      */

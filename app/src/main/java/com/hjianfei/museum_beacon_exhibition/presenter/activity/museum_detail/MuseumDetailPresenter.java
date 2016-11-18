@@ -1,5 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.presenter.activity.museum_detail;
 
+import java.util.Map;
+
 /**
  * Created by HJianFei on 2016/11/5.
  */
@@ -7,4 +9,6 @@ package com.hjianfei.museum_beacon_exhibition.presenter.activity.museum_detail;
 public interface MuseumDetailPresenter {
 
     void initMuseumDetailData(String museum_name);
+
+    void onSaveCollection(Map<String, Object> map);
 }

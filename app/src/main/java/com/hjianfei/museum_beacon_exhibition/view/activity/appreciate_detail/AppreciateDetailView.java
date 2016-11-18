@@ -2,6 +2,7 @@ package com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail;
 
 
 import com.hjianfei.museum_beacon_exhibition.bean.AppreciateDetail;
+import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
 import com.hjianfei.museum_beacon_exhibition.view.base.BaseView;
 
 /**
@@ -11,4 +12,6 @@ import com.hjianfei.museum_beacon_exhibition.view.base.BaseView;
 public interface AppreciateDetailView extends BaseView {
 
     void initAppreciateDetailData(AppreciateDetail appreciateDetail);
+
+    void onSaveCollectionSuccess(ResultCode resultCode);
 }

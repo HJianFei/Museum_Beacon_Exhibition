@@ -63,6 +63,7 @@ public class HomeExhibitionViewPagerAdapter extends PagerAdapter {
                 Intent intent = new Intent(mContext, ExhibitionDetailActivity.class);
                 intent.putExtra("exhibition_detail_url", exhibitionsList.get(position).getDetail_url());
                 intent.putExtra("exhibition_title", exhibitionsList.get(position).getContent());
+                intent.putExtra("post_type","热门展厅");
                 mContext.startActivity(intent);
             }
         });

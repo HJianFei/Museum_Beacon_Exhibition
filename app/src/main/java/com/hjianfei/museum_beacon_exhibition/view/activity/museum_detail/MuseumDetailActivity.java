@@ -1,8 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.museum_detail;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -19,8 +17,11 @@ import android.widget.Toast;
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.adapter.CommonDetailViewPagerAdapter;
 import com.hjianfei.museum_beacon_exhibition.bean.MuseumDetail;
+import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
+import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.museum_detail.MuseumDetailPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.museum_detail.MuseumDetailPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.utils.SPUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
@@ -35,7 +36,9 @@ import com.yalantis.contextmenu.lib.MenuParams;
 import com.yalantis.contextmenu.lib.interfaces.OnMenuItemClickListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,12 +58,14 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
     private MuseumDetail museum_detail;
+    private String post_type = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_museum_detail);
         museum_name = getIntent().getStringExtra("museum_name");
+        post_type = getIntent().getStringExtra("post_type");
         ButterKnife.bind(this);
         initData();
         initView();
@@ -86,10 +91,12 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
                             .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)
                             .setCallback(umShareListener).open();
                 } else if (position == 2) {
-                    ToastUtil.showToast(MuseumDetailActivity.this, "收藏");
-
-                } else if (position == 3) {
-                    ToastUtil.showToast(MuseumDetailActivity.this, "点赞");
+                    String phone = (String) SPUtils.getParam(MuseumDetailActivity.this, Constants.PHONE, "");
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("user_phone", phone);
+                    map.put("post_id", museum_detail.getMuseum_Detail().getMuseum_detail_name());
+                    map.put("post_type", post_type);
+                    mMuseumDetailPresenter.onSaveCollection(map);
 
                 }
             }
@@ -106,15 +113,11 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
         send.setResource(R.drawable.menu_share);
 
         MenuObject like = new MenuObject("收藏");
-        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.menu_love);
-        like.setBitmap(b);
-        MenuObject addFav = new MenuObject("点赞");
-        addFav.setResource(R.drawable.menu_favorites);
+        like.setResource(R.drawable.menu_love);
 
         menuObjects.add(close);
         menuObjects.add(send);
         menuObjects.add(like);
-        menuObjects.add(addFav);
         return menuObjects;
     }
 
@@ -149,6 +152,15 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
         museumDetailViewPager.setHintView(new ColorPointHintView(this, Color.YELLOW, Color.WHITE));
 
 
+    }
+
+    @Override
+    public void onSaveCollectionSuccess(ResultCode resultCode) {
+        if (resultCode.code == 200) {
+            ToastUtil.showToast(MuseumDetailActivity.this, resultCode.msg);
+        } else {
+            ToastUtil.showToast(MuseumDetailActivity.this, resultCode.msg);
+        }
     }
 
     @Override

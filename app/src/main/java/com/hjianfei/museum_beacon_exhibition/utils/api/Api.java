@@ -114,5 +114,12 @@ public interface Api {
     @FormUrlEncoded
     Observable<ResultCode> updateMuseumViewCount(@FieldMap Map<String, Object> map);
 
+    /**
+     * 收藏（文物，博物馆，展厅）
+     */
+    @POST(Urls.COLLECTION_BY_TYPE)
+    @FormUrlEncoded
+    Observable<ResultCode> saveCollection(@FieldMap Map<String, Object> map);
+
 
 }

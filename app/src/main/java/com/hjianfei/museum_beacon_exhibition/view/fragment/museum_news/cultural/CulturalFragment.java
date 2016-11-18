@@ -141,10 +141,12 @@ public class CulturalFragment extends Fragment implements CulturalView {
                 Intent intent = new Intent(getActivity(), AppreciateDetailActivity.class);
                 intent.putExtra("cultural_detail_url", appreciatesBeanList.get(i).getDetail_url());
                 intent.putExtra("cultural_name", appreciatesBeanList.get(i).getContent());
+                intent.putExtra("post_type", TYPE);
                 Map<String, Object> map = new HashMap<>();
                 map.put("id", appreciatesBeanList.get(i).getId());
                 map.put("view_count", appreciatesBeanList.get(i).getView_count() + 1);
                 mCulturalPresenter.updateAppreciateViewCount(map);
+                intent.putExtra("post_type", TYPE);
                 ActivityOptionsCompat options =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
                                 view.findViewById(R.id.appreciate_item_image), getString(R.string.transition));

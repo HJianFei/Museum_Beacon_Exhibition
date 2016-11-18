@@ -17,8 +17,10 @@ import android.widget.EditText;
 
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.bean.LoginResult;
+import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.login.LoginPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.login.LoginPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.utils.SPUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.view.activity.main.MainActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.register.RegisterActivity;
@@ -105,6 +107,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void loginSuccess(final LoginResult loginResult) {
+        SPUtils.setParam(LoginActivity.this, Constants.PHONE, loginResult.getUser().getUser_phone());
         stopTime = SystemClock.currentThreadTimeMillis();
         if (stopTime - startTime > 500) {
             if (loginResult.getStatus().equals("0")) {

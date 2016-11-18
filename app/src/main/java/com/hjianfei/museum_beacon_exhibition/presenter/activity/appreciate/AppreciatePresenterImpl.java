@@ -58,9 +58,9 @@ public class AppreciatePresenterImpl implements AppreciatePresenter, AppreciateI
 
     @Override
     public void onInitAppreciateData(String tag, String page, String search_condition) {
-        if (null != mAppreciateView) {
-            mAppreciateView.showDialog();
-        }
+//        if (null != mAppreciateView) {
+//            mAppreciateView.showDialog();
+//        }
         mAppreciateIndicator.onInitAppreciateByType(tag, this, page, search_condition);
 
     }

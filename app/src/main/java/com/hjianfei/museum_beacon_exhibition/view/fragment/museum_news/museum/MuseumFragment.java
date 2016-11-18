@@ -3,9 +3,9 @@ package com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.museum;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.SystemClock;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -13,10 +13,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
@@ -29,7 +31,6 @@ import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.Museum;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.museum_news.museum.MuseumPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.museum_news.museum.MuseumPresenterImpl;
-import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.view.activity.museum_detail.MuseumDetailActivity;
 
 import java.util.ArrayList;
@@ -68,6 +69,7 @@ public class MuseumFragment extends Fragment implements MuseumView {
     private SweetAlertDialog dialog;
     private long startTime;
     private long stopTime;
+    private String search_condition = "";
 
 
     public MuseumFragment() {
@@ -111,7 +113,7 @@ public class MuseumFragment extends Fragment implements MuseumView {
 
     private void initData() {
         mMuseumPresenter = new MuseumPresenterImpl(this);
-        mMuseumPresenter.initMuseumsData(TYPE, page + "");
+        mMuseumPresenter.initMuseumsData(TYPE, page + "",search_condition);
     }
 
     private void initView() {
@@ -153,7 +155,8 @@ public class MuseumFragment extends Fragment implements MuseumView {
             @Override
             public void onRefresh() {
                 page = 1;
-                mMuseumPresenter.refreshMuseumsData(TYPE, page + "");
+                search_condition = "";
+                mMuseumPresenter.refreshMuseumsData(TYPE, page + "",search_condition);
             }
 
             @Override
@@ -173,7 +176,7 @@ public class MuseumFragment extends Fragment implements MuseumView {
                     return;
                 }
                 page++;
-                mMuseumPresenter.loadMuseumsMore(TYPE, page + "");
+                mMuseumPresenter.loadMuseumsMore(TYPE, page + "",search_condition);
             }
 
             @Override
@@ -187,9 +190,16 @@ public class MuseumFragment extends Fragment implements MuseumView {
 
     @Override
     public void initMuseumData(List<Museum.MuseumsBean> museumsBean) {
-        museumsBeanList.addAll(museumsBean);
-        museumRecyclerView.refreshComplete();
-        mAdapter.notifyDataSetChanged();
+        if (null != museumsBean) {
+            museumsBeanList.clear();
+            museumsBeanList.addAll(museumsBean);
+            museumRecyclerView.refreshComplete();
+            mAdapter.notifyDataSetChanged();
+        } else {
+            dialog = new SweetAlertDialog(mContext, SweetAlertDialog.WARNING_TYPE);
+            dialog.setTitleText("搜索结果为空");
+            dialog.show();
+        }
 
     }
 
@@ -202,15 +212,24 @@ public class MuseumFragment extends Fragment implements MuseumView {
         } else {
             museumRecyclerView.refreshComplete();
             mAdapter.notifyDataSetChanged();
+            dialog = new SweetAlertDialog(mContext, SweetAlertDialog.WARNING_TYPE);
+            dialog.setTitleText("数据加载完啦");
+            dialog.show();
         }
     }
 
     @Override
     public void refreshMuseumData(List<Museum.MuseumsBean> museumsBean) {
-        museumsBeanList.clear();
-        museumsBeanList.addAll(museumsBean);
-        museumRecyclerView.refreshComplete();
-        mAdapter.notifyDataSetChanged();
+        if (null != museumsBean) {
+            museumsBeanList.clear();
+            museumsBeanList.addAll(museumsBean);
+            museumRecyclerView.refreshComplete();
+            mAdapter.notifyDataSetChanged();
+        } else {
+            dialog = new SweetAlertDialog(mContext, SweetAlertDialog.WARNING_TYPE);
+            dialog.setTitleText("搜索结果为空");
+            dialog.show();
+        }
     }
 
     @Override
@@ -223,20 +242,20 @@ public class MuseumFragment extends Fragment implements MuseumView {
 
     @Override
     public void hideDialog() {
-        stopTime = SystemClock.currentThreadTimeMillis();
-        if (stopTime - startTime > 500) {
+//        stopTime = SystemClock.currentThreadTimeMillis();
+//        if (stopTime - startTime > 500) {
             if (null != dialog) {
                 dialog.dismiss();
             }
-        } else {
-            new Handler().postDelayed(new Runnable() {
-                public void run() {
-                    if (null != dialog) {
-                        dialog.dismiss();
-                    }
-                }
-            }, 500);
-        }
+//        } else {
+//            new Handler().postDelayed(new Runnable() {
+//                public void run() {
+//                    if (null != dialog) {
+//                        dialog.dismiss();
+//                    }
+//                }
+//            }, 500);
+//        }
     }
 
     @Override
@@ -254,16 +273,41 @@ public class MuseumFragment extends Fragment implements MuseumView {
         switch (v.getId()) {
             case R.id.museum_search:
                 FlipShareView flipShareView = new FlipShareView.Builder(getActivity(), museumSearch)
-                        .addItem(new ShareItem("刷新", Color.WHITE, 0xff43549C))
-                        .addItem(new ShareItem("搜索", Color.WHITE, 0xff4999F0))
-                        .addItem(new ShareItem("国内", Color.WHITE, 0xffD9392D))
-                        .addItem(new ShareItem("国外", Color.WHITE, 0xff57708A))
+                        .addItem(new ShareItem("刷新", Color.WHITE, 0xfffbc402, BitmapFactory.decodeResource(getResources(), R.drawable.icon_refresh)))
+                        .addItem(new ShareItem("搜索", Color.WHITE, 0xfffbc402, BitmapFactory.decodeResource(getResources(), R.drawable.icon_search)))
+                        .addItem(new ShareItem("国内", Color.WHITE, 0xfffbc402, BitmapFactory.decodeResource(getResources(), R.drawable.icon_china)))
+                        .addItem(new ShareItem("国外", Color.WHITE, 0xfffbc402, BitmapFactory.decodeResource(getResources(), R.drawable.icon_abroad)))
                         .setAnimType(FlipShareView.TYPE_SLIDE)
+                        .setItemDuration(200)
+                        .setSeparateLineColor(Color.WHITE)
                         .create();
                 flipShareView.setOnFlipClickListener(new FlipShareView.OnFlipClickListener() {
                     @Override
                     public void onItemClick(int position) {
-                        ToastUtil.showToast(mContext, position + "");
+                        if (position == 0) {
+                            page = 1;
+                            mMuseumPresenter.refreshMuseumsData(TYPE, page + "", search_condition);
+
+                        } else if (position == 1) {
+                            new MaterialDialog.Builder(getActivity())
+                                    .title("搜索")
+                                    .titleColor(getResources().getColor(R.color.primary))
+                                    .input("请输入关键字", "", new MaterialDialog.InputCallback() {
+                                        @Override
+                                        public void onInput(MaterialDialog dialog, CharSequence input) {
+                                            if (!TextUtils.isEmpty(input)) {
+                                                search_condition = input.toString().trim();
+                                                page = 1;
+                                                mMuseumPresenter.initMuseumsData(TYPE, page + "", search_condition);
+                                            }
+                                        }
+                                    }).show();
+
+                        } else if (position == 2) {
+
+                        } else if (position == 3) {
+
+                        }
                     }
 
                     @Override

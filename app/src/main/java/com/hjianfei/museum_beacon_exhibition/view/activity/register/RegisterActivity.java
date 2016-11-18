@@ -23,7 +23,6 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
 import com.hjianfei.museum_beacon_exhibition.bean.SecurityResultCode;
@@ -71,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     private String password;
     private String repeat_password;
     private TimeCount time;
-    private RegisterPresenter mRegisterPrsenter;
+    private RegisterPresenter mRegisterPresenter;
     private SweetAlertDialog dialog;
     private long startTime;
     private long stopTime;
@@ -84,27 +83,8 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
             String data = (String) msg.obj;
             data = data.substring(21);
             Gson gson = new Gson();
-            SecurityResultCode resultCode = gson.fromJson(data, new TypeToken<SecurityResultCode>() {
-            }.getType());
-            if (resultCode.getStatus() == 400) {
-                ToastUtil.showToast(RegisterActivity.this, "客户端请求不能被识别");
-            } else if (resultCode.getStatus() == 418) {
-                ToastUtil.showToast(RegisterActivity.this, "内部接口调用失败");
-            } else if (resultCode.getStatus() == 458) {
-                ToastUtil.showToast(RegisterActivity.this, "手机号码在发送黑名单中");
-            } else if (resultCode.getStatus() == 460) {
-                ToastUtil.showToast(RegisterActivity.this, "无权限发送短信");
-            } else if (resultCode.getStatus() == 462) {
-                ToastUtil.showToast(RegisterActivity.this, "每分钟发送次数超限");
-            } else if (resultCode.getStatus() == 463) {
-                ToastUtil.showToast(RegisterActivity.this, "号码每天发送次数超限");
-            } else if (resultCode.getStatus() == 464) {
-                ToastUtil.showToast(RegisterActivity.this, "号码每天发送次数超限");
-            } else if (resultCode.getStatus() == 467) {
-                ToastUtil.showToast(RegisterActivity.this, "5分钟内校验错误超过3次，验证码失效");
-            } else if (resultCode.getStatus() == 468) {
-                ToastUtil.showToast(RegisterActivity.this, "验证码错误");
-            }
+            SecurityResultCode resultCode = gson.fromJson(data, SecurityResultCode.class);
+            ToastUtil.showToast(RegisterActivity.this, resultCode.getDetail());
         }
     };
 
@@ -118,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
         }
         SMSSDK.registerEventHandler(eh); //注册短信回调
         time = new TimeCount(60000, 1000);
-        mRegisterPrsenter = new RegisterPresenterImpl(this);
+        mRegisterPresenter = new RegisterPresenterImpl(this);
     }
 
     private void ShowEnterAnimation() {
@@ -259,7 +239,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
                     Map<String, Object> map = new HashMap<>();
                     map.put("user_phone", user_phone);
                     map.put("user_password", password);
-                    mRegisterPrsenter.registerUser(map);
+                    mRegisterPresenter.registerUser(map);
 
                 } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) { //获取验证码成功
 

@@ -8,13 +8,13 @@ import java.util.Map;
 
 public interface CulturalPresenter {
     //页面可见，首次加载
-    void initAppreciatesData(String tag, String page);
+    void initAppreciatesData(String tag, String page,String search_condition);
 
     //上拉加载更多
-    void loadAppreciatesMore(String tag, String page);
+    void loadAppreciatesMore(String tag, String page,String search_condition);
 
     //下拉刷新
-    void refreshAppreciatesData(String tag, String page);
+    void refreshAppreciatesData(String tag, String page,String search_condition);
 
     void updateAppreciateViewCount(Map<String, Object> map);
 

@@ -27,13 +27,13 @@ public interface MuseumIndicator {
     }
 
     //首次加载数据
-    void getInitMuseumsData(String type,String page,onFinishedListener listener);
+    void getInitMuseumsData(String type,String page,onFinishedListener listener,String search_condition);
 
     //刷新
-    void getRefreshMuseumsData(String type,String page,onFinishedListener listener);
+    void getRefreshMuseumsData(String type,String page,onFinishedListener listener,String search_condition);
 
     //加载更多
-    void getLoadMuseumsData(String type,String page,onFinishedListener listener);
+    void getLoadMuseumsData(String type,String page,onFinishedListener listener,String search_condition);
 
     void updateMuseumViewCount(Map<String, Object> map);
 }

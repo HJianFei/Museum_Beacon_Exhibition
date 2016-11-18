@@ -23,29 +23,29 @@ public class CulturalPresenterImpl implements CulturalPresenter, CulturalIndicat
     }
 
     @Override
-    public void initAppreciatesData(String tag, String page) {
+    public void initAppreciatesData(String tag, String page,String search_condition) {
         if (null != mCulturalView) {
             mCulturalView.showDialog();
         }
-        mCulturalIndicator.getInitAppreciatesData(tag, page, this);
+        mCulturalIndicator.getInitAppreciatesData(tag, page, this,search_condition);
 
     }
 
     @Override
-    public void loadAppreciatesMore(String tag, String page) {
+    public void loadAppreciatesMore(String tag, String page,String search_condition) {
         if (null != mCulturalView) {
             mCulturalView.showDialog();
         }
-        mCulturalIndicator.getLoadAppreciatesData(tag, page, this);
+        mCulturalIndicator.getLoadAppreciatesData(tag, page, this,search_condition);
 
     }
 
     @Override
-    public void refreshAppreciatesData(String tag, String page) {
+    public void refreshAppreciatesData(String tag, String page,String search_condition) {
         if (null != mCulturalView) {
             mCulturalView.showDialog();
         }
-        mCulturalIndicator.getRefreshAppreciatesData(tag, page, this);
+        mCulturalIndicator.getRefreshAppreciatesData(tag, page, this,search_condition);
 
     }
 

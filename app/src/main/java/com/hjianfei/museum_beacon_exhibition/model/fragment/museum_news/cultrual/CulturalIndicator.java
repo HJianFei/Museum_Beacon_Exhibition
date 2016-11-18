@@ -27,13 +27,13 @@ public interface CulturalIndicator {
     }
 
     //首次加载数据
-    void getInitAppreciatesData(String type, String page, onFinishedListener listener);
+    void getInitAppreciatesData(String type, String page, onFinishedListener listener,String search_condition);
 
     //刷新
-    void getRefreshAppreciatesData(String type, String page, onFinishedListener listener);
+    void getRefreshAppreciatesData(String type, String page, onFinishedListener listener,String search_condition);
 
     //加载更多
-    void getLoadAppreciatesData(String type, String page, onFinishedListener listener);
+    void getLoadAppreciatesData(String type, String page, onFinishedListener listener,String search_condition);
 
     void updateAppreciateViewCount(Map<String, Object> map);
 }

@@ -82,7 +82,7 @@ public interface Api {
 
     //获取全部博物馆信息
     @GET(Urls.GET_ALL_MUSEUM)
-    Observable<Museum> getAllMuseums(@Query("type") String type, @Query("page") String page);
+    Observable<Museum> getAllMuseums(@Query("type") String type, @Query("page") String page, @Query("search_condition") String search_condition);
 
     //获取博物馆详情信息
     @GET(Urls.GET_MUSEUM_DETAIL)

@@ -52,7 +52,7 @@ public interface Api {
 
     //获取文物鉴赏数据
     @GET(Urls.API_HOME_APPRECIATES_BY_TYPE)
-    Observable<Appreciates> getAllAppreciatesByType(@Query("type") String type, @Query("page") String page);
+    Observable<Appreciates> getAllAppreciatesByType(@Query("type") String type, @Query("page") String page, @Query("search_condition") String search_condition);
 
     //展览详情
     @GET(Urls.APPRECIATE_DETAIL)
@@ -99,12 +99,13 @@ public interface Api {
     @POST(Urls.LOGIN_USER)
     @FormUrlEncoded
     Observable<LoginResult> loginUser(@FieldMap Map<String, Object> map);
+
     /**
      * 更新appreciate的浏览次数
      */
     @POST(Urls.UPDATE_APPRECIATE_VIEW_COUNT)
     @FormUrlEncoded
-    Observable<ResultCode>updateAppreciateViewCount(@FieldMap Map<String, Object> map);
+    Observable<ResultCode> updateAppreciateViewCount(@FieldMap Map<String, Object> map);
 
     /**
      * 更新museum的浏览次数

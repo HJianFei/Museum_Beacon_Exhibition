@@ -10,13 +10,13 @@ import java.util.Map;
 
 public interface AppreciatePresenter {
 
-    void onInitAppreciateData(String tag, String page);
+    void onInitAppreciateData(String tag, String page,String search_condition);
 
     //下拉刷新页面
-    void refreshAppreciatesData(String tag, String page);
+    void refreshAppreciatesData(String tag, String page,String search_condition);
 
     //上拉加载更多
-    void loadMoreAppreciatesData(String tag, String page);
+    void loadMoreAppreciatesData(String tag, String page,String search_condition);
 
     void updateAppreciateViewCount(Map<String, Object> map);
 

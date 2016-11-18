@@ -27,11 +27,11 @@ public interface AppreciateIndicator {
         void onError();
     }
 
-    void onInitAppreciateByType(String tag, onFinishListener listener, String page);
+    void onInitAppreciateByType(String tag, onFinishListener listener, String page,String search_condition);
 
-    void refreshAppreciateByType(String tag, onFinishListener listener, String page);
+    void refreshAppreciateByType(String tag, onFinishListener listener, String page,String search_condition);
 
-    void loadMoreAppreciateByType(String tag, onFinishListener listener, String page);
+    void loadMoreAppreciateByType(String tag, onFinishListener listener, String page,String search_condition);
 
     void updateAppreciateViewCount(Map<String, Object> map);
 

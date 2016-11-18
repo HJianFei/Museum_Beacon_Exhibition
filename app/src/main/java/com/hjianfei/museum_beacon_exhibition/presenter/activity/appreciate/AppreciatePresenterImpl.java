@@ -57,29 +57,29 @@ public class AppreciatePresenterImpl implements AppreciatePresenter, AppreciateI
     }
 
     @Override
-    public void onInitAppreciateData(String tag, String page) {
+    public void onInitAppreciateData(String tag, String page, String search_condition) {
         if (null != mAppreciateView) {
             mAppreciateView.showDialog();
         }
-        mAppreciateIndicator.onInitAppreciateByType(tag, this, page);
+        mAppreciateIndicator.onInitAppreciateByType(tag, this, page, search_condition);
 
     }
 
     @Override
-    public void refreshAppreciatesData(String tag, String page) {
+    public void refreshAppreciatesData(String tag, String page, String search_condition) {
         if (null != mAppreciateView) {
             mAppreciateView.showDialog();
         }
-        mAppreciateIndicator.refreshAppreciateByType(tag, this, page);
+        mAppreciateIndicator.refreshAppreciateByType(tag, this, page, search_condition);
 
     }
 
     @Override
-    public void loadMoreAppreciatesData(String tag, String page) {
+    public void loadMoreAppreciatesData(String tag, String page, String search_condition) {
         if (null != mAppreciateView) {
             mAppreciateView.showDialog();
         }
-        mAppreciateIndicator.loadMoreAppreciateByType(tag, this, page);
+        mAppreciateIndicator.loadMoreAppreciateByType(tag, this, page, search_condition);
 
     }
 

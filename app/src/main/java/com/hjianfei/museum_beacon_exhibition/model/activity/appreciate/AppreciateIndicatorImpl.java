@@ -20,8 +20,8 @@ import rx.schedulers.Schedulers;
 public class AppreciateIndicatorImpl implements AppreciateIndicator {
 
     @Override
-    public void onInitAppreciateByType(String tag, final onFinishListener listener, String page) {
-        NetWorkUtils.getApi().getAllAppreciatesByType(tag, page)
+    public void onInitAppreciateByType(String tag, final onFinishListener listener, String page, String search_condition) {
+        NetWorkUtils.getApi().getAllAppreciatesByType(tag, page, search_condition)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Appreciates>() {
@@ -46,8 +46,8 @@ public class AppreciateIndicatorImpl implements AppreciateIndicator {
     }
 
     @Override
-    public void refreshAppreciateByType(String tag, final onFinishListener listener, String page) {
-        NetWorkUtils.getApi().getAllAppreciatesByType(tag, page)
+    public void refreshAppreciateByType(String tag, final onFinishListener listener, String page, String search_condition) {
+        NetWorkUtils.getApi().getAllAppreciatesByType(tag, page, search_condition)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Appreciates>() {
@@ -72,8 +72,8 @@ public class AppreciateIndicatorImpl implements AppreciateIndicator {
     }
 
     @Override
-    public void loadMoreAppreciateByType(String tag, final onFinishListener listener, String page) {
-        NetWorkUtils.getApi().getAllAppreciatesByType(tag, page)
+    public void loadMoreAppreciateByType(String tag, final onFinishListener listener, String page, String search_condition) {
+        NetWorkUtils.getApi().getAllAppreciatesByType(tag, page, search_condition)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Appreciates>() {

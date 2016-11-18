@@ -17,7 +17,7 @@ import rx.schedulers.Schedulers;
 public class CulturalIndicatorImpl implements CulturalIndicator {
     @Override
     public void getInitAppreciatesData(String type, String page, final onFinishedListener listener) {
-        NetWorkUtils.getApi().getAllAppreciatesByType(type, page)
+        NetWorkUtils.getApi().getAllAppreciatesByType(type, page,"")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Appreciates>() {
@@ -44,7 +44,7 @@ public class CulturalIndicatorImpl implements CulturalIndicator {
 
     @Override
     public void getRefreshAppreciatesData(String type, String page, final onFinishedListener listener) {
-        NetWorkUtils.getApi().getAllAppreciatesByType(type, page)
+        NetWorkUtils.getApi().getAllAppreciatesByType(type, page,"")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Appreciates>() {
@@ -69,7 +69,7 @@ public class CulturalIndicatorImpl implements CulturalIndicator {
 
     @Override
     public void getLoadAppreciatesData(String type, String page, final onFinishedListener listener) {
-        NetWorkUtils.getApi().getAllAppreciatesByType(type, page)
+        NetWorkUtils.getApi().getAllAppreciatesByType(type, page,"")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Appreciates>() {

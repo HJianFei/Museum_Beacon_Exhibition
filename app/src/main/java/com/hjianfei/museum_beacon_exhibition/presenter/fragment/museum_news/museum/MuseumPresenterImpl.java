@@ -6,6 +6,7 @@ import com.hjianfei.museum_beacon_exhibition.model.fragment.museum_news.museum.M
 import com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.museum.MuseumView;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by HJianFei on 2016/11/5.
@@ -46,6 +47,11 @@ public class MuseumPresenterImpl implements MuseumPresenter, MuseumIndicator.onF
         }
         mMuseumIndicator.getRefreshMuseumsData(type, page, this);
 
+    }
+
+    @Override
+    public void updateMuseumViewCount(Map<String, Object> map) {
+        mMuseumIndicator.updateMuseumViewCount(map);
     }
 
     @Override

@@ -4,6 +4,7 @@ package com.hjianfei.museum_beacon_exhibition.model.activity.appreciate;
 import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 创建时间： 2016/9/19.
@@ -26,10 +27,12 @@ public interface AppreciateIndicator {
         void onError();
     }
 
-    void onInitAppreciateByType(String tag, onFinishListener listener,String page);
+    void onInitAppreciateByType(String tag, onFinishListener listener, String page);
 
-    void refreshAppreciateByType(String tag, onFinishListener listener,String page);
+    void refreshAppreciateByType(String tag, onFinishListener listener, String page);
 
-    void loadMoreAppreciateByType(String tag, onFinishListener listener,String page);
+    void loadMoreAppreciateByType(String tag, onFinishListener listener, String page);
+
+    void updateAppreciateViewCount(Map<String, Object> map);
 
 }

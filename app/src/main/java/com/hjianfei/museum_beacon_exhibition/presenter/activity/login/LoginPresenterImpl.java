@@ -23,6 +23,9 @@ public class LoginPresenterImpl implements LoginPresenter, LoginIndicator.onLogi
 
     @Override
     public void onLoginSuccess(LoginResult loginResult) {
+        if (null != mLoginView) {
+            mLoginView.hideDialog();
+        }
         mLoginView.loginSuccess(loginResult);
 
     }
@@ -35,6 +38,9 @@ public class LoginPresenterImpl implements LoginPresenter, LoginIndicator.onLogi
 
     @Override
     public void loginUser(Map<String, Object> map) {
+        if (null != mLoginView) {
+            mLoginView.showDialog();
+        }
         mlLoginIndicator.loginUser(map, this);
 
     }

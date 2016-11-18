@@ -1,7 +1,10 @@
 package com.hjianfei.museum_beacon_exhibition.model.fragment.museum_news.museum;
 
 import com.hjianfei.museum_beacon_exhibition.bean.Museum;
+import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
 import com.hjianfei.museum_beacon_exhibition.utils.NetWorkUtils;
+
+import java.util.Map;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -79,6 +82,29 @@ public class MuseumIndicatorImpl implements MuseumIndicator {
                     @Override
                     public void onNext(Museum museum) {
                         listener.onLoadMuseumsFinished(museum.getMuseums());
+
+                    }
+                });
+    }
+
+    @Override
+    public void updateMuseumViewCount(Map<String, Object> map) {
+        NetWorkUtils.getApi().updateMuseumViewCount(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResultCode>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(ResultCode resultCode) {
 
                     }
                 });

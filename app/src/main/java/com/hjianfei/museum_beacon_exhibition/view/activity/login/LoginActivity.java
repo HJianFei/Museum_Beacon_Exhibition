@@ -4,12 +4,13 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
-import android.transition.Explode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +31,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
@@ -47,6 +49,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     private LoginPresenter mLoginPresenter;
     private String user_name;
     private String user_password;
+    private SweetAlertDialog dialog;
+    private long startTime;
+    private long stopTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,33 +104,65 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void loginSuccess(LoginResult loginResult) {
-        if (loginResult.getStatus().equals("0")) {
-            Explode explode = new Explode();
-            explode.setDuration(500);
-            getWindow().setExitTransition(explode);
-            getWindow().setEnterTransition(explode);
-            ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(this);
-            Intent i2 = new Intent(this, MainActivity.class);
-            startActivity(i2, oc2.toBundle());
-            ToastUtil.showToast(LoginActivity.this,loginResult.getMsg());
-            this.finish();
+    public void loginSuccess(final LoginResult loginResult) {
+        stopTime = SystemClock.currentThreadTimeMillis();
+        if (stopTime - startTime > 500) {
+            if (loginResult.getStatus().equals("0")) {
+                ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(this);
+                Intent i2 = new Intent(this, MainActivity.class);
+                startActivity(i2, oc2.toBundle());
+                ToastUtil.showToast(LoginActivity.this, loginResult.getMsg());
+                this.finish();
 
-        } else if (loginResult.getStatus().equals("1")) {
-            ToastUtil.showToast(LoginActivity.this, loginResult.getMsg());
-        } else if (loginResult.getStatus().equals("2")) {
-            ToastUtil.showToast(LoginActivity.this, loginResult.getMsg());
+            } else if (loginResult.getStatus().equals("1")) {
+                ToastUtil.showToast(LoginActivity.this, loginResult.getMsg());
+            } else if (loginResult.getStatus().equals("2")) {
+                ToastUtil.showToast(LoginActivity.this, loginResult.getMsg());
+            }
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                public void run() {
+                    if (loginResult.getStatus().equals("0")) {
+                        ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
+                        Intent i2 = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(i2, oc2.toBundle());
+                        ToastUtil.showToast(LoginActivity.this, loginResult.getMsg());
+                        LoginActivity.this.finish();
+
+                    } else if (loginResult.getStatus().equals("1")) {
+                        ToastUtil.showToast(LoginActivity.this, loginResult.getMsg());
+                    } else if (loginResult.getStatus().equals("2")) {
+                        ToastUtil.showToast(LoginActivity.this, loginResult.getMsg());
+                    }
+                }
+            }, 500);
         }
     }
 
     @Override
     public void showDialog() {
-
+        dialog = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.PROGRESS_TYPE);
+        dialog.setTitleText("登陆中");
+        dialog.show();
+        startTime = SystemClock.currentThreadTimeMillis();
     }
 
     @Override
     public void hideDialog() {
-
+        stopTime = SystemClock.currentThreadTimeMillis();
+        if (stopTime - startTime > 500) {
+            if (null != dialog) {
+                dialog.dismiss();
+            }
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                public void run() {
+                    if (null != dialog) {
+                        dialog.dismiss();
+                    }
+                }
+            }, 500);
+        }
     }
 
     @Override

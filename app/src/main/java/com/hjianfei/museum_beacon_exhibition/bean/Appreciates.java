@@ -11,21 +11,13 @@ import java.util.List;
 
 public class Appreciates implements Serializable {
 
+
     /**
-     * appreciates : [{"content":"明代景德镇窑青花花鸟纹瓣口折沿碗","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=11290&subgid=1&gid=160&title=�໨��֮Լ","id":235,"img_url":"http://www.gdmuseum.com/attachment/201607/12/2_1468309962hLlA.jpg","minor":"10001","type":"青花瓷之约"},{"content":"明代景德镇窑青花开光山石花卉纹军持","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=11291&subgid=2&gid=160&title=�໨��֮Լ","id":236,"img_url":"http://www.gdmuseum.com/attachment/201607/12/2_1468309962dDED.jpg","type":"青花瓷之约"}]
+     * appreciates : [{"id":471,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_13474328427AqK.jpg","content":"广彩方罐形双耳花插","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3709&subgid=8911&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":472,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_13474328438qrT.jpg","content":"潮州窑青白釉佛像","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3712&subgid=8912&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":473,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_1347432843Yvn9.jpg","content":"釉里红菊花纹花口大盘","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3715&subgid=8913&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":474,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_1347432844uA9F.jpg","content":"磁州窑唐僧取经图枕","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3718&subgid=8914&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":475,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_1347432844zNe2.jpg","content":"钧窑紫斑盘","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3721&subgid=8915&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":476,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_134743284533pj.jpg","content":"白釉双龙耳尊","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3724&subgid=8916&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":477,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_1347432845i913.jpg","content":"三彩马","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3727&subgid=8917&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":478,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_1347432845S15g.jpg","content":"青花缠枝莲纹板沿大盘","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3730&subgid=8918&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":479,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_13474328465y6s.jpg","content":"祭红盘","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3731&subgid=8919&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":480,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_13474328466R5n.jpg","content":"白釉暗花大盘","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3733&subgid=8920&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0}]
      * status : 1
      */
 
     private String status;
-    /**
-     * content : 明代景德镇窑青花花鸟纹瓣口折沿碗
-     * detail_url : http://www.gdmuseum.com/curio_detail.php?picid=11290&subgid=1&gid=160&title=�໨��֮Լ
-     * id : 235
-     * img_url : http://www.gdmuseum.com/attachment/201607/12/2_1468309962hLlA.jpg
-     * minor : 10001
-     * type : 青花瓷之约
-     */
-
     private List<AppreciatesBean> appreciates;
 
     public String getStatus() {
@@ -44,29 +36,22 @@ public class Appreciates implements Serializable {
         this.appreciates = appreciates;
     }
 
-    public static class AppreciatesBean {
-        private String content;
-        private String detail_url;
+    public static class AppreciatesBean implements Serializable {
+        /**
+         * id : 471
+         * img_url : http://www.gdmuseum.com/attachment/201209/12/2_13474328427AqK.jpg
+         * content : 广彩方罐形双耳花插
+         * detail_url : http://www.gdmuseum.com/curio_detail.php?picid=3709&subgid=8911&gid=8&title=�մ�
+         * type : 珍品鉴赏
+         * view_count : 0
+         */
+
         private int id;
         private String img_url;
-        private String minor;
+        private String content;
+        private String detail_url;
         private String type;
-
-        public String getContent() {
-            return content;
-        }
-
-        public void setContent(String content) {
-            this.content = content;
-        }
-
-        public String getDetail_url() {
-            return detail_url;
-        }
-
-        public void setDetail_url(String detail_url) {
-            this.detail_url = detail_url;
-        }
+        private int view_count;
 
         public int getId() {
             return id;
@@ -84,12 +69,20 @@ public class Appreciates implements Serializable {
             this.img_url = img_url;
         }
 
-        public String getMinor() {
-            return minor;
+        public String getContent() {
+            return content;
         }
 
-        public void setMinor(String minor) {
-            this.minor = minor;
+        public void setContent(String content) {
+            this.content = content;
+        }
+
+        public String getDetail_url() {
+            return detail_url;
+        }
+
+        public void setDetail_url(String detail_url) {
+            this.detail_url = detail_url;
         }
 
         public String getType() {
@@ -100,24 +93,12 @@ public class Appreciates implements Serializable {
             this.type = type;
         }
 
-        @Override
-        public String toString() {
-            return "AppreciatesBean{" +
-                    "content='" + content + '\'' +
-                    ", detail_url='" + detail_url + '\'' +
-                    ", id=" + id +
-                    ", img_url='" + img_url + '\'' +
-                    ", minor='" + minor + '\'' +
-                    ", type='" + type + '\'' +
-                    '}';
+        public int getView_count() {
+            return view_count;
         }
-    }
 
-    @Override
-    public String toString() {
-        return "Appreciates{" +
-                "status='" + status + '\'' +
-                ", appreciates=" + appreciates +
-                '}';
+        public void setView_count(int view_count) {
+            this.view_count = view_count;
+        }
     }
 }

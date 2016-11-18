@@ -7,6 +7,7 @@ import com.hjianfei.museum_beacon_exhibition.model.activity.appreciate.Appreciat
 import com.hjianfei.museum_beacon_exhibition.view.fragment.appreciate.AppreciateView;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 创建时间： 2016/9/19.
@@ -80,6 +81,11 @@ public class AppreciatePresenterImpl implements AppreciatePresenter, AppreciateI
         }
         mAppreciateIndicator.loadMoreAppreciateByType(tag, this, page);
 
+    }
+
+    @Override
+    public void updateAppreciateViewCount(Map<String, Object> map) {
+        mAppreciateIndicator.updateAppreciateViewCount(map);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.hjianfei.museum_beacon_exhibition.model.fragment.museum_news.cultrua
 import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by HJianFei on 2016/11/5.
@@ -33,4 +34,6 @@ public interface CulturalIndicator {
 
     //加载更多
     void getLoadAppreciatesData(String type, String page, onFinishedListener listener);
+
+    void updateAppreciateViewCount(Map<String, Object> map);
 }

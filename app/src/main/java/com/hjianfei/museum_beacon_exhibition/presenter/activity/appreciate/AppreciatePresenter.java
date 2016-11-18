@@ -1,5 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.presenter.activity.appreciate;
 
+import java.util.Map;
+
 /**
  * 创建时间： 2016/9/19.
  * 作者：HJianFei
@@ -15,6 +17,8 @@ public interface AppreciatePresenter {
 
     //上拉加载更多
     void loadMoreAppreciatesData(String tag, String page);
+
+    void updateAppreciateViewCount(Map<String, Object> map);
 
     void onDestroy();
 

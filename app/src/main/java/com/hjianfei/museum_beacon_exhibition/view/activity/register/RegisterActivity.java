@@ -39,6 +39,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
@@ -70,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     private String repeat_password;
     private TimeCount time;
     private RegisterPresenter mRegisterPrsenter;
+    private SweetAlertDialog dialog;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -203,6 +205,9 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
                 user_phone = etUsername.getText().toString().trim();
                 boolean mobile = ValidatorUtils.isMobile(user_phone);
                 if (mobile) {
+                    dialog = new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.PROGRESS_TYPE);
+                    dialog.setTitleText("验证码获取中");
+                    dialog.show();
                     //请求获取短信验证码，在监听中返回
                     SMSSDK.getVerificationCode(Constants.MOBILE, user_phone);
                 } else {
@@ -248,6 +253,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
 
                 } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) { //获取验证码成功
 
+                    dialog.dismiss();
                     LogUtils.d("onResponse", "获取验证码成功");
                     time.start();
 

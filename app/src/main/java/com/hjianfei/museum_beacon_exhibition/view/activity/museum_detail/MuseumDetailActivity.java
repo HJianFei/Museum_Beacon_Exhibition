@@ -21,6 +21,7 @@ import com.hjianfei.museum_beacon_exhibition.adapter.CommonDetailViewPagerAdapte
 import com.hjianfei.museum_beacon_exhibition.bean.MuseumDetail;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.museum_detail.MuseumDetailPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.museum_detail.MuseumDetailPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.umeng.socialize.ShareAction;
@@ -77,12 +78,20 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
         mMenuDialogFragment.setItemClickListener(new OnMenuItemClickListener() {
             @Override
             public void onMenuItemClick(View clickedView, int position) {
-                new ShareAction(MuseumDetailActivity.this)
-                        .withTitle("博物展")
-                        .withText(museum_detail.getMuseum_Detail().getMuseum_detail_name())
-                        .withMedia(new UMImage(MuseumDetailActivity.this, museum_detail.getMuseum_Detail().getMuseum_detail_imgs()))
-                        .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)
-                        .setCallback(umShareListener).open();
+                if (position == 1) {
+                    new ShareAction(MuseumDetailActivity.this)
+                            .withTitle("博物展")
+                            .withText(museum_detail.getMuseum_Detail().getMuseum_detail_name())
+                            .withMedia(new UMImage(MuseumDetailActivity.this, museum_detail.getMuseum_Detail().getMuseum_detail_imgs()))
+                            .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)
+                            .setCallback(umShareListener).open();
+                } else if (position == 2) {
+                    ToastUtil.showToast(MuseumDetailActivity.this, "收藏");
+
+                } else if (position == 3) {
+                    ToastUtil.showToast(MuseumDetailActivity.this, "点赞");
+
+                }
             }
         });
     }

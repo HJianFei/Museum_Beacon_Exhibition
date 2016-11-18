@@ -3,6 +3,7 @@ package com.hjianfei.museum_beacon_exhibition.model.fragment.museum_news.museum;
 import com.hjianfei.museum_beacon_exhibition.bean.Museum;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by HJianFei on 2016/11/5.
@@ -33,4 +34,6 @@ public interface MuseumIndicator {
 
     //加载更多
     void getLoadMuseumsData(String type,String page,onFinishedListener listener);
+
+    void updateMuseumViewCount(Map<String, Object> map);
 }

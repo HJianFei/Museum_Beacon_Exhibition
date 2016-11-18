@@ -34,7 +34,9 @@ import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail.AppreciateDetailActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -137,6 +139,10 @@ public class CulturalFragment extends Fragment implements CulturalView {
                 Intent intent = new Intent(getActivity(), AppreciateDetailActivity.class);
                 intent.putExtra("cultural_detail_url", appreciatesBeanList.get(i).getDetail_url());
                 intent.putExtra("cultural_name", appreciatesBeanList.get(i).getContent());
+                Map<String, Object> map = new HashMap<>();
+                map.put("id", appreciatesBeanList.get(i).getId());
+                map.put("view_count", appreciatesBeanList.get(i).getView_count() + 1);
+                mCulturalPresenter.updateAppreciateViewCount(map);
                 ActivityOptionsCompat options =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
                                 view.findViewById(R.id.appreciate_item_image), getString(R.string.transition));
@@ -192,14 +198,6 @@ public class CulturalFragment extends Fragment implements CulturalView {
 
     @Override
     public void loadMoreCulturalData(List<Appreciates.AppreciatesBean> appreciatesBeans) {
-        appreciatesBeanList.clear();
-        appreciatesBeanList.addAll(appreciatesBeans);
-        culturalRecyclerView.refreshComplete();
-        mAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void refreshCulturalData(List<Appreciates.AppreciatesBean> appreciatesBeans) {
         if (null != appreciatesBeans) {
             appreciatesBeanList.addAll(appreciatesBeans);
             culturalRecyclerView.refreshComplete();
@@ -208,6 +206,14 @@ public class CulturalFragment extends Fragment implements CulturalView {
             culturalRecyclerView.refreshComplete();
             mAdapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void refreshCulturalData(List<Appreciates.AppreciatesBean> appreciatesBeans) {
+        appreciatesBeanList.clear();
+        appreciatesBeanList.addAll(appreciatesBeans);
+        culturalRecyclerView.refreshComplete();
+        mAdapter.notifyDataSetChanged();
     }
 
 

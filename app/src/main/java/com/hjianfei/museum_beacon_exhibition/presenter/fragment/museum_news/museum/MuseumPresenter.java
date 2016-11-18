@@ -1,5 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.presenter.fragment.museum_news.museum;
 
+import java.util.Map;
+
 /**
  * Created by HJianFei on 2016/11/5.
  */
@@ -14,4 +16,6 @@ public interface MuseumPresenter {
 
     //下拉刷新
     void refreshMuseumsData(String type,String page);
+
+    void updateMuseumViewCount(Map<String, Object> map);
 }

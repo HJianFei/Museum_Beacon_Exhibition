@@ -6,6 +6,7 @@ import com.hjianfei.museum_beacon_exhibition.model.fragment.museum_news.cultrual
 import com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.cultural.CulturalView;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by HJianFei on 2016/11/5.
@@ -48,6 +49,11 @@ public class CulturalPresenterImpl implements CulturalPresenter, CulturalIndicat
 
     }
 
+    @Override
+    public void updateAppreciateViewCount(Map<String, Object> map) {
+        mCulturalIndicator.updateAppreciateViewCount(map);
+    }
+
 
     @Override
     public void onInitAppreciatesFinished(List<Appreciates.AppreciatesBean> appreciatesBeans) {
@@ -70,7 +76,7 @@ public class CulturalPresenterImpl implements CulturalPresenter, CulturalIndicat
         if (null != mCulturalView) {
             mCulturalView.hideDialog();
         }
-        mCulturalView.refreshCulturalData(appreciatesBeans);
+        mCulturalView.loadMoreCulturalData(appreciatesBeans);
     }
 
     @Override

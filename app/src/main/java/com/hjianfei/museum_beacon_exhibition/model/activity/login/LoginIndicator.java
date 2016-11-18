@@ -4,8 +4,6 @@ import com.hjianfei.museum_beacon_exhibition.bean.LoginResult;
 
 import java.util.Map;
 
-import retrofit2.http.FieldMap;
-
 /**
  * Created by HJianFei on 2016/11/16.
  */
@@ -18,5 +16,5 @@ public interface LoginIndicator {
         void onLoginError();
     }
 
-    void loginUser(@FieldMap Map<String, Object> map, onLoginFinishedListener listener);
+    void loginUser(Map<String, Object> map, onLoginFinishedListener listener);
 }

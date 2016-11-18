@@ -34,7 +34,9 @@ import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail.App
 import com.hjianfei.museum_beacon_exhibition.view.fragment.appreciate.AppreciateView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -131,6 +133,10 @@ public class Thematic_appreciationFragment extends Fragment implements Appreciat
                 Intent intent = new Intent(getActivity(), AppreciateDetailActivity.class);
                 intent.putExtra("cultural_detail_url", appreciatesBeanList.get(i).getDetail_url());
                 intent.putExtra("cultural_name", appreciatesBeanList.get(i).getContent());
+                Map<String, Object> map = new HashMap<>();
+                map.put("id", appreciatesBeanList.get(i).getId());
+                map.put("view_count", appreciatesBeanList.get(i).getView_count() + 1);
+                mAppreciatePresenter.updateAppreciateViewCount(map);
                 ActivityOptionsCompat options =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
                                 view.findViewById(R.id.appreciate_item_image), getString(R.string.transition));

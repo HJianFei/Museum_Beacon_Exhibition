@@ -99,5 +99,19 @@ public interface Api {
     @POST(Urls.LOGIN_USER)
     @FormUrlEncoded
     Observable<LoginResult> loginUser(@FieldMap Map<String, Object> map);
+    /**
+     * 更新appreciate的浏览次数
+     */
+    @POST(Urls.UPDATE_APPRECIATE_VIEW_COUNT)
+    @FormUrlEncoded
+    Observable<ResultCode>updateAppreciateViewCount(@FieldMap Map<String, Object> map);
+
+    /**
+     * 更新museum的浏览次数
+     */
+    @POST(Urls.UPDATE_MUSEUM_VIEW_COUNT)
+    @FormUrlEncoded
+    Observable<ResultCode> updateMuseumViewCount(@FieldMap Map<String, Object> map);
+
 
 }

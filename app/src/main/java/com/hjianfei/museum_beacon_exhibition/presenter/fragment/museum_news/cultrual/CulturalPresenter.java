@@ -1,5 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.presenter.fragment.museum_news.cultrual;
 
+import java.util.Map;
+
 /**
  * Created by HJianFei on 2016/11/5.
  */
@@ -13,5 +15,7 @@ public interface CulturalPresenter {
 
     //下拉刷新
     void refreshAppreciatesData(String tag, String page);
+
+    void updateAppreciateViewCount(Map<String, Object> map);
 
 }

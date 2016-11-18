@@ -33,7 +33,9 @@ import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.view.activity.museum_detail.MuseumDetailActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -132,6 +134,10 @@ public class MuseumFragment extends Fragment implements MuseumView {
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(mContext, MuseumDetailActivity.class);
                 intent.putExtra("museum_name", museumsBeanList.get(i).getMuseum_name());
+                Map<String, Object> map = new HashMap<>();
+                map.put("id", museumsBeanList.get(i).getMuseum_id());
+                map.put("view_count", museumsBeanList.get(i).getView_count() + 1);
+                mMuseumPresenter.updateMuseumViewCount(map);
                 ActivityOptionsCompat options =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
                                 view.findViewById(R.id.museum_item_img), getString(R.string.transition));

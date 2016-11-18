@@ -1,7 +1,10 @@
 package com.hjianfei.museum_beacon_exhibition.model.fragment.museum_news.cultrual;
 
 import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
+import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
 import com.hjianfei.museum_beacon_exhibition.utils.NetWorkUtils;
+
+import java.util.Map;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -57,7 +60,7 @@ public class CulturalIndicatorImpl implements CulturalIndicator {
 
                     @Override
                     public void onNext(Appreciates appreciates) {
-                        listener.onInitAppreciatesFinished(appreciates.getAppreciates());
+                        listener.onRefreshAppreciatesFinished(appreciates.getAppreciates());
 
 
                     }
@@ -82,8 +85,31 @@ public class CulturalIndicatorImpl implements CulturalIndicator {
 
                     @Override
                     public void onNext(Appreciates appreciates) {
-                        listener.onInitAppreciatesFinished(appreciates.getAppreciates());
+                        listener.onLoadAppreciatesFinished(appreciates.getAppreciates());
 
+
+                    }
+                });
+    }
+
+    @Override
+    public void updateAppreciateViewCount(Map<String, Object> map) {
+        NetWorkUtils.getApi().updateAppreciateViewCount(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResultCode>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(ResultCode resultCode) {
 
                     }
                 });

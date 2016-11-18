@@ -34,7 +34,9 @@ import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail.App
 import com.hjianfei.museum_beacon_exhibition.view.fragment.appreciate.AppreciateView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -115,7 +117,7 @@ public class Appreciation_Of_TreasuresFragment extends Fragment implements Appre
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(mContext, mAdapter);
         appreciateOfTreasuresRecyclerView.setAdapter(mLRecyclerViewAdapter);
         //setLayoutManager
-        GridLayoutManager manager = new GridLayoutManager(mContext, 2);
+        final GridLayoutManager manager = new GridLayoutManager(mContext, 2);
         manager.setSpanSizeLookup(new HeaderSpanSizeLookup((LRecyclerViewAdapter) appreciateOfTreasuresRecyclerView.getAdapter(), manager.getSpanCount()));
         appreciateOfTreasuresRecyclerView.setLayoutManager(manager);
         appreciateOfTreasuresRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
@@ -126,6 +128,10 @@ public class Appreciation_Of_TreasuresFragment extends Fragment implements Appre
                 Intent intent = new Intent(getActivity(), AppreciateDetailActivity.class);
                 intent.putExtra("cultural_detail_url", appreciatesBeanList.get(i).getDetail_url());
                 intent.putExtra("cultural_name", appreciatesBeanList.get(i).getContent());
+                Map<String, Object> map = new HashMap<>();
+                map.put("id", appreciatesBeanList.get(i).getId());
+                map.put("view_count", appreciatesBeanList.get(i).getView_count() + 1);
+                mAppreciatePresenter.updateAppreciateViewCount(map);
                 ActivityOptionsCompat options =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
                                 view.findViewById(R.id.appreciate_item_image), getString(R.string.transition));

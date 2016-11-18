@@ -2,6 +2,7 @@ package com.hjianfei.museum_beacon_exhibition.application;
 
 import android.app.Application;
 
+import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 
@@ -25,8 +26,9 @@ public class BaseApplication extends Application {
         //友盟分享
         UMShareAPI.get(this);
         PlatformConfig.setWeixin("wx2a66162383eda523", "c68e8e4e28fa82d6db1b57cc73ea88b7");
-        PlatformConfig.setSinaWeibo("208018229", "a91e96352d72eac75528bac1bfef3046");
         PlatformConfig.setQQZone("1105746947", "8ipjCPurLMpe97dZ");
+        PlatformConfig.setSinaWeibo("208018229", "a91e96352d72eac75528bac1bfef3046");
+        Config.REDIRECT_URL = "http://sns.whalecloud.com/sina2/callback";
 
     }
 

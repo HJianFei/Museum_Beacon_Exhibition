@@ -204,6 +204,7 @@ public class HomeFragment extends Fragment implements HomeView {
                 Intent intent = new Intent(getActivity(), AppreciateDetailActivity.class);
                 intent.putExtra("cultural_detail_url", appreciatesBeans.get(position).getDetail_url());
                 intent.putExtra("cultural_name", appreciatesBeans.get(position).getContent());
+                intent.putExtra("post_type", "文物鉴赏");
                 ActivityOptionsCompat options =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
                                 view.findViewById(R.id.appreciate_item_image), getString(R.string.transition));

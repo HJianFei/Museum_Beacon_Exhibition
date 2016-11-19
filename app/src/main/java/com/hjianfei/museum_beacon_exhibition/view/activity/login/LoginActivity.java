@@ -145,7 +145,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void showDialog() {
         dialog = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.PROGRESS_TYPE);
-        dialog.setTitleText("登陆中");
+        dialog.setTitleText("登录中");
         dialog.show();
         startTime = SystemClock.currentThreadTimeMillis();
     }

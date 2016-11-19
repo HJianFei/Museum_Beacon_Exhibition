@@ -3,6 +3,7 @@ package com.hjianfei.museum_beacon_exhibition.utils.api;
 
 import com.hjianfei.museum_beacon_exhibition.bean.AppreciateDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
+import com.hjianfei.museum_beacon_exhibition.bean.Collection;
 import com.hjianfei.museum_beacon_exhibition.bean.ExhibitionDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Exhibitions;
 import com.hjianfei.museum_beacon_exhibition.bean.LoginResult;
@@ -121,5 +122,17 @@ public interface Api {
     @FormUrlEncoded
     Observable<ResultCode> saveCollection(@FieldMap Map<String, Object> map);
 
+    /**
+     * 获取收藏列表（文物，博物馆，展厅）
+     */
+    @POST(Urls.LIST_COLLECTION_BY_TYPE)
+    Observable<Collection>getCollectionList(@Query("user_phone") String phone, @Query("type") String type, @Query("page") String page);
+
+    /**
+     * 取消收藏（文物，博物馆，展厅）
+     */
+    @POST(Urls.DELETE_COLLECTION)
+    @FormUrlEncoded
+    Observable<ResultCode> deleteCollection(@FieldMap Map<String, Object> map);
 
 }

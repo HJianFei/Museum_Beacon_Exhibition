@@ -99,8 +99,10 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
                     String phone = (String) SPUtils.getParam(AppreciateDetailActivity.this, Constants.PHONE, "");
                     Map<String, Object> map = new HashMap<>();
                     map.put("user_phone", phone);
-                    map.put("post_id", appreciate_detail.getAppreciateDetail().getDetail_url());
-                    map.put("post_type", post_type);
+                    map.put("post_id", appreciate_detail.getAppreciateDetail().getTitle());
+                    map.put("post_type", "文物鉴赏");
+                    map.put("img_url", img_urls[0]);
+                    map.put("detail_url",appreciate_detail.getAppreciateDetail().getDetail_url());
                     mAppreciateDetailPresenter.onSaveCollection(map);
                 }
             }

@@ -59,6 +59,7 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
     private ContextMenuDialogFragment mMenuDialogFragment;
     private MuseumDetail museum_detail;
     private String post_type = "";
+    private String[] img_urls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +97,8 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
                     map.put("user_phone", phone);
                     map.put("post_id", museum_detail.getMuseum_Detail().getMuseum_detail_name());
                     map.put("post_type", post_type);
+                    map.put("img_url", img_urls[0]);
+                    map.put("detail_url",museum_detail.getMuseum_Detail().getMuseum_detail_name());
                     mMuseumDetailPresenter.onSaveCollection(map);
 
                 }
@@ -146,7 +149,7 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
         museumDetailName.setText(museumDetail.getMuseum_Detail().getMuseum_detail_name());
         museumDetailContent.setText(museumDetail.getMuseum_Detail().getMuseum_detail_content());
         String img_url = museumDetail.getMuseum_Detail().getMuseum_detail_imgs();
-        String[] img_urls = img_url.split(",");
+        img_urls = img_url.split(",");
         museumDetailViewPager.setPlayDelay(3000);
         museumDetailViewPager.setAdapter(new CommonDetailViewPagerAdapter(img_urls));
         museumDetailViewPager.setHintView(new ColorPointHintView(this, Color.YELLOW, Color.WHITE));

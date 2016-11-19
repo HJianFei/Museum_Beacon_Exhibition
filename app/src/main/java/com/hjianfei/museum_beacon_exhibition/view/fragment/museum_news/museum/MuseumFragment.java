@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
@@ -113,7 +111,7 @@ public class MuseumFragment extends Fragment implements MuseumView {
 
     private void initData() {
         mMuseumPresenter = new MuseumPresenterImpl(this);
-        mMuseumPresenter.initMuseumsData(TYPE, page + "",search_condition);
+        mMuseumPresenter.initMuseumsData(TYPE, page + "", search_condition);
     }
 
     private void initView() {
@@ -141,10 +139,11 @@ public class MuseumFragment extends Fragment implements MuseumView {
                 map.put("view_count", museumsBeanList.get(i).getView_count() + 1);
                 intent.putExtra("post_type", TYPE);
                 mMuseumPresenter.updateMuseumViewCount(map);
-                ActivityOptionsCompat options =
-                        ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
-                                view.findViewById(R.id.museum_item_img), getString(R.string.transition));
-                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+                startActivity(intent);
+//                ActivityOptionsCompat options =
+//                        ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+//                                view.findViewById(R.id.museum_item_img), getString(R.string.transition));
+//                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
             }
 
             @Override
@@ -157,7 +156,7 @@ public class MuseumFragment extends Fragment implements MuseumView {
             public void onRefresh() {
                 page = 1;
                 search_condition = "";
-                mMuseumPresenter.refreshMuseumsData(TYPE, page + "",search_condition);
+                mMuseumPresenter.refreshMuseumsData(TYPE, page + "", search_condition);
             }
 
             @Override
@@ -177,7 +176,7 @@ public class MuseumFragment extends Fragment implements MuseumView {
                     return;
                 }
                 page++;
-                mMuseumPresenter.loadMuseumsMore(TYPE, page + "",search_condition);
+                mMuseumPresenter.loadMuseumsMore(TYPE, page + "", search_condition);
             }
 
             @Override
@@ -245,9 +244,9 @@ public class MuseumFragment extends Fragment implements MuseumView {
     public void hideDialog() {
 //        stopTime = SystemClock.currentThreadTimeMillis();
 //        if (stopTime - startTime > 500) {
-            if (null != dialog) {
-                dialog.dismiss();
-            }
+        if (null != dialog) {
+            dialog.dismiss();
+        }
 //        } else {
 //            new Handler().postDelayed(new Runnable() {
 //                public void run() {

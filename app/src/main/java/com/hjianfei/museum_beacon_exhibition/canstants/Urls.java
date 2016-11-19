@@ -61,5 +61,15 @@ public class Urls {
      * 收藏（文物，博物馆，展厅）
      */
     public static final String COLLECTION_BY_TYPE = "collection!saveCollection";
+    /**
+     * 获取收藏列表（文物，博物馆，展厅）
+     *
+     */
+    public static final String LIST_COLLECTION_BY_TYPE="collection!getAllCollectionByType";
+
+    /**
+     * 取消收藏（文物，博物馆，展厅）
+     */
+    public static final String DELETE_COLLECTION="collection!deleteCollection";
 }
 

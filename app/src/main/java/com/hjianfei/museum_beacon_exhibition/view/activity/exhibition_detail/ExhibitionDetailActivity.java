@@ -98,8 +98,10 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
                     String phone = (String) SPUtils.getParam(ExhibitionDetailActivity.this, Constants.PHONE, "");
                     Map<String, Object> map = new HashMap<>();
                     map.put("user_phone", phone);
-                    map.put("post_id", exhibition_detail.getExhibitionDetail().getDetail_url());
+                    map.put("post_id", exhibition_detail.getExhibitionDetail().getTitle());
                     map.put("post_type", post_type);
+                    map.put("img_url", img_urls[0]);
+                    map.put("detail_url",exhibition_detail.getExhibitionDetail().getDetail_url());
                     mExhibitionDetailPresenter.onSaveCollection(map);
                 }
 

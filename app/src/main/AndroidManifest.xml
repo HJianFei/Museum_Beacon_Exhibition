@@ -35,7 +35,6 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
@@ -115,12 +114,13 @@
             android:value="5827d41e5312dd979e003193" />
         <!-- 有盟分享 end -->
         <activity android:name=".view.activity.radar.RadarActivity" />
-        <!--Mob短信验证平台-->
+        <!-- Mob短信验证平台 -->
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".view.activity.collection.CollectionActivity"></activity>
     </application>
 
 </manifest>

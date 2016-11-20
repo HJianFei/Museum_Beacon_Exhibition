@@ -1,13 +1,18 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.login;
 
+import android.Manifest;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
@@ -62,6 +67,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         ButterKnife.bind(this);
         welcomeScreen = new WelcomeScreenHelper(this, SplashActivity.class);
         welcomeScreen.show(savedInstanceState);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, Constants.WRITE_EXTERNAL_CODE);
+        }
     }
 
     @OnClick({R.id.bt_go, R.id.fab})
@@ -176,5 +184,17 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void showEmpty() {
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        switch (requestCode) {
+            case Constants.WRITE_EXTERNAL_CODE:
+                if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    ToastUtil.showToast(this, "为了更好的用户体验，请允许使用SDCard权限");
+                }
+                break;
+        }
     }
 }

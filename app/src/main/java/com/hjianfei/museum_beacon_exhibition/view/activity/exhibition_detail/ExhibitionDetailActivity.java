@@ -1,8 +1,13 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.exhibition_detail;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -88,12 +93,12 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
             @Override
             public void onMenuItemClick(View clickedView, int position) {
                 if (position == 1) {
-                    new ShareAction(ExhibitionDetailActivity.this)
-                            .withTitle("博物展")
-                            .withText(exhibition_detail.getExhibitionDetail().getTitle())
-                            .withMedia(new UMImage(ExhibitionDetailActivity.this, img_urls[0]))
-                            .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)
-                            .setCallback(umShareListener).open();
+                    if (ContextCompat.checkSelfPermission(ExhibitionDetailActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(ExhibitionDetailActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, Constants.WRITE_EXTERNAL_CODE);
+                    } else {
+                        doShare();
+                    }
+
                 } else if (position == 2) {
                     String phone = (String) SPUtils.getParam(ExhibitionDetailActivity.this, Constants.PHONE, "");
                     Map<String, Object> map = new HashMap<>();
@@ -107,6 +112,15 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
 
             }
         });
+    }
+
+    private void doShare() {
+        new ShareAction(ExhibitionDetailActivity.this)
+                .withTitle("博物展")
+                .withText(exhibition_detail.getExhibitionDetail().getTitle())
+                .withMedia(new UMImage(ExhibitionDetailActivity.this, img_urls[0]))
+                .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)
+                .setCallback(umShareListener).open();
     }
 
     private List<MenuObject> getMenuObjects() {
@@ -232,4 +246,18 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
             Toast.makeText(ExhibitionDetailActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
         }
     };
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        switch (requestCode) {
+            case Constants.WRITE_EXTERNAL_CODE:
+                if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    ToastUtil.showToast(this, "请允许使用SDCard权限");
+                } else {
+                    doShare();
+                }
+                break;
+        }
+    }
 }

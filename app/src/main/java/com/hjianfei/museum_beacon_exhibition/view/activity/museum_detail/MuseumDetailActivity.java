@@ -1,9 +1,14 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.museum_detail;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -85,12 +90,11 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
             @Override
             public void onMenuItemClick(View clickedView, int position) {
                 if (position == 1) {
-                    new ShareAction(MuseumDetailActivity.this)
-                            .withTitle("博物展")
-                            .withText(museum_detail.getMuseum_Detail().getMuseum_detail_name())
-                            .withMedia(new UMImage(MuseumDetailActivity.this, museum_detail.getMuseum_Detail().getMuseum_detail_imgs()))
-                            .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)
-                            .setCallback(umShareListener).open();
+                    if (ContextCompat.checkSelfPermission(MuseumDetailActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(MuseumDetailActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, Constants.WRITE_EXTERNAL_CODE);
+                    } else {
+                        doShare();
+                    }
                 } else if (position == 2) {
                     String phone = (String) SPUtils.getParam(MuseumDetailActivity.this, Constants.PHONE, "");
                     Map<String, Object> map = new HashMap<>();
@@ -98,12 +102,21 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
                     map.put("post_id", museum_detail.getMuseum_Detail().getMuseum_detail_name());
                     map.put("post_type", post_type);
                     map.put("img_url", img_urls[0]);
-                    map.put("detail_url",museum_detail.getMuseum_Detail().getMuseum_detail_name());
+                    map.put("detail_url", museum_detail.getMuseum_Detail().getMuseum_detail_name());
                     mMuseumDetailPresenter.onSaveCollection(map);
 
                 }
             }
         });
+    }
+
+    private void doShare() {
+        new ShareAction(MuseumDetailActivity.this)
+                .withTitle("博物展")
+                .withText(museum_detail.getMuseum_Detail().getMuseum_detail_name())
+                .withMedia(new UMImage(MuseumDetailActivity.this, museum_detail.getMuseum_Detail().getMuseum_detail_imgs()))
+                .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)
+                .setCallback(umShareListener).open();
     }
 
     private List<MenuObject> getMenuObjects() {
@@ -234,4 +247,18 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
             Toast.makeText(MuseumDetailActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
         }
     };
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        switch (requestCode) {
+            case Constants.WRITE_EXTERNAL_CODE:
+                if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    ToastUtil.showToast(this, "请允许使用SDCard权限");
+                } else {
+                    doShare();
+                }
+                break;
+        }
+    }
 }

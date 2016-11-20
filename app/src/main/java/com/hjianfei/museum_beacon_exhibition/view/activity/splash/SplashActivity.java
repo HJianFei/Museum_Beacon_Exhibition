@@ -9,6 +9,7 @@ public class SplashActivity extends WelcomeActivity {
 
     @Override
     protected WelcomeScreenConfiguration configuration() {
+
         return new WelcomeScreenBuilder(this)
                 .theme(R.style.CustomWelcomeScreenTheme)
                 .titlePage(R.drawable.photo, "Welcome", R.color.orange_background)

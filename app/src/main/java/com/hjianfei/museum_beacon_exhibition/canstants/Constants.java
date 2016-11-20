@@ -16,6 +16,13 @@ public class Constants {
     //手机号码国家区域zone
     public static final String MOBILE = "86";
 
+    /**
+     * 权限常量相关
+     */
+    //读写SD卡权限
+    public static final int WRITE_EXTERNAL_CODE = 0x01;
+    //打开蓝牙权限
+    public static final int OPEN_BLUETOOTH = 0x02;
     //数据缓存
     public static final String PHONE = "USER_PHONE";
     public static final String NAME = "USER_NAME";

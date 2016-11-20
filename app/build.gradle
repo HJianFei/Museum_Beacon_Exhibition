@@ -61,10 +61,7 @@ dependencies {
     compile files('libs/MobTools-2016.1012.1447.jar')
     compile files('libs/MobCommons-2016.1012.1447.jar')
     compile name: 'SMSSDK-2.1.2', ext: 'aar'
-    compile name: 'SMSSDKGUI-2.1.2', ext: 'aar'
-    compile('com.github.afollestad.material-dialogs:core:0.8.5.7@aar') {
-        transitive = true
-    }
+    compile 'com.afollestad.material-dialogs:core:0.9.1.0'
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.jakewharton:butterknife:8.1.0'
     compile 'com.android.support:support-v4:24.2.1'

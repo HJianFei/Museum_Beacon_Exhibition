@@ -10,15 +10,19 @@ import com.hjianfei.museum_beacon_exhibition.bean.LoginResult;
 import com.hjianfei.museum_beacon_exhibition.bean.Museum;
 import com.hjianfei.museum_beacon_exhibition.bean.MuseumDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
+import com.hjianfei.museum_beacon_exhibition.bean.UpdateInfo;
 import com.hjianfei.museum_beacon_exhibition.bean.ViewPager;
 import com.hjianfei.museum_beacon_exhibition.canstants.Urls;
 
 import java.util.Map;
 
+import okhttp3.ResponseBody;
+import retrofit2.Call;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -126,7 +130,7 @@ public interface Api {
      * 获取收藏列表（文物，博物馆，展厅）
      */
     @POST(Urls.LIST_COLLECTION_BY_TYPE)
-    Observable<Collection>getCollectionList(@Query("user_phone") String phone, @Query("type") String type, @Query("page") String page);
+    Observable<Collection> getCollectionList(@Query("user_phone") String phone, @Query("type") String type, @Query("page") String page);
 
     /**
      * 取消收藏（文物，博物馆，展厅）
@@ -134,5 +138,27 @@ public interface Api {
     @POST(Urls.DELETE_COLLECTION)
     @FormUrlEncoded
     Observable<ResultCode> deleteCollection(@FieldMap Map<String, Object> map);
+
+    /**
+     * app更新信息
+     */
+    @GET(Urls.GET_APP_UPDATE_INFO)
+    Observable<UpdateInfo> getAppUpdateInfo();
+
+    /**
+     * 下载App安装包
+     *
+     * @param app_name
+     * @return
+     */
+    @GET("app/{app_name}")
+    Call<ResponseBody> loadFile(@Path("app_name") String app_name);
+
+    /**
+     * 意见反馈
+     */
+    @POST(Urls.FEEDBACK)
+    @FormUrlEncoded
+    Observable<ResultCode> saveFeedBack(@FieldMap Map<String, Object> map);
 
 }

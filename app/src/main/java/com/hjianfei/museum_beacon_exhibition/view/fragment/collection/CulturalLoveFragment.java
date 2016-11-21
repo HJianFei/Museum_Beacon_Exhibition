@@ -4,15 +4,12 @@ package com.hjianfei.museum_beacon_exhibition.view.fragment.collection;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
@@ -116,22 +113,31 @@ public class CulturalLoveFragment extends Fragment implements CollectionView {
 
             @Override
             public void onItemLongClick(View view, final int i) {
-                new MaterialDialog.Builder(mContext)
-                        .title("提示")
-                        .content("确定取消收藏？")
-                        .positiveText("确定")
-                        .negativeText("取消")
-                        .onPositive(new MaterialDialog.SingleButtonCallback() {
-                            @Override
-                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                Map<String, Object> map = new HashMap<>();
-                                map.put("user_phone", user_phone);
-                                map.put("post_id", collectionsBeanList.get(i).getPost_id());
-                                index = i;
-                                mCollectionPresenter.deleteCollection(map);
-                            }
-                        })
-                        .show();
+                dialog = new SweetAlertDialog(mContext, SweetAlertDialog.WARNING_TYPE);
+                dialog.setTitleText("确定取消收藏？");
+                dialog.setConfirmText("确定");
+                dialog.showCancelButton(true);
+                dialog.setCancelText("取消");
+                dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("user_phone", user_phone);
+                        map.put("post_id", collectionsBeanList.get(i).getPost_id());
+                        index = i;
+                        mCollectionPresenter.deleteCollection(map);
+                    }
+                });
+
+                dialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        if (null != dialog) {
+                            dialog.dismiss();
+                        }
+                    }
+                });
+                dialog.show();
 
 
             }
@@ -223,6 +229,9 @@ public class CulturalLoveFragment extends Fragment implements CollectionView {
 
     @Override
     public void onDeleteCollectionSuccess(ResultCode resultCode) {
+        if (null != dialog) {
+            dialog.dismiss();
+        }
         if (resultCode.code == 200) {
             collectionsBeanList.remove(index);
             mAdapter.notifyDataSetChanged();
@@ -235,7 +244,6 @@ public class CulturalLoveFragment extends Fragment implements CollectionView {
         dialog = new SweetAlertDialog(mContext, SweetAlertDialog.PROGRESS_TYPE);
         dialog.setTitleText("加载中");
         dialog.show();
-//        startTime = SystemClock.currentThreadTimeMillis();
     }
 
     @Override

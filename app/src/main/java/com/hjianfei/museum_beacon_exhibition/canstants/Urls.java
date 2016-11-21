@@ -63,13 +63,22 @@ public class Urls {
     public static final String COLLECTION_BY_TYPE = "collection!saveCollection";
     /**
      * 获取收藏列表（文物，博物馆，展厅）
-     *
      */
-    public static final String LIST_COLLECTION_BY_TYPE="collection!getAllCollectionByType";
+    public static final String LIST_COLLECTION_BY_TYPE = "collection!getAllCollectionByType";
 
     /**
      * 取消收藏（文物，博物馆，展厅）
      */
-    public static final String DELETE_COLLECTION="collection!deleteCollection";
+    public static final String DELETE_COLLECTION = "collection!deleteCollection";
+
+    /**
+     * app更新
+     */
+    public static final String GET_APP_UPDATE_INFO = "update!getAppUpdateInfo";
+
+    /**
+     * 意见反馈
+     */
+    public static final String FEEDBACK = "feed_back!saveFeedBack";
 }
 

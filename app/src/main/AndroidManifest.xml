@@ -124,7 +124,8 @@
 
         <service android:name=".utils.fileload.DownLoadService" />
 
-        <activity android:name=".view.activity.feedback.FeedBackActivity"></activity>
+        <activity android:name=".view.activity.feedback.FeedBackActivity" />
+        <activity android:name=".view.activity.change_password.ChangePasswordActivity"></activity>
     </application>
 
 </manifest>

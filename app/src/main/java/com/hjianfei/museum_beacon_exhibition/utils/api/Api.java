@@ -161,4 +161,11 @@ public interface Api {
     @FormUrlEncoded
     Observable<ResultCode> saveFeedBack(@FieldMap Map<String, Object> map);
 
+    /**
+     * 修改密码
+     */
+    @POST(Urls.UPDATE_USER_PASSWORD)
+    @FormUrlEncoded
+    Observable<ResultCode> updateUserPassword(@FieldMap Map<String, Object> map);
+
 }

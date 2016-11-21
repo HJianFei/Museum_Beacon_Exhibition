@@ -91,6 +91,7 @@ public class LocationActivity extends AppCompatActivity implements AbsListView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
         ButterKnife.bind(this);
+        initView();
         allCity_lists = new ArrayList<>();
         city_hot = new ArrayList<>();
         city_result = new ArrayList<>();
@@ -182,6 +183,18 @@ public class LocationActivity extends AppCompatActivity implements AbsListView.O
         mLocationClient.registerLocationListener(mMyLocationListener);
         InitLocation();
         mLocationClient.start();
+    }
+
+    private void initView() {
+        toolbar.setTitle("修改城市");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     public void InsertCity(String name) {

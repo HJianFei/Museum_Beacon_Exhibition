@@ -19,6 +19,7 @@ import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.utils.widget.CircleImageView;
+import com.hjianfei.museum_beacon_exhibition.view.activity.change_password.ChangePasswordActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.setting.SettingActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.collection.CollectionActivity;
 import com.umeng.socialize.ShareAction;
@@ -99,6 +100,9 @@ public class PersonalActivity extends AppCompatActivity implements PersonalView 
             case R.id.tv_personal_change:
                 break;
             case R.id.tv_personal_change_password:
+                intent = new Intent(PersonalActivity.this, ChangePasswordActivity.class);
+                startActivity(intent);
+
                 break;
             case R.id.tv_personal_setting:
                 intent = new Intent(PersonalActivity.this, SettingActivity.class);

@@ -80,5 +80,10 @@ public class Urls {
      * 意见反馈
      */
     public static final String FEEDBACK = "feed_back!saveFeedBack";
+
+    /**
+     * 更改用户密码
+     */
+    public static final String UPDATE_USER_PASSWORD="user!updatePassword";
 }
 

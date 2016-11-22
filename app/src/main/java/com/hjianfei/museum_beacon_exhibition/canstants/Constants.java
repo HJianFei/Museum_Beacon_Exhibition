@@ -1,5 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.canstants;
 
+import android.os.Environment;
+
 /**
  * Created by HJianFei on 2016/11/3.
  */
@@ -28,4 +30,9 @@ public class Constants {
     public static final String NAME = "USER_NAME";
     public static final String AVATAR = "USER_AVATAR";
     public static final String SEX = "USER_SEX";
+
+    /**
+     * 用户头像存放目录
+     */
+    public static final String FILE_URI = Environment.getExternalStorageDirectory().getPath() + "/museum_exhibition";
 }

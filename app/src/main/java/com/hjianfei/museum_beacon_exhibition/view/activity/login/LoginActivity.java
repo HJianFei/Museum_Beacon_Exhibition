@@ -116,6 +116,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void loginSuccess(final LoginResult loginResult) {
         SPUtils.setParam(LoginActivity.this, Constants.PHONE, loginResult.getUser().getUser_phone());
+        SPUtils.setParam(LoginActivity.this, Constants.NAME, loginResult.getUser().getUser_name());
         stopTime = SystemClock.currentThreadTimeMillis();
         if (stopTime - startTime > 500) {
             if (loginResult.getStatus().equals("0")) {

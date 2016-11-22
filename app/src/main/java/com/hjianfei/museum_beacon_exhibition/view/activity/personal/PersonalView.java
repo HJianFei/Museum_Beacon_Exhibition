@@ -1,5 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.personal;
 
+import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
 import com.hjianfei.museum_beacon_exhibition.view.base.BaseView;
 
 /**
@@ -8,5 +9,7 @@ import com.hjianfei.museum_beacon_exhibition.view.base.BaseView;
 
 public interface PersonalView extends BaseView {
 
-//    void
+    void changeAvatarSuccess();
+
+    void changeNameSuccess(ResultCode resultCode);
 }

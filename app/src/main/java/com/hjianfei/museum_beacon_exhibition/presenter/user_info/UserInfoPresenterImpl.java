@@ -4,10 +4,11 @@ import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
 import com.hjianfei.museum_beacon_exhibition.model.user_info.UserInfoIndicator;
 import com.hjianfei.museum_beacon_exhibition.model.user_info.UserInfoIndicatorImpl;
 import com.hjianfei.museum_beacon_exhibition.view.activity.change_password.ChangePasswordView;
+import com.hjianfei.museum_beacon_exhibition.view.activity.change_phone.ChangePhoneView;
+import com.hjianfei.museum_beacon_exhibition.view.activity.personal.PersonalView;
 
+import java.io.File;
 import java.util.Map;
-
-import okhttp3.RequestBody;
 
 /**
  * Created by HJianFei on 2016/11/21.
@@ -16,6 +17,8 @@ import okhttp3.RequestBody;
 public class UserInfoPresenterImpl implements UserInfoPresenter, UserInfoIndicator.onFinishedListener {
 
     private ChangePasswordView mChangePasswordView;
+    private PersonalView mPersonalView;
+    private ChangePhoneView mChangePhoneView;
     private UserInfoIndicator mUserInfoIndicator;
 
     public UserInfoPresenterImpl(ChangePasswordView mChangePasswordView) {
@@ -25,8 +28,19 @@ public class UserInfoPresenterImpl implements UserInfoPresenter, UserInfoIndicat
 
     }
 
+    public UserInfoPresenterImpl(PersonalView mPersonalView) {
+        this.mPersonalView = mPersonalView;
+        mUserInfoIndicator = new UserInfoIndicatorImpl();
+    }
+
+    public UserInfoPresenterImpl(ChangePhoneView mChangePhoneView) {
+        this.mChangePhoneView = mChangePhoneView;
+        mUserInfoIndicator = new UserInfoIndicatorImpl();
+    }
+
     @Override
-    public void changeAvatar(RequestBody requestBody) {
+    public void changeAvatar(File file) {
+        mUserInfoIndicator.changeAvatar(file, this);
 
     }
 
@@ -38,32 +52,46 @@ public class UserInfoPresenterImpl implements UserInfoPresenter, UserInfoIndicat
 
     @Override
     public void changeNickName(Map<String, Object> map) {
-
+        if (null != mPersonalView) {
+            mPersonalView.hideDialog();
+        }
+        mUserInfoIndicator.changeName(map, this);
     }
 
     @Override
     public void changePhone(Map<String, Object> map) {
-
+        mUserInfoIndicator.changePhone(map, this);
     }
 
     @Override
     public void changeAvatarSuccess(ResultCode resultCode) {
 
+
     }
 
     @Override
     public void changePasswordSuccess(ResultCode resultCode) {
+        if (null != mChangePasswordView) {
+            mChangePasswordView.hideDialog();
+        }
         mChangePasswordView.changePasswordSuccess(resultCode);
 
     }
 
     @Override
     public void changeNickNameSuccess(ResultCode resultCode) {
-
+        if (null != mPersonalView) {
+            mPersonalView.hideDialog();
+        }
+        mPersonalView.changeNameSuccess(resultCode);
     }
 
     @Override
     public void changePhoneSuccess(ResultCode resultCode) {
+        if (null != mChangePhoneView) {
+            mChangePhoneView.hideDialog();
+        }
+        mChangePhoneView.changePhoneSuccess(resultCode);
 
     }
 

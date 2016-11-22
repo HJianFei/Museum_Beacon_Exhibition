@@ -11,17 +11,21 @@ import com.hjianfei.museum_beacon_exhibition.bean.Museum;
 import com.hjianfei.museum_beacon_exhibition.bean.MuseumDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
 import com.hjianfei.museum_beacon_exhibition.bean.UpdateInfo;
+import com.hjianfei.museum_beacon_exhibition.bean.UploadFile;
 import com.hjianfei.museum_beacon_exhibition.bean.ViewPager;
 import com.hjianfei.museum_beacon_exhibition.canstants.Urls;
 
 import java.util.Map;
 
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -167,5 +171,23 @@ public interface Api {
     @POST(Urls.UPDATE_USER_PASSWORD)
     @FormUrlEncoded
     Observable<ResultCode> updateUserPassword(@FieldMap Map<String, Object> map);
+
+    /**
+     * 修改手机号码
+     */
+    @POST(Urls.CHANGE_USER_PHONE)
+    @FormUrlEncoded
+    Observable<ResultCode> changeUserPhone(@FieldMap Map<String, Object> map);
+
+    /**
+     * 修改用户名
+     */
+    @POST(Urls.CHANGE_USER_NAME)
+    @FormUrlEncoded
+    Observable<ResultCode> changeUserName(@FieldMap Map<String, Object> map);
+
+    @POST("/user_avatar")
+    @Multipart
+    Observable<UploadFile> uploadFile(@Part("file\"; filename=\"avatar.png\"") RequestBody file);
 
 }

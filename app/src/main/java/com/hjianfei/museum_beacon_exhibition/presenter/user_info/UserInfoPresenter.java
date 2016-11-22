@@ -1,8 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.presenter.user_info;
 
+import java.io.File;
 import java.util.Map;
-
-import okhttp3.RequestBody;
 
 /**
  * Created by HJianFei on 2016/11/21.
@@ -10,7 +9,7 @@ import okhttp3.RequestBody;
 
 public interface UserInfoPresenter {
 
-    void changeAvatar(RequestBody requestBody);
+    void changeAvatar(File file);
 
     void changePassword(Map<String, Object> map);
 

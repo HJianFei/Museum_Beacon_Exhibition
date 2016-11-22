@@ -27,7 +27,7 @@ public class DownLoadService extends Service {
      * 目标文件存储的文件夹路径
      */
     private String destFileDir = Environment.getExternalStorageDirectory().getAbsolutePath() + File
-            .separator + "博物展";
+            .separator + "museum_exhibition";
     /**
      * 目标文件存储的文件名
      */

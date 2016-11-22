@@ -2,9 +2,8 @@ package com.hjianfei.museum_beacon_exhibition.model.user_info;
 
 import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
 
+import java.io.File;
 import java.util.Map;
-
-import okhttp3.RequestBody;
 
 /**
  * Created by HJianFei on 2016/11/21.
@@ -25,11 +24,11 @@ public interface UserInfoIndicator {
         void onError();
     }
 
-    void changeAvatar(RequestBody requestBody, onFinishedListener listener);
+    void changeAvatar(File file, onFinishedListener listener);
 
     void changePassword(Map<String, Object> map, onFinishedListener listener);
 
-    void changeNickName(Map<String, Object> map, onFinishedListener listener);
+    void changeName(Map<String, Object> map, onFinishedListener listener);
 
     void changePhone(Map<String, Object> map, onFinishedListener listener);
 }

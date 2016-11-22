@@ -84,6 +84,16 @@ public class Urls {
     /**
      * 更改用户密码
      */
-    public static final String UPDATE_USER_PASSWORD="user!updatePassword";
+    public static final String UPDATE_USER_PASSWORD = "user!updatePassword";
+
+    /**
+     * 更改手机号
+     */
+    public static final String CHANGE_USER_PHONE = "user!changePhone";
+
+    /**
+     * 更改用户名称
+     */
+    public static final String CHANGE_USER_NAME = "user!changeName";
 }
 

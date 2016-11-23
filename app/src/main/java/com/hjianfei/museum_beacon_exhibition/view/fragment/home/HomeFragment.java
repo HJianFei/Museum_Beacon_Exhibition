@@ -32,7 +32,6 @@ import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate.Appreciate
 import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail.AppreciateDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.location.LocationActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.personal.PersonalActivity;
-import com.hjianfei.museum_beacon_exhibition.view.activity.search.SearchActivity;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
@@ -54,8 +53,8 @@ public class HomeFragment extends Fragment implements HomeView {
     RollPagerView homeViewPager;
     @BindView(R.id.appreciate_recyclerView)
     RecyclerView appreciateRecyclerView;
-    @BindView(R.id.home_search)
-    LinearLayout homeSearch;
+//    @BindView(R.id.home_search)
+//    LinearLayout homeSearch;
     @BindView(R.id.home_person)
     ImageView homePerson;
     @BindView(R.id.home_local_city)
@@ -127,7 +126,7 @@ public class HomeFragment extends Fragment implements HomeView {
 
     }
 
-    @OnClick({R.id.home_location, R.id.home_search, R.id.home_person, R.id.home_appreciate_more, R.id.hot_exhibition_more})
+    @OnClick({R.id.home_location, R.id.home_person, R.id.home_appreciate_more, R.id.hot_exhibition_more})
     public void onClickListener(View view) {
         Intent intent;
         switch (view.getId()) {
@@ -136,10 +135,10 @@ public class HomeFragment extends Fragment implements HomeView {
                 intent = new Intent(mContext, LocationActivity.class);
                 startActivityForResult(intent, Constants.HOME_LOCATION);
                 break;
-            case R.id.home_search:
-                intent = new Intent(mContext, SearchActivity.class);
-                startActivity(intent);
-                break;
+//            case R.id.home_search:
+//                intent = new Intent(mContext, SearchActivity.class);
+//                startActivity(intent);
+//                break;
             case R.id.home_person:
                 intent = new Intent(mContext, PersonalActivity.class);
                 startActivity(intent);

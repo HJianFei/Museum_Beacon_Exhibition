@@ -1,12 +1,17 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.location;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -34,6 +39,7 @@ import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.bean.City;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
+import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.utils.db.DBHelper;
 import com.hjianfei.museum_beacon_exhibition.utils.db.DatabaseHelper;
 import com.hjianfei.museum_beacon_exhibition.utils.widget.LetterListView;
@@ -91,6 +97,9 @@ public class LocationActivity extends AppCompatActivity implements AbsListView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
         ButterKnife.bind(this);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, Constants.BAIDU_READ_PHONE_STATE);
+        }
         initView();
         allCity_lists = new ArrayList<>();
         city_hot = new ArrayList<>();
@@ -793,6 +802,24 @@ public class LocationActivity extends AppCompatActivity implements AbsListView.O
             handler.removeCallbacks(overlayThread);
             // 延迟一秒后执行，让overlay为不可见
             handler.postDelayed(overlayThread, 1000);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        switch (requestCode) {
+            // requestCode即所声明的权限获取码，在checkSelfPermission时传入
+            case Constants.BAIDU_READ_PHONE_STATE:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // 获取到权限，作相应处理（调用定位SDK应当确保相关权限均被授权，否则可能引起定位失败）
+                } else {
+                    // 没有获取到权限，做特殊处理
+                    ToastUtil.showToast(LocationActivity.this,"定位权限未授予");
+                }
+                break;
+            default:
+                break;
         }
     }
 }

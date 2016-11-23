@@ -59,10 +59,17 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     private SweetAlertDialog dialog;
     private long startTime;
     private long stopTime;
+    private String phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        phone = (String) SPUtils.getParam(this, Constants.PHONE, "");
+        if (!phone.equals("") && null != phone) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            this.finish();
+        }
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         welcomeScreen = new WelcomeScreenHelper(this, SplashActivity.class);
@@ -154,7 +161,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void showDialog() {
         dialog = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.PROGRESS_TYPE);
-        dialog.setTitleText("登录中");
+        dialog.setTitleText("正在登录");
         dialog.show();
         startTime = SystemClock.currentThreadTimeMillis();
     }

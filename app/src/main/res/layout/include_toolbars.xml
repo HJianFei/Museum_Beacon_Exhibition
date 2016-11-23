@@ -14,7 +14,7 @@
 
         <LinearLayout
             android:id="@+id/home_location"
-            android:layout_width="wrap_content"
+            android:layout_width="44dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:gravity="center_vertical"
@@ -35,34 +35,42 @@
                 android:src="@drawable/home_position_ico" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/home_search"
+        <TextView
             android:layout_width="0dp"
-            android:layout_height="32dp"
-            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/shape_home_search_bar"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:text="博物展"
+            android:textColor="#333333"
+            android:textSize="20sp" />
 
-            <ImageView
-                android:layout_width="14dp"
-                android:layout_height="14dp"
-                android:src="@drawable/home_search_ico" />
+        <!--<LinearLayout-->
+        <!--android:id="@+id/home_search"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="32dp"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:background="@drawable/shape_home_search_bar"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="horizontal">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="搜索展览、展会"
-                android:textColor="#66666666" />
-        </LinearLayout>
+        <!--<ImageView-->
+        <!--android:layout_width="14dp"-->
+        <!--android:layout_height="14dp"-->
+        <!--android:src="@drawable/home_search_ico" />-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:text="搜索展览、展会"-->
+        <!--android:textColor="#66666666" />-->
+        <!--</LinearLayout>-->
 
         <ImageView
             android:id="@+id/home_person"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:layout_marginLeft="35dp"
+            android:layout_width="44dp"
+            android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:src="@drawable/home_personal_ico" />
     </LinearLayout>

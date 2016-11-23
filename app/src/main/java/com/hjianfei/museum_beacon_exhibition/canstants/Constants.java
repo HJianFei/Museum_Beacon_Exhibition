@@ -25,6 +25,8 @@ public class Constants {
     public static final int WRITE_EXTERNAL_CODE = 0x01;
     //打开蓝牙权限
     public static final int OPEN_BLUETOOTH = 0x02;
+    //百度地图权限申请
+    public static final int BAIDU_READ_PHONE_STATE = 0x03;
     //数据缓存
     public static final String PHONE = "USER_PHONE";
     public static final String NAME = "USER_NAME";

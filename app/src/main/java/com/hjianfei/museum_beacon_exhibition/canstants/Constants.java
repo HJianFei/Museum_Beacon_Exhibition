@@ -23,8 +23,8 @@ public class Constants {
      */
     //读写SD卡权限
     public static final int WRITE_EXTERNAL_CODE = 0x01;
-    //打开蓝牙权限
-    public static final int OPEN_BLUETOOTH = 0x02;
+    //蓝牙是否打开
+    public static final int REQUEST_ENABLE_BT = 0x02;
     //百度地图权限申请
     public static final int BAIDU_READ_PHONE_STATE = 0x03;
     //数据缓存

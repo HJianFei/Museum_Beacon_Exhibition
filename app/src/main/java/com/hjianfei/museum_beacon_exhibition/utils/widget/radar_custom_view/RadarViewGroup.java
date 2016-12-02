@@ -136,6 +136,7 @@ public class RadarViewGroup extends ViewGroup implements RadarView.IScanningList
      * @param mDatas
      */
     public void setDatas(SparseArray<Info> mDatas) {
+        System.out.println(mDatas.size());
         this.mDatas = mDatas;
         dataLength = mDatas.size();
         float min = Float.MAX_VALUE;

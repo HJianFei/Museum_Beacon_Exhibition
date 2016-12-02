@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.hjianfei.museum_beacon_exhibition.R;
+import com.hjianfei.museum_beacon_exhibition.utils.StatusBarUtils;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.guide.GuideFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.home.HomeFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.MuseumNewsFragment;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusBarUtils.setStatusBarTransparent(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         Explode explode = new Explode();

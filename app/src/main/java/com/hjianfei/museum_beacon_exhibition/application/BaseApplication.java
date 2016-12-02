@@ -2,9 +2,17 @@ package com.hjianfei.museum_beacon_exhibition.application;
 
 import android.app.Application;
 
+import com.brtbeacon.sdk.BRTBeacon;
+import com.brtbeacon.sdk.BRTBeaconManager;
+import com.brtbeacon.sdk.utils.L;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import cn.smssdk.SMSSDK;
 
@@ -16,6 +24,11 @@ public class BaseApplication extends Application {
 
     private static BaseApplication instance;
 
+    private BRTBeaconManager beaconManager;
+
+    private Set<BRTBeacon> brtBeacons;
+    private List<String> step;
+    private List<Integer> step_type;
 
     @Override
     public void onCreate() {
@@ -30,10 +43,46 @@ public class BaseApplication extends Application {
         PlatformConfig.setSinaWeibo("208018229", "a91e96352d72eac75528bac1bfef3046");
         Config.REDIRECT_URL = "http://sns.whalecloud.com/sina2/callback";
 
+        // 开启log打印
+        L.enableDebugLogging(true);
+        //获取单例
+        beaconManager = BRTBeaconManager.getInstance(this);
+        // 开启Beacon扫描服务
+        beaconManager.startService();
+        brtBeacons = new HashSet<>();
+        step = new ArrayList<>();
+        step_type = new ArrayList<>();
+
     }
 
     public static BaseApplication getInstance() {
         return instance;
+    }
+
+    /**
+     * 获取Beacon管理对象
+     *
+     * @return BRTBeaconManager
+     */
+    public BRTBeaconManager getBRTBeaconManager() {
+        return beaconManager;
+    }
+
+    /**
+     * 全局管理Beacon
+     *
+     * @return
+     */
+    public Set<BRTBeacon> getBrtBeacons() {
+        return brtBeacons;
+    }
+
+    public List<String> getStep() {
+        return step;
+    }
+
+    public List<Integer> getStep_type() {
+        return step_type;
     }
 
 }

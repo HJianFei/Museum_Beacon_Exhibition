@@ -37,6 +37,10 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
 
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+
     <application
         android:name=".application.BaseApplication"
         android:allowBackup="true"
@@ -46,6 +50,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon, android:theme">
+        <!-- BRTSDK服务. -->
+        <service
+            android:name="com.brtbeacon.sdk.BleService"
+            android:enabled="true" />
+
 
         <!-- 百度地图 start -->
         <meta-data
@@ -126,7 +135,7 @@
 
         <activity android:name=".view.activity.feedback.FeedBackActivity" />
         <activity android:name=".view.activity.change_password.ChangePasswordActivity" />
-        <activity android:name=".view.activity.change_phone.ChangePhoneActivity"></activity>
+        <activity android:name=".view.activity.change_phone.ChangePhoneActivity" />
     </application>
 
 </manifest>

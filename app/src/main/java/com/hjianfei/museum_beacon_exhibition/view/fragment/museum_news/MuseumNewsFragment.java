@@ -9,8 +9,10 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.hjianfei.museum_beacon_exhibition.R;
+import com.hjianfei.museum_beacon_exhibition.utils.StatusBarUtils;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.cultural.CulturalFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.museum.MuseumFragment;
 
@@ -28,6 +30,8 @@ public class MuseumNewsFragment extends Fragment {
     TabLayout slidingTabs;
     @BindView(R.id.viewpager)
     ViewPager viewpager;
+    @BindView(R.id.status_bar)
+    ImageView status_bar;
 
 
     private String mParam1;
@@ -58,7 +62,7 @@ public class MuseumNewsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        StatusBarUtils.getStatusBarHeight(getActivity());
         View view = inflater.inflate(R.layout.fragment_museum_news, container, false);
         ButterKnife.bind(this, view);
         initView();
@@ -66,6 +70,9 @@ public class MuseumNewsFragment extends Fragment {
     }
 
     private void initView() {
+        ViewGroup.LayoutParams params = status_bar.getLayoutParams();
+        params.height = StatusBarUtils.getStatusBarHeight(getActivity());
+        status_bar.setLayoutParams(params);
         MyPagerAdapter adapter = new MyPagerAdapter(getChildFragmentManager());
         adapter.addFragment(MuseumFragment.newInstance("博物馆", "博物馆"), "博物馆");
         adapter.addFragment(CulturalFragment.newInstance("文物", "文物"), "文物");

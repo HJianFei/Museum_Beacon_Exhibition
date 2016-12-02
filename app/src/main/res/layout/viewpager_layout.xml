@@ -37,7 +37,8 @@
         android:layout_below="@+id/tv_name"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/relativeLayout">
 
         <ImageView
             android:id="@+id/iv_sex"
@@ -63,13 +64,12 @@
 
         android:layout_width="94dp"
         android:layout_height="30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="4dp"
         android:background="@drawable/viewpager_item_hello_bg"
         android:gravity="center"
         android:text="打招呼"
         android:textColor="#ffffff"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_alignStart="@+id/relativeLayout"
+        android:id="@+id/textView" />
 </RelativeLayout>

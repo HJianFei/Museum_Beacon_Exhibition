@@ -19,12 +19,10 @@ import com.hjianfei.museum_beacon_exhibition.bean.Info;
 public class RadarViewPagerAdapter extends PagerAdapter {
     private Context mContext;
     private SparseArray<Info> mDatas;
-    private int[] mImgs;
 
-    public RadarViewPagerAdapter(Context mContext, SparseArray<Info> mDatas, int[] mImgs) {
+    public RadarViewPagerAdapter(Context mContext, SparseArray<Info> mDatas) {
         this.mContext = mContext;
         this.mDatas = mDatas;
-        this.mImgs = mImgs;
     }
 
     @Override
@@ -56,7 +54,12 @@ public class RadarViewPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return mImgs.length;
+        return mDatas.size();
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 
     @Override

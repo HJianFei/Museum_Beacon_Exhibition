@@ -28,6 +28,7 @@ import com.hjianfei.museum_beacon_exhibition.bean.ViewPager;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.home.HomePresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.home.HomePresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.utils.StatusBarUtils;
 import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate.AppreciateActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail.AppreciateDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.location.LocationActivity;
@@ -53,8 +54,8 @@ public class HomeFragment extends Fragment implements HomeView {
     RollPagerView homeViewPager;
     @BindView(R.id.appreciate_recyclerView)
     RecyclerView appreciateRecyclerView;
-//    @BindView(R.id.home_search)
-//    LinearLayout homeSearch;
+    @BindView(R.id.status_bar)
+    ImageView status_bar;
     @BindView(R.id.home_person)
     ImageView homePerson;
     @BindView(R.id.home_local_city)
@@ -104,7 +105,6 @@ public class HomeFragment extends Fragment implements HomeView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
         initView();
@@ -118,7 +118,9 @@ public class HomeFragment extends Fragment implements HomeView {
     }
 
     private void initView() {
-
+        ViewGroup.LayoutParams params = status_bar.getLayoutParams();
+        params.height = StatusBarUtils.getStatusBarHeight(getActivity());
+        status_bar.setLayoutParams(params);
         mHomePresenter = new HomePresenterImpl(this);
         mHomePresenter.loadHomeViewPager();
         mHomePresenter.loadAppreciateRecyclerView();

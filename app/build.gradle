@@ -86,4 +86,5 @@ dependencies {
     compile 'cn.pedant.sweetalert:library:1.3'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
+    compile files('libs/BRT-5.0.4.jar')
 }

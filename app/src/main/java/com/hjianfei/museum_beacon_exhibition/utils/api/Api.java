@@ -3,6 +3,7 @@ package com.hjianfei.museum_beacon_exhibition.utils.api;
 
 import com.hjianfei.museum_beacon_exhibition.bean.AppreciateDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
+import com.hjianfei.museum_beacon_exhibition.bean.BeaconAppreciate;
 import com.hjianfei.museum_beacon_exhibition.bean.Collection;
 import com.hjianfei.museum_beacon_exhibition.bean.ExhibitionDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Exhibitions;
@@ -10,6 +11,7 @@ import com.hjianfei.museum_beacon_exhibition.bean.LoginResult;
 import com.hjianfei.museum_beacon_exhibition.bean.Museum;
 import com.hjianfei.museum_beacon_exhibition.bean.MuseumDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
+import com.hjianfei.museum_beacon_exhibition.bean.StepView;
 import com.hjianfei.museum_beacon_exhibition.bean.UpdateInfo;
 import com.hjianfei.museum_beacon_exhibition.bean.UploadFile;
 import com.hjianfei.museum_beacon_exhibition.bean.ViewPager;
@@ -185,6 +187,18 @@ public interface Api {
     @POST(Urls.CHANGE_USER_NAME)
     @FormUrlEncoded
     Observable<ResultCode> changeUserName(@FieldMap Map<String, Object> map);
+
+    /**
+     * 获取浏览步骤
+     */
+    @GET(Urls.GET_STEP_VIEW)
+    Observable<StepView> getStepView(@Query("beacon_id") String beacon_id);
+
+    /**
+     * 获取Beacon蓝牙基站发出的信号
+     */
+    @GET(Urls.GET_BEACON_APPRECIATE)
+    Observable<BeaconAppreciate> getBeaconAppreciateByMinor(@Query("minor") String minor);
 
     @POST("/user_avatar")
     @Multipart

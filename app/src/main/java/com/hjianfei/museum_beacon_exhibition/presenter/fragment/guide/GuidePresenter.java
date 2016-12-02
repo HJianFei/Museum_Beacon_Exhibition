@@ -1,10 +1,10 @@
-package com.hjianfei.museum_beacon_exhibition.presenter.activity.radar;
+package com.hjianfei.museum_beacon_exhibition.presenter.fragment.guide;
 
 /**
  * Created by HJianFei on 2016/11/23.
  */
 
-public interface RadarPresenter {
+public interface GuidePresenter {
 
     void getStepView(String beacon_id);
 

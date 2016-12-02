@@ -21,7 +21,6 @@ public class StatusBarUtils {
      * @param activity
      */
     public static void setStatusBarTransparent(FragmentActivity activity) {
-        LogUtils.d(Constants.TAG,"hererrrr");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = activity.getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);

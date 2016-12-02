@@ -1,4 +1,4 @@
-package com.hjianfei.museum_beacon_exhibition.model.activity.radar;
+package com.hjianfei.museum_beacon_exhibition.model.fragment.guide;
 
 import com.hjianfei.museum_beacon_exhibition.bean.BeaconAppreciate;
 import com.hjianfei.museum_beacon_exhibition.bean.StepView;
@@ -7,9 +7,9 @@ import com.hjianfei.museum_beacon_exhibition.bean.StepView;
  * Created by HJianFei on 2016/11/23.
  */
 
-public interface RadarIndicator {
+public interface GuideIndicator {
 
-    interface onRadarFinishedListener {
+    interface onGuideFinishedListener {
 
         void getStepViewSuccess(StepView stepView);
 
@@ -18,7 +18,7 @@ public interface RadarIndicator {
         void onError();
     }
 
-    void getStepView(String beacon_id, onRadarFinishedListener listener);
+    void getStepView(String beacon_id, onGuideFinishedListener listener);
 
-    void getBeaconAppreciateByMinor(String minor, onRadarFinishedListener listener);
+    void getBeaconAppreciateByMinor(String minor, onGuideFinishedListener listener);
 }

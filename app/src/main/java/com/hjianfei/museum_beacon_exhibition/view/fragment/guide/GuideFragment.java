@@ -4,39 +4,62 @@ package com.hjianfei.museum_beacon_exhibition.view.fragment.guide;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.brtbeacon.sdk.BRTBeacon;
+import com.brtbeacon.sdk.BRTBeaconManager;
+import com.brtbeacon.sdk.BRTThrowable;
+import com.brtbeacon.sdk.callback.BRTBeaconManagerListener;
 import com.hjianfei.museum_beacon_exhibition.R;
+import com.hjianfei.museum_beacon_exhibition.adapter.common.CommonAdapter;
+import com.hjianfei.museum_beacon_exhibition.adapter.common.OnItemClickListener;
+import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
+import com.hjianfei.museum_beacon_exhibition.application.BaseApplication;
+import com.hjianfei.museum_beacon_exhibition.bean.BeaconAppreciate;
+import com.hjianfei.museum_beacon_exhibition.bean.StepView;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
-import com.hjianfei.museum_beacon_exhibition.utils.StatusBarUtils;
-import com.hjianfei.museum_beacon_exhibition.view.activity.radar.RadarActivity;
+import com.hjianfei.museum_beacon_exhibition.model.activity.guide_detail.GuideDetailActivity;
+import com.hjianfei.museum_beacon_exhibition.presenter.fragment.guide.GuidePresenter;
+import com.hjianfei.museum_beacon_exhibition.presenter.fragment.guide.GuidePresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.utils.widget.radar_custom_view.RadarView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static android.app.Activity.RESULT_CANCELED;
-import static android.app.Activity.RESULT_OK;
 
 
-public class GuideFragment extends Fragment {
+public class GuideFragment extends Fragment implements GuideView, BRTBeaconManagerListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    @BindView(R.id.id_scan_circle)
+    RadarView scan_circle;
+    @BindView(R.id.step_view)
+    TextView step_view;
+    @BindView(R.id.guide_recyclerview)
+    RecyclerView guide_recyclerview;
 
     private String mParam1;
     private String mParam2;
     private Context mContext;
+    private BRTBeaconManager beaconManager;
+    private Set<BRTBeacon> brtBeacons = BaseApplication.getInstance().getBrtBeacons();
+    private GuidePresenter mGuidePresenter;
+    private List<BeaconAppreciate> mBeaconAppreciateList = BaseApplication.getInstance().getmBeaconAppreciateList();
+    private CommonAdapter<BeaconAppreciate> mAdapter;
 
     public GuideFragment() {
     }
@@ -73,7 +96,43 @@ public class GuideFragment extends Fragment {
         ButterKnife.bind(this, view);
         //检测手机蓝牙是否开启
         checkBlueToothIsOpen();
+        initView();
         return view;
+    }
+
+    private void initView() {
+        mGuidePresenter = new GuidePresenterImpl(this);
+        beaconManager = BaseApplication.getInstance().getBRTBeaconManager();
+        beaconManager.setBRTBeaconManagerListener(this);
+        mAdapter = new CommonAdapter<BeaconAppreciate>(mContext, R.layout.guide_recyclerview_item, mBeaconAppreciateList) {
+            @Override
+            public void setData(ViewHolder holder, BeaconAppreciate beaconAppreciate) {
+                holder.setImageWithUrl(R.id.guide_item_image, beaconAppreciate.getBeaconAppreciate().getImg_url());
+                holder.setText(R.id.guide_item_title, beaconAppreciate.getBeaconAppreciate().getTitle());
+                holder.setVisible(R.id.guide_item_new, beaconAppreciate.getBeaconAppreciate().isIs_new());
+            }
+        };
+        guide_recyclerview.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+        guide_recyclerview.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(ViewGroup parent, View view, Object o, int position) {
+                mBeaconAppreciateList.get(position).getBeaconAppreciate().setIs_new(false);
+                view.findViewById(R.id.guide_item_new).setVisibility(View.GONE);
+                Intent intent = new Intent(mContext, GuideDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("beaconAppreciate", mBeaconAppreciateList.get(position));
+                intent.putExtra("guide_detail", bundle);
+                startActivity(intent);
+
+            }
+
+            @Override
+            public boolean onItemLongClick(ViewGroup parent, View view, Object o, int position) {
+                return false;
+            }
+        });
+
     }
 
     /**
@@ -104,4 +163,90 @@ public class GuideFragment extends Fragment {
         }
     }
 
+    @Override
+    public void getStepViewSuccess(StepView stepView) {
+        step_view.setText(stepView.getStepView().getStep_name());
+
+    }
+
+    @Override
+    public void getBeaconAppreciateByMinorSuccess(BeaconAppreciate beaconAppreciate) {
+
+        if (null != beaconAppreciate) {
+            mBeaconAppreciateList.add(beaconAppreciate);
+            mAdapter.notifyDataSetChanged();
+            guide_recyclerview.scrollToPosition(mBeaconAppreciateList.size() - 1);
+        }
+
+    }
+
+    @Override
+    public void showDialog() {
+
+    }
+
+    @Override
+    public void hideDialog() {
+
+    }
+
+    @Override
+    public void showError() {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
+    }
+
+    @Override
+    public void onUpdateBeacon(ArrayList<BRTBeacon> arrayList) {
+
+    }
+
+    @Override
+    public void onNewBeacon(BRTBeacon brtBeacon) {
+
+        if (brtBeacon.getMajor() == 2001) {//判断大范围的Beacon，一个区域
+            mGuidePresenter.getStepView(brtBeacon.getMinor() + "");
+        }
+
+        boolean contains = brtBeacons.contains(brtBeacon);
+
+        if (!contains) {//不在里面，新的Beacon
+            if (brtBeacon.getMajor() == 2002) {//某一件具体的文物
+                brtBeacons.add(brtBeacon);
+                mGuidePresenter.getBeaconAppreciateByMinor(brtBeacon.getMinor() + "");
+            }
+        }
+
+    }
+
+    @Override
+    public void onGoneBeacon(BRTBeacon brtBeacon) {
+
+    }
+
+    @Override
+    public void onError(BRTThrowable brtThrowable) {
+
+    }
+
+    @Override
+    public void onResume() {
+        beaconManager.startRanging();
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        beaconManager.stopRanging();
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }

@@ -1,4 +1,4 @@
-package com.hjianfei.museum_beacon_exhibition.model.activity.radar;
+package com.hjianfei.museum_beacon_exhibition.model.fragment.guide;
 
 import com.hjianfei.museum_beacon_exhibition.bean.BeaconAppreciate;
 import com.hjianfei.museum_beacon_exhibition.bean.StepView;
@@ -14,9 +14,9 @@ import rx.schedulers.Schedulers;
  * Created by HJianFei on 2016/11/23.
  */
 
-public class RadarIndicatorImpl implements RadarIndicator {
+public class GuideIndicatorImpl implements GuideIndicator {
     @Override
-    public void getStepView(String beacon_id, final onRadarFinishedListener listener) {
+    public void getStepView(String beacon_id, final onGuideFinishedListener listener) {
         NetWorkUtils.getApi().getStepView(beacon_id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -42,7 +42,7 @@ public class RadarIndicatorImpl implements RadarIndicator {
     }
 
     @Override
-    public void getBeaconAppreciateByMinor(String minor, final onRadarFinishedListener listener) {
+    public void getBeaconAppreciateByMinor(String minor, final onGuideFinishedListener listener) {
         NetWorkUtils.getApi().getBeaconAppreciateByMinor(minor)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -61,7 +61,6 @@ public class RadarIndicatorImpl implements RadarIndicator {
 
                     @Override
                     public void onNext(BeaconAppreciate beaconAppreciate) {
-
                         listener.getBeaconAppreciateSuccess(beaconAppreciate);
                     }
                 });

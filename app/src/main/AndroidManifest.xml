@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.hjianfei.museum_beacon_exhibition">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.hjianfei.museum_beacon_exhibition">
 
     <!-- 这个权限用于进行网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <!-- 这个权限用于访问GPS定位 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <!-- 用于读取手机当前的状态 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!-- 访问网络，网络定位需要上网 -->
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <!-- SD卡读取权限，用户写入离线定位数据 -->
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <!-- 蓝牙分享所需的权限 -->
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.READ_LOGS" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.READ_LOGS"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.SET_DEBUG_APP"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.READ_SMS"/>
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
-        android:required="true" />
+        android:required="true"/>
 
     <application
         android:name=".application.BaseApplication"
@@ -50,41 +50,41 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon, android:theme">
+
         <!-- BRTSDK服务. -->
         <service
             android:name="com.brtbeacon.sdk.BleService"
-            android:enabled="true" />
-
+            android:enabled="true"/>
 
         <!-- 百度地图 start -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="6uyoUlvctUCgxYWzMMo3aPkkB3zQFaSb" />
+            android:value="6uyoUlvctUCgxYWzMMo3aPkkB3zQFaSb"/>
 
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" />
+            android:process=":remote"/>
         <!-- 百度地图 end -->
         <activity android:name=".view.activity.login.LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".view.activity.register.RegisterActivity"
-            android:theme="@style/Translucent" />
-        <activity android:name=".view.activity.main.MainActivity" />
-        <activity android:name=".view.activity.splash.SplashActivity" />
-        <activity android:name=".view.activity.location.LocationActivity" />
-        <activity android:name=".view.activity.search.SearchActivity" />
-        <activity android:name=".view.activity.museum_detail.MuseumDetailActivity" />
-        <activity android:name=".view.activity.appreciate_detail.AppreciateDetailActivity" />
-        <activity android:name=".view.activity.exhibition_detail.ExhibitionDetailActivity" />
-        <activity android:name=".view.activity.appreciate.AppreciateActivity" />
-        <activity android:name=".view.activity.personal.PersonalActivity" />
+            android:theme="@style/Translucent"/>
+        <activity android:name=".view.activity.main.MainActivity"/>
+        <activity android:name=".view.activity.splash.SplashActivity"/>
+        <activity android:name=".view.activity.location.LocationActivity"/>
+        <activity android:name=".view.activity.search.SearchActivity"/>
+        <activity android:name=".view.activity.museum_detail.MuseumDetailActivity"/>
+        <activity android:name=".view.activity.appreciate_detail.AppreciateDetailActivity"/>
+        <activity android:name=".view.activity.exhibition_detail.ExhibitionDetailActivity"/>
+        <activity android:name=".view.activity.appreciate.AppreciateActivity"/>
+        <activity android:name=".view.activity.personal.PersonalActivity"/>
 
         <!-- 有盟分享 start -->
         <activity
@@ -92,50 +92,52 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <activity
             android:name="com.umeng.qq.tencent.AuthActivity"
             android:launchMode="singleTask"
             android:noHistory="true">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
 
-                <data android:scheme="tencent1105746947" />
+                <data android:scheme="tencent1105746947"/>
             </intent-filter>
         </activity>
         <activity
             android:name="com.umeng.qq.tencent.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
             android:excludeFromRecents="true"
-            android:theme="@style/Theme.UMDefault" />
+            android:theme="@style/Theme.UMDefault"/>
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="5827d41e5312dd979e003193" />
+            android:value="5827d41e5312dd979e003193"/>
         <!-- 有盟分享 end -->
-        <activity android:name=".view.activity.radar.RadarActivity" />
+        <activity android:name=".view.activity.radar.RadarActivity"/>
         <!-- Mob短信验证平台 -->
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity android:name=".view.activity.collection.CollectionActivity" />
-        <activity android:name=".view.activity.setting.SettingActivity" />
-        <activity android:name=".view.activity.about_me.AboutMeActivity" />
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+        <activity android:name=".view.activity.collection.CollectionActivity"/>
+        <activity android:name=".view.activity.setting.SettingActivity"/>
+        <activity android:name=".view.activity.about_me.AboutMeActivity"/>
 
-        <service android:name=".utils.fileload.DownLoadService" />
+        <service android:name=".utils.fileload.DownLoadService"/>
 
-        <activity android:name=".view.activity.feedback.FeedBackActivity" />
-        <activity android:name=".view.activity.change_password.ChangePasswordActivity" />
-        <activity android:name=".view.activity.change_phone.ChangePhoneActivity" />
+        <activity android:name=".view.activity.feedback.FeedBackActivity"/>
+        <activity android:name=".view.activity.change_password.ChangePasswordActivity"/>
+        <activity android:name=".view.activity.change_phone.ChangePhoneActivity"/>
+        <activity android:name=".model.activity.guide_detail.GuideDetailActivity">
+        </activity>
     </application>
 
 </manifest>

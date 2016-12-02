@@ -5,6 +5,7 @@ import android.app.Application;
 import com.brtbeacon.sdk.BRTBeacon;
 import com.brtbeacon.sdk.BRTBeaconManager;
 import com.brtbeacon.sdk.utils.L;
+import com.hjianfei.museum_beacon_exhibition.bean.BeaconAppreciate;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
@@ -29,6 +30,7 @@ public class BaseApplication extends Application {
     private Set<BRTBeacon> brtBeacons;
     private List<String> step;
     private List<Integer> step_type;
+    List<BeaconAppreciate> mBeaconAppreciateList;
 
     @Override
     public void onCreate() {
@@ -52,6 +54,7 @@ public class BaseApplication extends Application {
         brtBeacons = new HashSet<>();
         step = new ArrayList<>();
         step_type = new ArrayList<>();
+        mBeaconAppreciateList = new ArrayList<>();
 
     }
 
@@ -83,6 +86,10 @@ public class BaseApplication extends Application {
 
     public List<Integer> getStep_type() {
         return step_type;
+    }
+
+    public List<BeaconAppreciate> getmBeaconAppreciateList() {
+        return mBeaconAppreciateList;
     }
 
 }

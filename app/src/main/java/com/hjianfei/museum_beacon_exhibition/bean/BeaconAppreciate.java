@@ -10,7 +10,7 @@ public class BeaconAppreciate implements Serializable {
 
     /**
      * code : 200
-     * BeaconAppreciate : {"minor":"1001","major":"2002","img_url":"http://www.gdmuseum.com/attachment/201602/22/2_1456104643guqv.jpg","title":"青铜器","content":"青铜器","video_url":"http://www.gdmuseum.com/attachment/201602/22/2_1456104643guqv.jpg","audio_url":"http://www.gdmuseum.com/attachment/201602/22/2_1456104643guqv.jpg"}
+     * BeaconAppreciate : {"minor":"1001","major":"2002","img_url":"http://www.gdmuseum.com/attachment/201602/22/2_1456104643guqv.jpg","title":"青铜器","content":"青铜器","video_url":"http://www.gdmuseum.com/attachment/201602/22/2_1456104643guqv.jpg","audio_url":"http://www.gdmuseum.com/attachment/201602/22/2_1456104643guqv.jpg","is_new":true}
      */
 
     private int code;
@@ -41,6 +41,7 @@ public class BeaconAppreciate implements Serializable {
          * content : 青铜器
          * video_url : http://www.gdmuseum.com/attachment/201602/22/2_1456104643guqv.jpg
          * audio_url : http://www.gdmuseum.com/attachment/201602/22/2_1456104643guqv.jpg
+         * is_new : true
          */
 
         private String minor;
@@ -50,6 +51,7 @@ public class BeaconAppreciate implements Serializable {
         private String content;
         private String video_url;
         private String audio_url;
+        private boolean is_new;
 
         public String getMinor() {
             return minor;
@@ -107,25 +109,12 @@ public class BeaconAppreciate implements Serializable {
             this.audio_url = audio_url;
         }
 
-        @Override
-        public String toString() {
-            return "BeaconAppreciateBean{" +
-                    "minor='" + minor + '\'' +
-                    ", major='" + major + '\'' +
-                    ", img_url='" + img_url + '\'' +
-                    ", title='" + title + '\'' +
-                    ", content='" + content + '\'' +
-                    ", video_url='" + video_url + '\'' +
-                    ", audio_url='" + audio_url + '\'' +
-                    '}';
+        public boolean isIs_new() {
+            return is_new;
         }
-    }
 
-    @Override
-    public String toString() {
-        return "BeaconAppreciate{" +
-                "code=" + code +
-                ", BeaconAppreciate=" + BeaconAppreciate +
-                '}';
+        public void setIs_new(boolean is_new) {
+            this.is_new = is_new;
+        }
     }
 }

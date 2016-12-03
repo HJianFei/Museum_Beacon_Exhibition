@@ -1,12 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_guide_detail"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.hjianfei.museum_beacon_exhibition.model.activity.guide_detail.GuideDetailActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
 
     <include layout="@layout/default_toolbar"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_vv"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="@android:color/black">
+
+        <com.hjianfei.museum_beacon_exhibition.utils.widget.CustomVideoView
+            android:id="@+id/guide_video_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+
+        <ImageView
+            android:id="@+id/video_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/icon_video"/>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/guide_detail_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp"
+            app:contentPaddingBottom="16dp"
+            app:contentPaddingLeft="16dp"
+            app:contentPaddingRight="16dp">
+
+            <ScrollView
+                android:id="@+id/guide_detail_scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/guide_detail_title"
+                        style="@style/TextComponent.ItemRow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16sp"
+                        android:text="陶船"
+                        android:textAppearance="@style/TextAppearance.Header"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:id="@+id/guide_detail_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:lineSpacingExtra="8dp"
+                        android:text="@string/lorem"
+                        android:textSize="16sp"/>
+                </LinearLayout>
+            </ScrollView>
+        </android.support.v7.widget.CardView>
+    </FrameLayout>
 </LinearLayout>

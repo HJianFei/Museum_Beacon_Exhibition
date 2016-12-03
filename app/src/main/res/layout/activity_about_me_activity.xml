@@ -24,12 +24,6 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:title="关于我们">
 
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerInside"
-                android:src="@drawable/banner4" />
-
             <android.support.v7.widget.Toolbar
                 android:id="@+id/about_me_toolbar"
                 style="@style/ToolBarWithNavigationBack"
@@ -37,6 +31,13 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@null"
                 app:layout_collapseMode="pin" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@drawable/banner4"
+                android:id="@+id/imageView6"/>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
@@ -53,7 +54,7 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.CardView
-                android:id="@+id/about_me_cardview"
+                android:id="@+id/guide_detail_card_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -96,7 +97,7 @@
         android:elevation="8dp"
         app:fabSize="normal"
         android:src="@drawable/share_about_me"
-        app:layout_anchor="@id/about_me_cardview"
+        app:layout_anchor="@id/guide_detail_card_view"
         app:layout_anchorGravity="top|right|end"
         tools:ignore="RtlHardcoded" />
 </android.support.design.widget.CoordinatorLayout>

@@ -29,6 +29,8 @@ import com.hjianfei.museum_beacon_exhibition.presenter.activity.appreciate_detai
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.appreciate_detail.AppreciateDetailPresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.utils.SPUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
+import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
+import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.umeng.socialize.ShareAction;
@@ -172,6 +174,15 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
         culturalDetailViewPager.setPlayDelay(3000);
         culturalDetailViewPager.setAdapter(new CommonDetailViewPagerAdapter(img_urls));
         culturalDetailViewPager.setHintView(new ColorPointHintView(this, Color.YELLOW, Color.WHITE));
+        final String finalImg_url = img_url;
+        culturalDetailViewPager.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(AppreciateDetailActivity.this, PhotoDetailActivity.class);
+                intent.putExtra("img_urls", finalImg_url);
+                startActivity(intent);
+            }
+        });
 
     }
 

@@ -28,6 +28,8 @@ import com.hjianfei.museum_beacon_exhibition.presenter.activity.museum_detail.Mu
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.museum_detail.MuseumDetailPresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.utils.SPUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
+import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
+import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.umeng.socialize.ShareAction;
@@ -162,10 +164,20 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
         museumDetailName.setText(museumDetail.getMuseum_Detail().getMuseum_detail_name());
         museumDetailContent.setText(museumDetail.getMuseum_Detail().getMuseum_detail_content());
         String img_url = museumDetail.getMuseum_Detail().getMuseum_detail_imgs();
+        img_url = img_url.substring(1, img_url.length() - 1);
         img_urls = img_url.split(",");
         museumDetailViewPager.setPlayDelay(3000);
         museumDetailViewPager.setAdapter(new CommonDetailViewPagerAdapter(img_urls));
         museumDetailViewPager.setHintView(new ColorPointHintView(this, Color.YELLOW, Color.WHITE));
+        final String finalImg_url = img_url;
+        museumDetailViewPager.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(MuseumDetailActivity.this, PhotoDetailActivity.class);
+                intent.putExtra("img_urls", finalImg_url);
+                startActivity(intent);
+            }
+        });
 
 
     }

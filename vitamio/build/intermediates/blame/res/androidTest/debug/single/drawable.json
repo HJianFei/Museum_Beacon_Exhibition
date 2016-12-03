@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "F:\\Android_Work_Space\\Museum_Beacon_Exhibition\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\mediacontroller_pause_button.xml",
+        "source": "F:\\Android_Work_Space\\Museum_Beacon_Exhibition\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable\\mediacontroller_pause_button.xml"
+    },
+    {
+        "merged": "F:\\Android_Work_Space\\Museum_Beacon_Exhibition\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\mediacontroller_seekbar.xml",
+        "source": "F:\\Android_Work_Space\\Museum_Beacon_Exhibition\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable\\mediacontroller_seekbar.xml"
+    },
+    {
+        "merged": "F:\\Android_Work_Space\\Museum_Beacon_Exhibition\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\mediacontroller_seekbar_thumb.xml",
+        "source": "F:\\Android_Work_Space\\Museum_Beacon_Exhibition\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable\\mediacontroller_seekbar_thumb.xml"
+    },
+    {
+        "merged": "F:\\Android_Work_Space\\Museum_Beacon_Exhibition\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\mediacontroller_play_button.xml",
+        "source": "F:\\Android_Work_Space\\Museum_Beacon_Exhibition\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable\\mediacontroller_play_button.xml"
+    }
+]

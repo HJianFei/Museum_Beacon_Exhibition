@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.exhibition_detail;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ import com.hjianfei.museum_beacon_exhibition.presenter.activity.exhibition_detai
 import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.SPUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
+import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
+import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.umeng.socialize.ShareAction;
@@ -106,7 +109,7 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
                     map.put("post_id", exhibition_detail.getExhibitionDetail().getTitle());
                     map.put("post_type", post_type);
                     map.put("img_url", img_urls[0]);
-                    map.put("detail_url",exhibition_detail.getExhibitionDetail().getDetail_url());
+                    map.put("detail_url", exhibition_detail.getExhibitionDetail().getDetail_url());
                     mExhibitionDetailPresenter.onSaveCollection(map);
                 }
 
@@ -173,6 +176,15 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
         exhibitionDetailViewPager.setAdapter(new CommonDetailViewPagerAdapter(img_urls));
         exhibitionDetailViewPager.setHintView(new ColorPointHintView(this, Color.YELLOW, Color.WHITE));
 
+        final String finalImg_url = img_url;
+        exhibitionDetailViewPager.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(ExhibitionDetailActivity.this, PhotoDetailActivity.class);
+                intent.putExtra("img_urls", finalImg_url);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

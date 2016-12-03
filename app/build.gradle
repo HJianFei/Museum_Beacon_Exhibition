@@ -3,7 +3,7 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion '24.0.2'
+    buildToolsVersion '25.0.1'
     defaultConfig {
         applicationId "com.hjianfei.museum_beacon_exhibition"
         minSdkVersion 21
@@ -42,6 +42,8 @@ android {
             dirs 'libs' //就是你放aar的目录地址
         }
     }
+    productFlavors {
+    }
 }
 
 dependencies {
@@ -62,7 +64,6 @@ dependencies {
     compile files('libs/MobCommons-2016.1012.1447.jar')
     compile name: 'SMSSDK-2.1.2', ext: 'aar'
     compile 'com.afollestad.material-dialogs:core:0.9.1.0'
-    compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.jakewharton:butterknife:8.1.0'
     compile 'com.android.support:support-v4:24.2.1'
     compile 'com.android.support:design:25.0.0'
@@ -88,4 +89,5 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
     compile files('libs/BRT-5.0.4.jar')
     compile 'com.android.support:recyclerview-v7:25.0.1'
+    compile 'com.android.support:appcompat-v7:25.0.1'
 }

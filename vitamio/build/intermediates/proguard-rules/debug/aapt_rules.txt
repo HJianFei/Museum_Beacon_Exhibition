@@ -1,0 +1,3 @@
+# view AndroidManifest.xml #generated:12
+-keep class io.vov.vitamio.activity.InitActivity { <init>(...); }
+

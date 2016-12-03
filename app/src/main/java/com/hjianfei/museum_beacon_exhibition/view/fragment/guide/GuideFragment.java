@@ -26,10 +26,10 @@ import com.hjianfei.museum_beacon_exhibition.application.BaseApplication;
 import com.hjianfei.museum_beacon_exhibition.bean.BeaconAppreciate;
 import com.hjianfei.museum_beacon_exhibition.bean.StepView;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
-import com.hjianfei.museum_beacon_exhibition.model.activity.guide_detail.GuideDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.guide.GuidePresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.guide.GuidePresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.utils.widget.radar_custom_view.RadarView;
+import com.hjianfei.museum_beacon_exhibition.view.activity.guide_detail.GuideDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,7 +107,7 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
         mAdapter = new CommonAdapter<BeaconAppreciate>(mContext, R.layout.guide_recyclerview_item, mBeaconAppreciateList) {
             @Override
             public void setData(ViewHolder holder, BeaconAppreciate beaconAppreciate) {
-                holder.setImageWithUrl(R.id.guide_item_image, beaconAppreciate.getBeaconAppreciate().getImg_url());
+                holder.setImageWithUrl(R.id.guide_item_image, beaconAppreciate.getBeaconAppreciate().getImg_url().split(",")[0].trim());
                 holder.setText(R.id.guide_item_title, beaconAppreciate.getBeaconAppreciate().getTitle());
                 holder.setVisible(R.id.guide_item_new, beaconAppreciate.getBeaconAppreciate().isIs_new());
             }

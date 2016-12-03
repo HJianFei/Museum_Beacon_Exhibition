@@ -21,4 +21,6 @@
     <color name="bg_color_pink">#FF90A2</color>
     <color name="bg_color_blue">#43D5FF</color>
     <color name="bg_color_blue_light">#84B5CA</color>
+    <color name="material_black">#000</color>
+
 </resources>

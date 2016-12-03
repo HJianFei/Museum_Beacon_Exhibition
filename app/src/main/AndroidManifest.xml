@@ -36,6 +36,8 @@
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
@@ -120,7 +122,8 @@
             android:name="UMENG_APPKEY"
             android:value="5827d41e5312dd979e003193"/>
         <!-- 有盟分享 end -->
-        <activity android:name=".view.activity.radar.RadarActivity"/>
+
+
         <!-- Mob短信验证平台 -->
         <activity
             android:name="com.mob.tools.MobUIShell"
@@ -136,7 +139,9 @@
         <activity android:name=".view.activity.feedback.FeedBackActivity"/>
         <activity android:name=".view.activity.change_password.ChangePasswordActivity"/>
         <activity android:name=".view.activity.change_phone.ChangePhoneActivity"/>
-        <activity android:name=".model.activity.guide_detail.GuideDetailActivity">
+        <activity android:name=".view.activity.guide_detail.GuideDetailActivity">
+        </activity>
+        <activity android:name=".view.activity.photo_detail.PhotoDetailActivity">
         </activity>
     </application>
 

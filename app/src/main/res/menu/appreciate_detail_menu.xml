@@ -4,6 +4,6 @@
     <item
         android:id="@+id/action_search"
         android:icon="@drawable/menu"
-        android:title="search"
+        android:title="菜单"
         app:showAsAction="ifRoom" />
 </menu>

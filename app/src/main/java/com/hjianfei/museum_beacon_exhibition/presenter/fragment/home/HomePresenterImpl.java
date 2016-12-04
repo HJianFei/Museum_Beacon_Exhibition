@@ -34,8 +34,8 @@ public class HomePresenterImpl implements HomePresenter, HomeIndicator.onFinishe
     }
 
     @Override
-    public void loadExhibitionViewPager() {
-        mHomeIndicator.getHotExhibition(this);
+    public void loadExhibitionViewPager(String type) {
+        mHomeIndicator.getHotExhibition(type,this);
     }
 
     @Override

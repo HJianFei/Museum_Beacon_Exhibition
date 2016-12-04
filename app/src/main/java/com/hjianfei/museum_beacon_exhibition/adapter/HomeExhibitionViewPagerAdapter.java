@@ -51,11 +51,12 @@ public class HomeExhibitionViewPagerAdapter extends PagerAdapter {
         TextView hot_item_title = (TextView) view.findViewById(R.id.hot_item_title);
         TextView hot_item_time = (TextView) view.findViewById(R.id.hot_item_time);
         hot_item_title.setText(exhibitionsList.get(position).getContent());
-        hot_item_time.setText(exhibitionsList.get(position).getDetail_url());
+        hot_item_time.setText(exhibitionsList.get(position).getTime());
         Glide.with(container.getContext())
                 .load(exhibitionsList.get(position).getImg_url())
-//                .placeholder(R.drawable.img4)
-//                .error(R.drawable.img1)
+                .centerCrop()
+                .placeholder(R.drawable.photo)
+                .error(R.drawable.photo)
                 .into(iv);
         iv.setOnClickListener(new View.OnClickListener() {
             @Override

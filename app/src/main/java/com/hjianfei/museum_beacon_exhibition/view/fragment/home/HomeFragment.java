@@ -70,6 +70,8 @@ public class HomeFragment extends Fragment implements HomeView {
     ImageView hot_exhibition_more;
     @BindView(R.id.home_hot_exhibition)
     android.support.v4.view.ViewPager hot_exhibition_view_pager;
+    @BindView(R.id.home_no_exhibition)
+    TextView homeNoExhibition;
 
     private CommonAdapter<Appreciates.AppreciatesBean> mAdapter;
     private HomeExhibitionViewPagerAdapter homeExhibitionViewPagerAdapter;
@@ -126,7 +128,7 @@ public class HomeFragment extends Fragment implements HomeView {
         mHomePresenter = new HomePresenterImpl(this);
         mHomePresenter.loadHomeViewPager();
         mHomePresenter.loadAppreciateRecyclerView();
-        mHomePresenter.loadExhibitionViewPager();
+        mHomePresenter.loadExhibitionViewPager(home_local_city.getText().toString());
 
     }
 
@@ -162,6 +164,7 @@ public class HomeFragment extends Fragment implements HomeView {
             if (requestCode == Constants.HOME_LOCATION) {
                 String result = data.getStringExtra("city");
                 home_local_city.setText(result);
+                mHomePresenter.loadExhibitionViewPager(result);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -227,12 +230,22 @@ public class HomeFragment extends Fragment implements HomeView {
 
     @Override
     public void initHotExhibition(Exhibitions exhibitions) {
-        homeExhibitionViewPagerAdapter = new HomeExhibitionViewPagerAdapter(exhibitions.getExhibitions(), mContext);
-        hot_exhibition_view_pager.setPageMargin(40);
-        hot_exhibition_view_pager.setOffscreenPageLimit(5);
-        hot_exhibition_view_pager.setAdapter(homeExhibitionViewPagerAdapter);
-        hot_exhibition_view_pager.setCurrentItem(1, true);
-        hot_exhibition_view_pager.setPageTransformer(true, new ScaleInTransformer(new AlphaPageTransformer()));
+        if (exhibitions.getCode() == 200) {
+            homeNoExhibition.setVisibility(View.GONE);
+            hot_exhibition_view_pager.setVisibility(View.VISIBLE);
+            homeExhibitionViewPagerAdapter = new HomeExhibitionViewPagerAdapter(exhibitions.getExhibitions(), mContext);
+            hot_exhibition_view_pager.setPageMargin(40);
+            hot_exhibition_view_pager.setOffscreenPageLimit(5);
+            hot_exhibition_view_pager.setAdapter(homeExhibitionViewPagerAdapter);
+            if (exhibitions.getExhibitions().size() > 2) {
+                hot_exhibition_view_pager.setCurrentItem(1, true);
+            }
+            hot_exhibition_view_pager.setPageTransformer(true, new ScaleInTransformer(new AlphaPageTransformer()));
+        } else {
+            hot_exhibition_view_pager.setVisibility(View.GONE);
+            homeNoExhibition.setVisibility(View.VISIBLE);
+
+        }
     }
 
 

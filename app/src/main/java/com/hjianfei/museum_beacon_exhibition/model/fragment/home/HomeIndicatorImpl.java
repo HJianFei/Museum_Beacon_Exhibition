@@ -3,6 +3,8 @@ package com.hjianfei.museum_beacon_exhibition.model.fragment.home;
 import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
 import com.hjianfei.museum_beacon_exhibition.bean.Exhibitions;
 import com.hjianfei.museum_beacon_exhibition.bean.ViewPager;
+import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
+import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.NetWorkUtils;
 
 import rx.Observer;
@@ -67,8 +69,8 @@ public class HomeIndicatorImpl implements HomeIndicator {
     }
 
     @Override
-    public void getHotExhibition(final onFinishedListener listener) {
-        NetWorkUtils.getApi().getAllExhibitionByType("0")
+    public void getHotExhibition(String type, final onFinishedListener listener) {
+        NetWorkUtils.getApi().getAllExhibitionByType(type)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Exhibitions>() {
@@ -79,11 +81,12 @@ public class HomeIndicatorImpl implements HomeIndicator {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        LogUtils.d(Constants.TAG, e.toString());
                     }
 
                     @Override
                     public void onNext(Exhibitions exhibitions) {
+                        LogUtils.d(Constants.TAG, exhibitions.toString());
                         listener.onHotExhibitionFinished(exhibitions);
 
                     }

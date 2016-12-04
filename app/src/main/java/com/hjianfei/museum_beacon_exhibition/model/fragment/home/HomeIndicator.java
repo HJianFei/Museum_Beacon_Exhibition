@@ -25,5 +25,5 @@ public interface HomeIndicator {
 
     void getAppreciateRecyclerView(onFinishedListener listener);
 
-    void getHotExhibition(onFinishedListener listener);
+    void getHotExhibition(String type, onFinishedListener listener);
 }

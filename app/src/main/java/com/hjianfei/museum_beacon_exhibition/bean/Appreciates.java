@@ -11,21 +11,20 @@ import java.util.List;
 
 public class Appreciates implements Serializable {
 
-
     /**
-     * appreciates : [{"id":471,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_13474328427AqK.jpg","content":"广彩方罐形双耳花插","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3709&subgid=8911&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":472,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_13474328438qrT.jpg","content":"潮州窑青白釉佛像","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3712&subgid=8912&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":473,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_1347432843Yvn9.jpg","content":"釉里红菊花纹花口大盘","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3715&subgid=8913&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":474,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_1347432844uA9F.jpg","content":"磁州窑唐僧取经图枕","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3718&subgid=8914&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":475,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_1347432844zNe2.jpg","content":"钧窑紫斑盘","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3721&subgid=8915&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":476,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_134743284533pj.jpg","content":"白釉双龙耳尊","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3724&subgid=8916&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":477,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_1347432845i913.jpg","content":"三彩马","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3727&subgid=8917&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":478,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_1347432845S15g.jpg","content":"青花缠枝莲纹板沿大盘","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3730&subgid=8918&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":479,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_13474328465y6s.jpg","content":"祭红盘","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3731&subgid=8919&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0},{"id":480,"img_url":"http://www.gdmuseum.com/attachment/201209/12/2_13474328466R5n.jpg","content":"白釉暗花大盘","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=3733&subgid=8920&gid=8&title=�մ�","type":"珍品鉴赏","view_count":0}]
-     * status : 1
+     * appreciates : [{"id":249,"img_url":"http://www.gdmuseum.com/attachment/201607/12/2_1468311146ohU4.jpg","content":"明漳州窑青花缠枝花卉纹大罐","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=11304&subgid=15&gid=160&title=�໨��֮Լ","type":"青花瓷之约","view_count":109},{"id":1247,"img_url":"http://www.gdmuseum.com/attachment/201012/7/2_1291690560WvTg.jpg","content":"女贞","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=2100&subgid=110&gid=66&title=�вݱ걾","type":"自然标本","view_count":93},{"id":2074,"img_url":"http://www.gdmuseum.com/attachment/201401/22/2_139035040817pQ.jpg","content":"金饼","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=6594&subgid=15&gid=148&title=����ӡ��","type":"专题鉴赏","view_count":40},{"id":568,"img_url":"http://www.gdmuseum.com/attachment/201209/24/2_13484505522Y24.jpg","content":"孙克弘 秋艳图轴","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=4191&subgid=4968&gid=1&title=�黭","type":"珍品鉴赏","view_count":39},{"id":738,"img_url":"http://www.gdmuseum.com/attachment/201602/19/2_1455862128HdHe.jpg","content":"木雕龙纹雀替","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=9473&subgid=90&gid=18&title=��ľ��","type":"珍品鉴赏","view_count":37},{"id":2067,"img_url":"http://www.gdmuseum.com/attachment/201401/22/2_1390350407E2hx.jpg","content":"陶五联罐","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=6590&subgid=8&gid=148&title=����ӡ��","type":"专题鉴赏","view_count":32}]
+     * code : 200
      */
 
-    private String status;
+    private int code;
     private List<AppreciatesBean> appreciates;
 
-    public String getStatus() {
-        return status;
+    public int getCode() {
+        return code;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public List<AppreciatesBean> getAppreciates() {
@@ -36,14 +35,14 @@ public class Appreciates implements Serializable {
         this.appreciates = appreciates;
     }
 
-    public static class AppreciatesBean implements Serializable {
+    public static class AppreciatesBean {
         /**
-         * id : 471
-         * img_url : http://www.gdmuseum.com/attachment/201209/12/2_13474328427AqK.jpg
-         * content : 广彩方罐形双耳花插
-         * detail_url : http://www.gdmuseum.com/curio_detail.php?picid=3709&subgid=8911&gid=8&title=�մ�
-         * type : 珍品鉴赏
-         * view_count : 0
+         * id : 249
+         * img_url : http://www.gdmuseum.com/attachment/201607/12/2_1468311146ohU4.jpg
+         * content : 明漳州窑青花缠枝花卉纹大罐
+         * detail_url : http://www.gdmuseum.com/curio_detail.php?picid=11304&subgid=15&gid=160&title=�໨��֮Լ
+         * type : 青花瓷之约
+         * view_count : 109
          */
 
         private int id;

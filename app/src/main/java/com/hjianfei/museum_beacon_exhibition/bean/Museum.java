@@ -11,19 +11,19 @@ public class Museum implements Serializable {
 
 
     /**
-     * museums : [{"museum_id":1,"museum_name":"故宫博物院","museum_img":"http://images.quanjing.com/chineseview113/high/388-3022.jpg","museum_title":"北京故宫博物院建立于1925年10月10日，位于北京故宫紫禁城内。是在明朝、清朝两代皇宫及其收藏的基础上建立起来的中国综合性博物馆，也是中国最大的古代文化艺术博物馆","view_count":1},{"museum_id":2,"museum_name":"河北博物院","museum_img":"http://attach.bbs.china.com.cn/forum/201512/23/091753i1rgo30w1aadkumm.jpg","museum_title":"河北博物院位于石家庄市文化广场，北起中山路，南到范西路，东临东大街，西至西大街，是河北省省级综合性博物馆","view_count":0},{"museum_id":3,"museum_name":"旅顺博物馆","museum_img":"http://p.chanyouji.cn/95078/1389166758743p18docjqcqk4116s11j3b1mjm8shn.jpg","museum_title":"旅顺博物馆坐落于有\u201c半部中国近代史\u201d之称的大连市旅顺口区，是大连市属的历史艺术性博物馆","view_count":0},{"museum_id":4,"museum_name":"大连现代博物馆","museum_img":"http://www.qdexpo.cn/file/2012091216555173499.jpg","museum_title":"大连现代博物馆位于市区南部的星海湾，是世纪之交大连市政府斥资建设的大型文化设施","view_count":0},{"museum_id":5,"museum_name":"吉林省博物馆","museum_img":"http://p4.qhimg.com/t01ffa76943b63fc419.jpg","museum_title":"吉林省博物院，原名吉林省博物馆，1951年经吉林省人民政府批准建立，1952年在松花江畔的吉林市正式开放，1954年，随省政府迁至长春市","view_count":0},{"museum_id":6,"museum_name":"天津博物馆","museum_img":"http://www.archreport.com.cn/uploadfile/2013/1106/20131106043257757.jpg","museum_title":"天津博物馆是一座历史艺术类综合性博物馆，其前身可追溯到1918年成立的天津博物院，是国内较早建立的博物馆之一","view_count":0}]
-     * status : 1
+     * code : 200
+     * museums : [{"museum_id":12,"museum_name":"广东省博物馆","museum_img":"http://www.chezhan168.com/userfiles/image/20151221/21133056edf7f86b0f0984.jpg","museum_title":"广东省博物馆于1957年开始筹建，1959年10月1日，广东省博物馆及其所辖的广州鲁迅纪念馆正式对外开放","view_count":57},{"museum_id":1,"museum_name":"故宫博物院","museum_img":"http://images.quanjing.com/chineseview113/high/388-3022.jpg","museum_title":"北京故宫博物院建立于1925年10月10日，位于北京故宫紫禁城内。是在明朝、清朝两代皇宫及其收藏的基础上建立起来的中国综合性博物馆，也是中国最大的古代文化艺术博物馆","view_count":27},{"museum_id":8,"museum_name":"陕西博物馆","museum_img":"http://img1.cache.netease.com/catchpic/E/E1/E18F731573E563088755A6E8C7E18B34.jpg","museum_title":"陕西历史博物馆位于西安大雁塔的西北侧，筹建于1983年，1991年6月20日落成开放，是中国第一座大型现代化国家级博物馆","view_count":6},{"museum_id":3,"museum_name":"旅顺博物馆","museum_img":"http://p.chanyouji.cn/95078/1389166758743p18docjqcqk4116s11j3b1mjm8shn.jpg","museum_title":"旅顺博物馆坐落于有\u201c半部中国近代史\u201d之称的大连市旅顺口区，是大连市属的历史艺术性博物馆","view_count":5},{"museum_id":4,"museum_name":"大连现代博物馆","museum_img":"http://www.qdexpo.cn/file/2012091216555173499.jpg","museum_title":"大连现代博物馆位于市区南部的星海湾，是世纪之交大连市政府斥资建设的大型文化设施","view_count":5},{"museum_id":10,"museum_name":"福建博物馆","museum_img":"http://img155.poco.cn/mypoco/myphoto/20090706/21/40825267200907062114221517973508412_003.jpg","museum_title":"福建博物院坐落于西湖公园，新馆于2002年10月建成，占地面积6公顷，建筑面积3.6万平方米。主体建筑是数个具有福建文化特色元素的集合","view_count":5}]
      */
 
-    private String status;
+    private int code;
     private List<MuseumsBean> museums;
 
-    public String getStatus() {
-        return status;
+    public int getCode() {
+        return code;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public List<MuseumsBean> getMuseums() {
@@ -36,11 +36,11 @@ public class Museum implements Serializable {
 
     public static class MuseumsBean implements Serializable{
         /**
-         * museum_id : 1
-         * museum_name : 故宫博物院
-         * museum_img : http://images.quanjing.com/chineseview113/high/388-3022.jpg
-         * museum_title : 北京故宫博物院建立于1925年10月10日，位于北京故宫紫禁城内。是在明朝、清朝两代皇宫及其收藏的基础上建立起来的中国综合性博物馆，也是中国最大的古代文化艺术博物馆
-         * view_count : 1
+         * museum_id : 12
+         * museum_name : 广东省博物馆
+         * museum_img : http://www.chezhan168.com/userfiles/image/20151221/21133056edf7f86b0f0984.jpg
+         * museum_title : 广东省博物馆于1957年开始筹建，1959年10月1日，广东省博物馆及其所辖的广州鲁迅纪念馆正式对外开放
+         * view_count : 57
          */
 
         private int museum_id;

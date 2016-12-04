@@ -10,5 +10,5 @@ public interface HomePresenter {
 
     void loadAppreciateRecyclerView();
 
-    void loadExhibitionViewPager();
+    void loadExhibitionViewPager(String type);
 }

@@ -33,6 +33,7 @@ import com.hjianfei.museum_beacon_exhibition.view.activity.about_me.AboutMeActiv
 import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate.AppreciateActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail.AppreciateDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.location.LocationActivity;
+import com.hjianfei.museum_beacon_exhibition.view.activity.museum_detail.MuseumDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.personal.PersonalActivity;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
@@ -179,6 +180,11 @@ public class HomeFragment extends Fragment implements HomeView {
                 Intent intent;
                 if (position == 0) {
                     intent = new Intent(mContext, AboutMeActivity.class);
+                    startActivity(intent);
+                } else if (position == 1) {
+                    intent = new Intent(mContext, MuseumDetailActivity.class);
+                    intent.putExtra("museum_name", "故宫博物院");
+                    intent.putExtra("post_type", "博物馆");
                     startActivity(intent);
                 }
 

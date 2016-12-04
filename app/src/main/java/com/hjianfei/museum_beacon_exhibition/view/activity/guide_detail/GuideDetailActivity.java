@@ -136,6 +136,7 @@ public class GuideDetailActivity extends AppCompatActivity implements GuideDetai
             case R.id.guide_detail_image:
                 Intent intent = new Intent(this, PhotoDetailActivity.class);
                 intent.putExtra("img_urls", beaconAppreciate.getBeaconAppreciate().getImg_url());
+                intent.putExtra("photo_title", beaconAppreciate.getBeaconAppreciate().getTitle());
                 startActivity(intent);
                 break;
             case R.id.guide_detail_share:

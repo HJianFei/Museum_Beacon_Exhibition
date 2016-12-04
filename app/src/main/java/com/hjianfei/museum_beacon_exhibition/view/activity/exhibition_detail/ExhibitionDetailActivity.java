@@ -163,7 +163,7 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
     }
 
     @Override
-    public void initExhibitionDetailData(ExhibitionDetail exhibitionDetail) {
+    public void initExhibitionDetailData(final ExhibitionDetail exhibitionDetail) {
         exhibition_detail = exhibitionDetail;
         exhibitionDetailName.setText(exhibitionDetail.getExhibitionDetail().getTitle());
         exhibitionDetailTime.setText(exhibitionDetail.getExhibitionDetail().getShow_time());
@@ -182,6 +182,7 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
             public void onItemClick(int position) {
                 Intent intent = new Intent(ExhibitionDetailActivity.this, PhotoDetailActivity.class);
                 intent.putExtra("img_urls", finalImg_url);
+                intent.putExtra("photo_title", exhibitionDetail.getExhibitionDetail().getTitle());
                 startActivity(intent);
             }
         });

@@ -164,7 +164,7 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
     }
 
     @Override
-    public void initAppreciateDetailData(AppreciateDetail appreciateDetail) {
+    public void initAppreciateDetailData(final AppreciateDetail appreciateDetail) {
         appreciate_detail = appreciateDetail;
         culturalDetailName.setText(appreciateDetail.getAppreciateDetail().getTitle());
         culturalDetailContent.setText(appreciateDetail.getAppreciateDetail().getContent());
@@ -180,6 +180,7 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
             public void onItemClick(int position) {
                 Intent intent = new Intent(AppreciateDetailActivity.this, PhotoDetailActivity.class);
                 intent.putExtra("img_urls", finalImg_url);
+                intent.putExtra("photo_title", appreciateDetail.getAppreciateDetail().getTitle());
                 startActivity(intent);
             }
         });

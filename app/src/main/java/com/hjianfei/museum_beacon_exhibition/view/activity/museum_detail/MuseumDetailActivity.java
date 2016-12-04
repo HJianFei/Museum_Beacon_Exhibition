@@ -159,7 +159,7 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
     }
 
     @Override
-    public void initMuseumDetailData(MuseumDetail museumDetail) {
+    public void initMuseumDetailData(final MuseumDetail museumDetail) {
         museum_detail = museumDetail;
         museumDetailName.setText(museumDetail.getMuseum_Detail().getMuseum_detail_name());
         museumDetailContent.setText(museumDetail.getMuseum_Detail().getMuseum_detail_content());
@@ -175,6 +175,7 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
             public void onItemClick(int position) {
                 Intent intent = new Intent(MuseumDetailActivity.this, PhotoDetailActivity.class);
                 intent.putExtra("img_urls", finalImg_url);
+                intent.putExtra("photo_title", museumDetail.getMuseum_Detail().getMuseum_detail_name());
                 startActivity(intent);
             }
         });

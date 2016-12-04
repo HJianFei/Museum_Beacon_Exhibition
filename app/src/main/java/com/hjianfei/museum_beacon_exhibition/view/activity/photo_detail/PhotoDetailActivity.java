@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.adapter.PhotoDetailViewPagerAdapter;
@@ -25,14 +26,18 @@ public class PhotoDetailActivity extends AppCompatActivity implements PhotoDetai
     Toolbar toolbar;
     @BindView(R.id.photo_detail)
     RollPagerView photoDetail;
+    @BindView(R.id.photo_title)
+    TextView photo_title;
     private String[] img_urls;
     private PhotoDetailPresenter mpPhotoDetailPresenter;
     private SweetAlertDialog dialog;
+    private String title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         img_urls = getIntent().getStringExtra("img_urls").split(",");
+        title = getIntent().getStringExtra("photo_title");
         setContentView(R.layout.activity_photo_detail);
         ButterKnife.bind(this);
         initToolBar();
@@ -53,6 +58,7 @@ public class PhotoDetailActivity extends AppCompatActivity implements PhotoDetai
 
     private void initPhotoView() {
         mpPhotoDetailPresenter = new PhotoDetailPresenterImpl(this);
+        photo_title.setText(title);
         //        初始化ViewPager
         photoDetail.setPlayDelay(3000);
         photoDetail.setAdapter(new PhotoDetailViewPagerAdapter(img_urls));
@@ -70,7 +76,7 @@ public class PhotoDetailActivity extends AppCompatActivity implements PhotoDetai
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
                         mpPhotoDetailPresenter.savePicFromNet(img_urls[position]);
-                        if (dialog!=null){
+                        if (dialog != null) {
                             dialog.dismiss();
                         }
                     }

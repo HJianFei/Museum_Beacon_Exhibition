@@ -11,6 +11,15 @@
 
     <include layout="@layout/default_toolbar"/>
 
+    <TextView
+        android:id="@+id/photo_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"/>
+
     <com.jude.rollviewpager.RollPagerView
         android:id="@+id/photo_detail"
         android:layout_width="match_parent"

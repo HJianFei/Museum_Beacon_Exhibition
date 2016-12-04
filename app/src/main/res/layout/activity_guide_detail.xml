@@ -62,7 +62,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16sp"
-                        android:text="陶船"
                         android:textAppearance="@style/TextAppearance.Header"
                         android:textSize="24sp"/>
 
@@ -72,7 +71,6 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
                         android:lineSpacingExtra="8dp"
-                        android:text="@string/lorem"
                         android:textSize="16sp"/>
                 </LinearLayout>
             </ScrollView>

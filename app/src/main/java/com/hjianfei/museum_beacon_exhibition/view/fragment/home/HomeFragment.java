@@ -29,6 +29,7 @@ import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.home.HomePresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.home.HomePresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.utils.StatusBarUtils;
+import com.hjianfei.museum_beacon_exhibition.view.activity.about_me.AboutMeActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate.AppreciateActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail.AppreciateDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.location.LocationActivity;
@@ -175,13 +176,12 @@ public class HomeFragment extends Fragment implements HomeView {
         homeViewPager.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-//                mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
-//                mIntent.putExtra("detail_url", viewPager.getViewPagers().get(position).getDetail_url());
-//                mIntent.putExtra("title", viewPager.getViewPagers().get(position).getContent());
-//                ActivityOptionsCompat options =
-//                        ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
-//                                view.findViewById(R.id.home_view_pager), getString(R.string.transition));
-//                ActivityCompat.startActivity(getActivity(), mIntent, options.toBundle());
+                Intent intent;
+                if (position == 0) {
+                    intent = new Intent(mContext, AboutMeActivity.class);
+                    startActivity(intent);
+                }
+
 
             }
         });

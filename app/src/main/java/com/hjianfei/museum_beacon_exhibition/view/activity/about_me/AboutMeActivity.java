@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.about_me;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,9 +10,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.hjianfei.museum_beacon_exhibition.R;
@@ -27,7 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AboutMeActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
+public class AboutMeActivity extends Activity implements AppBarLayout.OnOffsetChangedListener {
 
     private static final int PERCENTAGE_TO_SHOW_IMAGE = 20;
     @BindView(R.id.about_me_toolbar)
@@ -36,6 +38,8 @@ public class AboutMeActivity extends AppCompatActivity implements AppBarLayout.O
     AppBarLayout aboutMeAppbar;
     @BindView(R.id.about_me_fab)
     FloatingActionButton aboutMeFab;
+    @BindView(R.id.about_us)
+    WebView aboutUs;
     private int mMaxScrollSize;
     private boolean mIsImageHidden;
 
@@ -55,6 +59,9 @@ public class AboutMeActivity extends AppCompatActivity implements AppBarLayout.O
             }
         });
         aboutMeAppbar.addOnOffsetChangedListener(this);
+        aboutUs.loadUrl("file:///android_asset/about_us.html");
+        WebSettings webSettings = aboutUs.getSettings();
+        webSettings.setJavaScriptEnabled(true);
     }
 
     @Override
@@ -93,6 +100,7 @@ public class AboutMeActivity extends AppCompatActivity implements AppBarLayout.O
                 break;
         }
     }
+
     private void doShare() {
         new ShareAction(AboutMeActivity.this)
                 .withTitle("博物展")
@@ -102,6 +110,7 @@ public class AboutMeActivity extends AppCompatActivity implements AppBarLayout.O
                 .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)
                 .setCallback(umShareListener).open();
     }
+
     private UMShareListener umShareListener = new UMShareListener() {
         @Override
         public void onResult(SHARE_MEDIA platform) {

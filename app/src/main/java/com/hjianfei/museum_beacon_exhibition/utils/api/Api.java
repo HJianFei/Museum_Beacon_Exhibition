@@ -30,6 +30,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -196,9 +197,21 @@ public interface Api {
 
     /**
      * 获取Beacon蓝牙基站发出的信号
+     *
+     * @param minor
+     * @return
      */
     @GET(Urls.GET_BEACON_APPRECIATE)
     Observable<BeaconAppreciate> getBeaconAppreciateByMinor(@Query("minor") String minor);
+
+    /**
+     * 保存图片
+     *
+     * @param fileUrl
+     * @return
+     */
+    @GET
+    Observable<ResponseBody> downloadPicFromNet(@Url String fileUrl);
 
     @POST("/user_avatar")
     @Multipart

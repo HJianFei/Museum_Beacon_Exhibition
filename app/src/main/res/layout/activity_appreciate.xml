@@ -35,9 +35,9 @@
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
+                app:navigationIcon="@drawable/ic_action_back"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:navigationIcon="@drawable/ic_action_back"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 

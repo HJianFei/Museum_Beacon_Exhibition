@@ -51,6 +51,8 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
     TextView step_view;
     @BindView(R.id.guide_recyclerview)
     RecyclerView guide_recyclerview;
+    @BindView(R.id.guide_info)
+    TextView guideInfo;
 
     private String mParam1;
     private String mParam2;
@@ -141,6 +143,8 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
     private void checkBlueToothIsOpen() {
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
+            guideInfo.setVisibility(View.VISIBLE);
+            guideInfo.setText("使用此功能需要打开蓝牙");
             // 如果本地蓝牙没有开启，则开启
             // 我们通过startActivityForResult()方法发起的Intent将会在onActivityResult()回调方法中获取用户的选择，比如用户单击了Yes开启，
             // 那么将会收到RESULT_OK的结果，
@@ -158,7 +162,9 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.REQUEST_ENABLE_BT) {
             if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(mContext, "不允许蓝牙开启", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "使用此功能需要打开蓝牙", Toast.LENGTH_SHORT).show();
+            } else {
+                guideInfo.setVisibility(View.GONE);
             }
         }
     }

@@ -7,20 +7,27 @@ import android.view.View;
 
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.adapter.PhotoDetailViewPagerAdapter;
+import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
+import com.hjianfei.museum_beacon_exhibition.presenter.activity.photo_detail.PhotoDetailPresenter;
+import com.hjianfei.museum_beacon_exhibition.presenter.activity.photo_detail.PhotoDetailPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.TextHintView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class PhotoDetailActivity extends AppCompatActivity {
+public class PhotoDetailActivity extends AppCompatActivity implements PhotoDetailView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.photo_detail)
     RollPagerView photoDetail;
     private String[] img_urls;
+    private PhotoDetailPresenter mpPhotoDetailPresenter;
+    private SweetAlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +52,7 @@ public class PhotoDetailActivity extends AppCompatActivity {
     }
 
     private void initPhotoView() {
+        mpPhotoDetailPresenter = new PhotoDetailPresenterImpl(this);
         //        初始化ViewPager
         photoDetail.setPlayDelay(3000);
         photoDetail.setAdapter(new PhotoDetailViewPagerAdapter(img_urls));
@@ -52,16 +60,29 @@ public class PhotoDetailActivity extends AppCompatActivity {
 
         photoDetail.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(int position) {
-//                mIntent = new Intent(mContext, ExhibitionDetailActivity.class);
-//                mIntent.putExtra("detail_url", viewPager.getViewPagers().get(position).getDetail_url());
-//                mIntent.putExtra("title", viewPager.getViewPagers().get(position).getContent());
-//                ActivityOptionsCompat options =
-//                        ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
-//                                view.findViewById(R.id.home_view_pager), getString(R.string.transition));
-//                ActivityCompat.startActivity(getActivity(), mIntent, options.toBundle());
-
+            public void onItemClick(final int position) {
+                dialog = new SweetAlertDialog(PhotoDetailActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE);
+                dialog.setCustomImage(R.drawable.guide_save_pic);
+                dialog.setTitleText("保存图片?");
+                dialog.showCancelButton(true);
+                dialog.setCancelText("取消");
+                dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        mpPhotoDetailPresenter.savePicFromNet(img_urls[position]);
+                        if (dialog!=null){
+                            dialog.dismiss();
+                        }
+                    }
+                });
+                dialog.show();
             }
         });
+    }
+
+    @Override
+    public void onSavePicSuccess(ResultCode resultCode) {
+
+        ToastUtil.showToast(PhotoDetailActivity.this, resultCode.msg);
     }
 }

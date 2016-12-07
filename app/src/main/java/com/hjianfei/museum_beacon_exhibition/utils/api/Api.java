@@ -4,6 +4,7 @@ package com.hjianfei.museum_beacon_exhibition.utils.api;
 import com.hjianfei.museum_beacon_exhibition.bean.AppreciateDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
 import com.hjianfei.museum_beacon_exhibition.bean.BeaconAppreciate;
+import com.hjianfei.museum_beacon_exhibition.bean.ChinaDynasty;
 import com.hjianfei.museum_beacon_exhibition.bean.Collection;
 import com.hjianfei.museum_beacon_exhibition.bean.ExhibitionDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Exhibitions;
@@ -203,6 +204,9 @@ public interface Api {
      */
     @GET(Urls.GET_BEACON_APPRECIATE)
     Observable<BeaconAppreciate> getBeaconAppreciateByMinor(@Query("minor") String minor);
+
+    @GET(Urls.GET_CHINA_DENASTY)
+    Observable<ChinaDynasty> getChinaDynasty(@Query("page") String page);
 
     /**
      * 保存图片

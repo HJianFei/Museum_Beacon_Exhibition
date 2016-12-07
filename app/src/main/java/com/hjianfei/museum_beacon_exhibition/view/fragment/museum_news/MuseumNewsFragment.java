@@ -13,7 +13,7 @@ import android.widget.ImageView;
 
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.utils.StatusBarUtils;
-import com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.cultural.CulturalFragment;
+import com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.history.HistoryFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.museum.MuseumFragment;
 
 import java.util.ArrayList;
@@ -75,11 +75,11 @@ public class MuseumNewsFragment extends Fragment {
         status_bar.setLayoutParams(params);
         MyPagerAdapter adapter = new MyPagerAdapter(getChildFragmentManager());
         adapter.addFragment(MuseumFragment.newInstance("博物馆", "博物馆"), "博物馆");
-        adapter.addFragment(CulturalFragment.newInstance("文物", "文物"), "文物");
+        adapter.addFragment(HistoryFragment.newInstance("知历史", "知历史"), "知历史");
         viewpager.setAdapter(adapter);
         slidingTabs.setLayoutMode(TabLayout.MODE_SCROLLABLE);
         slidingTabs.addTab(slidingTabs.newTab().setText("博物馆"));
-        slidingTabs.addTab(slidingTabs.newTab().setText("文物"));
+        slidingTabs.addTab(slidingTabs.newTab().setText("知历史"));
         slidingTabs.setupWithViewPager(viewpager);
 
     }

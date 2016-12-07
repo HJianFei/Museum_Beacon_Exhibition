@@ -29,6 +29,7 @@ import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.home.HomePresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.home.HomePresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.utils.StatusBarUtils;
+import com.hjianfei.museum_beacon_exhibition.utils.widget.MetroImageView;
 import com.hjianfei.museum_beacon_exhibition.view.activity.about_me.AboutMeActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate.AppreciateActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail.AppreciateDetailActivity;
@@ -67,7 +68,7 @@ public class HomeFragment extends Fragment implements HomeView {
     @BindView(R.id.home_appreciate_more)
     LinearLayout homeAppreciateMore;
     @BindView(R.id.hot_exhibition_more)
-    ImageView hot_exhibition_more;
+    MetroImageView hot_exhibition_more;
     @BindView(R.id.home_hot_exhibition)
     android.support.v4.view.ViewPager hot_exhibition_view_pager;
     @BindView(R.id.home_no_exhibition)

@@ -63,6 +63,7 @@ dependencies {
     compile files('libs/MobTools-2016.1012.1447.jar')
     compile files('libs/MobCommons-2016.1012.1447.jar')
     compile name: 'SMSSDK-2.1.2', ext: 'aar'
+    compile files('libs/BRT-5.0.4.jar')
     compile 'com.afollestad.material-dialogs:core:0.9.1.0'
     compile 'com.jakewharton:butterknife:8.1.0'
     compile 'com.android.support:support-v4:24.2.1'
@@ -85,9 +86,8 @@ dependencies {
     compile 'com.stephentuso:welcome:0.7.2'
     compile 'com.github.baoyachi:StepView:1.9'
     compile 'cn.pedant.sweetalert:library:1.3'
-    testCompile 'junit:junit:4.12'
-    apt 'com.jakewharton:butterknife-compiler:8.1.0'
-    compile files('libs/BRT-5.0.4.jar')
     compile 'com.android.support:recyclerview-v7:25.0.1'
     compile 'com.android.support:appcompat-v7:25.0.1'
+    testCompile 'junit:junit:4.12'
+    apt 'com.jakewharton:butterknife-compiler:8.1.0'
 }

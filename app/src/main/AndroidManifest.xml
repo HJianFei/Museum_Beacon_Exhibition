@@ -143,6 +143,10 @@
         </activity>
         <activity android:name=".view.activity.photo_detail.PhotoDetailActivity">
         </activity>
+        <activity android:name=".view.activity.museum.MuseumActivity">
+        </activity>
+        <activity android:name=".view.activity.china_dynasty.ChinaDynastyActivity">
+        </activity>
     </application>
 
 </manifest>

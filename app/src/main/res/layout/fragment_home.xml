@@ -90,7 +90,7 @@
                 android:layout_height="8dp"
                 android:background="#f3f3f3"/>
 
-            <ImageView
+            <com.hjianfei.museum_beacon_exhibition.utils.widget.MetroImageView
                 android:id="@+id/hot_exhibition_more"
                 android:layout_width="match_parent"
                 android:layout_height="123dp"

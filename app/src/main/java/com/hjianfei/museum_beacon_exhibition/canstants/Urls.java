@@ -10,7 +10,7 @@ public class Urls {
 
     //服务器地址
 //    public static final String API_SERVER = "http://115.159.24.65:8080/BeaconSys/";
-    public static final String API_SERVER = "http://192.168.16.117:8080/BeaconSys/";
+    public static final String API_SERVER = "http://192.168.191.1:8080/BeaconSys/";
 //                public static final String API_SERVER = "http://123.207.250.79:8080/BeaconSys/";
     //首页ViewPager数据地址
     public static final String API_VIEWPAGER = "viewPager!getAllViewPager";
@@ -105,5 +105,10 @@ public class Urls {
      * 获取Beacon蓝牙基站发出的展品信息
      */
     public static final String GET_BEACON_APPRECIATE = "beaconAppreciate!getBeaconAppreciateByMinor";
+
+    /**
+     * 获取中国朝代信息
+     */
+    public static final String GET_CHINA_DENASTY="chinaDynasty!getAllChinaDynasty";
 }
 

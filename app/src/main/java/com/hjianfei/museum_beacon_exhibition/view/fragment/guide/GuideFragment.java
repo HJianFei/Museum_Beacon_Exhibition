@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,6 +29,8 @@ import com.hjianfei.museum_beacon_exhibition.bean.StepView;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.guide.GuidePresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.guide.GuidePresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
+import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.utils.widget.radar_custom_view.RadarView;
 import com.hjianfei.museum_beacon_exhibition.view.activity.guide_detail.GuideDetailActivity;
 
@@ -37,6 +40,7 @@ import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static android.app.Activity.RESULT_CANCELED;
 
@@ -53,6 +57,9 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
     RecyclerView guide_recyclerview;
     @BindView(R.id.guide_info)
     TextView guideInfo;
+    private TimeCount time;
+    private SweetAlertDialog dialog;
+    private boolean show_dialog = true;
 
     private String mParam1;
     private String mParam2;
@@ -96,6 +103,7 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_guide, container, false);
         ButterKnife.bind(this, view);
+        time = new TimeCount(30000, 1000);
         //检测手机蓝牙是否开启
         checkBlueToothIsOpen();
         initView();
@@ -145,16 +153,11 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
         if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
             guideInfo.setVisibility(View.VISIBLE);
             guideInfo.setText("使用此功能需要打开蓝牙");
-            // 如果本地蓝牙没有开启，则开启
-            // 我们通过startActivityForResult()方法发起的Intent将会在onActivityResult()回调方法中获取用户的选择，比如用户单击了Yes开启，
-            // 那么将会收到RESULT_OK的结果，
-            // 如果RESULT_CANCELED则代表用户不愿意开启蓝牙
             Intent mIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(mIntent, Constants.REQUEST_ENABLE_BT);
-            // 用enable()方法来开启，无需询问用户(实惠无声息的开启蓝牙设备),这时就需要用到android.permission.BLUETOOTH_ADMIN权限。
-            // mBluetoothAdapter.enable();
-            // mBluetoothAdapter.disable();//关闭蓝牙
 
+        } else {
+            time.start();
         }
     }
 
@@ -165,6 +168,7 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
                 Toast.makeText(mContext, "使用此功能需要打开蓝牙", Toast.LENGTH_SHORT).show();
             } else {
                 guideInfo.setVisibility(View.GONE);
+                time.start();
             }
         }
     }
@@ -214,6 +218,10 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
     @Override
     public void onNewBeacon(BRTBeacon brtBeacon) {
 
+        if (show_dialog) {
+            show_dialog = false;
+            time.cancel();
+        }
         if (brtBeacon.getMajor() == 2001) {//判断大范围的Beacon，一个区域
             mGuidePresenter.getStepView(brtBeacon.getMinor() + "");
         }
@@ -248,11 +256,62 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
     @Override
     public void onPause() {
         beaconManager.stopRanging();
+        time.cancel();
         super.onPause();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    class TimeCount extends CountDownTimer {
+
+        public TimeCount(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            LogUtils.d(Constants.TAG, millisUntilFinished / 1000 + "s");
+
+        }
+
+        @Override
+        public void onFinish() {
+            BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+            if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
+                guideInfo.setVisibility(View.VISIBLE);
+                guideInfo.setText("使用此功能需要打开蓝牙");
+                Intent mIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(mIntent, Constants.REQUEST_ENABLE_BT);
+            } else if (show_dialog) {
+                showAlertDialog();
+            }
+
+        }
+    }
+
+    private void showAlertDialog() {
+        dialog = new SweetAlertDialog(mContext, SweetAlertDialog.WARNING_TYPE);
+        dialog.setTitleText("检测不到信号，切换浏览模式？");
+        dialog.showCancelButton(true);
+        dialog.setCancelText("取消");
+        dialog.setCancelable(false);
+        dialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                dialog.dismiss();
+                time.start();
+            }
+        });
+        dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                dialog.dismiss();
+                ToastUtil.showToast(mContext, "进入在线浏览模式");
+            }
+        });
+        dialog.show();
     }
 }

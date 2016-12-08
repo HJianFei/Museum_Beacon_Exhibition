@@ -40,6 +40,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class DynastyActivity extends AppCompatActivity implements DynastyView {
 
@@ -60,6 +61,7 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
     ViewPager dynastyViewpager;
     private String dynasty_img_url;
     private String dynasty_name;
+    private SweetAlertDialog dialog;
     private ChinaHistoryBigThing chinaHistoryBigThingBean = new ChinaHistoryBigThing();
     private DynastyPresenter mDynastyPresenter;
     private int page = 1;
@@ -147,12 +149,16 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
 
     @Override
     public void showDialog() {
-
+        dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        dialog.setTitleText("加载中");
+        dialog.show();
     }
 
     @Override
     public void hideDialog() {
-
+        if (null != dialog) {
+            dialog.dismiss();
+        }
     }
 
     @Override
@@ -184,8 +190,8 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
                 break;
             case R.id.dynasty_bg_img:
                 Intent intent2 = new Intent(DynastyActivity.this, PhotoDetailActivity.class);
-                intent2.putExtra("img_urls", Urls.API_SERVER+dynasty_img_url);
-                intent2.putExtra("photo_title", dynasty_name+"历史");
+                intent2.putExtra("img_urls", Urls.API_SERVER + dynasty_img_url);
+                intent2.putExtra("photo_title", dynasty_name + "历史");
                 startActivity(intent2);
                 break;
         }

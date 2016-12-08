@@ -54,17 +54,26 @@ public class ChinaDynastyPresenterImpl implements ChinaDynastyPresenter, ChinaDy
 
     @Override
     public void onInitChinaDynasty(String page) {
+        if (null != mChinaDynastyView) {
+            mChinaDynastyView.showDialog();
+        }
         mChinaDynastyIndicator.onInitChinaDynasty(page, this);
 
     }
 
     @Override
     public void onRefreshChinaDynasty(String page) {
+        if (null != mChinaDynastyView) {
+            mChinaDynastyView.showDialog();
+        }
         mChinaDynastyIndicator.onRefreshChinaDynasty(page, this);
     }
 
     @Override
     public void onLoadMoreChinaDynasty(String page) {
+        if (null != mChinaDynastyView) {
+            mChinaDynastyView.showDialog();
+        }
         mChinaDynastyIndicator.onLoadMoreChinaDynasty(page, this);
     }
 }

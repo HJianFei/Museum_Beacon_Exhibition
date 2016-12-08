@@ -163,6 +163,11 @@ public class Urls {
     /**
      * 获取历史战争详情信息
      */
-    public static final String GET_HISTORY_OLDEN_WAR_DETAIL="chinaHistoryOldenWarDetail!getChinaHistoryOldenWarDetails";
+    public static final String GET_HISTORY_OLDEN_WAR_DETAIL = "chinaHistoryOldenWarDetail!getChinaHistoryOldenWarDetails";
+
+    /**
+     * 获取历史盛世列表
+     */
+    public static final String GET_HISTORY_HEY_DAY = "chinaHistoryHeyDay!getAllChinaHistoryHeyDays";
 }
 

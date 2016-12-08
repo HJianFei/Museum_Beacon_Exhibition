@@ -20,6 +20,7 @@ import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDet
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class ChinaHistoryCultureDetailActivity extends AppCompatActivity implements ChinaHistoryCultureDetailView {
 
@@ -44,6 +45,7 @@ public class ChinaHistoryCultureDetailActivity extends AppCompatActivity impleme
     private String author;
     private String time;
     private ChinaHistoryCultureDetail mCultureDetail;
+    private SweetAlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,12 +93,16 @@ public class ChinaHistoryCultureDetailActivity extends AppCompatActivity impleme
 
     @Override
     public void showDialog() {
-
+        dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        dialog.setTitleText("加载中");
+        dialog.show();
     }
 
     @Override
     public void hideDialog() {
-
+        if (null != dialog) {
+            dialog.dismiss();
+        }
     }
 
     @Override

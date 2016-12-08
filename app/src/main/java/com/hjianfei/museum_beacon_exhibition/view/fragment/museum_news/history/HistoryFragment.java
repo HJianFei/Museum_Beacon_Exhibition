@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.utils.widget.MetroImageView;
 import com.hjianfei.museum_beacon_exhibition.view.activity.china_dynasty.ChinaDynastyActivity;
+import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_hey_day.ChinaHistoryHeyDayActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_war.ChinaHistoryWarActivity;
 
 import butterknife.BindView;
@@ -79,6 +80,8 @@ public class HistoryFragment extends Fragment {
                 startActivity(intent);
                 break;
             case R.id.china_hey_day:
+                Intent intent2 = new Intent(mContext, ChinaHistoryHeyDayActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.china_history_war:
                 Intent intent1 = new Intent(mContext, ChinaHistoryWarActivity.class);

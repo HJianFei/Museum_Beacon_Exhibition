@@ -12,7 +12,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
 
@@ -60,8 +59,6 @@ public class AboutMeActivity extends Activity implements AppBarLayout.OnOffsetCh
         });
         aboutMeAppbar.addOnOffsetChangedListener(this);
         aboutUs.loadUrl("file:///android_asset/about_us.html");
-        WebSettings webSettings = aboutUs.getSettings();
-        webSettings.setJavaScriptEnabled(true);
     }
 
     @Override

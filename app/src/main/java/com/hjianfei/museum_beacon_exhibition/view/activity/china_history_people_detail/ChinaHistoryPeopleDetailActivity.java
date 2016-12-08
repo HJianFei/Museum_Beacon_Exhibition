@@ -20,6 +20,7 @@ import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDet
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class ChinaHistoryPeopleDetailActivity extends AppCompatActivity implements ChinaHistoryPeopleDetailView {
 
@@ -39,6 +40,7 @@ public class ChinaHistoryPeopleDetailActivity extends AppCompatActivity implemen
     private String detail_url;
     private String img_url;
     private HistoryPeopleDetail mHistoryPeopleDetail;
+    private SweetAlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,12 +81,16 @@ public class ChinaHistoryPeopleDetailActivity extends AppCompatActivity implemen
 
     @Override
     public void showDialog() {
-
+        dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        dialog.setTitleText("加载中");
+        dialog.show();
     }
 
     @Override
     public void hideDialog() {
-
+        if (null != dialog) {
+            dialog.dismiss();
+        }
     }
 
     @Override

@@ -154,5 +154,10 @@ public class Urls {
      * 获取朝代历史详情信息
      */
     public static final String GET_HISTORY_HISTORY_DETAIL = "chinaHistoryHistoryDetail!getChinaHistoryHistoryDetail";
+
+    /**
+     * 获取历史战争列表
+     */
+    public static final String GET_HISTORY_OLDEN_WARS = "chinaHistoryOldenWar!getAllChinaHistoryOldenWars";
 }
 

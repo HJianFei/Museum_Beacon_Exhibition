@@ -5,17 +5,18 @@
     android:id="@+id/activity_china_history"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     android:orientation="vertical"
     tools:context="com.hjianfei.museum_beacon_exhibition.view.activity.china_dynasty.ChinaDynastyActivity">
 
     <include layout="@layout/default_toolbar"/>
 
 
-        <com.github.jdsjlzx.recyclerview.LRecyclerView
-            android:id="@+id/china_dynasty"
-            android:layout_width="match_parent"
-            android:layout_marginTop="8dp"
-            android:layout_height="match_parent"/>
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+        android:id="@+id/china_dynasty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"/>
 
 
 </LinearLayout>

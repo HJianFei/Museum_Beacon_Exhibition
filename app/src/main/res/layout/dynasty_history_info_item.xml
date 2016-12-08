@@ -4,9 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    app:cardCornerRadius="2dp"
-    app:cardElevation="1dp">
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="3dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +22,6 @@
             android:layout_margin="8dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="汉朝的人口有多少人口分布有何特点"
             android:textSize="16sp"/>
 
         <View
@@ -39,14 +40,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="作者:山南慕北"
                 android:textSize="14sp"/>
 
             <TextView
                 android:id="@+id/history_info_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="朝代：上古"
                 android:textSize="14sp"/>
         </LinearLayout>
 
@@ -66,7 +65,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="时间: 2015-10-06"
                 android:textSize="12sp"/>
 
             <TextView
@@ -74,7 +72,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/dynasty_people_view"
-                android:text="556"
                 android:textSize="12sp"/>
         </LinearLayout>
 

@@ -10,6 +10,7 @@ import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryBigThingDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryCulture;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryCultureDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryHistory;
+import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryHistoryDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryPeople;
 import com.hjianfei.museum_beacon_exhibition.bean.Collection;
 import com.hjianfei.museum_beacon_exhibition.bean.ExhibitionDetail;
@@ -310,7 +311,16 @@ public interface Api {
      * @param title
      * @return
      */
-    @GET(Urls.GET_HISTORY_CULTRUE_DETAIL)
+    @GET(Urls.GET_HISTORY_CULTURE_DETAIL)
     Observable<ChinaHistoryCultureDetail> getChinaHistoryCultureDetail(@Query("title") String title);
+
+    /**
+     * 获取朝代历史详情
+     *
+     * @param title
+     * @return
+     */
+    @GET(Urls.GET_HISTORY_HISTORY_DETAIL)
+    Observable<ChinaHistoryHistoryDetail> getChinaHistoryHistoryDetail(@Query("title") String title);
 
 }

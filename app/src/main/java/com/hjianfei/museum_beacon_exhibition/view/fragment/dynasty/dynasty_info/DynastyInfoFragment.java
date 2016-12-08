@@ -2,6 +2,7 @@ package com.hjianfei.museum_beacon_exhibition.view.fragment.dynasty.dynasty_info
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryHistory;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.dynasty.history_info.ChinaHistoryHistoryInFoPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.dynasty.history_info.ChinaHistoryHistoryInFoPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_history_detail.ChinaHistoryHistoryDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +119,11 @@ public class DynastyInfoFragment extends Fragment implements DynastyInfoView {
         mLRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
-
+                Intent intent = new Intent(mContext, ChinaHistoryHistoryDetailActivity.class);
+                intent.putExtra("title", chinaHistoryHistoriesBeanList.get(i).getTitle());
+                intent.putExtra("author", chinaHistoryHistoriesBeanList.get(i).getAuthor());
+                intent.putExtra("time", chinaHistoryHistoriesBeanList.get(i).getTime());
+                startActivity(intent);
             }
 
             @Override

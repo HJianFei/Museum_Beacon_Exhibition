@@ -1,5 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.china_history_people_detail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,7 @@ import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.bean.HistoryPeopleDetail;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_people_detail.ChinaHistoryPeopleDetailPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_people_detail.ChinaHistoryPeopleDetailPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +38,7 @@ public class ChinaHistoryPeopleDetailActivity extends AppCompatActivity implemen
     private ChinaHistoryPeopleDetailPresenter mPeopleDetailPresenter;
     private String detail_url;
     private String img_url;
+    private HistoryPeopleDetail mHistoryPeopleDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,7 @@ public class ChinaHistoryPeopleDetailActivity extends AppCompatActivity implemen
 
     @Override
     public void onFinished(HistoryPeopleDetail historyPeopleDetail) {
+        mHistoryPeopleDetail = historyPeopleDetail;
         historyPeopleContent.setText(historyPeopleDetail.getChina_History_People_Detail().getContent());
         historyPeopleCollapsing.setTitle(historyPeopleDetail.getChina_History_People_Detail().getName());
         historyPeopleName.setText(historyPeopleDetail.getChina_History_People_Detail().getName());
@@ -97,6 +101,11 @@ public class ChinaHistoryPeopleDetailActivity extends AppCompatActivity implemen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.history_people_bg:
+
+                Intent intent2 = new Intent(ChinaHistoryPeopleDetailActivity.this, PhotoDetailActivity.class);
+                intent2.putExtra("img_urls", img_url);
+                intent2.putExtra("photo_title", mHistoryPeopleDetail.getChina_History_People_Detail().getName());
+                startActivity(intent2);
                 break;
             case R.id.history_people_fab:
                 break;

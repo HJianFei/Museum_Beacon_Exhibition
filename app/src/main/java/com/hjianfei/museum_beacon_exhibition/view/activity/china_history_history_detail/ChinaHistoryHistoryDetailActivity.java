@@ -1,5 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.china_history_history_detail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,7 @@ import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryHistoryDetail;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_history_detail.ChinaHistoryHistoryDetailPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_history_detail.ChinaHistoryHistoryDetailPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,6 +43,7 @@ public class ChinaHistoryHistoryDetailActivity extends AppCompatActivity impleme
     private String title;
     private String author;
     private String time;
+    private ChinaHistoryHistoryDetail mHistoryDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,8 @@ public class ChinaHistoryHistoryDetailActivity extends AppCompatActivity impleme
 
     @Override
     public void onFinished(ChinaHistoryHistoryDetail chinaHistoryHistoryDetail) {
+
+        mHistoryDetail = chinaHistoryHistoryDetail;
         historyHistoryAuthor.setText(author);
         historyHistoryTime.setText(time);
         Glide.with(this).load(chinaHistoryHistoryDetail.getChina_History_History_Detail().getImg_url()).into(historyHistoryBg);
@@ -104,6 +109,10 @@ public class ChinaHistoryHistoryDetailActivity extends AppCompatActivity impleme
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.history_history_bg:
+                Intent intent2 = new Intent(ChinaHistoryHistoryDetailActivity.this, PhotoDetailActivity.class);
+                intent2.putExtra("img_urls", mHistoryDetail.getChina_History_History_Detail().getImg_url());
+                intent2.putExtra("photo_title", mHistoryDetail.getChina_History_History_Detail().getTitle());
+                startActivity(intent2);
                 break;
             case R.id.history_history_fab:
                 break;

@@ -1,5 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.china_history_big_thing_detail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,7 @@ import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryBigThingDetail;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_big_thing_detail.ChinaHistoryBigThingDetailPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_big_thing_detail.ChinaHistoryBigThingDetailPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,7 +35,7 @@ public class ChinaHistoryBigThingDetailActivity extends AppCompatActivity implem
     TextView bigThingAuthor;
     @BindView(R.id.big_thing_time)
     TextView bigThingTime;
-//    @BindView(R.id.big_thing_view)
+    //    @BindView(R.id.big_thing_view)
 //    TextView bigThingView;
     @BindView(R.id.big_thing_content)
     TextView big_thing_content;
@@ -41,6 +43,7 @@ public class ChinaHistoryBigThingDetailActivity extends AppCompatActivity implem
     FloatingActionButton bigThingFab;
     private ChinaHistoryBigThingDetailPresenter mPresenter;
     private String big_thing_title;
+    private ChinaHistoryBigThingDetail mBigThingDetail;
 
 
     @Override
@@ -73,6 +76,7 @@ public class ChinaHistoryBigThingDetailActivity extends AppCompatActivity implem
     @Override
     public void getChinaHistoryBigThingDetailFinished(ChinaHistoryBigThingDetail chinaHistoryBigThingDetail) {
 
+        mBigThingDetail = chinaHistoryBigThingDetail;
         big_thing_content.setText(chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getContent());
         Glide.with(this).load(chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getImg_url()).into(bigThingBg);
         bigThingTitle.setText(chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getTitle());
@@ -102,7 +106,17 @@ public class ChinaHistoryBigThingDetailActivity extends AppCompatActivity implem
 
     }
 
-    @OnClick(R.id.big_thing_fab)
-    public void onClick() {
+    @OnClick({R.id.big_thing_fab, R.id.big_thing_bg})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.big_thing_bg:
+                Intent intent2 = new Intent(ChinaHistoryBigThingDetailActivity.this, PhotoDetailActivity.class);
+                intent2.putExtra("img_urls", mBigThingDetail.getChina_History_Big_Thing_Detail().getImg_url());
+                intent2.putExtra("photo_title", mBigThingDetail.getChina_History_Big_Thing_Detail().getTitle());
+                startActivity(intent2);
+                break;
+            case R.id.big_thing_fab:
+                break;
+        }
     }
 }

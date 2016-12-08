@@ -29,6 +29,7 @@ import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_big_thi
 import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_people.ChinaHistoryPeopleActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_people_detail.ChinaHistoryPeopleDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.history_big_thing.HistoryBigThingActivity;
+import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.dynasty.dynasty_culture.DynastyCultureFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.dynasty.dynasty_info.DynastyInfoFragment;
 import com.sunfusheng.marqueeview.MarqueeView;
@@ -164,7 +165,7 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
 
     }
 
-    @OnClick({R.id.dynasty_big_thing_more, R.id.dynasty_people_more})
+    @OnClick({R.id.dynasty_big_thing_more, R.id.dynasty_people_more, R.id.dynasty_bg_img})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.dynasty_big_thing_more:
@@ -181,8 +182,15 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
                 intents.putExtra("dynasty_name", dynasty_name);
                 startActivity(intents);
                 break;
+            case R.id.dynasty_bg_img:
+                Intent intent2 = new Intent(DynastyActivity.this, PhotoDetailActivity.class);
+                intent2.putExtra("img_urls", Urls.API_SERVER+dynasty_img_url);
+                intent2.putExtra("photo_title", dynasty_name+"历史");
+                startActivity(intent2);
+                break;
         }
     }
+
 
     class TabsAdapter extends FragmentPagerAdapter {
         public TabsAdapter(FragmentManager fm) {

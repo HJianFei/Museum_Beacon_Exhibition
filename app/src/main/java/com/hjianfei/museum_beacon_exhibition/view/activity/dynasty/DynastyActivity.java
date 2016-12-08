@@ -26,6 +26,7 @@ import com.hjianfei.museum_beacon_exhibition.canstants.Urls;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.dynasty.DynastyPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.dynasty.DynastyPresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_big_thing_detail.ChinaHistoryBigThingDetailActivity;
+import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_people.ChinaHistoryPeopleActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.history_big_thing.HistoryBigThingActivity;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.dynasty.dynasty_culture.DynastyCultureFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.dynasty.dynasty_info.DynastyInfoFragment;
@@ -172,6 +173,9 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
 
                 break;
             case R.id.dynasty_people_more:
+                Intent intents = new Intent(DynastyActivity.this, ChinaHistoryPeopleActivity.class);
+                intents.putExtra("dynasty_name",dynasty_name);
+                startActivity(intents);
                 break;
         }
     }

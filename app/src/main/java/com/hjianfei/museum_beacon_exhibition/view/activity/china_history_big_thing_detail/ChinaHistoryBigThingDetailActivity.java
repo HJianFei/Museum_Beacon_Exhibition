@@ -33,8 +33,8 @@ public class ChinaHistoryBigThingDetailActivity extends AppCompatActivity implem
     TextView bigThingAuthor;
     @BindView(R.id.big_thing_time)
     TextView bigThingTime;
-    @BindView(R.id.big_thing_view)
-    TextView bigThingView;
+//    @BindView(R.id.big_thing_view)
+//    TextView bigThingView;
     @BindView(R.id.big_thing_content)
     TextView big_thing_content;
     @BindView(R.id.big_thing_fab)
@@ -78,7 +78,7 @@ public class ChinaHistoryBigThingDetailActivity extends AppCompatActivity implem
         bigThingTitle.setText(chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getTitle());
         bigThingAuthor.setText("作者：" + chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getAuthor());
         bigThingTime.setText("时间：" + chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getTime());
-        bigThingView.setText(chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getViews());
+//        bigThingView.setText(chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getViews());
 
     }
 

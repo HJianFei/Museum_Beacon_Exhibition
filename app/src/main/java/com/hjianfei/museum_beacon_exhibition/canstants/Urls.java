@@ -135,5 +135,10 @@ public class Urls {
      * 获取朝代历史大事件详情信息
      */
     public static final String GET_HISTORY_BIG_THING_DETAIL="chinaHistoryBigThingDetail!getChinaHistoryBigThingDetail";
+
+    /**
+     * 获取历史人物
+     */
+    public static final String GET_HISTORY_PEOPLE="chinaHistoryPeople!getAllHistoryPeople";
 }
 

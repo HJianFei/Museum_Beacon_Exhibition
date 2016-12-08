@@ -275,11 +275,23 @@ public interface Api {
 
     /**
      * 获取朝代大事件详情信息
+     *
      * @param title
      * @return
      */
     @GET(Urls.GET_HISTORY_BIG_THING_DETAIL)
     Observable<ChinaHistoryBigThingDetail> getChinaHistoryBigThingDetail(@Query("title") String title);
+
+    /**
+     * 获取历史人物列表
+     *
+     * @param type
+     * @param page
+     * @param search_condition
+     * @return
+     */
+    @GET(Urls.GET_HISTORY_PEOPLE)
+    Observable<ChinaHistoryPeople> getChinaHistoryPeople(@Query("type") String type, @Query("page") String page, @Query("search_condition") String search_condition);
 
 
 }

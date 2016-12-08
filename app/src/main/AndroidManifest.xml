@@ -147,8 +147,13 @@
         </activity>
         <activity android:name=".view.activity.china_dynasty.ChinaDynastyActivity">
         </activity>
+        <activity android:name=".view.activity.dynasty.DynastyActivity"/>
+        <activity android:name=".view.activity.history_big_thing.HistoryBigThingActivity">
+        </activity>
         <activity
-            android:name=".view.activity.dynasty.DynastyActivity"/>
+            android:name=".view.activity.china_history_big_thing_detail.ChinaHistoryBigThingDetailActivity"
+            android:theme="@style/AppTheme.Dynasty">
+        </activity>
     </application>
 
 </manifest>

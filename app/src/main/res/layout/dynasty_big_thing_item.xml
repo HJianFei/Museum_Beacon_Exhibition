@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/dynasty_big_thing_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="后羿"
+            android:textColor="#333333"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/dynasty_big_thing_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="32dp"
+            android:gravity="right"
+            android:text="123"
+            android:textColor="#333333"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

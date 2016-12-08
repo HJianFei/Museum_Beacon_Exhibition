@@ -1,5 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.dynasty;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -24,7 +25,8 @@ import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryPeople;
 import com.hjianfei.museum_beacon_exhibition.canstants.Urls;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.dynasty.DynastyPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.dynasty.DynastyPresenterImpl;
-import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
+import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_big_thing_detail.ChinaHistoryBigThingDetailActivity;
+import com.hjianfei.museum_beacon_exhibition.view.activity.history_big_thing.HistoryBigThingActivity;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.dynasty.dynasty_culture.DynastyCultureFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.dynasty.dynasty_info.DynastyInfoFragment;
 import com.sunfusheng.marqueeview.MarqueeView;
@@ -55,6 +57,7 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
     ViewPager dynastyViewpager;
     private String dynasty_img_url;
     private String dynasty_name;
+    private ChinaHistoryBigThing chinaHistoryBigThingBean = new ChinaHistoryBigThing();
     private DynastyPresenter mDynastyPresenter;
     private int page = 1;
     private CommonAdapter<ChinaHistoryPeople.ChinaHistoryPeoplesBean> mAdapter;
@@ -87,7 +90,7 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
         mAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(ViewGroup parent, View view, Object o, int position) {
-                ToastUtil.showToast(DynastyActivity.this,position+"");
+
 
             }
 
@@ -111,7 +114,8 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
     @Override
     public void initDynastyBigThing(final ChinaHistoryBigThing chinaHistoryBigThing) {
 
-        List<String> info = new ArrayList<>();
+        chinaHistoryBigThingBean = chinaHistoryBigThing;
+        final List<String> info = new ArrayList<>();
         for (ChinaHistoryBigThing.ChinaHistoryBigThingsBean s : chinaHistoryBigThing.getChina_History_Big_Things()) {
             info.add(s.getTitle());
         }
@@ -119,14 +123,16 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
         dynastyBigThing.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
             @Override
             public void onItemClick(int position, TextView textView) {
-                ToastUtil.showToast(DynastyActivity.this, chinaHistoryBigThing.getChina_History_Big_Things().get(position).getTitle());
+                Intent intent = new Intent(DynastyActivity.this, ChinaHistoryBigThingDetailActivity.class);
+                intent.putExtra("big_thing_title", info.get(position));
+                startActivity(intent);
             }
         });
     }
 
     @Override
     public void initChinaHistoryPeople(ChinaHistoryPeople chinaHistoryPeople) {
-        if (chinaHistoryPeople!=null){
+        if (chinaHistoryPeople != null) {
             chinaHistoryPeoplesBeanList.addAll(chinaHistoryPeople.getChina_History_Peoples());
             mAdapter.notifyDataSetChanged();
         }
@@ -157,6 +163,13 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.dynasty_big_thing_more:
+                Intent intent = new Intent(DynastyActivity.this, HistoryBigThingActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("HistoryBigThings", chinaHistoryBigThingBean);
+                intent.putExtra("bundle", bundle);
+                intent.putExtra("dynasty_name", dynasty_name);
+                startActivity(intent);
+
                 break;
             case R.id.dynasty_people_more:
                 break;
@@ -175,18 +188,22 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
 
         @Override
         public Fragment getItem(int i) {
-            switch(i) {
-                case 0: return DynastyInfoFragment.newInstance(dynasty_name,"");
-                case 1: return DynastyCultureFragment.newInstance(dynasty_name,"");
+            switch (i) {
+                case 0:
+                    return DynastyInfoFragment.newInstance(dynasty_name, "");
+                case 1:
+                    return DynastyCultureFragment.newInstance(dynasty_name, "");
             }
             return null;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch(position) {
-                case 0: return "历史资料";
-                case 1: return "历史文化";
+            switch (position) {
+                case 0:
+                    return "历史资料";
+                case 1:
+                    return "历史文化";
             }
             return "";
         }

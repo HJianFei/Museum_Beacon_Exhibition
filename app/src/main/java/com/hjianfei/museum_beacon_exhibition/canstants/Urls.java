@@ -130,5 +130,10 @@ public class Urls {
      * 获取朝代文化
      */
     public static final String GET_CHINA_HISTORY_CULTURE="chinaHistoryCulture!getAllChinaHistoryCulture";
+
+    /**
+     * 获取朝代历史大事件详情信息
+     */
+    public static final String GET_HISTORY_BIG_THING_DETAIL="chinaHistoryBigThingDetail!getChinaHistoryBigThingDetail";
 }
 

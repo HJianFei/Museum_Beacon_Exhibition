@@ -160,6 +160,10 @@
             android:name=".view.activity.china_history_people_detail.ChinaHistoryPeopleDetailActivity"
             android:theme="@style/AppTheme.Dynasty">
         </activity>
+        <activity
+            android:name=".view.activity.china_history_culture_detail.ChinaHistoryCultureDetailActivity"
+            android:theme="@style/AppTheme.Dynasty">
+        </activity>
     </application>
 
 </manifest>

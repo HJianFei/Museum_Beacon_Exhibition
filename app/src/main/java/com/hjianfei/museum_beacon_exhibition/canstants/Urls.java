@@ -11,7 +11,7 @@ public class Urls {
     //服务器地址
 //    public static final String API_SERVER = "http://115.159.24.65:8080/BeaconSys/";
     public static final String API_SERVER = "http://192.168.191.1:8080/BeaconSys/";
-//                public static final String API_SERVER = "http://123.207.250.79:8080/BeaconSys/";
+    //                public static final String API_SERVER = "http://123.207.250.79:8080/BeaconSys/";
     //首页ViewPager数据地址
     public static final String API_VIEWPAGER = "viewPager!getAllViewPager";
     //获取全部青花瓷之约、珍品鉴赏、专题鉴赏、自然标本的信息
@@ -109,41 +109,46 @@ public class Urls {
     /**
      * 获取中国朝代信息
      */
-    public static final String GET_CHINA_DENASTY="chinaDynasty!getAllChinaDynasty";
+    public static final String GET_CHINA_DENASTY = "chinaDynasty!getAllChinaDynasty";
 
     /**
      * 獲取朝代大事件
      */
-    public static final String GET_CHINA_HISTORY_BIG_THINGS ="chinaHistoryBigThing!getChinaHistoryBigThings";
+    public static final String GET_CHINA_HISTORY_BIG_THINGS = "chinaHistoryBigThing!getChinaHistoryBigThings";
 
     /**
      * 隨機獲取歷史人物
      */
-    public static final String GET_HISTORY_PEOPLE_BY_RANDOM="chinaHistoryPeople!getChinaHistoryPeopleByRandom";
+    public static final String GET_HISTORY_PEOPLE_BY_RANDOM = "chinaHistoryPeople!getChinaHistoryPeopleByRandom";
 
     /**
      * 获取朝代历史
      */
-    public static final String GET_CHINA_HISTORY_HISTORY="chinaHistoryHistory!getAllChinaHistoryHistory";
+    public static final String GET_CHINA_HISTORY_HISTORY = "chinaHistoryHistory!getAllChinaHistoryHistory";
 
     /**
      * 获取朝代文化
      */
-    public static final String GET_CHINA_HISTORY_CULTURE="chinaHistoryCulture!getAllChinaHistoryCulture";
+    public static final String GET_CHINA_HISTORY_CULTURE = "chinaHistoryCulture!getAllChinaHistoryCulture";
 
     /**
      * 获取朝代历史大事件详情信息
      */
-    public static final String GET_HISTORY_BIG_THING_DETAIL="chinaHistoryBigThingDetail!getChinaHistoryBigThingDetail";
+    public static final String GET_HISTORY_BIG_THING_DETAIL = "chinaHistoryBigThingDetail!getChinaHistoryBigThingDetail";
 
     /**
      * 获取历史人物
      */
-    public static final String GET_HISTORY_PEOPLE="chinaHistoryPeople!getAllHistoryPeople";
+    public static final String GET_HISTORY_PEOPLE = "chinaHistoryPeople!getAllHistoryPeople";
 
     /**
      * 获取历史人物详情
      */
-    public static final String GET_HISTORY_PEOPLE_DETAIL="chinaHistoryPeopleDetail!getChinaHistoryPeopleDetail";
+    public static final String GET_HISTORY_PEOPLE_DETAIL = "chinaHistoryPeopleDetail!getChinaHistoryPeopleDetail";
+
+    /**
+     * 获取朝代历史文化详情信息
+     */
+    public static final String GET_HISTORY_CULTRUE_DETAIL = "chinaHistoryCultureDetail!getChinaHistoryCultureDetail";
 }
 

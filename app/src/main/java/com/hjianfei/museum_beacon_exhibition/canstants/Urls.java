@@ -159,5 +159,10 @@ public class Urls {
      * 获取历史战争列表
      */
     public static final String GET_HISTORY_OLDEN_WARS = "chinaHistoryOldenWar!getAllChinaHistoryOldenWars";
+
+    /**
+     * 获取历史战争详情信息
+     */
+    public static final String GET_HISTORY_OLDEN_WAR_DETAIL="chinaHistoryOldenWarDetail!getChinaHistoryOldenWarDetails";
 }
 

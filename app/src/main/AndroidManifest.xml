@@ -170,6 +170,8 @@
         </activity>
         <activity android:name=".view.activity.china_history_war.ChinaHistoryWarActivity">
         </activity>
+        <activity android:name=".view.activity.china_history_war_detail.HistoryWarDetailActivity">
+        </activity>
     </application>
 
 </manifest>

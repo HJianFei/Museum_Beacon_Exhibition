@@ -2,6 +2,7 @@ package com.hjianfei.museum_beacon_exhibition.view.fragment.history_war;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryOldenWar;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_war.ChinaHistoryWarPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_war.ChinaHistoryWarPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_war_detail.HistoryWarDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,6 +113,11 @@ public class HistoryWarFragment extends Fragment implements HistoryWarView {
             @Override
             public void onItemClick(View view, int i) {
 
+                Intent intent = new Intent(mContext, HistoryWarDetailActivity.class);
+                intent.putExtra("detail_url", chinaHistoryOldenWarsBeanList.get(i).getDetail_url());
+                intent.putExtra("img_url", chinaHistoryOldenWarsBeanList.get(i).getImg_url());
+                intent.putExtra("title", chinaHistoryOldenWarsBeanList.get(i).getName());
+                startActivity(intent);
             }
 
             @Override

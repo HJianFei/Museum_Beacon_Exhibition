@@ -17,6 +17,7 @@ import com.hjianfei.museum_beacon_exhibition.bean.Collection;
 import com.hjianfei.museum_beacon_exhibition.bean.ExhibitionDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Exhibitions;
 import com.hjianfei.museum_beacon_exhibition.bean.HistoryPeopleDetail;
+import com.hjianfei.museum_beacon_exhibition.bean.HistoryWarDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.LoginResult;
 import com.hjianfei.museum_beacon_exhibition.bean.Museum;
 import com.hjianfei.museum_beacon_exhibition.bean.MuseumDetail;
@@ -334,5 +335,14 @@ public interface Api {
      */
     @GET(Urls.GET_HISTORY_OLDEN_WARS)
     Observable<ChinaHistoryOldenWar> getChinaHistoryOldenWars(@Query("type") String type, @Query("page") String page, @Query("search_condition") String search_condition);
+
+    /**
+     * 获取历史战争详情
+     *
+     * @param detail_url
+     * @return
+     */
+    @GET(Urls.GET_HISTORY_OLDEN_WAR_DETAIL)
+    Observable<HistoryWarDetail> getHistoryOldenWarDetail(@Query("detail_url") String detail_url);
 
 }

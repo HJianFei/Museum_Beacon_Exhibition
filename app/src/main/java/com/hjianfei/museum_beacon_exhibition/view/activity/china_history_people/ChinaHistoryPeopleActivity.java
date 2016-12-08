@@ -1,5 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.china_history_people;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryPeople;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_people.ChinaHistoryPeoplePresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_people.ChinaHistoryPeoplePresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_people_detail.ChinaHistoryPeopleDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +89,10 @@ public class ChinaHistoryPeopleActivity extends AppCompatActivity implements Chi
         mLRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
+                Intent intent = new Intent(ChinaHistoryPeopleActivity.this, ChinaHistoryPeopleDetailActivity.class);
+                intent.putExtra("detail_url", chinaHistoryPeoplesBeanList.get(i).getDetail_url());
+                intent.putExtra("img_url", chinaHistoryPeoplesBeanList.get(i).getImg_url());
+                startActivity(intent);
 
             }
 

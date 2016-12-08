@@ -140,5 +140,10 @@ public class Urls {
      * 获取历史人物
      */
     public static final String GET_HISTORY_PEOPLE="chinaHistoryPeople!getAllHistoryPeople";
+
+    /**
+     * 获取历史人物详情
+     */
+    public static final String GET_HISTORY_PEOPLE_DETAIL="chinaHistoryPeopleDetail!getChinaHistoryPeopleDetail";
 }
 

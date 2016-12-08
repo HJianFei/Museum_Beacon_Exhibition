@@ -27,6 +27,7 @@ import com.hjianfei.museum_beacon_exhibition.presenter.activity.dynasty.DynastyP
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.dynasty.DynastyPresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_big_thing_detail.ChinaHistoryBigThingDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_people.ChinaHistoryPeopleActivity;
+import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_people_detail.ChinaHistoryPeopleDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.history_big_thing.HistoryBigThingActivity;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.dynasty.dynasty_culture.DynastyCultureFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.dynasty.dynasty_info.DynastyInfoFragment;
@@ -92,7 +93,10 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
             @Override
             public void onItemClick(ViewGroup parent, View view, Object o, int position) {
 
-
+                Intent intent = new Intent(DynastyActivity.this, ChinaHistoryPeopleDetailActivity.class);
+                intent.putExtra("detail_url", chinaHistoryPeoplesBeanList.get(position).getDetail_url());
+                intent.putExtra("img_url", chinaHistoryPeoplesBeanList.get(position).getImg_url());
+                startActivity(intent);
             }
 
             @Override
@@ -174,7 +178,7 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
                 break;
             case R.id.dynasty_people_more:
                 Intent intents = new Intent(DynastyActivity.this, ChinaHistoryPeopleActivity.class);
-                intents.putExtra("dynasty_name",dynasty_name);
+                intents.putExtra("dynasty_name", dynasty_name);
                 startActivity(intents);
                 break;
         }

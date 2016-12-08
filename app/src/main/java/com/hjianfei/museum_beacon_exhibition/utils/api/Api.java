@@ -5,6 +5,10 @@ import com.hjianfei.museum_beacon_exhibition.bean.AppreciateDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
 import com.hjianfei.museum_beacon_exhibition.bean.BeaconAppreciate;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaDynasty;
+import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryBigThing;
+import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryCulture;
+import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryHistory;
+import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryPeople;
 import com.hjianfei.museum_beacon_exhibition.bean.Collection;
 import com.hjianfei.museum_beacon_exhibition.bean.ExhibitionDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Exhibitions;
@@ -205,6 +209,12 @@ public interface Api {
     @GET(Urls.GET_BEACON_APPRECIATE)
     Observable<BeaconAppreciate> getBeaconAppreciateByMinor(@Query("minor") String minor);
 
+    /**
+     * 獲取中國歷史朝代
+     *
+     * @param page
+     * @return
+     */
     @GET(Urls.GET_CHINA_DENASTY)
     Observable<ChinaDynasty> getChinaDynasty(@Query("page") String page);
 
@@ -220,5 +230,47 @@ public interface Api {
     @POST("/user_avatar")
     @Multipart
     Observable<UploadFile> uploadFile(@Part("file\"; filename=\"avatar.png\"") RequestBody file);
+
+    /**
+     * 獲取中國歷史朝代大事件
+     *
+     * @param type
+     * @param page
+     * @return
+     */
+    @GET(Urls.GET_CHINA_HISTORY_BIG_THINGS)
+    Observable<ChinaHistoryBigThing> getChinaHistoryBigThings(@Query("type") String type, @Query("page") String page);
+
+    /**
+     * 随机获取历史人物
+     *
+     * @param type
+     * @return
+     */
+    @GET(Urls.GET_HISTORY_PEOPLE_BY_RANDOM)
+    Observable<ChinaHistoryPeople> getChinaHistoryPeopleByRandom(@Query("type") String type);
+
+    /**
+     * 获取朝代历史
+     *
+     * @param type
+     * @param page
+     * @param search_condition
+     * @return
+     */
+    @GET(Urls.GET_CHINA_HISTORY_HISTORY)
+    Observable<ChinaHistoryHistory> getChinaHistoryHistory(@Query("type") String type, @Query("page") String page, @Query("search_condition") String search_condition);
+
+    /**
+     * 获取朝代文化
+     *
+     * @param type
+     * @param page
+     * @param search_condition
+     * @return
+     */
+    @GET(Urls.GET_CHINA_HISTORY_CULTURE)
+    Observable<ChinaHistoryCulture> getChinaHistoryCulture(@Query("type") String type, @Query("page") String page, @Query("search_condition") String search_condition);
+
 
 }

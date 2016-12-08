@@ -110,5 +110,25 @@ public class Urls {
      * 获取中国朝代信息
      */
     public static final String GET_CHINA_DENASTY="chinaDynasty!getAllChinaDynasty";
+
+    /**
+     * 獲取朝代大事件
+     */
+    public static final String GET_CHINA_HISTORY_BIG_THINGS ="chinaHistoryBigThing!getChinaHistoryBigThings";
+
+    /**
+     * 隨機獲取歷史人物
+     */
+    public static final String GET_HISTORY_PEOPLE_BY_RANDOM="chinaHistoryPeople!getChinaHistoryPeopleByRandom";
+
+    /**
+     * 获取朝代历史
+     */
+    public static final String GET_CHINA_HISTORY_HISTORY="chinaHistoryHistory!getAllChinaHistoryHistory";
+
+    /**
+     * 获取朝代文化
+     */
+    public static final String GET_CHINA_HISTORY_CULTURE="chinaHistoryCulture!getAllChinaHistoryCulture";
 }
 

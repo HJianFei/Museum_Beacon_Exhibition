@@ -1,5 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.china_dynasty;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,9 +17,9 @@ import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.CommonAdapter;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaDynasty;
-import com.hjianfei.museum_beacon_exhibition.canstants.Urls;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_dynasty.ChinaDynastyPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_dynasty.ChinaDynastyPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.view.activity.dynasty.DynastyActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ public class ChinaDynastyActivity extends AppCompatActivity implements ChinaDyna
     }
 
     private void initView() {
-        toolbar.setTitle("中国历史");
+        toolbar.setTitle("中国朝代历史");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -63,7 +64,8 @@ public class ChinaDynastyActivity extends AppCompatActivity implements ChinaDyna
         mAdapter = new CommonAdapter<ChinaDynasty.ChinaDynastiesBean>(this, R.layout.china_dynasty_item, chinaDynastiesBeanList) {
             @Override
             public void setData(ViewHolder holder, ChinaDynasty.ChinaDynastiesBean chinaDynastiesBean) {
-                holder.setImageWithUrl(R.id.china_dynasty_image, Urls.API_SERVER + chinaDynastiesBean.getImg_url());
+                holder.setText(R.id.dynasty_title, chinaDynastiesBean.getDynasty() + "历史");
+                holder.setText(R.id.dynasty_desc, chinaDynastiesBean.getDescription());
 
             }
         };
@@ -75,6 +77,10 @@ public class ChinaDynastyActivity extends AppCompatActivity implements ChinaDyna
         mLRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
+                Intent intent = new Intent(ChinaDynastyActivity.this, DynastyActivity.class);
+                intent.putExtra("dynasty_name", chinaDynastiesBeanList.get(i).getDynasty());
+                intent.putExtra("dynasty_img_url", chinaDynastiesBeanList.get(i).getImg_url());
+                startActivity(intent);
 
 
             }

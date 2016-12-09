@@ -17,6 +17,7 @@ import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryPeople;
 import com.hjianfei.museum_beacon_exhibition.bean.Collection;
 import com.hjianfei.museum_beacon_exhibition.bean.ExhibitionDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Exhibitions;
+import com.hjianfei.museum_beacon_exhibition.bean.HistoryHeyDayInFo;
 import com.hjianfei.museum_beacon_exhibition.bean.HistoryPeopleDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.HistoryWarDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.LoginResult;
@@ -355,5 +356,14 @@ public interface Api {
      */
     @GET(Urls.GET_HISTORY_HEY_DAY)
     Observable<ChinaHistoryHeyDay> getChinaHistoryHeyDay(@Query("page") String page, @Query("search_condition") String search_condition);
+
+    /**
+     * 获取历史盛世详情
+     *
+     * @param title
+     * @return
+     */
+    @GET(Urls.GET_HISTORY_HEY_DAY_INFO)
+    Observable<HistoryHeyDayInFo> getHistoryHeyDayInFo(@Query("title") String title);
 
 }

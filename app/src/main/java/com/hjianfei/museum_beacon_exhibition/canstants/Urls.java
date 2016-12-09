@@ -169,5 +169,10 @@ public class Urls {
      * 获取历史盛世列表
      */
     public static final String GET_HISTORY_HEY_DAY = "chinaHistoryHeyDay!getAllChinaHistoryHeyDays";
+
+    /**
+     * 获取历史盛世详情
+     */
+    public static final String GET_HISTORY_HEY_DAY_INFO = "chinaHistoryHeyDayInFo!getChinaHistoryHeyDayInFo";
 }
 

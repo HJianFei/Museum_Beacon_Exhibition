@@ -1,5 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.china_history_hey_day;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryHeyDay;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_hey_day.ChinaHistoryHeyDayPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_hey_day.ChinaHistoryHeyDayPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_hey_day_info.HistoryHeyDayInFoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +84,9 @@ public class ChinaHistoryHeyDayActivity extends AppCompatActivity implements Chi
             @Override
             public void onItemClick(View view, int i) {
 
+                Intent intent = new Intent(ChinaHistoryHeyDayActivity.this, HistoryHeyDayInFoActivity.class);
+                intent.putExtra("title", chinaHistoryHeyDaysBeanList.get(i).getTitle());
+                startActivity(intent);
             }
 
             @Override

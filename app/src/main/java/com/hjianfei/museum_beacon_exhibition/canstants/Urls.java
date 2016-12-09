@@ -183,6 +183,16 @@ public class Urls {
     /**
      * 获取历史盘点详情
      */
-    public static final String GET_HISTORY_CHECK_DETAIL="chinaHistoryCheckDetail!getHistoryCheckDetail";
+    public static final String GET_HISTORY_CHECK_DETAIL = "chinaHistoryCheckDetail!getHistoryCheckDetail";
+
+    /**
+     * 获取外国历史
+     */
+    public static final String GET_FOREIGN_HISTORY = "foreignHistory!getForeignHistory";
+
+    /**
+     * 获取外国历史详情信息
+     */
+    public static final String GET_FOREIGN_HISTORY_DETAIL = "foreignHistoryDetail!getForeignHistoryDetail";
 }
 

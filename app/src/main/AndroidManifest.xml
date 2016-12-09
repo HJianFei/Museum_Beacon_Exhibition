@@ -184,6 +184,10 @@
             android:name=".view.activity.history_check_detail.HistoryCheckDetailActivity"
             android:theme="@style/AppTheme.Dynasty">
         </activity>
+        <activity android:name=".view.activity.foreign_history.ForeignHistoryActivity">
+        </activity>
+        <activity android:name=".view.activity.foreign_country_history.ForeignCountryActivity">
+        </activity>
     </application>
 
 </manifest>

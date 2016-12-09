@@ -32,7 +32,6 @@
             android:layout_marginBottom="4dp"
             android:layout_marginRight="32dp"
             android:gravity="right"
-            android:text="123"
             android:textColor="#333333"
             android:textSize="12sp"/>
 

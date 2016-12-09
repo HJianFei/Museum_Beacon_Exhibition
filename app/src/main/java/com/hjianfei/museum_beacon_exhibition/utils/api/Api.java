@@ -17,6 +17,8 @@ import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryPeople;
 import com.hjianfei.museum_beacon_exhibition.bean.Collection;
 import com.hjianfei.museum_beacon_exhibition.bean.ExhibitionDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Exhibitions;
+import com.hjianfei.museum_beacon_exhibition.bean.ForeignHistory;
+import com.hjianfei.museum_beacon_exhibition.bean.ForeignHistoryDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.HistoryCheck;
 import com.hjianfei.museum_beacon_exhibition.bean.HistoryCheckDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.HistoryHeyDayInFo;
@@ -386,5 +388,26 @@ public interface Api {
      */
     @GET(Urls.GET_HISTORY_CHECK_DETAIL)
     Observable<HistoryCheckDetail> getHistoryCheckDetail(@Query("title") String title);
+
+    /**
+     * 获取外国历史列表
+     *
+     * @param country
+     * @param type
+     * @param page
+     * @param search_condition
+     * @return
+     */
+    @GET(Urls.GET_FOREIGN_HISTORY)
+    Observable<ForeignHistory> getForeignHistory(@Query("country") String country, @Query("type") String type, @Query("page") String page, @Query("search_condition") String search_condition);
+
+    /**
+     * 获取外国历史详情
+     *
+     * @param title
+     * @return
+     */
+    @GET(Urls.GET_FOREIGN_HISTORY_DETAIL)
+    Observable<ForeignHistoryDetail> getForeignHistoryDetail(@Query("title") String title);
 
 }

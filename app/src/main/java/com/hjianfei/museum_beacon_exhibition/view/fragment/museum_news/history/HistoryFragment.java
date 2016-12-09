@@ -14,6 +14,7 @@ import com.hjianfei.museum_beacon_exhibition.utils.widget.MetroImageView;
 import com.hjianfei.museum_beacon_exhibition.view.activity.china_dynasty.ChinaDynastyActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_hey_day.ChinaHistoryHeyDayActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_war.ChinaHistoryWarActivity;
+import com.hjianfei.museum_beacon_exhibition.view.activity.foreign_history.ForeignHistoryActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.history_check.HistoryCheckActivity;
 
 import butterknife.BindView;
@@ -32,6 +33,10 @@ public class HistoryFragment extends Fragment {
     MetroImageView chinaHistoryWar;
     @BindView(R.id.china_history_big_thing)
     MetroImageView chinaHistoryBigThing;
+    @BindView(R.id.to_day_history)
+    MetroImageView toDayHistory;
+    @BindView(R.id.foreign_history)
+    MetroImageView foreignHistory;
 
     private String mParam1;
     private String mParam2;
@@ -73,7 +78,7 @@ public class HistoryFragment extends Fragment {
         return view;
     }
 
-    @OnClick({R.id.china_history, R.id.china_hey_day, R.id.china_history_war, R.id.china_history_big_thing})
+    @OnClick({R.id.china_history, R.id.china_hey_day, R.id.china_history_war, R.id.china_history_big_thing, R.id.to_day_history, R.id.foreign_history})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.china_history:
@@ -91,6 +96,14 @@ public class HistoryFragment extends Fragment {
             case R.id.china_history_big_thing:
                 Intent intent3 = new Intent(mContext, HistoryCheckActivity.class);
                 startActivity(intent3);
+                break;
+            case R.id.to_day_history:
+
+
+                break;
+            case R.id.foreign_history:
+                Intent intent4 = new Intent(mContext, ForeignHistoryActivity.class);
+                startActivity(intent4);
                 break;
         }
     }

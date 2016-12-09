@@ -25,7 +25,7 @@ import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.ForeignHistory;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.foreign_country.ForeignCountryPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.foreign_country.ForeignCountryPresenterImpl;
-import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_war_detail.HistoryWarDetailActivity;
+import com.hjianfei.museum_beacon_exhibition.view.activity.foreign_history_detail.ForeignCountryDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,7 +113,7 @@ public class ForeignCountryFragment extends Fragment implements ForeignCountryVi
             @Override
             public void onItemClick(View view, int i) {
 
-                Intent intent = new Intent(mContext, HistoryWarDetailActivity.class);
+                Intent intent = new Intent(mContext, ForeignCountryDetailActivity.class);
                 intent.putExtra("title", foreignHistoriesBeanList.get(i).getTitle());
                 startActivity(intent);
             }

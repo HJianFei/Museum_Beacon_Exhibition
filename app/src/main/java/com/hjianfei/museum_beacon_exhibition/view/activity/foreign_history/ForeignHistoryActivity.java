@@ -46,7 +46,7 @@ public class ForeignHistoryActivity extends AppCompatActivity {
         country.add("日本历史");
         country.add("韩国历史");
         country.add("朝鲜历史");
-        country.add("其他国家历史");
+//        country.add("其他国家历史");
         initView();
     }
 

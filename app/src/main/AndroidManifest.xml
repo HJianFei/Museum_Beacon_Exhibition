@@ -188,6 +188,8 @@
         </activity>
         <activity android:name=".view.activity.foreign_country_history.ForeignCountryActivity">
         </activity>
+        <activity android:name=".view.activity.foreign_history_detail.ForeignCountryDetailActivity">
+        </activity>
     </application>
 
 </manifest>

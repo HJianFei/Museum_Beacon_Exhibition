@@ -110,5 +110,25 @@ public class ForeignHistoryDetail implements Serializable {
         public void setDetail(String detail) {
             this.detail = detail;
         }
+
+        @Override
+        public String toString() {
+            return "ForeignHistoryDetailBean{" +
+                    "title='" + title + '\'' +
+                    ", author='" + author + '\'' +
+                    ", time='" + time + '\'' +
+                    ", img_url='" + img_url + '\'' +
+                    ", detail_url='" + detail_url + '\'' +
+                    ", detail='" + detail + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ForeignHistoryDetail{" +
+                "code=" + code +
+                ", foreign_History_Detail=" + foreign_History_Detail +
+                '}';
     }
 }

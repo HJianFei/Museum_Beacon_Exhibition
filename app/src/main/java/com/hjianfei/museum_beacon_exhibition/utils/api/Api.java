@@ -18,6 +18,7 @@ import com.hjianfei.museum_beacon_exhibition.bean.Collection;
 import com.hjianfei.museum_beacon_exhibition.bean.ExhibitionDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.Exhibitions;
 import com.hjianfei.museum_beacon_exhibition.bean.HistoryCheck;
+import com.hjianfei.museum_beacon_exhibition.bean.HistoryCheckDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.HistoryHeyDayInFo;
 import com.hjianfei.museum_beacon_exhibition.bean.HistoryPeopleDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.HistoryWarDetail;
@@ -376,5 +377,14 @@ public interface Api {
      */
     @GET(Urls.GET_HISTORY_CHECK)
     Observable<HistoryCheck> getHistoryCheck(@Query("page") String page, @Query("search_condition") String search_condition);
+
+    /**
+     * 获取历史盘点详情
+     *
+     * @param title
+     * @return
+     */
+    @GET(Urls.GET_HISTORY_CHECK_DETAIL)
+    Observable<HistoryCheckDetail> getHistoryCheckDetail(@Query("title") String title);
 
 }

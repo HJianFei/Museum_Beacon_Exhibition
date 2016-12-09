@@ -179,5 +179,10 @@ public class Urls {
      * 获取历史盘点列表
      */
     public static final String GET_HISTORY_CHECK = "chinaHistoryCheck!getAllHistoryCheck";
+
+    /**
+     * 获取历史盘点详情
+     */
+    public static final String GET_HISTORY_CHECK_DETAIL="chinaHistoryCheckDetail!getHistoryCheckDetail";
 }
 

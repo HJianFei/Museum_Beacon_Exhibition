@@ -1,5 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.history_check;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.HistoryCheck;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.history_check.HistoryCheckPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.history_check.HistoryCheckPresenterImpl;
+import com.hjianfei.museum_beacon_exhibition.view.activity.history_check_detail.HistoryCheckDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +83,9 @@ public class HistoryCheckActivity extends AppCompatActivity implements HistoryCh
         mLRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
+                Intent intent = new Intent(HistoryCheckActivity.this, HistoryCheckDetailActivity.class);
+                intent.putExtra("title", hiChecksBeenList.get(i).getTitle());
+                startActivity(intent);
 
             }
 

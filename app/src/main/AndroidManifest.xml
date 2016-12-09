@@ -178,6 +178,8 @@
             android:name=".view.activity.china_history_hey_day_info.HistoryHeyDayInFoActivity"
             android:theme="@style/AppTheme.Dynasty">
         </activity>
+        <activity android:name=".view.activity.history_check.HistoryCheckActivity">
+        </activity>
     </application>
 
 </manifest>

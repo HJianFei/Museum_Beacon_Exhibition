@@ -138,6 +138,7 @@ public class MuseumFragment extends Fragment implements MuseumView {
                 map.put("id", museumsBeanList.get(i).getMuseum_id());
                 map.put("view_count", museumsBeanList.get(i).getView_count() + 1);
                 intent.putExtra("post_type", TYPE);
+                intent.putExtra("appreciate_type",museumsBeanList.get(i).getType());
                 mMuseumPresenter.updateMuseumViewCount(map);
                 startActivity(intent);
 //                ActivityOptionsCompat options =

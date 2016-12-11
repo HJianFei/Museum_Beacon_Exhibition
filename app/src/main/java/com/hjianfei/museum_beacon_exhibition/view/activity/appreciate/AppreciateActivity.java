@@ -13,10 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.hjianfei.museum_beacon_exhibition.R;
-import com.hjianfei.museum_beacon_exhibition.view.fragment.appreciate.appreciation_of_treasures.Appreciation_Of_TreasuresFragment;
-import com.hjianfei.museum_beacon_exhibition.view.fragment.appreciate.blue_and_white_china.Blue_And_White_ChinaFragment;
-import com.hjianfei.museum_beacon_exhibition.view.fragment.appreciate.natural_specimen.Natural_SpecimenFragment;
-import com.hjianfei.museum_beacon_exhibition.view.fragment.appreciate.thematic_appreciation.Thematic_appreciationFragment;
+import com.hjianfei.museum_beacon_exhibition.view.fragment.appreciate.AppreciateFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,10 +64,10 @@ public class AppreciateActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager appreciateViewPager) {
 
         MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(Blue_And_White_ChinaFragment.newInstance("青花瓷之约", "青花瓷之约"), "青花瓷之约");
-        adapter.addFragment(Appreciation_Of_TreasuresFragment.newInstance("珍品鉴赏", "珍品鉴赏"), "珍品鉴赏");
-        adapter.addFragment(Natural_SpecimenFragment.newInstance("自然标本", "自然标本"), "自然标本");
-        adapter.addFragment(Thematic_appreciationFragment.newInstance("专题鉴赏", "专题鉴赏"), "专题鉴赏");
+        adapter.addFragment(AppreciateFragment.newInstance("广东省博物馆", "青花瓷之约"), "青花瓷之约");
+        adapter.addFragment(AppreciateFragment.newInstance("广东省博物馆", "珍品鉴赏"), "珍品鉴赏");
+        adapter.addFragment(AppreciateFragment.newInstance("广东省博物馆", "自然标本"), "自然标本");
+        adapter.addFragment(AppreciateFragment.newInstance("广东省博物馆", "专题鉴赏"), "专题鉴赏");
         appreciateViewPager.setAdapter(adapter);
 
     }

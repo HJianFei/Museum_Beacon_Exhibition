@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ import com.hjianfei.museum_beacon_exhibition.presenter.activity.museum_detail.Mu
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.museum_detail.MuseumDetailPresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.utils.SPUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
+import com.hjianfei.museum_beacon_exhibition.view.activity.museum.MuseumActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
@@ -49,6 +51,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MuseumDetailActivity extends AppCompatActivity implements MuseumDetailView {
 
@@ -60,6 +63,8 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
     TextView museumDetailName;
     @BindView(R.id.museum_detail_content)
     TextView museumDetailContent;
+    @BindView(R.id.museum_detail_enter)
+    LinearLayout museumDetailEnter;
     private MuseumDetailPresenter mMuseumDetailPresenter;
     private String museum_name;
     private FragmentManager fragmentManager;
@@ -67,6 +72,7 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
     private MuseumDetail museum_detail;
     private String post_type = "";
     private String[] img_urls;
+    private String appreciate_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +80,7 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
         setContentView(R.layout.activity_museum_detail);
         museum_name = getIntent().getStringExtra("museum_name");
         post_type = getIntent().getStringExtra("post_type");
+        appreciate_type = getIntent().getStringExtra("appreciate_type");
         ButterKnife.bind(this);
         initData();
         initView();
@@ -273,5 +280,14 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
                 }
                 break;
         }
+    }
+
+    @OnClick(R.id.museum_detail_enter)
+    public void onClick() {
+        Intent intent=new Intent(this, MuseumActivity.class);
+        intent.putExtra("museum_name",museum_name);
+        intent.putExtra("img_url",museum_detail.getMuseum_Detail().getMuseum_detail_imgs());
+        intent.putExtra("appreciate_type",appreciate_type);
+        startActivity(intent);
     }
 }

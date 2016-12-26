@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface UserInfoPresenter {
 
-    void changeAvatar(File file);
+    void changeAvatar(File file, String user_phone);
 
     void changePassword(Map<String, Object> map);
 

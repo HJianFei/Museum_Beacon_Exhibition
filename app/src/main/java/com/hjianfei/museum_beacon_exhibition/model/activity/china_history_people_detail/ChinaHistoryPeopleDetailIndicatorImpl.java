@@ -34,6 +34,7 @@ public class ChinaHistoryPeopleDetailIndicatorImpl implements ChinaHistoryPeople
 
                     @Override
                     public void onNext(HistoryPeopleDetail historyPeopleDetail) {
+                        LogUtils.d(Constants.TAG,historyPeopleDetail.toString());
                         listener.getHistoryPeopleDetailFinished(historyPeopleDetail);
 
                     }

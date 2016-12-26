@@ -24,7 +24,7 @@ public interface UserInfoIndicator {
         void onError();
     }
 
-    void changeAvatar(File file, onFinishedListener listener);
+    void changeAvatar(File file, String user_phone, onFinishedListener listener);
 
     void changePassword(Map<String, Object> map, onFinishedListener listener);
 

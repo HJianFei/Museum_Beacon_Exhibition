@@ -31,9 +31,9 @@ import com.hjianfei.museum_beacon_exhibition.presenter.fragment.home.HomePresent
 import com.hjianfei.museum_beacon_exhibition.utils.StatusBarUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.widget.MetroImageView;
 import com.hjianfei.museum_beacon_exhibition.view.activity.about_me.AboutMeActivity;
-import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate.AppreciateActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail.AppreciateDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.location.LocationActivity;
+import com.hjianfei.museum_beacon_exhibition.view.activity.museum.MuseumActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.museum_detail.MuseumDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.personal.PersonalActivity;
 import com.jude.rollviewpager.OnItemClickListener;
@@ -142,16 +142,15 @@ public class HomeFragment extends Fragment implements HomeView {
                 intent = new Intent(mContext, LocationActivity.class);
                 startActivityForResult(intent, Constants.HOME_LOCATION);
                 break;
-//            case R.id.home_search:
-//                intent = new Intent(mContext, SearchActivity.class);
-//                startActivity(intent);
-//                break;
             case R.id.home_person:
                 intent = new Intent(mContext, PersonalActivity.class);
                 startActivity(intent);
                 break;
             case R.id.home_appreciate_more:
-                intent = new Intent(mContext, AppreciateActivity.class);
+                intent = new Intent(mContext, MuseumActivity.class);
+                intent.putExtra("museum_name","广东省博物馆");
+                intent.putExtra("img_url","[http://www.chezhan168.com/userfiles/image/20151221/21133056edf7f86b0f0984.jpg]");
+                intent.putExtra("appreciate_type","[青花瓷之约,珍品鉴赏,自然标本,专题鉴赏]");
                 startActivity(intent);
                 break;
             case R.id.hot_exhibition_more:
@@ -187,8 +186,9 @@ public class HomeFragment extends Fragment implements HomeView {
                     startActivity(intent);
                 } else if (position == 1) {
                     intent = new Intent(mContext, MuseumDetailActivity.class);
-                    intent.putExtra("museum_name", "故宫博物院");
+                    intent.putExtra("museum_name", "广东省博物馆");
                     intent.putExtra("post_type", "博物馆");
+                    intent.putExtra("appreciate_type","[青花瓷之约,珍品鉴赏,自然标本,专题鉴赏]");
                     startActivity(intent);
                 }
 

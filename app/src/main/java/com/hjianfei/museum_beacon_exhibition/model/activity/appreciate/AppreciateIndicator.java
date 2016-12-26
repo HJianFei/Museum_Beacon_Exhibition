@@ -3,7 +3,6 @@ package com.hjianfei.museum_beacon_exhibition.model.activity.appreciate;
 
 import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,13 +14,13 @@ import java.util.Map;
 public interface AppreciateIndicator {
     interface onFinishListener {
 
-        void onInitAppreciateFinished(List<Appreciates.AppreciatesBean> appreciatesBeans);
+        void onInitAppreciateFinished(Appreciates appreciates);
 
         //刷新成功
-        void onRefreshAppreciateSuccess(List<Appreciates.AppreciatesBean> appreciatesBeans);
+        void onRefreshAppreciateSuccess(Appreciates appreciates);
 
         //加载成功
-        void onLoadMoreAppreciateSuccess(List<Appreciates.AppreciatesBean> appreciatesBeans);
+        void onLoadMoreAppreciateSuccess(Appreciates appreciates);
 
 
         void onError();

@@ -30,9 +30,9 @@ import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.guide.GuidePresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.guide.GuidePresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
-import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.utils.widget.radar_custom_view.RadarView;
 import com.hjianfei.museum_beacon_exhibition.view.activity.guide_detail.GuideDetailActivity;
+import com.hjianfei.museum_beacon_exhibition.view.activity.museum.MuseumActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,7 +103,7 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_guide, container, false);
         ButterKnife.bind(this, view);
-        time = new TimeCount(30000, 1000);
+        time = new TimeCount(10000, 1000);
         //检测手机蓝牙是否开启
         checkBlueToothIsOpen();
         initView();
@@ -309,7 +309,11 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
             @Override
             public void onClick(SweetAlertDialog sweetAlertDialog) {
                 dialog.dismiss();
-                ToastUtil.showToast(mContext, "进入在线浏览模式");
+                Intent intent = new Intent(mContext, MuseumActivity.class);
+                intent.putExtra("museum_name", "广东省博物馆");
+                intent.putExtra("img_url", "[http://www.chezhan168.com/userfiles/image/20151221/21133056edf7f86b0f0984.jpg]");
+                intent.putExtra("appreciate_type", "[青花瓷之约,珍品鉴赏,自然标本,专题鉴赏]");
+                startActivity(intent);
             }
         });
         dialog.show();

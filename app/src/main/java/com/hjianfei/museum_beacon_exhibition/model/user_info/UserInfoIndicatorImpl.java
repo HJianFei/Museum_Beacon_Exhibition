@@ -20,10 +20,10 @@ import rx.schedulers.Schedulers;
 public class UserInfoIndicatorImpl implements UserInfoIndicator {
 
     @Override
-    public void changeAvatar(File file, onFinishedListener listener) {
+    public void changeAvatar(File file, String user_phone, final onFinishedListener listener) {
         //创建RequestBody对象
         RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), file);
-        NetWorkUtils.getApi().uploadFile(requestBody)
+        NetWorkUtils.getApi().uploadFile(requestBody, user_phone)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<UploadFile>() {
@@ -39,7 +39,7 @@ public class UserInfoIndicatorImpl implements UserInfoIndicator {
 
                     @Override
                     public void onNext(UploadFile uploadFile) {
-
+//                        listener.changeAvatarSuccess();
 
                     }
                 });

@@ -32,7 +32,7 @@
             style="@style/main_bottom_tab_style"
             android:drawablePadding="4dp"
             android:drawableTop="@drawable/tab_home_museum_news"
-            android:text="博闻" />
+            android:text="博史" />
 
     </RadioGroup>
 

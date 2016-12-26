@@ -59,22 +59,6 @@ public interface Api {
     @GET(Urls.API_VIEWPAGER)
     Observable<ViewPager> getViewPager();
 
-    //    //获取Home页面展览预告的信息
-//    @GET(Urls.IV_FORECAST_MORE)
-//    Observable<Exhibition> getForecast();
-//
-//    //获取Home页面常设展厅的信息
-//    @GET(Urls.IV_OFTEN_MORE)
-//    Observable<Exhibition> getOften();
-//
-//    //获取Home页面临时展厅的信息
-//    @GET(Urls.IV_TEMP_MORE)
-//    Observable<Exhibition> getTemp();
-//
-//    //获取Home页面展览回顾的信息
-//    @GET(Urls.IV_BACK_MORE)
-//    Observable<Exhibition> getBack();
-//
     //随机获取文物鉴赏数据（四条）
     @GET(Urls.API_HOME_APPRECIATES_BY_RANDOM)
     Observable<Appreciates> getAllAppreciatesByRandom();
@@ -91,23 +75,9 @@ public interface Api {
     @GET(Urls.ALL_EXHIBITION_BY_TYPE)
     Observable<Exhibitions> getAllExhibitionByType(@Query("type") String type);
 
-    //
-//    //获取全部教育信息
-//    //小知识
-//    @GET(Urls.ALL_EDUCATION_BY_TYPE)
-//    Observable<Educations> getAllEducationByType(@Query("type") String type);
-//
-//    //获取教育详情信息
-//    @GET(Urls.EDUCATION_DETAIL)
-//    Observable<EducationDetail> getEducationDetails(@Query("detail_url") String detail_url);
-//
     //展览详情
     @GET(Urls.EXHIBITION_DETAIL)
     Observable<ExhibitionDetail> getExhibitionDetails(@Query("detail_url") String detail_url);
-//
-//    //导游
-//    @GET(Urls.NAVIGATION_ITEM)
-//    Observable<NavigationInfo> getNavigationInfo(@Query("minor") String minor);
 
     //获取全部博物馆信息
     @GET(Urls.GET_ALL_MUSEUM)
@@ -239,9 +209,9 @@ public interface Api {
     @GET
     Observable<ResponseBody> downloadPicFromNet(@Url String fileUrl);
 
-    @POST("/user_avatar")
+    @POST(Urls.CHANGE_USER_AVATAR)
     @Multipart
-    Observable<UploadFile> uploadFile(@Part("file\"; filename=\"avatar.png\"") RequestBody file);
+    Observable<UploadFile> uploadFile(@Part("file\"; filename=\"avatar.png\"") RequestBody file, @Query("user_phone") String user_phone);
 
     /**
      * 獲取中國歷史朝代大事件

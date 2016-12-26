@@ -39,8 +39,8 @@ public class UserInfoPresenterImpl implements UserInfoPresenter, UserInfoIndicat
     }
 
     @Override
-    public void changeAvatar(File file) {
-        mUserInfoIndicator.changeAvatar(file, this);
+    public void changeAvatar(File file, String user_phone) {
+        mUserInfoIndicator.changeAvatar(file, user_phone, this);
 
     }
 
@@ -65,6 +65,7 @@ public class UserInfoPresenterImpl implements UserInfoPresenter, UserInfoIndicat
 
     @Override
     public void changeAvatarSuccess(ResultCode resultCode) {
+        mPersonalView.changeAvatarSuccess(resultCode);
 
 
     }

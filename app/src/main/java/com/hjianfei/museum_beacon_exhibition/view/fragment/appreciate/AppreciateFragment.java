@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
@@ -52,6 +53,8 @@ public class AppreciateFragment extends Fragment implements AppreciateView {
     LRecyclerView appreciateRecyclerView;
     @BindView(R.id.appreciate_search)
     FloatingActionButton appreciateSearch;
+    @BindView(R.id.no_message)
+    TextView noMessage;
     private CommonAdapter<Appreciates.AppreciatesBean> mAdapter;
     private LRecyclerViewAdapter mLRecyclerViewAdapter = null;
     private List<Appreciates.AppreciatesBean> appreciatesBeanList = new ArrayList<>();
@@ -147,7 +150,7 @@ public class AppreciateFragment extends Fragment implements AppreciateView {
             public void onRefresh() {
                 page = 1;
                 search_condition = "";
-                mAppreciatePresenter.refreshAppreciatesData(museum_name,type, page + "", search_condition);
+                mAppreciatePresenter.refreshAppreciatesData(museum_name, type, page + "", search_condition);
 
             }
 
@@ -168,7 +171,7 @@ public class AppreciateFragment extends Fragment implements AppreciateView {
                     return;
                 }
                 page++;
-                mAppreciatePresenter.loadMoreAppreciatesData(museum_name,type, page + "", search_condition);
+                mAppreciatePresenter.loadMoreAppreciatesData(museum_name, type, page + "", search_condition);
             }
 
             @Override
@@ -180,42 +183,42 @@ public class AppreciateFragment extends Fragment implements AppreciateView {
 
     private void initData() {
         mAppreciatePresenter = new AppreciatePresenterImpl(this);
-        mAppreciatePresenter.onInitAppreciateData(museum_name,type, page + "", search_condition);
+        mAppreciatePresenter.onInitAppreciateData(museum_name, type, page + "", search_condition);
     }
 
 
     @Override
-    public void initAppreciateData(List<Appreciates.AppreciatesBean> appreciatesBeans) {
-        if (null != appreciatesBeans) {
+    public void initAppreciateData(Appreciates appreciates) {
+        if (appreciates.getCode()==200) {
             appreciatesBeanList.clear();
-            appreciatesBeanList.addAll(appreciatesBeans);
+            appreciatesBeanList.addAll(appreciates.getAppreciates());
             appreciateRecyclerView.refreshComplete();
             mAdapter.notifyDataSetChanged();
         } else {
             dialog = new SweetAlertDialog(mContext, SweetAlertDialog.WARNING_TYPE);
-            dialog.setTitleText("搜索结果为空");
+            dialog.setTitleText("数据为空");
             dialog.show();
         }
     }
 
     @Override
-    public void refreshAppreciateData(List<Appreciates.AppreciatesBean> appreciatesBeans) {
-        if (null != appreciatesBeans) {
+    public void refreshAppreciateData(Appreciates appreciates) {
+        if (appreciates.getCode()==200) {
             appreciatesBeanList.clear();
-            appreciatesBeanList.addAll(appreciatesBeans);
+            appreciatesBeanList.addAll(appreciates.getAppreciates());
             appreciateRecyclerView.refreshComplete();
             mAdapter.notifyDataSetChanged();
         } else {
             dialog = new SweetAlertDialog(mContext, SweetAlertDialog.WARNING_TYPE);
-            dialog.setTitleText("搜索结果为空");
+            dialog.setTitleText("数据为空");
             dialog.show();
         }
     }
 
     @Override
-    public void loadMoreAppreciateData(List<Appreciates.AppreciatesBean> appreciatesBeans) {
-        if (null != appreciatesBeans) {
-            appreciatesBeanList.addAll(appreciatesBeans);
+    public void loadMoreAppreciateData(Appreciates appreciates) {
+        if (appreciates.getCode()==200) {
+            appreciatesBeanList.addAll(appreciates.getAppreciates());
             appreciateRecyclerView.refreshComplete();
             mAdapter.notifyDataSetChanged();
         } else {
@@ -257,8 +260,8 @@ public class AppreciateFragment extends Fragment implements AppreciateView {
         FlipShareView flipShareView = new FlipShareView.Builder(getActivity(), appreciateSearch)
                 .addItem(new ShareItem("刷新", Color.WHITE, 0xfffbc402, BitmapFactory.decodeResource(getResources(), R.drawable.icon_refresh)))
                 .addItem(new ShareItem("搜索", Color.WHITE, 0xfffbc402, BitmapFactory.decodeResource(getResources(), R.drawable.icon_search)))
-                .addItem(new ShareItem("国内", Color.WHITE, 0xfffbc402, BitmapFactory.decodeResource(getResources(), R.drawable.icon_china)))
-                .addItem(new ShareItem("国外", Color.WHITE, 0xfffbc402, BitmapFactory.decodeResource(getResources(), R.drawable.icon_abroad)))
+//                .addItem(new ShareItem("国内", Color.WHITE, 0xfffbc402, BitmapFactory.decodeResource(getResources(), R.drawable.icon_china)))
+//                .addItem(new ShareItem("国外", Color.WHITE, 0xfffbc402, BitmapFactory.decodeResource(getResources(), R.drawable.icon_abroad)))
                 .setAnimType(FlipShareView.TYPE_HORIZONTAL)
                 .setItemDuration(100)
                 .setSeparateLineColor(Color.WHITE)
@@ -268,7 +271,7 @@ public class AppreciateFragment extends Fragment implements AppreciateView {
             public void onItemClick(int position) {
                 if (position == 0) {
                     page = 1;
-                    mAppreciatePresenter.refreshAppreciatesData(museum_name,type, page + "", search_condition);
+                    mAppreciatePresenter.refreshAppreciatesData(museum_name, type, page + "", search_condition);
 
                 } else if (position == 1) {
                     new MaterialDialog.Builder(getActivity())
@@ -280,7 +283,7 @@ public class AppreciateFragment extends Fragment implements AppreciateView {
                                     if (!TextUtils.isEmpty(input)) {
                                         search_condition = input.toString().trim();
                                         page = 1;
-                                        mAppreciatePresenter.onInitAppreciateData(museum_name,type, page + "", search_condition);
+                                        mAppreciatePresenter.onInitAppreciateData(museum_name, type, page + "", search_condition);
                                     }
                                 }
                             }).show();

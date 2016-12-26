@@ -58,5 +58,22 @@ public class HistoryPeopleDetail implements Serializable {
         public void setContent(String content) {
             this.content = content;
         }
+
+        @Override
+        public String toString() {
+            return "ChinaHistoryPeopleDetailBean{" +
+                    "detail_url='" + detail_url + '\'' +
+                    ", name='" + name + '\'' +
+                    ", content='" + content + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "HistoryPeopleDetail{" +
+                "code=" + code +
+                ", china_History_People_Detail=" + china_History_People_Detail +
+                '}';
     }
 }

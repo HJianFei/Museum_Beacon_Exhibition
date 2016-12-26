@@ -1,5 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.museum;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hjianfei.museum_beacon_exhibition.R;
+import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.appreciate.AppreciateFragment;
 
 import butterknife.BindView;
@@ -34,16 +36,16 @@ public class MuseumActivity extends AppCompatActivity {
     private String museum_name;
     private String[] appreciate_type;
     private String[] img_urls;
+    private String imgs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         museum_name = getIntent().getStringExtra("museum_name");
         String img = getIntent().getStringExtra("img_url");
-
         String appreciate = getIntent().getStringExtra("appreciate_type");
         String substring = appreciate.substring(1, appreciate.length() - 1);
-        String imgs = img.substring(1, img.length() - 1);
+        imgs = img.substring(1, img.length() - 1);
         appreciate_type = substring.split(",");
         img_urls = imgs.split(",");
         setContentView(R.layout.activity_museum);
@@ -52,6 +54,10 @@ public class MuseumActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        if (appreciate_type.length<4){
+            museumTabs.setTabMode(TabLayout.MODE_FIXED);
+            museumTabs.setTabGravity(TabLayout.GRAVITY_FILL);
+        }
         museumName.setText(museum_name);
         Glide.with(this).load(img_urls[0]).into(museumImgBg);
         museumViewpager.setAdapter(new TabsAdapter(getSupportFragmentManager()));
@@ -60,6 +66,11 @@ public class MuseumActivity extends AppCompatActivity {
 
     @OnClick(R.id.museum_img_bg)
     public void onClick() {
+        Intent intent2 = new Intent(MuseumActivity.this, PhotoDetailActivity.class);
+        intent2.putExtra("img_urls", imgs);
+        intent2.putExtra("photo_title",museum_name);
+        startActivity(intent2);
+
     }
 
     class TabsAdapter extends FragmentPagerAdapter {
@@ -74,15 +85,7 @@ public class MuseumActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int i) {
-           return AppreciateFragment.newInstance(museum_name,appreciate_type[i]);
-//            switch (i) {
-//                case 0:
-//                    return HistoryWarFragment.newInstance("古代战争", "古代战争");
-//                case 1:
-//                    return HistoryWarFragment.newInstance("近代战争", "近代战争");
-//                case 2:
-//                    return HistoryWarFragment.newInstance("外国战争", "外国战争");
-//            }
+            return AppreciateFragment.newInstance(museum_name, appreciate_type[i]);
 
         }
 

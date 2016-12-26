@@ -38,7 +38,7 @@ public class AppreciateIndicatorImpl implements AppreciateIndicator {
 
                     @Override
                     public void onNext(Appreciates appreciates) {
-                        listener.onInitAppreciateFinished(appreciates.getAppreciates());
+                        listener.onInitAppreciateFinished(appreciates);
 
 
                     }
@@ -64,7 +64,7 @@ public class AppreciateIndicatorImpl implements AppreciateIndicator {
 
                     @Override
                     public void onNext(Appreciates appreciates) {
-                        listener.onRefreshAppreciateSuccess(appreciates.getAppreciates());
+                        listener.onRefreshAppreciateSuccess(appreciates);
 
 
                     }
@@ -90,7 +90,7 @@ public class AppreciateIndicatorImpl implements AppreciateIndicator {
 
                     @Override
                     public void onNext(Appreciates appreciates) {
-                        listener.onLoadMoreAppreciateSuccess(appreciates.getAppreciates());
+                        listener.onLoadMoreAppreciateSuccess(appreciates);
 
 
                     }

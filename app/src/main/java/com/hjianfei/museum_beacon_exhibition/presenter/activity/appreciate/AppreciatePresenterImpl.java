@@ -27,28 +27,28 @@ public class AppreciatePresenterImpl implements AppreciatePresenter, AppreciateI
 
 
     @Override
-    public void onInitAppreciateFinished(List<Appreciates.AppreciatesBean> appreciatesBeans) {
+    public void onInitAppreciateFinished(Appreciates appreciates) {
         if (null != mAppreciateView) {
             mAppreciateView.hideDialog();
         }
-        mAppreciateView.initAppreciateData(appreciatesBeans);
+        mAppreciateView.initAppreciateData(appreciates);
 
     }
 
     @Override
-    public void onRefreshAppreciateSuccess(List<Appreciates.AppreciatesBean> appreciatesBeans) {
+    public void onRefreshAppreciateSuccess(Appreciates appreciates) {
         if (null != mAppreciateView) {
             mAppreciateView.hideDialog();
         }
-        mAppreciateView.refreshAppreciateData(appreciatesBeans);
+        mAppreciateView.refreshAppreciateData(appreciates);
     }
 
     @Override
-    public void onLoadMoreAppreciateSuccess(List<Appreciates.AppreciatesBean> appreciatesBeans) {
+    public void onLoadMoreAppreciateSuccess(Appreciates appreciates) {
         if (null != mAppreciateView) {
             mAppreciateView.hideDialog();
         }
-        mAppreciateView.loadMoreAppreciateData(appreciatesBeans);
+        mAppreciateView.loadMoreAppreciateData(appreciates);
     }
 
     @Override

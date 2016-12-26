@@ -50,7 +50,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="广东省博物馆"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"/>
@@ -62,7 +61,7 @@
             android:id="@+id/museum_tabs"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:tabGravity="fill"
+            app:tabGravity="center"
             app:tabIndicatorHeight="4dp"
             app:tabMode="scrollable"
             app:tabTextColor="#333333"/>

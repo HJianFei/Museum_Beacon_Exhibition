@@ -9,7 +9,7 @@ import com.hjianfei.museum_beacon_exhibition.view.base.BaseView;
 
 public interface PersonalView extends BaseView {
 
-    void changeAvatarSuccess();
+    void changeAvatarSuccess(ResultCode resultCode);
 
     void changeNameSuccess(ResultCode resultCode);
 }

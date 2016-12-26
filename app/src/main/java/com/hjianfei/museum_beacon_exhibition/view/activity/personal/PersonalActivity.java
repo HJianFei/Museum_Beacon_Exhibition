@@ -322,7 +322,7 @@ public class PersonalActivity extends AppCompatActivity implements PersonalView 
             try {
                 saveUserIcon(photo);
                 File filePath = new File(Constants.FILE_URI + "/" + IMAGE_FILE_NAME);
-                mUserInfoPresenter.changeAvatar(filePath);
+                mUserInfoPresenter.changeAvatar(filePath, user_phone);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -451,7 +451,7 @@ public class PersonalActivity extends AppCompatActivity implements PersonalView 
     }
 
     @Override
-    public void changeAvatarSuccess() {
+    public void changeAvatarSuccess(ResultCode resultCode) {
         ToastUtil.showToast(PersonalActivity.this, "更新头像成功");
     }
 

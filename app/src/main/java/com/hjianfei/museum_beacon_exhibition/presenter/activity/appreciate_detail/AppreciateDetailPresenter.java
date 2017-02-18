@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface AppreciateDetailPresenter {
 
-    void onInitAppreciateDetailData(String detail_url);
+    void onInitAppreciateDetailData(String id);
 
     void onSaveCollection(Map<String, Object> map);
 

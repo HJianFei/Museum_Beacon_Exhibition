@@ -9,9 +9,10 @@ import java.util.List;
 
 public class ForeignHistory implements Serializable {
 
+
     /**
      * code : 200
-     * foreign_Histories : [{"id":200,"country":"日本历史","type":"历史资料","title":"日本朝代顺序如何 日本为什么没有朝代更迭？","description":"日本与我们一衣带水、隔海相望，深受中华文化影响，中国是上下五千年文明古国，经历多个朝代更迭。那么日本的历史朝代改如何划分？日本有没有朝代更迭的情况？","img_url":"http://www.todayonhistory.com/uploadfile/2016/0321/20160321020609124.jpg","time":"时间: 2016-03-21","author":"  作者:山南慕北","detail_url":"http://www.todayonhistory.com/lishi/201603/32977.html","view":1612},{"id":160,"country":"日本历史","type":"历史资料","title":"日本的崛起 日本的强国之路","description":"日本从一个小小的岛国发展至如今的经济强国，经历了它的崛起、衰落和复兴到现在的强盛，这一路走来，有让人敬佩的发展措施，也有让人憎恨的残暴行为，但无论如","img_url":"http://www.todayonhistory.com/uploadfile/2016/0411/20160411044049977.jpg","time":"时间: 2016-04-11","author":"  作者:彼岸花开","detail_url":"http://www.todayonhistory.com/lishi/201604/34829.html","view":838},{"id":174,"country":"日本历史","type":"历史资料","title":"日本三大神器 日本三大神器是从中国\u201c骗\u201d去的？","description":"中国有上古十大神器，日本也有属于自己的神器，分别是草薙剑、八咫镜和八坂琼曲玉，但只有八咫镜的真品遗留下来。另有说法这三件神器是从秦始皇那里偷走的，这是真的吗？","img_url":"http://www.todayonhistory.com/uploadfile/2016/0324/20160324035113501.jpg","time":"时间: 2016-03-24","author":"  作者:山南慕北","detail_url":"http://www.todayonhistory.com/lishi/201603/33448.html","view":778},{"id":192,"country":"日本历史","type":"历史资料","title":"日本领土面积多大 日本领土争端有哪些？","description":"日本自称\u201c日出之国\u201d，是由众多岛屿组成的岛国，与我国隔海相望。至今，日本仍与我国、韩国等国家存在领土纠纷问题。那么日本的领土面积到底多大？","img_url":"http://www.todayonhistory.com/uploadfile/2016/0321/20160321050333822.jpg","time":"时间: 2016-03-21","author":"  作者:山南慕北","detail_url":"http://www.todayonhistory.com/lishi/201603/33028.html","view":676},{"id":195,"country":"日本历史","type":"历史资料","title":"日本国歌是什么 日本国歌是哀乐吗？","description":"每个国家都有属于自己的国歌，国歌也是这个国家的象征之一，每个国家的国歌都有自己特殊的意义和属于自己的风格，或如中国国歌一般激昂或像日本国歌一样委婉低吟。","img_url":"http://www.todayonhistory.com/uploadfile/2016/0321/20160321041945740.jpg","time":"时间: 2016-03-21","author":"  作者:山南慕北","detail_url":"http://www.todayonhistory.com/lishi/201603/33019.html","view":598},{"id":198,"country":"日本历史","type":"历史资料","title":"日本经济发展史 日本人如何度过经济危机？","description":"二战后日本经济飞速发展，GDP跃居世界第二位，顺利走出战后阴霾。然而在高速发展的经济下是岌岌可危的金融泡沫，日本再次陷入经济危机。那么日本人是怎么度过经济危机的？","img_url":"http://www.todayonhistory.com/uploadfile/2016/0321/20160321023359120.jpg","time":"时间: 2016-03-21","author":"  作者:山南慕北","detail_url":"http://www.todayonhistory.com/lishi/201603/32989.html","view":542},{"id":190,"country":"日本历史","type":"历史资料","title":"日本人口数量 日本人口老龄化的影响","description":"日本是世界上人均寿命最长的国家，然而和许多欧洲发达国家一样，日本面临着人口老龄化的影响。人口负增长给日本带来了严重的影响，这些影响表现在哪里呢？","img_url":"http://www.todayonhistory.com/uploadfile/2016/0323/20160323110450589.jpg","time":"时间: 2016-03-23","author":"  作者:山南慕北","detail_url":"http://www.todayonhistory.com/lishi/201603/33256.html","view":363},{"id":158,"country":"日本历史","type":"历史资料","title":"战后美军驻日期间7万日本慰安妇的悲惨遭遇","description":"1945年8月15日，日本宣布无条件投降，战后美国派遣驻军军事管制日本，日本为了避免社会产生恐慌，设立了慰安所专门为美军服务，使日本慰安妇受到了悲惨的待遇。","img_url":"http://www.todayonhistory.com/uploadfile/2016/0414/20160414103449572.jpg","time":"时间: 2016-04-14","author":"  作者:彼岸花开","detail_url":"http://www.todayonhistory.com/lishi/201604/35209.html","view":357},{"id":179,"country":"日本历史","type":"历史资料","title":"日本幕府简介 日本经历了几个幕府时代？","description":"中国有朝廷重臣挟天子以令诸侯，日本则有\u201c挟天皇以令群臣\u201d。幕府的最高权力者是幕府将军，日本经历了几个有名的幕府时代，这是军人长期干政的结果。","img_url":"http://www.todayonhistory.com/uploadfile/2016/0324/20160324110020561.jpg","time":"时间: 2016-03-24","author":"  作者:山南慕北","detail_url":"http://www.todayonhistory.com/lishi/201603/33386.html","view":314},{"id":199,"country":"日本历史","type":"历史资料","title":"日本政治体制 日本内阁组织结构","description":"第二次世界大战不仅改变了世界格局，对世界各国也是一次翻天覆地的变化。战后日本实行的是议会内阁制，并以三权分立的原则，但天皇的国家形象被保存下来。","img_url":"http://www.todayonhistory.com/uploadfile/2016/0321/20160321021814690.jpg","time":"时间: 2016-03-21","author":"  作者:山南慕北","detail_url":"http://www.todayonhistory.com/lishi/201603/32981.html","view":307}]
+     * foreign_Histories : [{"id":6213,"country":"美国历史","type":"人物故事","title":"特朗普为什么又叫川普 特朗普的真实资产到底是多少","description":"特朗普　　特朗普在美国总统大选中一直是自费参选，被视为一大土豪，他自称自己是百亿美元的富豪，那么实际上他到底拥有多少资产呢？　　特","img_url":"http://www.todayonhistory.com/uploadfile/2016/0708/20160708105419230.jpg","time":"时间: 2016-07-08","author":"  作者:彼岸花开","view":42313},{"id":6210,"country":"美国历史","type":"人物故事","title":"希拉里的丈夫是谁？ 希拉里和丈夫的关系如何？","description":"希拉里和克林顿　　希拉里是美国的第一夫人，丈夫是连任两届美国总统的克林顿，他们的婚姻生活似乎与政治相缠绕，在政治上相互扶持至今。　","img_url":"http://www.todayonhistory.com/uploadfile/2016/0708/20160708113128461.jpg","time":"时间: 2016-07-08","author":"  作者:彼岸花开","view":25128},{"id":6207,"country":"美国历史","type":"人物故事","title":"希拉里对中国的态度如何？ 希拉里的政治主张是什么？","description":"希拉里　　希拉里作为美国总统极具竞争力的候选者之一，她的当选与否也成为中国关注的焦点，希拉里对中国采取的态度如何呢？她的政治主张又","img_url":"http://www.todayonhistory.com/uploadfile/2016/0708/20160708020206484.jpg","time":"时间: 2016-07-08","author":"  作者:彼岸花开","view":23828},{"id":6218,"country":"美国历史","type":"人物故事","title":"克林顿家族简介 克林顿和希拉里是真爱吗？","description":"克林顿是美国第一位出生于第二次世界大战之后的总统、第三位遭受国会弹劾动议的总统。克林顿的妻子希拉里克林顿也是竞选美国总统有力候选人。","img_url":"http://www.todayonhistory.com/uploadfile/2016/0628/20160628030621421.jpg","time":"时间: 2016-06-28","author":"  作者:山南慕北","view":4104},{"id":6201,"country":"美国历史","type":"人物故事","title":"2016美国总统大选最新消息 巴菲特为助阵希拉里使绝招","description":"希拉里巴菲特　　美国总统大选在一天天倒计时，民主党和共和党的支持者都使出浑身解数，最近股神巴菲特为了帮希拉里站台也是花了不少心思。","img_url":"http://www.todayonhistory.com/uploadfile/2016/0804/20160804015709774.jpg","time":"时间: 2016-08-04","author":"  作者:彼岸花开","view":3121},{"id":6214,"country":"美国历史","type":"人物故事","title":"特朗普能最后当选美国总统吗？ 特朗普的政治主张是什么？","description":"特朗普　　特朗普是美国总统大选中杀出的一条黑马，谁都没想到特朗普能走到现在，在这局势难明的现在，我们只能猜测，到底结局将如何，谁都","img_url":"http://www.todayonhistory.com/uploadfile/2016/0708/20160708104327586.jpg","time":"时间: 2016-07-08","author":"  作者:彼岸花开","view":2424},{"id":6216,"country":"美国历史","type":"人物故事","title":"克林顿情妇：克林顿睡过两千个女人 希拉里是个女同","description":"多莉·凯尔是美国前总统比尔·克林顿众多情妇之一，她自称和克林顿的情史长达32年之久。近期，多莉·凯尔出了一本新书，叫《希拉里\u2014\u2014另一个女人》。","img_url":"http://www.todayonhistory.com/uploadfile/2016/0628/20160628031910746.jpg","time":"时间: 2016-06-28","author":"  作者:山南慕北","view":2144},{"id":6220,"country":"美国历史","type":"人物故事","title":"克林顿简历 克林顿与希拉里的女儿","description":"美国媒体公布的一项民意调查结果显示，美国人眼中最伟大的总统是林肯，其次是肯尼迪，第三名就是克林顿。包含克林顿的六次总统评鉴排名活动中，克林顿的平均排名为20 67。","img_url":"http://www.todayonhistory.com/uploadfile/2016/0628/20160628023505651.jpg","time":"时间: 2016-06-28","author":"  作者:山南慕北","view":2140},{"id":6200,"country":"美国历史","type":"人物故事","title":"美国总统选举特朗普对中国态度180度转弯 大呼\u201c我爱中国\u201d","description":"特朗普　　美国总统选举如火如荼，两位候选者更在最后使出绝招，而近期，曾经常把中国用从美国偷来的钱养肥了自己挂在嘴边的特朗普，如今，","img_url":"http://www.todayonhistory.com/uploadfile/2016/0804/20160804020853860.jpg","time":"时间: 2016-08-04","author":"  作者:彼岸花开","view":1174},{"id":6219,"country":"美国历史","type":"人物故事","title":"克林顿被爆与女星偷欢 希拉里暴打克林顿","description":"美国前总统克林顿的性丑闻层出不穷，他的妻子希拉里大家应该也略有耳闻了，是个非常强势的女性，也是总统候选人之一。那么当希拉里得知克林顿偷腥后会有什么反应？","img_url":"http://www.todayonhistory.com/uploadfile/2016/0628/20160628025631127.jpg","time":"时间: 2016-06-28","author":"  作者:山南慕北","view":998}]
      */
 
     private int code;
@@ -33,18 +34,17 @@ public class ForeignHistory implements Serializable {
         this.foreign_Histories = foreign_Histories;
     }
 
-    public static class ForeignHistoriesBean implements Serializable{
+    public static class ForeignHistoriesBean implements Serializable {
         /**
-         * id : 200
-         * country : 日本历史
-         * type : 历史资料
-         * title : 日本朝代顺序如何 日本为什么没有朝代更迭？
-         * description : 日本与我们一衣带水、隔海相望，深受中华文化影响，中国是上下五千年文明古国，经历多个朝代更迭。那么日本的历史朝代改如何划分？日本有没有朝代更迭的情况？
-         * img_url : http://www.todayonhistory.com/uploadfile/2016/0321/20160321020609124.jpg
-         * time : 时间: 2016-03-21
-         * author :   作者:山南慕北
-         * detail_url : http://www.todayonhistory.com/lishi/201603/32977.html
-         * view : 1612
+         * id : 6213
+         * country : 美国历史
+         * type : 人物故事
+         * title : 特朗普为什么又叫川普 特朗普的真实资产到底是多少
+         * description : 特朗普　　特朗普在美国总统大选中一直是自费参选，被视为一大土豪，他自称自己是百亿美元的富豪，那么实际上他到底拥有多少资产呢？　　特
+         * img_url : http://www.todayonhistory.com/uploadfile/2016/0708/20160708105419230.jpg
+         * time : 时间: 2016-07-08
+         * author :   作者:彼岸花开
+         * view : 42313
          */
 
         private int id;
@@ -55,7 +55,6 @@ public class ForeignHistory implements Serializable {
         private String img_url;
         private String time;
         private String author;
-        private String detail_url;
         private int view;
 
         public int getId() {
@@ -122,14 +121,6 @@ public class ForeignHistory implements Serializable {
             this.author = author;
         }
 
-        public String getDetail_url() {
-            return detail_url;
-        }
-
-        public void setDetail_url(String detail_url) {
-            this.detail_url = detail_url;
-        }
-
         public int getView() {
             return view;
         }
@@ -137,5 +128,28 @@ public class ForeignHistory implements Serializable {
         public void setView(int view) {
             this.view = view;
         }
+
+        @Override
+        public String toString() {
+            return "ForeignHistoriesBean{" +
+                    "id=" + id +
+                    ", country='" + country + '\'' +
+                    ", type='" + type + '\'' +
+                    ", title='" + title + '\'' +
+                    ", description='" + description + '\'' +
+                    ", img_url='" + img_url + '\'' +
+                    ", time='" + time + '\'' +
+                    ", author='" + author + '\'' +
+                    ", view=" + view +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ForeignHistory{" +
+                "code=" + code +
+                ", foreign_Histories=" + foreign_Histories +
+                '}';
     }
 }

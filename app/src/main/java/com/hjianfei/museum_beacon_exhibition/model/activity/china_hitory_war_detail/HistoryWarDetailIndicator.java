@@ -17,5 +17,5 @@ public interface HistoryWarDetailIndicator {
         void onError();
     }
 
-    void getHistoryWarDetail(String detail_url, onFinishListener listener);
+    void getHistoryWarDetail(String id, onFinishListener listener);
 }

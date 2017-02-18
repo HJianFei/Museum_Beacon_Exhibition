@@ -1,12 +1,17 @@
 package com.hjianfei.museum_beacon_exhibition.view.fragment.guide;
 
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -30,6 +35,7 @@ import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.guide.GuidePresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.fragment.guide.GuidePresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
+import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.utils.widget.radar_custom_view.RadarView;
 import com.hjianfei.museum_beacon_exhibition.view.activity.guide_detail.GuideDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.museum.MuseumActivity;
@@ -103,7 +109,10 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_guide, container, false);
         ButterKnife.bind(this, view);
-        time = new TimeCount(10000, 1000);
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, Constants.BAIDU_READ_PHONE_STATE);
+        }
+        time = new TimeCount(30000, 1000);
         //检测手机蓝牙是否开启
         checkBlueToothIsOpen();
         initView();
@@ -222,6 +231,9 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
             show_dialog = false;
             time.cancel();
         }
+//        LogUtils.d(Constants.TAG,brtBeacon.getName());
+        LogUtils.d(Constants.TAG, brtBeacon.getMajor() + "");
+        LogUtils.d(Constants.TAG, brtBeacon.getMinor() + "");
         if (brtBeacon.getMajor() == 2001) {//判断大范围的Beacon，一个区域
             mGuidePresenter.getStepView(brtBeacon.getMinor() + "");
         }
@@ -317,5 +329,23 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
             }
         });
         dialog.show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        switch (requestCode) {
+            // requestCode即所声明的权限获取码，在checkSelfPermission时传入
+            case Constants.BAIDU_READ_PHONE_STATE:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // 获取到权限，作相应处理（调用定位SDK应当确保相关权限均被授权，否则可能引起定位失败）
+                } else {
+                    // 没有获取到权限，做特殊处理
+                    ToastUtil.showToast(mContext, "定位权限未授予");
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

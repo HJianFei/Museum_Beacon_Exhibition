@@ -55,6 +55,7 @@ public class ChinaHistoryCultureDetailActivity extends AppCompatActivity impleme
     @BindView(R.id.history_culture_time)
     TextView historyCultureTime;
     private ChinaHistoryCultureDetailPresenter mPresenter;
+    private String id;
     private String title;
     private String author;
     private String time;
@@ -64,6 +65,7 @@ public class ChinaHistoryCultureDetailActivity extends AppCompatActivity impleme
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        id = getIntent().getStringExtra("id");
         title = getIntent().getStringExtra("title");
         author = getIntent().getStringExtra("author");
         time = getIntent().getStringExtra("time");
@@ -89,7 +91,7 @@ public class ChinaHistoryCultureDetailActivity extends AppCompatActivity impleme
 
     private void initData() {
         mPresenter = new ChinaHistoryCultureDetailPresenterImpl(this);
-        mPresenter.getChinaHistoryCultureDetail(title);
+        mPresenter.getChinaHistoryCultureDetail(id);
     }
 
     @Override
@@ -168,13 +170,13 @@ public class ChinaHistoryCultureDetailActivity extends AppCompatActivity impleme
         public void onResult(SHARE_MEDIA platform) {
             LogUtils.d("plat", "platform" + platform);
 
-            Toast.makeText(ChinaHistoryCultureDetailActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChinaHistoryCultureDetailActivity.this, "分享成功啦", Toast.LENGTH_SHORT).show();
 
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(ChinaHistoryCultureDetailActivity.this, platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChinaHistoryCultureDetailActivity.this, "分享失败啦", Toast.LENGTH_SHORT).show();
             if (t != null) {
                 LogUtils.d("throw", "throw:" + t.getMessage());
                 ToastUtil.showToast(ChinaHistoryCultureDetailActivity.this, "请允许使用SDCard权限");
@@ -183,7 +185,7 @@ public class ChinaHistoryCultureDetailActivity extends AppCompatActivity impleme
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(ChinaHistoryCultureDetailActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChinaHistoryCultureDetailActivity.this, "分享取消了", Toast.LENGTH_SHORT).show();
         }
     };
 

@@ -6,5 +6,5 @@ package com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_c
 
 public interface ChinaHistoryCultureDetailPresenter {
 
-    void getChinaHistoryCultureDetail(String title);
+    void getChinaHistoryCultureDetail(String id);
 }

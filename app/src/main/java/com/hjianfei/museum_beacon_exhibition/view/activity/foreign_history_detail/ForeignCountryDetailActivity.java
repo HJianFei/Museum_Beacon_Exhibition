@@ -63,6 +63,7 @@ public class ForeignCountryDetailActivity extends AppCompatActivity implements F
     @BindView(R.id.foreign_country_detail_appbar)
     AppBarLayout foreignCountryDetailAppbar;
     private ForeignCountryDetailPresenter mPresenter;
+    private String id;
     private String title;
     private SweetAlertDialog dialog;
     private String img_url;
@@ -71,6 +72,7 @@ public class ForeignCountryDetailActivity extends AppCompatActivity implements F
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        id = getIntent().getStringExtra("id");
         title = getIntent().getStringExtra("title");
         setContentView(R.layout.activity_foreign_country_detail);
         ButterKnife.bind(this);
@@ -80,7 +82,7 @@ public class ForeignCountryDetailActivity extends AppCompatActivity implements F
 
     private void initData() {
         mPresenter = new ForeignCountryDetailPresenterImpl(this);
-        mPresenter.getForeignCountryDetail(title);
+        mPresenter.getForeignCountryDetail(id);
     }
 
     private void initView() {
@@ -97,11 +99,11 @@ public class ForeignCountryDetailActivity extends AppCompatActivity implements F
 
     @Override
     public void onFinished(ForeignHistoryDetail foreignHistoryDetail) {
-        foreignDetail=foreignHistoryDetail;
+        foreignDetail = foreignHistoryDetail;
         foreignCountryDetailCollapsing.setTitle(title);
         foreignCountryDetailTitle.setText(foreignHistoryDetail.getForeign_History_Detail().getTitle());
-        foreignCountryDetailAuthor.setText("作者："+foreignHistoryDetail.getForeign_History_Detail().getAuthor());
-        foreignCountryDetailTime.setText("时间："+foreignHistoryDetail.getForeign_History_Detail().getTime());
+        foreignCountryDetailAuthor.setText("作者：" + foreignHistoryDetail.getForeign_History_Detail().getAuthor());
+        foreignCountryDetailTime.setText("时间：" + foreignHistoryDetail.getForeign_History_Detail().getTime());
         foreignCountryDetailContent.setText(foreignHistoryDetail.getForeign_History_Detail().getDetail());
         Glide.with(this).load(foreignHistoryDetail.getForeign_History_Detail().getImg_url()).into(foreignCountryDetailBgImg);
         img_url = foreignHistoryDetail.getForeign_History_Detail().getImg_url();
@@ -150,6 +152,7 @@ public class ForeignCountryDetailActivity extends AppCompatActivity implements F
                 break;
         }
     }
+
     private void doShare() {
         new ShareAction(ForeignCountryDetailActivity.this)
                 .withTitle("博物展")
@@ -170,13 +173,13 @@ public class ForeignCountryDetailActivity extends AppCompatActivity implements F
         public void onResult(SHARE_MEDIA platform) {
             LogUtils.d("plat", "platform" + platform);
 
-            Toast.makeText(ForeignCountryDetailActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ForeignCountryDetailActivity.this, "分享成功啦", Toast.LENGTH_SHORT).show();
 
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(ForeignCountryDetailActivity.this, platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ForeignCountryDetailActivity.this, "分享失败啦", Toast.LENGTH_SHORT).show();
             if (t != null) {
                 LogUtils.d("throw", "throw:" + t.getMessage());
                 ToastUtil.showToast(ForeignCountryDetailActivity.this, "请允许使用SDCard权限");
@@ -185,7 +188,7 @@ public class ForeignCountryDetailActivity extends AppCompatActivity implements F
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(ForeignCountryDetailActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ForeignCountryDetailActivity.this, "分享取消了", Toast.LENGTH_SHORT).show();
         }
     };
 

@@ -11,8 +11,9 @@ import java.util.List;
 
 public class Appreciates implements Serializable {
 
+
     /**
-     * appreciates : [{"id":249,"img_url":"http://www.gdmuseum.com/attachment/201607/12/2_1468311146ohU4.jpg","content":"明漳州窑青花缠枝花卉纹大罐","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=11304&subgid=15&gid=160&title=�໨��֮Լ","type":"青花瓷之约","view_count":109},{"id":1247,"img_url":"http://www.gdmuseum.com/attachment/201012/7/2_1291690560WvTg.jpg","content":"女贞","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=2100&subgid=110&gid=66&title=�вݱ걾","type":"自然标本","view_count":93},{"id":2074,"img_url":"http://www.gdmuseum.com/attachment/201401/22/2_139035040817pQ.jpg","content":"金饼","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=6594&subgid=15&gid=148&title=����ӡ��","type":"专题鉴赏","view_count":40},{"id":568,"img_url":"http://www.gdmuseum.com/attachment/201209/24/2_13484505522Y24.jpg","content":"孙克弘 秋艳图轴","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=4191&subgid=4968&gid=1&title=�黭","type":"珍品鉴赏","view_count":39},{"id":738,"img_url":"http://www.gdmuseum.com/attachment/201602/19/2_1455862128HdHe.jpg","content":"木雕龙纹雀替","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=9473&subgid=90&gid=18&title=��ľ��","type":"珍品鉴赏","view_count":37},{"id":2067,"img_url":"http://www.gdmuseum.com/attachment/201401/22/2_1390350407E2hx.jpg","content":"陶五联罐","detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=6590&subgid=8&gid=148&title=����ӡ��","type":"专题鉴赏","view_count":32}]
+     * appreciates : [{"id":1031,"img_url":"http://www.gdmuseum.com/attachment/201007/28/2_1280299449V1UI.jpg","content":"黄嘴白鹭","type":"自然标本","view_count":1,"museum_name":"广东省博物馆"},{"id":1032,"img_url":"http://www.gdmuseum.com/attachment/201007/28/2_12802997872bLS.jpg","content":"黄腹鼬","type":"自然标本","view_count":0,"museum_name":"广东省博物馆"},{"id":1033,"img_url":"http://www.gdmuseum.com/attachment/201007/28/2_1280299908435m.jpg","content":"小灵猫","type":"自然标本","view_count":0,"museum_name":"广东省博物馆"},{"id":1034,"img_url":"http://www.gdmuseum.com/attachment/201007/28/2_12802999777THA.jpg","content":"豪猪","type":"自然标本","view_count":0,"museum_name":"广东省博物馆"},{"id":1035,"img_url":"http://www.gdmuseum.com/attachment/201007/28/2_1280300431dHt3.jpg","content":"穿山甲","type":"自然标本","view_count":0,"museum_name":"广东省博物馆"},{"id":1036,"img_url":"http://www.gdmuseum.com/attachment/201007/28/2_1280300543E14h.jpg","content":"地龟","type":"自然标本","view_count":0,"museum_name":"广东省博物馆"},{"id":1037,"img_url":"http://www.gdmuseum.com/attachment/201007/28/2_1280300845BoOX.jpg","content":"猕猴","type":"自然标本","view_count":1,"museum_name":"广东省博物馆"},{"id":1038,"img_url":"http://www.gdmuseum.com/attachment/201203/29/2_1332982184mdyJ.jpg","content":"黑鹳","type":"自然标本","view_count":0,"museum_name":"广东省博物馆"},{"id":1039,"img_url":"http://www.gdmuseum.com/attachment/201203/29/2_1332982190Q2Jj.jpg","content":"中华秋沙鸭","type":"自然标本","view_count":0,"museum_name":"广东省博物馆"},{"id":1040,"img_url":"http://www.gdmuseum.com/attachment/201203/29/2_1332982201hDNZ.jpg","content":"黄腹角雉","type":"自然标本","view_count":0,"museum_name":"广东省博物馆"}]
      * code : 200
      */
 
@@ -35,22 +36,22 @@ public class Appreciates implements Serializable {
         this.appreciates = appreciates;
     }
 
-    public static class AppreciatesBean {
+    public static class AppreciatesBean implements Serializable{
         /**
-         * id : 249
-         * img_url : http://www.gdmuseum.com/attachment/201607/12/2_1468311146ohU4.jpg
-         * content : 明漳州窑青花缠枝花卉纹大罐
-         * detail_url : http://www.gdmuseum.com/curio_detail.php?picid=11304&subgid=15&gid=160&title=�໨��֮Լ
-         * type : 青花瓷之约
-         * view_count : 109
+         * id : 1031
+         * img_url : http://www.gdmuseum.com/attachment/201007/28/2_1280299449V1UI.jpg
+         * content : 黄嘴白鹭
+         * type : 自然标本
+         * view_count : 1
+         * museum_name : 广东省博物馆
          */
 
         private int id;
         private String img_url;
         private String content;
-        private String detail_url;
         private String type;
         private int view_count;
+        private String museum_name;
 
         public int getId() {
             return id;
@@ -76,14 +77,6 @@ public class Appreciates implements Serializable {
             this.content = content;
         }
 
-        public String getDetail_url() {
-            return detail_url;
-        }
-
-        public void setDetail_url(String detail_url) {
-            this.detail_url = detail_url;
-        }
-
         public String getType() {
             return type;
         }
@@ -99,5 +92,33 @@ public class Appreciates implements Serializable {
         public void setView_count(int view_count) {
             this.view_count = view_count;
         }
+
+        public String getMuseum_name() {
+            return museum_name;
+        }
+
+        public void setMuseum_name(String museum_name) {
+            this.museum_name = museum_name;
+        }
+
+        @Override
+        public String toString() {
+            return "AppreciatesBean{" +
+                    "id=" + id +
+                    ", img_url='" + img_url + '\'' +
+                    ", content='" + content + '\'' +
+                    ", type='" + type + '\'' +
+                    ", view_count=" + view_count +
+                    ", museum_name='" + museum_name + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Appreciates{" +
+                "code=" + code +
+                ", appreciates=" + appreciates +
+                '}';
     }
 }

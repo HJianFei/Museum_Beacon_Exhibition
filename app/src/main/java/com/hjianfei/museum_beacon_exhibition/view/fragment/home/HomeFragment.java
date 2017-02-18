@@ -213,7 +213,7 @@ public class HomeFragment extends Fragment implements HomeView {
             @Override
             public void onItemClick(ViewGroup parent, View view, Object o, int position) {
                 Intent intent = new Intent(getActivity(), AppreciateDetailActivity.class);
-                intent.putExtra("cultural_detail_url", appreciatesBeans.get(position).getDetail_url());
+                intent.putExtra("id", appreciatesBeans.get(position).getId()+"");
                 intent.putExtra("cultural_name", appreciatesBeans.get(position).getContent());
                 intent.putExtra("post_type", "文物鉴赏");
                 ActivityOptionsCompat options =

@@ -19,7 +19,7 @@ public interface MuseumDetailIndicator {
         void onError();
     }
 
-    void getMuseumDetailInfo(String museum_name, onFinishedListener listener);
+    void getMuseumDetailInfo(String id, onFinishedListener listener);
 
     void saveCollection(Map<String, Object> map, onFinishedListener listener);
 }

@@ -9,9 +9,10 @@ import java.util.List;
 
 public class ChinaHistoryHeyDay implements Serializable {
 
+
     /**
      * code : 200
-     * china_History_Hey_Days : [{"title":"七一五反革命政变","img_url":"http://www.todayonhistory.com/uploadfile/2016/1118/thumb_324_216_20161118103649397.jpg","detail_url":"http://www.todayonhistory.com/lishi/dsj/53284.html"},{"title":"七国之乱","img_url":"http://www.todayonhistory.com/uploadfile/2016/0518/thumb_324_216_20160518093702640.jpg","detail_url":"http://www.todayonhistory.com/lishi/dsj/39730.html"},{"title":"三家分晋","img_url":"http://www.todayonhistory.com/uploadfile/2016/0516/thumb_324_216_20160516044614438.jpg","detail_url":"http://www.todayonhistory.com/lishi/dsj/39483.html"},{"title":"三藩之乱","img_url":"http://www.todayonhistory.com/uploadfile/2016/0519/thumb_324_216_20160519091440665.jpg","detail_url":"http://www.todayonhistory.com/lishi/dsj/39883.html"},{"title":"东北易帜","img_url":"http://www.todayonhistory.com/uploadfile/2016/0517/thumb_324_216_20160517035445114.jpg","detail_url":"http://www.todayonhistory.com/lishi/dsj/39671.html"},{"title":"义和团运动","img_url":"http://www.todayonhistory.com/uploadfile/2016/0517/thumb_324_216_20160517033239927.jpg","detail_url":"http://www.todayonhistory.com/lishi/dsj/39663.html"},{"title":"五胡乱华","img_url":"http://www.todayonhistory.com/uploadfile/2016/0518/thumb_324_216_20160518110446242.jpg","detail_url":"http://www.todayonhistory.com/lishi/dsj/39761.html"},{"title":"仁宗盛治","img_url":"http://www.todayonhistory.com/uploadfile/2016/0518/thumb_324_216_20160518033159380.jpg","detail_url":"http://www.todayonhistory.com/lishi/dsj/39819.html"},{"title":"仁宣之治","img_url":"http://www.todayonhistory.com/uploadfile/2016/0518/thumb_324_216_20160518045255516.jpg","detail_url":"http://www.todayonhistory.com/lishi/dsj/39852.html"},{"title":"元和中兴","img_url":"http://www.todayonhistory.com/uploadfile/2016/0518/thumb_324_216_20160518031654301.jpg","detail_url":"http://www.todayonhistory.com/lishi/dsj/39810.html"}]
+     * china_History_Hey_Days : [{"id":1,"title":"七一五反革命政变","img_url":"http://www.todayonhistory.com/uploadfile/2016/1118/thumb_324_216_20161118103649397.jpg"},{"id":2,"title":"七国之乱","img_url":"http://www.todayonhistory.com/uploadfile/2016/0518/thumb_324_216_20160518093702640.jpg"},{"id":3,"title":"三家分晋","img_url":"http://www.todayonhistory.com/uploadfile/2016/0516/thumb_324_216_20160516044614438.jpg"},{"id":4,"title":"三藩之乱","img_url":"http://www.todayonhistory.com/uploadfile/2016/0519/thumb_324_216_20160519091440665.jpg"},{"id":5,"title":"东北易帜","img_url":"http://www.todayonhistory.com/uploadfile/2016/0517/thumb_324_216_20160517035445114.jpg"},{"id":6,"title":"义和团运动","img_url":"http://www.todayonhistory.com/uploadfile/2016/0517/thumb_324_216_20160517033239927.jpg"},{"id":7,"title":"五胡乱华","img_url":"http://www.todayonhistory.com/uploadfile/2016/0518/thumb_324_216_20160518110446242.jpg"},{"id":8,"title":"仁宗盛治","img_url":"http://www.todayonhistory.com/uploadfile/2016/0518/thumb_324_216_20160518033159380.jpg"},{"id":9,"title":"仁宣之治","img_url":"http://www.todayonhistory.com/uploadfile/2016/0518/thumb_324_216_20160518045255516.jpg"},{"id":10,"title":"元和中兴","img_url":"http://www.todayonhistory.com/uploadfile/2016/0518/thumb_324_216_20160518031654301.jpg"}]
      */
 
     private int code;
@@ -33,16 +34,24 @@ public class ChinaHistoryHeyDay implements Serializable {
         this.china_History_Hey_Days = china_History_Hey_Days;
     }
 
-    public static class ChinaHistoryHeyDaysBean implements Serializable {
+    public static class ChinaHistoryHeyDaysBean implements Serializable{
         /**
+         * id : 1
          * title : 七一五反革命政变
          * img_url : http://www.todayonhistory.com/uploadfile/2016/1118/thumb_324_216_20161118103649397.jpg
-         * detail_url : http://www.todayonhistory.com/lishi/dsj/53284.html
          */
 
+        private int id;
         private String title;
         private String img_url;
-        private String detail_url;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
 
         public String getTitle() {
             return title;
@@ -60,12 +69,21 @@ public class ChinaHistoryHeyDay implements Serializable {
             this.img_url = img_url;
         }
 
-        public String getDetail_url() {
-            return detail_url;
+        @Override
+        public String toString() {
+            return "ChinaHistoryHeyDaysBean{" +
+                    "id=" + id +
+                    ", title='" + title + '\'' +
+                    ", img_url='" + img_url + '\'' +
+                    '}';
         }
+    }
 
-        public void setDetail_url(String detail_url) {
-            this.detail_url = detail_url;
-        }
+    @Override
+    public String toString() {
+        return "ChinaHistoryHeyDay{" +
+                "code=" + code +
+                ", china_History_Hey_Days=" + china_History_Hey_Days +
+                '}';
     }
 }

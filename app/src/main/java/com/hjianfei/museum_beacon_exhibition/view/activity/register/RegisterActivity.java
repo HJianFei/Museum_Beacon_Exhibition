@@ -304,6 +304,10 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
 
     @Override
     public void showError() {
+        if (null != dialog) {
+            dialog.dismiss();
+            ToastUtil.showToast(RegisterActivity.this, "网络出错，稍后再试");
+        }
 
     }
 

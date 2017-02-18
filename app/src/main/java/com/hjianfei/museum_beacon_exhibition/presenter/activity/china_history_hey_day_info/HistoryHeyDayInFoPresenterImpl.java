@@ -37,10 +37,10 @@ public class HistoryHeyDayInFoPresenterImpl implements HistoryHeyDayInFoPresente
     }
 
     @Override
-    public void getHistoryHeyDayInFo(String title) {
+    public void getHistoryHeyDayInFo(String id) {
         if (mView != null) {
             mView.showDialog();
         }
-        mInFoIndicator.getHistoryHeyDayInFo(title, this);
+        mInFoIndicator.getHistoryHeyDayInFo(id, this);
     }
 }

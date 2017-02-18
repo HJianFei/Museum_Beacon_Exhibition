@@ -9,9 +9,10 @@ import java.util.List;
 
 public class ChinaHistoryBigThing implements Serializable {
 
+
     /**
      * code : 200
-     * china_History_Big_Things : [{"detail_url":"http://www.todayonhistory.com/lishi/201510/19614.html","type":"上古","title":"什么是禅让制？ 上古时期的禅让制"},{"detail_url":"http://www.todayonhistory.com/lishi/201510/19615.html","type":"上古","title":"仓颉造字 仓颉造了哪些字？"},{"detail_url":"http://www.todayonhistory.com/lishi/201510/19673.html","type":"上古","title":"上古神话传说之神农尝百草"},{"detail_url":"http://www.todayonhistory.com/lishi/201510/19692.html","type":"上古","title":"上古神话传说之盘古开天辟地"},{"detail_url":"http://www.todayonhistory.com/lishi/201510/19694.html","type":"上古","title":"上古神话传说之女娲造人"},{"detail_url":"http://www.todayonhistory.com/lishi/201510/19697.html","type":"上古","title":"上古神话传说之燧人取火"},{"detail_url":"http://www.todayonhistory.com/lishi/201510/19701.html","type":"上古","title":"细数颛顼、帝喾的八大功德"}]
+     * china_History_Big_Things : [{"id":3,"type":"上古","title":"什么是禅让制？ 上古时期的禅让制"},{"id":4,"type":"上古","title":"仓颉造字 仓颉造了哪些字？"},{"id":7,"type":"上古","title":"上古神话传说之神农尝百草"},{"id":12,"type":"上古","title":"上古神话传说之盘古开天辟地"},{"id":13,"type":"上古","title":"上古神话传说之女娲造人"},{"id":14,"type":"上古","title":"上古神话传说之燧人取火"},{"id":15,"type":"上古","title":"细数颛顼、帝喾的八大功德"},{"id":196,"type":"上古","title":"123"}]
      */
 
     private int code;
@@ -35,21 +36,21 @@ public class ChinaHistoryBigThing implements Serializable {
 
     public static class ChinaHistoryBigThingsBean implements Serializable {
         /**
-         * detail_url : http://www.todayonhistory.com/lishi/201510/19614.html
+         * id : 3
          * type : 上古
          * title : 什么是禅让制？ 上古时期的禅让制
          */
 
-        private String detail_url;
+        private int id;
         private String type;
         private String title;
 
-        public String getDetail_url() {
-            return detail_url;
+        public int getId() {
+            return id;
         }
 
-        public void setDetail_url(String detail_url) {
-            this.detail_url = detail_url;
+        public void setId(int id) {
+            this.id = id;
         }
 
         public String getType() {
@@ -67,5 +68,22 @@ public class ChinaHistoryBigThing implements Serializable {
         public void setTitle(String title) {
             this.title = title;
         }
+
+        @Override
+        public String toString() {
+            return "ChinaHistoryBigThingsBean{" +
+                    "id=" + id +
+                    ", type='" + type + '\'' +
+                    ", title='" + title + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ChinaHistoryBigThing{" +
+                "code=" + code +
+                ", china_History_Big_Things=" + china_History_Big_Things +
+                '}';
     }
 }

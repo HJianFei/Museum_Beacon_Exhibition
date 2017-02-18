@@ -37,11 +37,11 @@ public class ChinaHistoryBigThingDetailPresenterImpl implements ChinaHistoryBigT
     }
 
     @Override
-    public void getChinaHistoryBigThingDetail(String title) {
+    public void getChinaHistoryBigThingDetail(String id) {
 
         if (mDetailView != null) {
             mDetailView.showDialog();
         }
-        mIndicator.getChinaHistoryBigThingDetail(title, this);
+        mIndicator.getChinaHistoryBigThingDetail(id, this);
     }
 }

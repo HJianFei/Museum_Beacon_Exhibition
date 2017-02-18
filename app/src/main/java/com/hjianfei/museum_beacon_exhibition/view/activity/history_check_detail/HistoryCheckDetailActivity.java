@@ -51,6 +51,7 @@ public class HistoryCheckDetailActivity extends AppCompatActivity implements His
     @BindView(R.id.history_check_detail_fab)
     FloatingActionButton historyCheckDetailFab;
     private HistoryCheckDetailPresenter mPresenter;
+    private String id;
     private String title;
     private HistoryCheckDetail mCheckDetail;
     private SweetAlertDialog dialog;
@@ -58,6 +59,7 @@ public class HistoryCheckDetailActivity extends AppCompatActivity implements His
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        id = getIntent().getStringExtra("id");
         title = getIntent().getStringExtra("title");
         setContentView(R.layout.activity_history_check_detail);
         ButterKnife.bind(this);
@@ -79,7 +81,7 @@ public class HistoryCheckDetailActivity extends AppCompatActivity implements His
 
     private void initData() {
         mPresenter = new HistoryCheckDetailPresenterImpl(this);
-        mPresenter.getHistoryHCheckDetail(title);
+        mPresenter.getHistoryHCheckDetail(id);
     }
 
     @Override
@@ -155,13 +157,13 @@ public class HistoryCheckDetailActivity extends AppCompatActivity implements His
         public void onResult(SHARE_MEDIA platform) {
             LogUtils.d("plat", "platform" + platform);
 
-            Toast.makeText(HistoryCheckDetailActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(HistoryCheckDetailActivity.this, "分享成功啦", Toast.LENGTH_SHORT).show();
 
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(HistoryCheckDetailActivity.this, platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(HistoryCheckDetailActivity.this, "分享失败啦", Toast.LENGTH_SHORT).show();
             if (t != null) {
                 LogUtils.d("throw", "throw:" + t.getMessage());
                 ToastUtil.showToast(HistoryCheckDetailActivity.this, "请允许使用SDCard权限");
@@ -170,7 +172,7 @@ public class HistoryCheckDetailActivity extends AppCompatActivity implements His
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(HistoryCheckDetailActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(HistoryCheckDetailActivity.this, " 分享取消了", Toast.LENGTH_SHORT).show();
         }
     };
 

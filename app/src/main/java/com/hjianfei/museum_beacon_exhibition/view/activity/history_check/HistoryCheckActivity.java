@@ -84,6 +84,7 @@ public class HistoryCheckActivity extends AppCompatActivity implements HistoryCh
             @Override
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(HistoryCheckActivity.this, HistoryCheckDetailActivity.class);
+                intent.putExtra("id", hiChecksBeenList.get(i).getId()+"");
                 intent.putExtra("title", hiChecksBeenList.get(i).getTitle());
                 startActivity(intent);
 

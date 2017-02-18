@@ -37,10 +37,10 @@ public class HistoryWarDetailPresenterImpl implements HistoryWarDetailPresenter,
     }
 
     @Override
-    public void getHistoryWarDetail(String detail_url) {
+    public void getHistoryWarDetail(String id) {
         if (mView != null) {
             mView.showDialog();
-            mIndicator.getHistoryWarDetail(detail_url, this);
+            mIndicator.getHistoryWarDetail(id, this);
         }
     }
 }

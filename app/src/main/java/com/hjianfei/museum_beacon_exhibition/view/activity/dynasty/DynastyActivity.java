@@ -97,7 +97,7 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
             public void onItemClick(ViewGroup parent, View view, Object o, int position) {
 
                 Intent intent = new Intent(DynastyActivity.this, ChinaHistoryPeopleDetailActivity.class);
-                intent.putExtra("detail_url", chinaHistoryPeoplesBeanList.get(position).getDetail_url());
+                intent.putExtra("id", chinaHistoryPeoplesBeanList.get(position).getId()+"");
                 intent.putExtra("img_url", chinaHistoryPeoplesBeanList.get(position).getImg_url());
                 startActivity(intent);
             }
@@ -133,6 +133,7 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
             public void onItemClick(int position, TextView textView) {
                 Intent intent = new Intent(DynastyActivity.this, ChinaHistoryBigThingDetailActivity.class);
                 intent.putExtra("big_thing_title", info.get(position));
+                intent.putExtra("id", chinaHistoryBigThing.getChina_History_Big_Things().get(position).getId() + "");
                 startActivity(intent);
             }
         });

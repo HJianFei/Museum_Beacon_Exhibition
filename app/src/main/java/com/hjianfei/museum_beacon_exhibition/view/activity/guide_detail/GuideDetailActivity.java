@@ -33,7 +33,6 @@ import com.hjianfei.museum_beacon_exhibition.presenter.base.BasePresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.base.BasePresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.utils.ImageVideoThumbUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
-import com.hjianfei.museum_beacon_exhibition.utils.SPUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.utils.widget.CustomVideoView;
 import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
@@ -43,9 +42,6 @@ import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMVideo;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -146,16 +142,16 @@ public class GuideDetailActivity extends AppCompatActivity implements GuideDetai
                     doShare();
                 }
                 break;
-            case R.id.guide_detail_love:
-                String phone = (String) SPUtils.getParam(GuideDetailActivity.this, Constants.PHONE, "");
-                Map<String, Object> map = new HashMap<>();
-                map.put("user_phone", phone);
-                map.put("post_id", beaconAppreciate.getBeaconAppreciate().getTitle());
-                map.put("post_type", "文物鉴赏");
-                map.put("img_url", beaconAppreciate.getBeaconAppreciate().getImg_url());
-                map.put("detail_url", beaconAppreciate.getBeaconAppreciate().getMinor());
-                mBasePresenter.onSaveCollection(map);
-                break;
+//            case R.id.guide_detail_love:
+//                String phone = (String) SPUtils.getParam(GuideDetailActivity.this, Constants.PHONE, "");
+//                Map<String, Object> map = new HashMap<>();
+//                map.put("user_phone", phone);
+//                map.put("post_id", beaconAppreciate.getBeaconAppreciate().getTitle());
+//                map.put("post_type", "文物鉴赏");
+//                map.put("img_url", beaconAppreciate.getBeaconAppreciate().getImg_url());
+//                map.put("detail_url", beaconAppreciate.getBeaconAppreciate().getMinor());
+//                mBasePresenter.onSaveCollection(map);
+//                break;
         }
         return true;
 
@@ -226,13 +222,13 @@ public class GuideDetailActivity extends AppCompatActivity implements GuideDetai
         public void onResult(SHARE_MEDIA platform) {
             LogUtils.d("plat", "platform" + platform);
 
-            Toast.makeText(GuideDetailActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(GuideDetailActivity.this, "分享成功啦", Toast.LENGTH_SHORT).show();
 
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(GuideDetailActivity.this, platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(GuideDetailActivity.this, "分享失败啦", Toast.LENGTH_SHORT).show();
             if (t != null) {
                 LogUtils.d("throw", "throw:" + t.getMessage());
                 ToastUtil.showToast(GuideDetailActivity.this, "请允许使用SDCard权限");
@@ -241,7 +237,7 @@ public class GuideDetailActivity extends AppCompatActivity implements GuideDetai
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(GuideDetailActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(GuideDetailActivity.this, "分享取消了", Toast.LENGTH_SHORT).show();
         }
     };
 

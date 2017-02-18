@@ -15,8 +15,8 @@ import rx.schedulers.Schedulers;
 
 public class ForeignHistoryDetailIndicatorImpl implements ForeignHistoryDetailIndicator {
     @Override
-    public void getForeignCountryDetail(String title, final onFinishListener listener) {
-        NetWorkUtils.getApi().getForeignHistoryDetail(title)
+    public void getForeignCountryDetail(String id, final onFinishListener listener) {
+        NetWorkUtils.getApi().getForeignHistoryDetail(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ForeignHistoryDetail>() {

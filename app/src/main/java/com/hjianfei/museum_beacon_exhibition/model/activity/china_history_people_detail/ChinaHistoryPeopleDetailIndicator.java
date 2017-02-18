@@ -17,5 +17,5 @@ public interface ChinaHistoryPeopleDetailIndicator {
         void onError();
     }
 
-    void getHistoryPeopleDetail(String detail_url, onFinishListener listener);
+    void getHistoryPeopleDetail(String id, onFinishListener listener);
 }

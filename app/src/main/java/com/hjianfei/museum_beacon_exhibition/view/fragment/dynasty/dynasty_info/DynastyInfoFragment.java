@@ -120,6 +120,7 @@ public class DynastyInfoFragment extends Fragment implements DynastyInfoView {
             @Override
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(mContext, ChinaHistoryHistoryDetailActivity.class);
+                intent.putExtra("id", chinaHistoryHistoriesBeanList.get(i).getId()+"");
                 intent.putExtra("title", chinaHistoryHistoriesBeanList.get(i).getTitle());
                 intent.putExtra("author", chinaHistoryHistoriesBeanList.get(i).getAuthor());
                 intent.putExtra("time", chinaHistoryHistoriesBeanList.get(i).getTime());

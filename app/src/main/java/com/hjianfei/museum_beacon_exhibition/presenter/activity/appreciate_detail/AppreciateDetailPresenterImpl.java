@@ -24,8 +24,8 @@ public class AppreciateDetailPresenterImpl implements AppreciateDetailPresenter,
     }
 
     @Override
-    public void onInitAppreciateDetailData(String detail_url) {
-        mAppreciateDetailIndicator.getAppreciateDetail(detail_url, this);
+    public void onInitAppreciateDetailData(String id) {
+        mAppreciateDetailIndicator.getAppreciateDetail(id, this);
     }
 
     @Override

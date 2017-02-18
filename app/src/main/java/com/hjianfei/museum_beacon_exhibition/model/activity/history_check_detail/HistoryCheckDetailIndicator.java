@@ -17,5 +17,5 @@ public interface HistoryCheckDetailIndicator {
         void onError();
     }
 
-    void getHistoryHCheckDetail(String title, onFinishListener listener);
+    void getHistoryHCheckDetail(String id, onFinishListener listener);
 }

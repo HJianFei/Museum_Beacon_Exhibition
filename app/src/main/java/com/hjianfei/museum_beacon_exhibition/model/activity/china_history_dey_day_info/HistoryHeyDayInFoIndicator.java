@@ -17,5 +17,5 @@ public interface HistoryHeyDayInFoIndicator {
         void onError();
     }
 
-    void getHistoryHeyDayInFo(String title, onFinishListener listener);
+    void getHistoryHeyDayInFo(String id, onFinishListener listener);
 }

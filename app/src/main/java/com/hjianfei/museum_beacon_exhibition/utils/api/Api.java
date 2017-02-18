@@ -69,7 +69,7 @@ public interface Api {
 
     //展览详情
     @GET(Urls.APPRECIATE_DETAIL)
-    Observable<AppreciateDetail> getAppreciateDetails(@Query("detail_url") String detail_url);
+    Observable<AppreciateDetail> getAppreciateDetails(@Query("id") String id);
 
     //获取全部展览信息(展览预告)
     @GET(Urls.ALL_EXHIBITION_BY_TYPE)
@@ -85,7 +85,7 @@ public interface Api {
 
     //获取博物馆详情信息
     @GET(Urls.GET_MUSEUM_DETAIL)
-    Observable<MuseumDetail> getMuseumDetail(@Query("museum_name") String museum_name);
+    Observable<MuseumDetail> getMuseumDetail(@Query("id") String id);
 
     //用户注册
     @POST(Urls.REGISTER_USER)
@@ -261,7 +261,7 @@ public interface Api {
      * @return
      */
     @GET(Urls.GET_HISTORY_BIG_THING_DETAIL)
-    Observable<ChinaHistoryBigThingDetail> getChinaHistoryBigThingDetail(@Query("title") String title);
+    Observable<ChinaHistoryBigThingDetail> getChinaHistoryBigThingDetail(@Query("id") String id);
 
     /**
      * 获取历史人物列表
@@ -281,7 +281,7 @@ public interface Api {
      * @return
      */
     @GET(Urls.GET_HISTORY_PEOPLE_DETAIL)
-    Observable<HistoryPeopleDetail> getChinaHistoryPeopleDetail(@Query("detail_url") String detail_url);
+    Observable<HistoryPeopleDetail> getChinaHistoryPeopleDetail(@Query("id") String id);
 
     /**
      * 获取朝代历史文化详情
@@ -290,7 +290,7 @@ public interface Api {
      * @return
      */
     @GET(Urls.GET_HISTORY_CULTURE_DETAIL)
-    Observable<ChinaHistoryCultureDetail> getChinaHistoryCultureDetail(@Query("title") String title);
+    Observable<ChinaHistoryCultureDetail> getChinaHistoryCultureDetail(@Query("id") String id);
 
     /**
      * 获取朝代历史详情
@@ -299,7 +299,7 @@ public interface Api {
      * @return
      */
     @GET(Urls.GET_HISTORY_HISTORY_DETAIL)
-    Observable<ChinaHistoryHistoryDetail> getChinaHistoryHistoryDetail(@Query("title") String title);
+    Observable<ChinaHistoryHistoryDetail> getChinaHistoryHistoryDetail(@Query("id") String id);
 
     /**
      * 获取历史战争
@@ -319,7 +319,7 @@ public interface Api {
      * @return
      */
     @GET(Urls.GET_HISTORY_OLDEN_WAR_DETAIL)
-    Observable<HistoryWarDetail> getHistoryOldenWarDetail(@Query("detail_url") String detail_url);
+    Observable<HistoryWarDetail> getHistoryOldenWarDetail(@Query("id") String id);
 
     /**
      * 获取历史盛世列表
@@ -338,7 +338,7 @@ public interface Api {
      * @return
      */
     @GET(Urls.GET_HISTORY_HEY_DAY_INFO)
-    Observable<HistoryHeyDayInFo> getHistoryHeyDayInFo(@Query("title") String title);
+    Observable<HistoryHeyDayInFo> getHistoryHeyDayInFo(@Query("id") String id);
 
     /**
      * 获取历史盘点列表
@@ -357,7 +357,7 @@ public interface Api {
      * @return
      */
     @GET(Urls.GET_HISTORY_CHECK_DETAIL)
-    Observable<HistoryCheckDetail> getHistoryCheckDetail(@Query("title") String title);
+    Observable<HistoryCheckDetail> getHistoryCheckDetail(@Query("id") String id);
 
     /**
      * 获取外国历史列表
@@ -378,6 +378,6 @@ public interface Api {
      * @return
      */
     @GET(Urls.GET_FOREIGN_HISTORY_DETAIL)
-    Observable<ForeignHistoryDetail> getForeignHistoryDetail(@Query("title") String title);
+    Observable<ForeignHistoryDetail> getForeignHistoryDetail(@Query("id") String id);
 
 }

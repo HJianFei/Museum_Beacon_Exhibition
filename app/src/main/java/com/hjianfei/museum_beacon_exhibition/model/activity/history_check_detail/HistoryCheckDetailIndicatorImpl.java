@@ -13,8 +13,8 @@ import rx.schedulers.Schedulers;
 
 public class HistoryCheckDetailIndicatorImpl implements HistoryCheckDetailIndicator {
     @Override
-    public void getHistoryHCheckDetail(String title, final onFinishListener listener) {
-        NetWorkUtils.getApi().getHistoryCheckDetail(title)
+    public void getHistoryHCheckDetail(String id, final onFinishListener listener) {
+        NetWorkUtils.getApi().getHistoryCheckDetail(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HistoryCheckDetail>() {

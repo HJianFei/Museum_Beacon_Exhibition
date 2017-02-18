@@ -18,8 +18,8 @@ import rx.schedulers.Schedulers;
 
 public class MuseumDetailIndicatorImpl implements MuseumDetailIndicator {
     @Override
-    public void getMuseumDetailInfo(String museum_name, final onFinishedListener listener) {
-        NetWorkUtils.getApi().getMuseumDetail(museum_name)
+    public void getMuseumDetailInfo(String id, final onFinishedListener listener) {
+        NetWorkUtils.getApi().getMuseumDetail(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<MuseumDetail>() {

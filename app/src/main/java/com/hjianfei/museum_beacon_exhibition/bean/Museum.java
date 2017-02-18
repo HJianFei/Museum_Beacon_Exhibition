@@ -12,7 +12,7 @@ public class Museum implements Serializable {
 
     /**
      * code : 200
-     * museums : [{"museum_id":10,"museum_name":"福建博物馆","museum_img":"http://img155.poco.cn/mypoco/myphoto/20090706/21/40825267200907062114221517973508412_003.jpg","museum_title":"福建博物院坐落于西湖公园，新馆于2002年10月建成，占地面积6公顷，建筑面积3.6万平方米。主体建筑是数个具有福建文化特色元素的集合","view_count":321,"type":"[陶瓷器,玉石器,自然科技,书画,文献,竹木漆器,织绣,杂项,金属]"},{"museum_id":17,"museum_name":"安徽博物院","museum_img":"http://www.archreport.com.cn/uploadfile/2013/1106/20131106044307817.jpg","museum_title":"安徽省博物馆成立于1956年11 月14日，是当时全国四大样板馆之一。2010年12月28日更名为安徽博物院","view_count":223,"type":"[青銅器,陶瓷器,书画,金银玉器,文房四宝,古代工艺,古生物化石]"},{"museum_id":3,"museum_name":"旅顺博物馆","museum_img":"http://p.chanyouji.cn/95078/1389166758743p18docjqcqk4116s11j3b1mjm8shn.jpg","museum_title":"旅顺博物馆坐落于有\u201c半部中国近代史\u201d之称的大连市旅顺口区，是大连市属的历史艺术性博物馆","view_count":212,"type":"[古丝绸之路文物,佛教艺术品,金石文物,陶瓷器,书画,工艺品,善本档案,大连出土文物,古代日本陶瓷书画]"},{"museum_id":8,"museum_name":"陕西博物馆","museum_img":"http://img1.cache.netease.com/catchpic/E/E1/E18F731573E563088755A6E8C7E18B34.jpg","museum_title":"陕西历史博物馆位于西安大雁塔的西北侧，筹建于1983年，1991年6月20日落成开放，是中国第一座大型现代化国家级博物馆","view_count":122,"type":"[藏馆精品]"},{"museum_id":12,"museum_name":"广东省博物馆","museum_img":"http://www.chezhan168.com/userfiles/image/20151221/21133056edf7f86b0f0984.jpg","museum_title":"广东省博物馆于1957年开始筹建，1959年10月1日，广东省博物馆及其所辖的广州鲁迅纪念馆正式对外开放","view_count":95,"type":"[青花瓷之约,珍品鉴赏,自然标本,专题鉴赏]"},{"museum_id":4,"museum_name":"大连现代博物馆","museum_img":"http://www.qdexpo.cn/file/2012091216555173499.jpg","museum_title":"大连现代博物馆位于市区南部的星海湾，是世纪之交大连市政府斥资建设的大型文化设施","view_count":6}]
+     * museums : [{"museum_id":10,"museum_name":"福建博物院","museum_img":"http://img155.poco.cn/mypoco/myphoto/20090706/21/40825267200907062114221517973508412_003.jpg","museum_title":"福建博物院坐落于西湖公园，新馆于2002年10月建成，占地面积6公顷，建筑面积3.6万平方米。主体建筑是数个具有福建文化特色元素的集合","view_count":388,"type":"[陶瓷器,玉石器,自然科技,书画,文献,竹木漆器,织绣,杂项,金属]"},{"museum_id":17,"museum_name":"安徽博物院","museum_img":"http://www.archreport.com.cn/uploadfile/2013/1106/20131106044307817.jpg","museum_title":"安徽省博物馆成立于1956年11 月14日，是当时全国四大样板馆之一。2010年12月28日更名为安徽博物院","view_count":247,"type":"[青銅器,陶瓷器,书画,金银玉器,文房四宝,古代工艺,古生物化石]"},{"museum_id":3,"museum_name":"旅顺博物馆","museum_img":"http://p.chanyouji.cn/95078/1389166758743p18docjqcqk4116s11j3b1mjm8shn.jpg","museum_title":"旅顺博物馆坐落于有\u201c半部中国近代史\u201d之称的大连市旅顺口区，是大连市属的历史艺术性博物馆","view_count":225,"type":"[古丝绸之路文物,佛教艺术品,金石文物,陶瓷器,书画,工艺品,善本档案,大连出土文物,古代日本陶瓷书画]"},{"museum_id":8,"museum_name":"陕西博物馆","museum_img":"http://img1.cache.netease.com/catchpic/E/E1/E18F731573E563088755A6E8C7E18B34.jpg","museum_title":"陕西历史博物馆位于西安大雁塔的西北侧，筹建于1983年，1991年6月20日落成开放，是中国第一座大型现代化国家级博物馆","view_count":133,"type":"[藏馆精品]"},{"museum_id":12,"museum_name":"广东省博物馆","museum_img":"http://www.chezhan168.com/userfiles/image/20151221/21133056edf7f86b0f0984.jpg","museum_title":"广东省博物馆于1957年开始筹建，1959年10月1日，广东省博物馆及其所辖的广州鲁迅纪念馆正式对外开放","view_count":102,"type":"[青花瓷之约,珍品鉴赏,自然标本,专题鉴赏]"},{"museum_id":4,"museum_name":"大连现代博物馆","museum_img":"http://www.qdexpo.cn/file/2012091216555173499.jpg","museum_title":"大连现代博物馆位于市区南部的星海湾，是世纪之交大连市政府斥资建设的大型文化设施","view_count":18,"type":"[精品鉴赏]"}]
      */
 
     private int code;
@@ -34,13 +34,13 @@ public class Museum implements Serializable {
         this.museums = museums;
     }
 
-    public static class MuseumsBean {
+    public static class MuseumsBean implements Serializable {
         /**
          * museum_id : 10
-         * museum_name : 福建博物馆
+         * museum_name : 福建博物院
          * museum_img : http://img155.poco.cn/mypoco/myphoto/20090706/21/40825267200907062114221517973508412_003.jpg
          * museum_title : 福建博物院坐落于西湖公园，新馆于2002年10月建成，占地面积6公顷，建筑面积3.6万平方米。主体建筑是数个具有福建文化特色元素的集合
-         * view_count : 321
+         * view_count : 388
          * type : [陶瓷器,玉石器,自然科技,书画,文献,竹木漆器,织绣,杂项,金属]
          */
 
@@ -98,5 +98,25 @@ public class Museum implements Serializable {
         public void setType(String type) {
             this.type = type;
         }
+
+        @Override
+        public String toString() {
+            return "MuseumsBean{" +
+                    "museum_id=" + museum_id +
+                    ", museum_name='" + museum_name + '\'' +
+                    ", museum_img='" + museum_img + '\'' +
+                    ", museum_title='" + museum_title + '\'' +
+                    ", view_count=" + view_count +
+                    ", type='" + type + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Museum{" +
+                "code=" + code +
+                ", museums=" + museums +
+                '}';
     }
 }

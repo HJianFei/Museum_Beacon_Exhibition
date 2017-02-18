@@ -60,12 +60,14 @@ public class ChinaHistoryBigThingDetailActivity extends AppCompatActivity implem
     private String big_thing_title;
     private ChinaHistoryBigThingDetail mBigThingDetail;
     private SweetAlertDialog dialog;
+    private String id;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         big_thing_title = getIntent().getStringExtra("big_thing_title");
+        id = getIntent().getStringExtra("id");
         setContentView(R.layout.activity_china_history_big_thing_detail);
         ButterKnife.bind(this);
         initView();
@@ -74,7 +76,7 @@ public class ChinaHistoryBigThingDetailActivity extends AppCompatActivity implem
 
     private void initData() {
         mPresenter = new ChinaHistoryBigThingDetailPresenterImpl(this);
-        mPresenter.getChinaHistoryBigThingDetail(big_thing_title);
+        mPresenter.getChinaHistoryBigThingDetail(id);
     }
 
     private void initView() {
@@ -144,6 +146,7 @@ public class ChinaHistoryBigThingDetailActivity extends AppCompatActivity implem
                 break;
         }
     }
+
     private void doShare() {
         new ShareAction(ChinaHistoryBigThingDetailActivity.this)
                 .withTitle("博物展")
@@ -164,13 +167,13 @@ public class ChinaHistoryBigThingDetailActivity extends AppCompatActivity implem
         public void onResult(SHARE_MEDIA platform) {
             LogUtils.d("plat", "platform" + platform);
 
-            Toast.makeText(ChinaHistoryBigThingDetailActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChinaHistoryBigThingDetailActivity.this, "分享成功啦", Toast.LENGTH_SHORT).show();
 
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(ChinaHistoryBigThingDetailActivity.this, platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChinaHistoryBigThingDetailActivity.this, "分享失败啦", Toast.LENGTH_SHORT).show();
             if (t != null) {
                 LogUtils.d("throw", "throw:" + t.getMessage());
                 ToastUtil.showToast(ChinaHistoryBigThingDetailActivity.this, "请允许使用SDCard权限");
@@ -179,7 +182,7 @@ public class ChinaHistoryBigThingDetailActivity extends AppCompatActivity implem
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(ChinaHistoryBigThingDetailActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChinaHistoryBigThingDetailActivity.this, "分享取消了", Toast.LENGTH_SHORT).show();
         }
     };
 

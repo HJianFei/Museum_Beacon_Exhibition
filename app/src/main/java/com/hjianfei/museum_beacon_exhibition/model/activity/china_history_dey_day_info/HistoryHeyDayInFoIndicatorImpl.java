@@ -13,8 +13,8 @@ import rx.schedulers.Schedulers;
 
 public class HistoryHeyDayInFoIndicatorImpl implements HistoryHeyDayInFoIndicator {
     @Override
-    public void getHistoryHeyDayInFo(String title, final onFinishListener listener) {
-        NetWorkUtils.getApi().getHistoryHeyDayInFo(title)
+    public void getHistoryHeyDayInFo(String id, final onFinishListener listener) {
+        NetWorkUtils.getApi().getHistoryHeyDayInFo(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HistoryHeyDayInFo>() {

@@ -21,7 +21,7 @@ public interface AppreciateDetailIndicator {
         void onError();
     }
 
-    void getAppreciateDetail(String detail_url, onFinishListener listener);
+    void getAppreciateDetail(String id, onFinishListener listener);
 
     void saveCollection(Map<String, Object> map,onFinishListener listener);
 }

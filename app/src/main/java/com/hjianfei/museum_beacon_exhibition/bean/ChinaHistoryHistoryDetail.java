@@ -30,9 +30,19 @@ public class ChinaHistoryHistoryDetail implements Serializable {
 
     public static class ChinaHistoryHistoryDetailBean implements Serializable {
 
+
+        private int id;
         private String title;
         private String img_url;
         private String content;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
 
         public String getTitle() {
             return title;
@@ -57,5 +67,23 @@ public class ChinaHistoryHistoryDetail implements Serializable {
         public void setContent(String content) {
             this.content = content;
         }
+
+        @Override
+        public String toString() {
+            return "ChinaHistoryHistoryDetailBean{" +
+                    "id=" + id +
+                    ", title='" + title + '\'' +
+                    ", img_url='" + img_url + '\'' +
+                    ", content='" + content + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ChinaHistoryHistoryDetail{" +
+                "code=" + code +
+                ", china_History_History_Detail=" + china_History_History_Detail +
+                '}';
     }
 }

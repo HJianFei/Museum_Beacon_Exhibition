@@ -12,10 +12,10 @@
         android:id="@+id/guide_detail_share"
         android:icon="@drawable/guide_share"
         android:title="分享"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/guide_detail_love"
-        android:icon="@drawable/guide_love"
-        android:title="收藏"
-        app:showAsAction="never"/>
+        app:showAsAction="always"/>
+    <!--<item-->
+        <!--android:id="@+id/guide_detail_love"-->
+        <!--android:icon="@drawable/guide_love"-->
+        <!--android:title="收藏"-->
+        <!--app:showAsAction="never"/>-->
 </menu>

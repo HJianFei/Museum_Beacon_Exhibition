@@ -36,10 +36,10 @@ public class ForeignCountryDetailPresenterImpl implements ForeignCountryDetailPr
     }
 
     @Override
-    public void getForeignCountryDetail(String title) {
+    public void getForeignCountryDetail(String id) {
         if (mView != null) {
             mView.showDialog();
         }
-        mIndicator.getForeignCountryDetail(title, this);
+        mIndicator.getForeignCountryDetail(id, this);
     }
 }

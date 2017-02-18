@@ -90,7 +90,7 @@ public class ChinaHistoryPeopleActivity extends AppCompatActivity implements Chi
             @Override
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(ChinaHistoryPeopleActivity.this, ChinaHistoryPeopleDetailActivity.class);
-                intent.putExtra("detail_url", chinaHistoryPeoplesBeanList.get(i).getDetail_url());
+                intent.putExtra("id", chinaHistoryPeoplesBeanList.get(i).getId()+"");
                 intent.putExtra("img_url", chinaHistoryPeoplesBeanList.get(i).getImg_url());
                 startActivity(intent);
 

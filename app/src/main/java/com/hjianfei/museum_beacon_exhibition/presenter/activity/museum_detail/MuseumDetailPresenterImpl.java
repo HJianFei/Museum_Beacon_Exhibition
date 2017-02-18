@@ -23,8 +23,8 @@ public class MuseumDetailPresenterImpl implements MuseumDetailPresenter, MuseumD
     }
 
     @Override
-    public void initMuseumDetailData(String museum_name) {
-        mMuseumDetailIndicator.getMuseumDetailInfo(museum_name, this);
+    public void initMuseumDetailData(String id) {
+        mMuseumDetailIndicator.getMuseumDetailInfo(id, this);
 
     }
 

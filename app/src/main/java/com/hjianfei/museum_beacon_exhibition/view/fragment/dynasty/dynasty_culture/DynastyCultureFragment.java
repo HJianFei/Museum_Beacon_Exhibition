@@ -115,6 +115,7 @@ public class DynastyCultureFragment extends Fragment implements DynastyCultureVi
             @Override
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(mContext, ChinaHistoryCultureDetailActivity.class);
+                intent.putExtra("id", chinaHistoryCulturesBeanList.get(i).getId()+"");
                 intent.putExtra("title", chinaHistoryCulturesBeanList.get(i).getTitle());
                 intent.putExtra("author", chinaHistoryCulturesBeanList.get(i).getAuthor());
                 intent.putExtra("time", chinaHistoryCulturesBeanList.get(i).getTime());

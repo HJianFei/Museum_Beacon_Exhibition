@@ -66,7 +66,8 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
     @BindView(R.id.museum_detail_enter)
     LinearLayout museumDetailEnter;
     private MuseumDetailPresenter mMuseumDetailPresenter;
-    private String museum_name;
+    private String id="";
+    private String museum_name="";
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
     private MuseumDetail museum_detail;
@@ -78,6 +79,7 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_museum_detail);
+        id = getIntent().getStringExtra("id");
         museum_name = getIntent().getStringExtra("museum_name");
         post_type = getIntent().getStringExtra("post_type");
         appreciate_type = getIntent().getStringExtra("appreciate_type");
@@ -111,7 +113,7 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
                     map.put("post_id", museum_detail.getMuseum_Detail().getMuseum_detail_name());
                     map.put("post_type", post_type);
                     map.put("img_url", img_urls[0]);
-                    map.put("detail_url", museum_detail.getMuseum_Detail().getMuseum_detail_name());
+                    map.put("id", museum_detail.getMuseum_Detail().getId()+"");
                     mMuseumDetailPresenter.onSaveCollection(map);
 
                 }
@@ -161,7 +163,7 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
 
     private void initData() {
         mMuseumDetailPresenter = new MuseumDetailPresenterImpl(this);
-        mMuseumDetailPresenter.initMuseumDetailData(museum_name);
+        mMuseumDetailPresenter.initMuseumDetailData(id);
 
     }
 
@@ -250,13 +252,13 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
         public void onResult(SHARE_MEDIA platform) {
             Log.d("plat", "platform" + platform);
 
-            Toast.makeText(MuseumDetailActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MuseumDetailActivity.this, "分享成功啦", Toast.LENGTH_SHORT).show();
 
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(MuseumDetailActivity.this, platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MuseumDetailActivity.this, "分享失败啦", Toast.LENGTH_SHORT).show();
             if (t != null) {
                 Log.d("throw", "throw:" + t.getMessage());
             }
@@ -264,7 +266,7 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(MuseumDetailActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MuseumDetailActivity.this, "分享取消了", Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -284,10 +286,10 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
 
     @OnClick(R.id.museum_detail_enter)
     public void onClick() {
-        Intent intent=new Intent(this, MuseumActivity.class);
-        intent.putExtra("museum_name",museum_name);
-        intent.putExtra("img_url",museum_detail.getMuseum_Detail().getMuseum_detail_imgs());
-        intent.putExtra("appreciate_type",appreciate_type);
+        Intent intent = new Intent(this, MuseumActivity.class);
+        intent.putExtra("museum_name", museum_name);
+        intent.putExtra("img_url", museum_detail.getMuseum_Detail().getMuseum_detail_imgs());
+        intent.putExtra("appreciate_type", appreciate_type);
         startActivity(intent);
     }
 }

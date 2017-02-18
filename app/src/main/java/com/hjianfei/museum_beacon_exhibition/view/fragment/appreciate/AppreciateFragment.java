@@ -127,7 +127,7 @@ public class AppreciateFragment extends Fragment implements AppreciateView {
             @Override
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(getActivity(), AppreciateDetailActivity.class);
-                intent.putExtra("cultural_detail_url", appreciatesBeanList.get(i).getDetail_url());
+                intent.putExtra("id", appreciatesBeanList.get(i).getId()+"");
                 intent.putExtra("cultural_name", appreciatesBeanList.get(i).getContent());
                 intent.putExtra("post_type", type);
                 Map<String, Object> map = new HashMap<>();

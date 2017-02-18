@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class HistoryPeopleDetail implements Serializable {
 
 
+
     private int code;
     private ChinaHistoryPeopleDetailBean china_History_People_Detail;
 
@@ -31,16 +32,16 @@ public class HistoryPeopleDetail implements Serializable {
     public static class ChinaHistoryPeopleDetailBean implements Serializable {
 
 
-        private String detail_url;
+        private int id;
         private String name;
         private String content;
 
-        public String getDetail_url() {
-            return detail_url;
+        public int getId() {
+            return id;
         }
 
-        public void setDetail_url(String detail_url) {
-            this.detail_url = detail_url;
+        public void setId(int id) {
+            this.id = id;
         }
 
         public String getName() {
@@ -62,7 +63,7 @@ public class HistoryPeopleDetail implements Serializable {
         @Override
         public String toString() {
             return "ChinaHistoryPeopleDetailBean{" +
-                    "detail_url='" + detail_url + '\'' +
+                    "id=" + id +
                     ", name='" + name + '\'' +
                     ", content='" + content + '\'' +
                     '}';

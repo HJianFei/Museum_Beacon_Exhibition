@@ -85,6 +85,7 @@ public class ChinaHistoryHeyDayActivity extends AppCompatActivity implements Chi
             public void onItemClick(View view, int i) {
 
                 Intent intent = new Intent(ChinaHistoryHeyDayActivity.this, HistoryHeyDayInFoActivity.class);
+                intent.putExtra("id", chinaHistoryHeyDaysBeanList.get(i).getId()+"");
                 intent.putExtra("title", chinaHistoryHeyDaysBeanList.get(i).getTitle());
                 startActivity(intent);
             }

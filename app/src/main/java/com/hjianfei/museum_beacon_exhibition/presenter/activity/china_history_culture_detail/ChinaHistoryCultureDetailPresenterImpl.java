@@ -36,10 +36,10 @@ public class ChinaHistoryCultureDetailPresenterImpl implements ChinaHistoryCultu
     }
 
     @Override
-    public void getChinaHistoryCultureDetail(String title) {
+    public void getChinaHistoryCultureDetail(String id) {
         if (null != mView) {
             mView.showDialog();
         }
-        mIndicator.getHistoryCultureDetailDetail(title, this);
+        mIndicator.getHistoryCultureDetailDetail(id, this);
     }
 }

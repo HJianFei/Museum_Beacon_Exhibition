@@ -74,6 +74,7 @@ public class HistoryBigThingActivity extends AppCompatActivity {
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(HistoryBigThingActivity.this, ChinaHistoryBigThingDetailActivity.class);
                 intent.putExtra("big_thing_title", chinaHistoryBigThing.getChina_History_Big_Things().get(i).getTitle());
+                intent.putExtra("id", chinaHistoryBigThing.getChina_History_Big_Things().get(i).getId()+"");
                 startActivity(intent);
 
             }

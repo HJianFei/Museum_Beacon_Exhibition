@@ -114,7 +114,7 @@ public class HistoryWarFragment extends Fragment implements HistoryWarView {
             public void onItemClick(View view, int i) {
 
                 Intent intent = new Intent(mContext, HistoryWarDetailActivity.class);
-                intent.putExtra("detail_url", chinaHistoryOldenWarsBeanList.get(i).getDetail_url());
+                intent.putExtra("id", chinaHistoryOldenWarsBeanList.get(i).getId()+"");
                 intent.putExtra("img_url", chinaHistoryOldenWarsBeanList.get(i).getImg_url());
                 intent.putExtra("title", chinaHistoryOldenWarsBeanList.get(i).getName());
                 startActivity(intent);

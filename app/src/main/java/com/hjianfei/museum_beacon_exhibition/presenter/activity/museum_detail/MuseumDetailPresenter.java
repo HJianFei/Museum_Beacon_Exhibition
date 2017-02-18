@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface MuseumDetailPresenter {
 
-    void initMuseumDetailData(String museum_name);
+    void initMuseumDetailData(String id);
 
     void onSaveCollection(Map<String, Object> map);
 }

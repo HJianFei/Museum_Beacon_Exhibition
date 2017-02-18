@@ -17,5 +17,5 @@ public interface ChinaHistoryCultureDetailIndicator {
         void onError();
     }
 
-    void getHistoryCultureDetailDetail(String title, onFinishListener listener);
+    void getHistoryCultureDetailDetail(String id, onFinishListener listener);
 }

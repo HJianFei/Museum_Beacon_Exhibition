@@ -13,8 +13,8 @@ import rx.schedulers.Schedulers;
 
 public class ChinaHistoryHistoryDetailIndicatorImpl implements ChinaHistoryHistoryDetailIndicator {
     @Override
-    public void getHistoryHistoryDetailDetail(String title, final onFinishListener listener) {
-        NetWorkUtils.getApi().getChinaHistoryHistoryDetail(title)
+    public void getHistoryHistoryDetailDetail(String id, final onFinishListener listener) {
+        NetWorkUtils.getApi().getChinaHistoryHistoryDetail(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ChinaHistoryHistoryDetail>() {

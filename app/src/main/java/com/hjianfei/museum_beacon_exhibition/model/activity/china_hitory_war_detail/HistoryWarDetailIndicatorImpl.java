@@ -13,8 +13,8 @@ import rx.schedulers.Schedulers;
 
 public class HistoryWarDetailIndicatorImpl implements HistoryWarDetailIndicator {
     @Override
-    public void getHistoryWarDetail(String detail_url, final onFinishListener listener) {
-        NetWorkUtils.getApi().getHistoryOldenWarDetail(detail_url)
+    public void getHistoryWarDetail(String id, final onFinishListener listener) {
+        NetWorkUtils.getApi().getHistoryOldenWarDetail(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HistoryWarDetail>() {

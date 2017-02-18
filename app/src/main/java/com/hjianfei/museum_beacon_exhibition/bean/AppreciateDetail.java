@@ -8,20 +8,22 @@ import java.io.Serializable;
 
 public class AppreciateDetail implements Serializable {
 
+
     /**
-     * detail_url : http://www.gdmuseum.com/curio_detail.php?picid=10003&subgid=149&gid=159&title=�㶫��ʷ����
-     * title : 带藤盒粉彩茶壶
-     * content :
-     * img_url : [http://www.gdmuseum.com/attachment/201602/22/2_14561046445VRP.jpg]
+     * code : 200
+     * appreciateDetail : {"id":235,"title":"明代景德镇窑青花花鸟纹瓣口折沿碗","content":"\u201c万历号\u201d沉船青花瓷器","img_url":"[http://www.gdmuseum.com/attachment/201607/12/2_1468309962hLlA.jpg]"}
      */
 
+    private int code;
     private AppreciateDetailBean appreciateDetail;
-    /**
-     * appreciateDetail : {"detail_url":"http://www.gdmuseum.com/curio_detail.php?picid=10003&subgid=149&gid=159&title=�㶫��ʷ����","title":"带藤盒粉彩茶壶","content":"","img_url":"[http://www.gdmuseum.com/attachment/201602/22/2_14561046445VRP.jpg]"}
-     * status : 1
-     */
 
-    private String status;
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
 
     public AppreciateDetailBean getAppreciateDetail() {
         return appreciateDetail;
@@ -31,26 +33,25 @@ public class AppreciateDetail implements Serializable {
         this.appreciateDetail = appreciateDetail;
     }
 
-    public String getStatus() {
-        return status;
-    }
+    public static class AppreciateDetailBean implements Serializable{
+        /**
+         * id : 235
+         * title : 明代景德镇窑青花花鸟纹瓣口折沿碗
+         * content : “万历号”沉船青花瓷器
+         * img_url : [http://www.gdmuseum.com/attachment/201607/12/2_1468309962hLlA.jpg]
+         */
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public static class AppreciateDetailBean {
-        private String detail_url;
+        private int id;
         private String title;
         private String content;
         private String img_url;
 
-        public String getDetail_url() {
-            return detail_url;
+        public int getId() {
+            return id;
         }
 
-        public void setDetail_url(String detail_url) {
-            this.detail_url = detail_url;
+        public void setId(int id) {
+            this.id = id;
         }
 
         public String getTitle() {
@@ -76,5 +77,23 @@ public class AppreciateDetail implements Serializable {
         public void setImg_url(String img_url) {
             this.img_url = img_url;
         }
+
+        @Override
+        public String toString() {
+            return "AppreciateDetailBean{" +
+                    "id=" + id +
+                    ", title='" + title + '\'' +
+                    ", content='" + content + '\'' +
+                    ", img_url='" + img_url + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "AppreciateDetail{" +
+                "code=" + code +
+                ", appreciateDetail=" + appreciateDetail +
+                '}';
     }
 }

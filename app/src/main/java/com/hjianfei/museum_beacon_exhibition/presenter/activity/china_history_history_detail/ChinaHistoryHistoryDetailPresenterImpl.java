@@ -36,10 +36,10 @@ public class ChinaHistoryHistoryDetailPresenterImpl implements ChinaHistoryHisto
     }
 
     @Override
-    public void getChinaHistoryHistoryDetail(String title) {
+    public void getChinaHistoryHistoryDetail(String id) {
         if (null != mView) {
             mView.showDialog();
         }
-        mIndicator.getHistoryHistoryDetailDetail(title, this);
+        mIndicator.getHistoryHistoryDetailDetail(id, this);
     }
 }

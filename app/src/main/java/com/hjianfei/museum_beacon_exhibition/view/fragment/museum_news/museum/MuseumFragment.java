@@ -133,6 +133,7 @@ public class MuseumFragment extends Fragment implements MuseumView {
             @Override
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(mContext, MuseumDetailActivity.class);
+                intent.putExtra("id", museumsBeanList.get(i).getMuseum_id()+"");
                 intent.putExtra("museum_name", museumsBeanList.get(i).getMuseum_name());
                 Map<String, Object> map = new HashMap<>();
                 map.put("id", museumsBeanList.get(i).getMuseum_id());

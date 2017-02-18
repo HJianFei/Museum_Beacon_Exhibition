@@ -63,7 +63,7 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
     TextView culturalDetailContent;
     @BindView(R.id.activity_appreciate_detail)
     LinearLayout activityAppreciateDetail;
-    private String cultural_detail_url;
+    private String id;
     private String cultural_name;
     private String post_type = "";
     private AppreciateDetailPresenter mAppreciateDetailPresenter;
@@ -77,7 +77,7 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appreciate_detail);
         ButterKnife.bind(this);
-        cultural_detail_url = getIntent().getStringExtra("cultural_detail_url");
+        id = getIntent().getStringExtra("id");
         cultural_name = getIntent().getStringExtra("cultural_name");
         post_type = getIntent().getStringExtra("post_type");
         initData();
@@ -109,7 +109,7 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
                     map.put("post_id", appreciate_detail.getAppreciateDetail().getTitle());
                     map.put("post_type", "文物鉴赏");
                     map.put("img_url", img_urls[0]);
-                    map.put("detail_url", appreciate_detail.getAppreciateDetail().getDetail_url());
+                    map.put("detail_url", id);
                     mAppreciateDetailPresenter.onSaveCollection(map);
                 }
             }
@@ -159,7 +159,7 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
 
     private void initData() {
         mAppreciateDetailPresenter = new AppreciateDetailPresenterImpl(this);
-        mAppreciateDetailPresenter.onInitAppreciateDetailData(cultural_detail_url);
+        mAppreciateDetailPresenter.onInitAppreciateDetailData(id);
 
     }
 
@@ -248,13 +248,13 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
         public void onResult(SHARE_MEDIA platform) {
             Log.d("plat", "platform" + platform);
 
-            Toast.makeText(AppreciateDetailActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AppreciateDetailActivity.this, "分享成功啦", Toast.LENGTH_SHORT).show();
 
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(AppreciateDetailActivity.this, platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AppreciateDetailActivity.this, "分享失败啦", Toast.LENGTH_SHORT).show();
             if (t != null) {
                 Log.d("throw", "throw:" + t.getMessage());
                 ToastUtil.showToast(AppreciateDetailActivity.this, "请允许使用SDCard权限");
@@ -263,7 +263,7 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(AppreciateDetailActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AppreciateDetailActivity.this, "分享取消了", Toast.LENGTH_SHORT).show();
         }
     };
 

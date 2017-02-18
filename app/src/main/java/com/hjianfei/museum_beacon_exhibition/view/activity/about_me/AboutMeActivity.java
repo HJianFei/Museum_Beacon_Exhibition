@@ -100,8 +100,8 @@ public class AboutMeActivity extends Activity implements AppBarLayout.OnOffsetCh
 
     private void doShare() {
         new ShareAction(AboutMeActivity.this)
-                .withTitle("博物展")
-                .withText("博物展，让沉睡千年的文物‘动’起来")
+                .withTitle("史博展")
+                .withText("，史博展让沉睡千年的文物‘动’起来")
                 .withMedia(new UMImage(this, R.mipmap.logo))
                 .withTargetUrl("http://fir.im/fzt8")
                 .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)
@@ -113,13 +113,13 @@ public class AboutMeActivity extends Activity implements AppBarLayout.OnOffsetCh
         public void onResult(SHARE_MEDIA platform) {
             LogUtils.d("plat", "platform" + platform);
 
-            Toast.makeText(AboutMeActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AboutMeActivity.this, "分享成功啦", Toast.LENGTH_SHORT).show();
 
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(AboutMeActivity.this, platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AboutMeActivity.this, "分享失败啦", Toast.LENGTH_SHORT).show();
             if (t != null) {
                 LogUtils.d("throw", "throw:" + t.getMessage());
                 ToastUtil.showToast(AboutMeActivity.this, "请允许使用SDCard权限");
@@ -128,7 +128,7 @@ public class AboutMeActivity extends Activity implements AppBarLayout.OnOffsetCh
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(AboutMeActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AboutMeActivity.this, "取消分享", Toast.LENGTH_SHORT).show();
         }
     };
 

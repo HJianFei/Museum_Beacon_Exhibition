@@ -19,8 +19,8 @@ import rx.schedulers.Schedulers;
 
 public class AppreciateDetailIndicatorImpl implements AppreciateDetailIndicator {
     @Override
-    public void getAppreciateDetail(String detail_url, final onFinishListener listener) {
-        NetWorkUtils.getApi().getAppreciateDetails(detail_url)
+    public void getAppreciateDetail(String id, final onFinishListener listener) {
+        NetWorkUtils.getApi().getAppreciateDetails(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<AppreciateDetail>() {

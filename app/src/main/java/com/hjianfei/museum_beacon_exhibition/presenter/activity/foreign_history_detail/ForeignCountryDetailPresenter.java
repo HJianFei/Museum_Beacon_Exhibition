@@ -6,5 +6,5 @@ package com.hjianfei.museum_beacon_exhibition.presenter.activity.foreign_history
 
 public interface ForeignCountryDetailPresenter {
 
-    void getForeignCountryDetail(String title);
+    void getForeignCountryDetail(String id);
 }

@@ -50,6 +50,7 @@ public class HistoryHeyDayInFoActivity extends AppCompatActivity implements Hist
     @BindView(R.id.hey_day_fab)
     FloatingActionButton heyDayFab;
     private HistoryHeyDayInFoPresenter mPresenter;
+    private String id;
     private String title;
     private HistoryHeyDayInFo mHistoryHeyDayInFo;
     private SweetAlertDialog dialog;
@@ -57,6 +58,7 @@ public class HistoryHeyDayInFoActivity extends AppCompatActivity implements Hist
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        id = getIntent().getStringExtra("id");
         title = getIntent().getStringExtra("title");
         setContentView(R.layout.activity_istory_hey_day_in_fo);
         ButterKnife.bind(this);
@@ -78,7 +80,7 @@ public class HistoryHeyDayInFoActivity extends AppCompatActivity implements Hist
 
     private void initData() {
         mPresenter = new HistoryHeyDayInFoPresenterImpl(this);
-        mPresenter.getHistoryHeyDayInFo(title);
+        mPresenter.getHistoryHeyDayInFo(id);
     }
 
     @Override
@@ -131,6 +133,7 @@ public class HistoryHeyDayInFoActivity extends AppCompatActivity implements Hist
                 break;
         }
     }
+
     private void doShare() {
         new ShareAction(HistoryHeyDayInFoActivity.this)
                 .withTitle("博物展")
@@ -151,13 +154,13 @@ public class HistoryHeyDayInFoActivity extends AppCompatActivity implements Hist
         public void onResult(SHARE_MEDIA platform) {
             LogUtils.d("plat", "platform" + platform);
 
-            Toast.makeText(HistoryHeyDayInFoActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(HistoryHeyDayInFoActivity.this, "分享成功啦", Toast.LENGTH_SHORT).show();
 
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(HistoryHeyDayInFoActivity.this, platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(HistoryHeyDayInFoActivity.this, "分享失败啦", Toast.LENGTH_SHORT).show();
             if (t != null) {
                 LogUtils.d("throw", "throw:" + t.getMessage());
                 ToastUtil.showToast(HistoryHeyDayInFoActivity.this, "请允许使用SDCard权限");
@@ -166,7 +169,7 @@ public class HistoryHeyDayInFoActivity extends AppCompatActivity implements Hist
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(HistoryHeyDayInFoActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(HistoryHeyDayInFoActivity.this, "分享取消了", Toast.LENGTH_SHORT).show();
         }
     };
 

@@ -242,13 +242,13 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
         public void onResult(SHARE_MEDIA platform) {
             LogUtils.d(Constants.TAG, "platform" + platform);
 
-            Toast.makeText(ExhibitionDetailActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ExhibitionDetailActivity.this, "分享成功啦", Toast.LENGTH_SHORT).show();
 
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(ExhibitionDetailActivity.this, platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ExhibitionDetailActivity.this, "分享失败啦", Toast.LENGTH_SHORT).show();
             if (t != null) {
                 LogUtils.d(Constants.TAG, "throw:" + t.getMessage());
             }
@@ -256,7 +256,7 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(ExhibitionDetailActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ExhibitionDetailActivity.this, "取消分享", Toast.LENGTH_SHORT).show();
         }
     };
 

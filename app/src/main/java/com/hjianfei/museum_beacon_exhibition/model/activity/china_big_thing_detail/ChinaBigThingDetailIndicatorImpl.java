@@ -15,8 +15,8 @@ import rx.schedulers.Schedulers;
 
 public class ChinaBigThingDetailIndicatorImpl implements ChinaBigThingDetailIndicator {
     @Override
-    public void getChinaHistoryBigThingDetail(String title, final onFinishListener listener) {
-        NetWorkUtils.getApi().getChinaHistoryBigThingDetail(title)
+    public void getChinaHistoryBigThingDetail(String id, final onFinishListener listener) {
+        NetWorkUtils.getApi().getChinaHistoryBigThingDetail(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ChinaHistoryBigThingDetail>() {

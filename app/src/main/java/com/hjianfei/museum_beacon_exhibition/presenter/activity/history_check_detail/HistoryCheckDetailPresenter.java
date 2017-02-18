@@ -6,5 +6,5 @@ package com.hjianfei.museum_beacon_exhibition.presenter.activity.history_check_d
 
 public interface HistoryCheckDetailPresenter {
 
-    void getHistoryHCheckDetail(String title);
+    void getHistoryHCheckDetail(String id);
 }

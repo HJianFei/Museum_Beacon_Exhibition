@@ -68,7 +68,7 @@ public class HistoryWarDetailActivity extends AppCompatActivity implements Histo
     @BindView(R.id.history_war_detail_fab)
     FloatingActionButton historyWarDetailFab;
     private HistoryWarDetailPresenter mPresenter;
-    private String detail_url;
+    private String id;
     private String img_url;
     private String title;
     private SweetAlertDialog dialog;
@@ -77,7 +77,7 @@ public class HistoryWarDetailActivity extends AppCompatActivity implements Histo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        detail_url = getIntent().getStringExtra("detail_url");
+        id = getIntent().getStringExtra("id");
         img_url = getIntent().getStringExtra("img_url");
         title = getIntent().getStringExtra("title");
         setContentView(R.layout.activity_history_war_detail);
@@ -101,7 +101,7 @@ public class HistoryWarDetailActivity extends AppCompatActivity implements Histo
 
     private void initData() {
         mPresenter = new HistoryWarDetailPresenterImpl(this);
-        mPresenter.getHistoryWarDetail(detail_url);
+        mPresenter.getHistoryWarDetail(id);
     }
 
     @Override
@@ -180,13 +180,13 @@ public class HistoryWarDetailActivity extends AppCompatActivity implements Histo
         public void onResult(SHARE_MEDIA platform) {
             LogUtils.d("plat", "platform" + platform);
 
-            Toast.makeText(HistoryWarDetailActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(HistoryWarDetailActivity.this, "分享成功啦", Toast.LENGTH_SHORT).show();
 
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(HistoryWarDetailActivity.this, platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(HistoryWarDetailActivity.this, "分享失败啦", Toast.LENGTH_SHORT).show();
             if (t != null) {
                 LogUtils.d("throw", "throw:" + t.getMessage());
                 ToastUtil.showToast(HistoryWarDetailActivity.this, "请允许使用SDCard权限");
@@ -195,7 +195,7 @@ public class HistoryWarDetailActivity extends AppCompatActivity implements Histo
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(HistoryWarDetailActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(HistoryWarDetailActivity.this, "分享取消了", Toast.LENGTH_SHORT).show();
         }
     };
 

@@ -17,5 +17,5 @@ public interface ForeignHistoryDetailIndicator {
         void onError();
     }
 
-    void getForeignCountryDetail(String title, onFinishListener listener);
+    void getForeignCountryDetail(String id, onFinishListener listener);
 }

@@ -9,9 +9,10 @@ import java.util.List;
 
 public class ChinaHistoryCulture implements Serializable {
 
+
     /**
      * code : 200
-     * china_History_Cultures : [{"detail_url":"http://www.todayonhistory.com/lishi/201510/19682.html","type":"上古","title":"上古神话四大凶兽vs四大神兽","author":"  作者:山南慕北","time":"时间: 2015-10-06","views":"10574"},{"detail_url":"http://www.todayonhistory.com/lishi/201602/30323.html","type":"上古","title":"上古三大奇书有哪些？上古三大奇书简介","author":"  作者:山南慕北","time":"时间: 2016-02-18","views":"1272"},{"detail_url":"http://www.todayonhistory.com/lishi/201511/23831.html","type":"上古","title":"黄帝的传说故事 黄帝大战蚩尤","author":"  作者:浅草","time":"时间: 2015-11-05","views":"967"},{"detail_url":"http://www.todayonhistory.com/lishi/201511/23804.html","type":"上古","title":"伏羲画八卦的传说 伏羲八卦亭在哪？","author":"  作者:浅草","time":"时间: 2015-11-05","views":"817"},{"detail_url":"http://www.todayonhistory.com/lishi/201511/23701.html","type":"上古","title":"半坡人文化遗址","author":"  作者:浅草","time":"时间: 2015-11-04","views":"768"},{"detail_url":"http://www.todayonhistory.com/lishi/201602/30468.html","type":"上古","title":"红山文化中的墓葬习俗与文化","author":"  作者:山南慕北","time":"时间: 2016-02-19","views":"666"},{"detail_url":"http://www.todayonhistory.com/lishi/201511/25694.html","type":"上古","title":"盘点中国神话中的龙有哪些","author":"  作者:新之助","time":"时间: 2015-11-26","views":"650"},{"detail_url":"http://www.todayonhistory.com/lishi/201511/23809.html","type":"上古","title":"共工的传说 共工怒触不周山的原因是什么","author":"  作者:浅草","time":"时间: 2015-11-05","views":"497"},{"detail_url":"http://www.todayonhistory.com/lishi/201510/19615.html","type":"上古","title":"仓颉造字 仓颉造了哪些字？","author":"  作者:山南慕北","time":"时间: 2015-10-06","views":"428"},{"detail_url":"http://www.todayonhistory.com/lishi/201511/23827.html","type":"上古","title":"武战神蚩尤的传说故事","author":"  作者:浅草","time":"时间: 2015-11-05","views":"378"}]
+     * china_History_Cultures : [{"id":10,"type":"上古","title":"上古神话四大凶兽vs四大神兽","author":"  作者:山南慕北","time":"时间: 2015-10-06","views":"10574"},{"id":605,"type":"上古","title":"上古三大奇书有哪些？上古三大奇书简介","author":"  作者:山南慕北","time":"时间: 2016-02-18","views":"1272"},{"id":365,"type":"上古","title":"黄帝的传说故事 黄帝大战蚩尤","author":"  作者:浅草","time":"时间: 2015-11-05","views":"967"},{"id":360,"type":"上古","title":"伏羲画八卦的传说 伏羲八卦亭在哪？","author":"  作者:浅草","time":"时间: 2015-11-05","views":"817"},{"id":338,"type":"上古","title":"半坡人文化遗址","author":"  作者:浅草","time":"时间: 2015-11-04","views":"768"},{"id":619,"type":"上古","title":"红山文化中的墓葬习俗与文化","author":"  作者:山南慕北","time":"时间: 2016-02-19","views":"666"},{"id":512,"type":"上古","title":"盘点中国神话中的龙有哪些","author":"  作者:新之助","time":"时间: 2015-11-26","views":"650"},{"id":362,"type":"上古","title":"共工的传说 共工怒触不周山的原因是什么","author":"  作者:浅草","time":"时间: 2015-11-05","views":"497"},{"id":2,"type":"上古","title":"仓颉造字 仓颉造了哪些字？","author":"  作者:山南慕北","time":"时间: 2015-10-06","views":"428"},{"id":364,"type":"上古","title":"武战神蚩尤的传说故事","author":"  作者:浅草","time":"时间: 2015-11-05","views":"378"}]
      */
 
     private int code;
@@ -35,7 +36,7 @@ public class ChinaHistoryCulture implements Serializable {
 
     public static class ChinaHistoryCulturesBean implements Serializable {
         /**
-         * detail_url : http://www.todayonhistory.com/lishi/201510/19682.html
+         * id : 10
          * type : 上古
          * title : 上古神话四大凶兽vs四大神兽
          * author :   作者:山南慕北
@@ -43,19 +44,19 @@ public class ChinaHistoryCulture implements Serializable {
          * views : 10574
          */
 
-        private String detail_url;
+        private int id;
         private String type;
         private String title;
         private String author;
         private String time;
         private String views;
 
-        public String getDetail_url() {
-            return detail_url;
+        public int getId() {
+            return id;
         }
 
-        public void setDetail_url(String detail_url) {
-            this.detail_url = detail_url;
+        public void setId(int id) {
+            this.id = id;
         }
 
         public String getType() {
@@ -97,5 +98,25 @@ public class ChinaHistoryCulture implements Serializable {
         public void setViews(String views) {
             this.views = views;
         }
+
+        @Override
+        public String toString() {
+            return "ChinaHistoryCulturesBean{" +
+                    "id=" + id +
+                    ", type='" + type + '\'' +
+                    ", title='" + title + '\'' +
+                    ", author='" + author + '\'' +
+                    ", time='" + time + '\'' +
+                    ", views='" + views + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ChinaHistoryCulture{" +
+                "code=" + code +
+                ", china_History_Cultures=" + china_History_Cultures +
+                '}';
     }
 }

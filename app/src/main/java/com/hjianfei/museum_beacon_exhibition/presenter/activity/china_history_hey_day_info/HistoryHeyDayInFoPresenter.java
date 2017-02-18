@@ -6,5 +6,5 @@ package com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_h
 
 public interface HistoryHeyDayInFoPresenter {
 
-    void getHistoryHeyDayInFo(String title);
+    void getHistoryHeyDayInFo(String id);
 }

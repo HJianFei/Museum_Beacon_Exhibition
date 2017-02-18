@@ -9,8 +9,9 @@ import java.util.List;
 
 public class ChinaHistoryPeople implements Serializable {
 
+
     /**
-     * china_History_Peoples : [{"detail_url":"http://www.todayonhistory.com/people/201506/9618.html","type":"上古","name":"蚩尤","img_url":"http://www.todayonhistory.com/uploadfile/2015/0610/20150610050329589.jpg","views":795},{"detail_url":"http://www.todayonhistory.com/people/201506/9619.html","type":"上古","name":"黄帝","img_url":"http://www.todayonhistory.com/uploadfile/2015/0610/20150610052439915.jpg","views":795},{"detail_url":"http://www.todayonhistory.com/people/201506/9620.html","type":"上古","name":"炎帝","img_url":"http://www.todayonhistory.com/uploadfile/2015/0611/20150611092923996.jpg","views":795},{"detail_url":"http://www.todayonhistory.com/people/201506/9621.html","type":"上古","name":"伏羲","img_url":"http://www.todayonhistory.com/uploadfile/2015/0611/20150611094735617.jpg","views":795},{"detail_url":"http://www.todayonhistory.com/people/201506/9622.html","type":"上古","name":"颛顼","img_url":"http://www.todayonhistory.com/uploadfile/2015/0611/20150611101516372.jpg","views":795},{"detail_url":"http://www.todayonhistory.com/people/201510/11448.html","type":"上古","name":"仓颉","img_url":"http://www.todayonhistory.com/uploadfile/2015/1015/20151015033036576.jpg","views":795}]
+     * china_History_Peoples : [{"id":23,"type":"上古","name":"蚩尤","img_url":"http://www.todayonhistory.com/uploadfile/2015/0610/20150610050329589.jpg","views":795},{"id":24,"type":"上古","name":"黄帝","img_url":"http://www.todayonhistory.com/uploadfile/2015/0610/20150610052439915.jpg","views":795},{"id":25,"type":"上古","name":"炎帝","img_url":"http://www.todayonhistory.com/uploadfile/2015/0611/20150611092923996.jpg","views":795},{"id":26,"type":"上古","name":"伏羲","img_url":"http://www.todayonhistory.com/uploadfile/2015/0611/20150611094735617.jpg","views":795},{"id":27,"type":"上古","name":"颛顼","img_url":"http://www.todayonhistory.com/uploadfile/2015/0611/20150611101516372.jpg","views":795},{"id":861,"type":"上古","name":"仓颉","img_url":"http://www.todayonhistory.com/uploadfile/2015/1015/20151015033036576.jpg","views":795},{"id":863,"type":"上古","name":"大禹","img_url":"http://www.todayonhistory.com/uploadfile/2015/1015/20151015035705524.jpg","views":795},{"id":887,"type":"上古","name":"鲧","img_url":"http://www.todayonhistory.com/uploadfile/2015/1020/20151020025824855.jpg","views":795},{"id":888,"type":"上古","name":"后羿","img_url":"http://www.todayonhistory.com/uploadfile/2015/1020/20151020030910612.jpg","views":795},{"id":889,"type":"上古","name":"皋陶","img_url":"http://www.todayonhistory.com/uploadfile/2015/1020/20151020032026709.jpg","views":795}]
      * code : 200
      */
 
@@ -33,27 +34,27 @@ public class ChinaHistoryPeople implements Serializable {
         this.china_History_Peoples = china_History_Peoples;
     }
 
-    public static class ChinaHistoryPeoplesBean implements Serializable{
+    public static class ChinaHistoryPeoplesBean implements Serializable {
         /**
-         * detail_url : http://www.todayonhistory.com/people/201506/9618.html
+         * id : 23
          * type : 上古
          * name : 蚩尤
          * img_url : http://www.todayonhistory.com/uploadfile/2015/0610/20150610050329589.jpg
          * views : 795
          */
 
-        private String detail_url;
+        private int id;
         private String type;
         private String name;
         private String img_url;
         private int views;
 
-        public String getDetail_url() {
-            return detail_url;
+        public int getId() {
+            return id;
         }
 
-        public void setDetail_url(String detail_url) {
-            this.detail_url = detail_url;
+        public void setId(int id) {
+            this.id = id;
         }
 
         public String getType() {
@@ -87,5 +88,24 @@ public class ChinaHistoryPeople implements Serializable {
         public void setViews(int views) {
             this.views = views;
         }
+
+        @Override
+        public String toString() {
+            return "ChinaHistoryPeoplesBean{" +
+                    "id=" + id +
+                    ", type='" + type + '\'' +
+                    ", name='" + name + '\'' +
+                    ", img_url='" + img_url + '\'' +
+                    ", views=" + views +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ChinaHistoryPeople{" +
+                "code=" + code +
+                ", china_History_Peoples=" + china_History_Peoples +
+                '}';
     }
 }

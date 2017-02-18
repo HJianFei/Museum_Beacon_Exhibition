@@ -17,5 +17,5 @@ public interface ChinaBigThingDetailIndicator {
         void onError();
     }
 
-    void getChinaHistoryBigThingDetail(String title, onFinishListener listener);
+    void getChinaHistoryBigThingDetail(String id, onFinishListener listener);
 }

@@ -12,10 +12,10 @@ public class SplashActivity extends WelcomeActivity {
 
         return new WelcomeScreenBuilder(this)
                 .theme(R.style.CustomWelcomeScreenTheme)
-                .titlePage(R.drawable.photo, "Welcome", R.color.orange_background)
-                .basicPage(R.drawable.photo, "Simple to use", "Add a welcome screen to your app with only a few lines of code.", R.color.red_background)
-                .parallaxPage(R.layout.parallax_example, "Easy parallax", "Supply a layout and parallax effects will automatically be applied", R.color.purple_background, 0.2f, 2f)
-                .basicPage(R.drawable.photo, "Customizable", "All elements of the welcome screen can be customized easily.", R.color.blue_background)
+                .titlePage(R.drawable.banner1, "史博展\n一站式博物馆导览", R.color.primary)
+                .basicPage(R.drawable.china_history, "中国朝代历史", "五千年悠悠岁月，留下了绵延不绝的历史传承，成就的是一首大气天成的英雄赞歌。", R.color.red_background)
+                .basicPage(R.drawable.forforeign_history, "外国历史", "了解中外历史文化的发展历程。视野才会更开阔，看问题会更高远。", R.color.blue_background)
+                .parallaxPage(R.layout.parallax_example, "在线博物馆", "即使游客不在博物馆也可以通过在线浏览的方式欣赏博物馆中收藏的文物。", R.color.purple_background, 0.2f, 2f)
                 .swipeToDismiss(true)
                 .exitAnimation(android.R.anim.fade_out)
                 .build();

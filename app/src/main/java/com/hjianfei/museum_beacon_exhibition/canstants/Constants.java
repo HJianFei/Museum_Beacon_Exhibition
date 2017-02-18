@@ -33,6 +33,9 @@ public class Constants {
     public static final String AVATAR = "USER_AVATAR";
     public static final String SEX = "USER_SEX";
 
+    //动画时长
+    public static final int DURATION = 500;
+
     /**
      * 用户头像存放目录
      */

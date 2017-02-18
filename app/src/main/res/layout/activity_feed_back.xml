@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/bg"
     tools:context="com.hjianfei.museum_beacon_exhibition.view.activity.feedback.FeedBackActivity">
 
     <include layout="@layout/default_toolbar" />

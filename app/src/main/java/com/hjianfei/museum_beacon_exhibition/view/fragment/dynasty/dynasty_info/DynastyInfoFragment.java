@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.fragment.dynasty.dynasty_info;
 
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -124,7 +125,7 @@ public class DynastyInfoFragment extends Fragment implements DynastyInfoView {
                 intent.putExtra("title", chinaHistoryHistoriesBeanList.get(i).getTitle());
                 intent.putExtra("author", chinaHistoryHistoriesBeanList.get(i).getAuthor());
                 intent.putExtra("time", chinaHistoryHistoriesBeanList.get(i).getTime());
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
             }
 
             @Override

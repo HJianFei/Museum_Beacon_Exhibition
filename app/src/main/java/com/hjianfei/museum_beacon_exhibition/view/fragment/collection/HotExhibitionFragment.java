@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.fragment.collection;
 
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -109,7 +110,7 @@ public class HotExhibitionFragment extends Fragment implements CollectionView {
                 intent.putExtra("exhibition_detail_url", collectionsBeanList.get(i).getDetail_url());
                 intent.putExtra("exhibition_title", collectionsBeanList.get(i).getPost_id());
                 intent.putExtra("post_type", "热门展厅");
-                mContext.startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
             }
 
             @Override

@@ -1,9 +1,11 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.setting;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -49,6 +51,9 @@ public class SettingActivity extends AppCompatActivity implements SettingView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //滑动进入
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         setContentView(R.layout.activity_setting);
         ButterKnife.bind(this);
         initView();
@@ -102,11 +107,11 @@ public class SettingActivity extends AppCompatActivity implements SettingView {
                 break;
             case R.id.help_and_feedback:
                 Intent intent = new Intent(SettingActivity.this, FeedBackActivity.class);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
             case R.id.about_me:
                 Intent intent1 = new Intent(SettingActivity.this, AboutMeActivity.class);
-                startActivity(intent1);
+                startActivity(intent1, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
             case R.id.btn_exit:
                 dialog = new SweetAlertDialog(SettingActivity.this, SweetAlertDialog.WARNING_TYPE);

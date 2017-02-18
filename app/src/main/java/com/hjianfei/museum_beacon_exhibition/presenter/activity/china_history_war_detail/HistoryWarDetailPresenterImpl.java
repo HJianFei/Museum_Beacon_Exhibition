@@ -39,7 +39,7 @@ public class HistoryWarDetailPresenterImpl implements HistoryWarDetailPresenter,
     @Override
     public void getHistoryWarDetail(String id) {
         if (mView != null) {
-            mView.showDialog();
+//            mView.showDialog();
             mIndicator.getHistoryWarDetail(id, this);
         }
     }

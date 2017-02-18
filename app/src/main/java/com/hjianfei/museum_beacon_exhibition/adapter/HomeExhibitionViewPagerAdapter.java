@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.adapter;
 
-import android.content.Context;
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
@@ -22,9 +23,9 @@ import java.util.List;
 public class HomeExhibitionViewPagerAdapter extends PagerAdapter {
 
     private List<Exhibitions.ExhibitionsBean> exhibitionsList;
-    private Context mContext;
+    private Activity mContext;
 
-    public HomeExhibitionViewPagerAdapter(List<Exhibitions.ExhibitionsBean> exhibitionsList, Context mContext) {
+    public HomeExhibitionViewPagerAdapter(List<Exhibitions.ExhibitionsBean> exhibitionsList, Activity mContext) {
         this.exhibitionsList = exhibitionsList;
         this.mContext = mContext;
     }
@@ -65,7 +66,7 @@ public class HomeExhibitionViewPagerAdapter extends PagerAdapter {
                 intent.putExtra("exhibition_detail_url", exhibitionsList.get(position).getDetail_url());
                 intent.putExtra("exhibition_title", exhibitionsList.get(position).getContent());
                 intent.putExtra("post_type","热门展厅");
-                mContext.startActivity(intent);
+                mContext.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(mContext).toBundle());
             }
         });
         container.addView(view);

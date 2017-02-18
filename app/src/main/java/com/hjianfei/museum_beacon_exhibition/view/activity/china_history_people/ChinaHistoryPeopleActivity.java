@@ -1,5 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.china_history_people;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.transition.Slide;
 import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -21,6 +23,7 @@ import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.CommonAdapter;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryPeople;
+import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_people.ChinaHistoryPeoplePresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_people.ChinaHistoryPeoplePresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_people_detail.ChinaHistoryPeopleDetailActivity;
@@ -53,6 +56,9 @@ public class ChinaHistoryPeopleActivity extends AppCompatActivity implements Chi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //淡入淡出
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         dynasty_name = getIntent().getStringExtra("dynasty_name");
         setContentView(R.layout.activity_china_history_people);
         ButterKnife.bind(this);
@@ -90,9 +96,10 @@ public class ChinaHistoryPeopleActivity extends AppCompatActivity implements Chi
             @Override
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(ChinaHistoryPeopleActivity.this, ChinaHistoryPeopleDetailActivity.class);
-                intent.putExtra("id", chinaHistoryPeoplesBeanList.get(i).getId()+"");
+                intent.putExtra("id", chinaHistoryPeoplesBeanList.get(i).getId() + "");
                 intent.putExtra("img_url", chinaHistoryPeoplesBeanList.get(i).getImg_url());
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(ChinaHistoryPeopleActivity.this).toBundle());
+
 
             }
 

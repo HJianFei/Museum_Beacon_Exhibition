@@ -66,7 +66,7 @@ public class MuseumPresenterImpl implements MuseumPresenter, MuseumIndicator.onF
     @Override
     public void onRefreshMuseumsFinished(List<Museum.MuseumsBean> museumsBeanList) {
         if (null != mMuseumView) {
-            mMuseumView.hideDialog();
+//            mMuseumView.hideDialog();
         }
         mMuseumView.refreshMuseumData(museumsBeanList);
     }

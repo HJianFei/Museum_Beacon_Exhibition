@@ -1,10 +1,12 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.china_dynasty;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.view.View;
 
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
@@ -17,6 +19,7 @@ import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.CommonAdapter;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaDynasty;
+import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_dynasty.ChinaDynastyPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_dynasty.ChinaDynastyPresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.view.activity.dynasty.DynastyActivity;
@@ -45,6 +48,8 @@ public class ChinaDynastyActivity extends AppCompatActivity implements ChinaDyna
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         setContentView(R.layout.activity_china_dynasty);
         ButterKnife.bind(this);
         initData();
@@ -80,9 +85,7 @@ public class ChinaDynastyActivity extends AppCompatActivity implements ChinaDyna
                 Intent intent = new Intent(ChinaDynastyActivity.this, DynastyActivity.class);
                 intent.putExtra("dynasty_name", chinaDynastiesBeanList.get(i).getDynasty());
                 intent.putExtra("dynasty_img_url", chinaDynastiesBeanList.get(i).getImg_url());
-                startActivity(intent);
-
-
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(ChinaDynastyActivity.this).toBundle());
             }
 
             @Override

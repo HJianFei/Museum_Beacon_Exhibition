@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.china_history_culture_detail;
 
 import android.Manifest;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -65,6 +67,9 @@ public class ChinaHistoryCultureDetailActivity extends AppCompatActivity impleme
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //滑动进入
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         id = getIntent().getStringExtra("id");
         title = getIntent().getStringExtra("title");
         author = getIntent().getStringExtra("author");
@@ -138,7 +143,7 @@ public class ChinaHistoryCultureDetailActivity extends AppCompatActivity impleme
                 Intent intent2 = new Intent(ChinaHistoryCultureDetailActivity.this, PhotoDetailActivity.class);
                 intent2.putExtra("img_urls", mCultureDetail.getChina_History_Culture_Detail().getImg_url());
                 intent2.putExtra("photo_title", mCultureDetail.getChina_History_Culture_Detail().getTitle());
-                startActivity(intent2);
+                startActivity(intent2, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
             case R.id.history_culture_fab:
                 if (ContextCompat.checkSelfPermission(ChinaHistoryCultureDetailActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {

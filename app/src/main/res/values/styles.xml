@@ -6,11 +6,12 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="AppTheme" parent="BaseAppTheme" />
 
-    <style name="DrawerLayoutTheme" parent="AppTheme"></style>
+    <style name="DrawerLayoutTheme" parent="AppTheme" />
 
     <style name="base_tab_style">
         <item name="android:gravity">center</item>
@@ -60,15 +61,18 @@
     <style name="CollapsingTextAppearance.Inverse">
         <item name="android:textSize">24sp</item>
     </style>
+
     <style name="ToolBarWithNavigationBack">
         <item name="navigationIcon">@drawable/ic_action_back</item>
     </style>
+
     <style name="TextComponent" />
 
     <style name="TextComponent.ItemRow">
         <item name="android:gravity">center_vertical</item>
         <item name="android:minHeight">48dp</item>
     </style>
+
     <style name="TextAppearance" parent="TextAppearance.AppCompat" />
 
     <style name="TextAppearance.Header">
@@ -76,13 +80,16 @@
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textColor">?colorAccent</item>
     </style>
+
     <style name="transparentFrameWindowStyle" parent="android:style/Theme.Dialog">
         <item name="android:windowBackground">@drawable/photo_choose_bg</item>
     </style>
+
     <style name="main_menu_animstyle">
         <item name="android:windowEnterAnimation">@anim/photo_dialog_in_anim</item>
         <item name="android:windowExitAnimation">@anim/photo_dialog_out_anim</item>
     </style>
+
     <style name="AppTheme.Dynasty">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>

@@ -55,7 +55,7 @@ public class HistoryCheckPresenterImpl implements HistoryCheckPresenter, History
     @Override
     public void onInit(String page, String search_condition) {
         if (mView != null) {
-            mView.showDialog();
+//            mView.showDialog();
             mIndicator.onInit(page, search_condition, this);
         }
     }

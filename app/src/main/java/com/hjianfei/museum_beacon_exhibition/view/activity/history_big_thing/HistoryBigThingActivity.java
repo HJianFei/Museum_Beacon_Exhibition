@@ -1,11 +1,13 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.history_big_thing;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.view.View;
 
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
@@ -17,6 +19,7 @@ import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.CommonAdapter;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryBigThing;
+import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_big_thing_detail.ChinaHistoryBigThingDetailActivity;
 
 import butterknife.BindView;
@@ -36,6 +39,9 @@ public class HistoryBigThingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //淡入淡出
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         dynasty_name = getIntent().getStringExtra("dynasty_name");
         chinaHistoryBigThing = (ChinaHistoryBigThing) getIntent().getBundleExtra("bundle").getSerializable("HistoryBigThings");
         setContentView(R.layout.activity_history_big_thing);
@@ -74,8 +80,8 @@ public class HistoryBigThingActivity extends AppCompatActivity {
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(HistoryBigThingActivity.this, ChinaHistoryBigThingDetailActivity.class);
                 intent.putExtra("big_thing_title", chinaHistoryBigThing.getChina_History_Big_Things().get(i).getTitle());
-                intent.putExtra("id", chinaHistoryBigThing.getChina_History_Big_Things().get(i).getId()+"");
-                startActivity(intent);
+                intent.putExtra("id", chinaHistoryBigThing.getChina_History_Big_Things().get(i).getId() + "");
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(HistoryBigThingActivity.this).toBundle());
 
             }
 

@@ -1,12 +1,11 @@
 package com.hjianfei.museum_beacon_exhibition.view.fragment.home;
 
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,7 +33,6 @@ import com.hjianfei.museum_beacon_exhibition.view.activity.about_me.AboutMeActiv
 import com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail.AppreciateDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.location.LocationActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.museum.MuseumActivity;
-import com.hjianfei.museum_beacon_exhibition.view.activity.museum_detail.MuseumDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.personal.PersonalActivity;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
@@ -141,17 +139,18 @@ public class HomeFragment extends Fragment implements HomeView {
             case R.id.home_location:
                 intent = new Intent(mContext, LocationActivity.class);
                 startActivityForResult(intent, Constants.HOME_LOCATION);
+//                startActivityForResult(intent, Constants.HOME_LOCATION, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 break;
             case R.id.home_person:
                 intent = new Intent(mContext, PersonalActivity.class);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 break;
             case R.id.home_appreciate_more:
                 intent = new Intent(mContext, MuseumActivity.class);
-                intent.putExtra("museum_name","广东省博物馆");
-                intent.putExtra("img_url","[http://www.chezhan168.com/userfiles/image/20151221/21133056edf7f86b0f0984.jpg]");
-                intent.putExtra("appreciate_type","[青花瓷之约,珍品鉴赏,自然标本,专题鉴赏]");
-                startActivity(intent);
+                intent.putExtra("museum_name", "广东省博物馆");
+                intent.putExtra("img_url", "[http://www.chezhan168.com/userfiles/image/20151221/21133056edf7f86b0f0984.jpg]");
+                intent.putExtra("appreciate_type", "[青花瓷之约,珍品鉴赏,自然标本,专题鉴赏]");
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 break;
             case R.id.hot_exhibition_more:
                 break;
@@ -183,13 +182,14 @@ public class HomeFragment extends Fragment implements HomeView {
                 Intent intent;
                 if (position == 0) {
                     intent = new Intent(mContext, AboutMeActivity.class);
-                    startActivity(intent);
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 } else if (position == 1) {
-                    intent = new Intent(mContext, MuseumDetailActivity.class);
-                    intent.putExtra("museum_name", "广东省博物馆");
-                    intent.putExtra("post_type", "博物馆");
-                    intent.putExtra("appreciate_type","[青花瓷之约,珍品鉴赏,自然标本,专题鉴赏]");
-                    startActivity(intent);
+//                    intent = new Intent(mContext, MuseumDetailActivity.class);
+//                    intent.putExtra("id", "");
+//                    intent.putExtra("museum_name", "广东省博物馆");
+//                    intent.putExtra("post_type", "博物馆");
+//                    intent.putExtra("appreciate_type","[青花瓷之约,珍品鉴赏,自然标本,专题鉴赏]");
+//                    startActivity(intent);
                 }
 
 
@@ -213,13 +213,11 @@ public class HomeFragment extends Fragment implements HomeView {
             @Override
             public void onItemClick(ViewGroup parent, View view, Object o, int position) {
                 Intent intent = new Intent(getActivity(), AppreciateDetailActivity.class);
-                intent.putExtra("id", appreciatesBeans.get(position).getId()+"");
+                intent.putExtra("id", appreciatesBeans.get(position).getId() + "");
                 intent.putExtra("cultural_name", appreciatesBeans.get(position).getContent());
                 intent.putExtra("post_type", "文物鉴赏");
-                ActivityOptionsCompat options =
-                        ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
-                                view.findViewById(R.id.appreciate_item_image), getString(R.string.transition));
-                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+
             }
 
             @Override
@@ -234,7 +232,7 @@ public class HomeFragment extends Fragment implements HomeView {
         if (exhibitions.getCode() == 200) {
             homeNoExhibition.setVisibility(View.GONE);
             hot_exhibition_view_pager.setVisibility(View.VISIBLE);
-            homeExhibitionViewPagerAdapter = new HomeExhibitionViewPagerAdapter(exhibitions.getExhibitions(), mContext);
+            homeExhibitionViewPagerAdapter = new HomeExhibitionViewPagerAdapter(exhibitions.getExhibitions(), getActivity());
             hot_exhibition_view_pager.setPageMargin(40);
             hot_exhibition_view_pager.setOffscreenPageLimit(5);
             hot_exhibition_view_pager.setAdapter(homeExhibitionViewPagerAdapter);

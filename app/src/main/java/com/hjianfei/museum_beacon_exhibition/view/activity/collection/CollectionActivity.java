@@ -8,12 +8,13 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.view.View;
 
 import com.hjianfei.museum_beacon_exhibition.R;
+import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.collection.CulturalLoveFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.collection.HotExhibitionFragment;
-import com.hjianfei.museum_beacon_exhibition.view.fragment.collection.MuseumLoveFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,9 @@ public class CollectionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //淡入淡出
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         setContentView(R.layout.activity_collection);
         ButterKnife.bind(this);
         initView();
@@ -42,12 +46,12 @@ public class CollectionActivity extends AppCompatActivity {
     private void initViewPager() {
         MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(CulturalLoveFragment.newInstance(), "文物鉴赏");
-        adapter.addFragment(MuseumLoveFragment.newInstance(), "博物馆");
+//        adapter.addFragment(MuseumLoveFragment.newInstance(), "博物馆");
         adapter.addFragment(HotExhibitionFragment.newInstance(), "热门展览");
         collectionViewpager.setAdapter(adapter);
         collectionTabs.setLayoutMode(TabLayout.MODE_SCROLLABLE);
         collectionTabs.addTab(collectionTabs.newTab().setText("文物鉴赏"));
-        collectionTabs.addTab(collectionTabs.newTab().setText("博物馆"));
+//        collectionTabs.addTab(collectionTabs.newTab().setText("博物馆"));
         collectionTabs.addTab(collectionTabs.newTab().setText("热门展览"));
         collectionTabs.setupWithViewPager(collectionViewpager);
     }

@@ -52,7 +52,7 @@ public class ChinaHistoryPeoplePresenterImpl implements ChinaHistoryPeoplePresen
     @Override
     public void onInitChinaHistoryPeople(String type, String page, String search_condition) {
         if (mView != null) {
-            mView.showDialog();
+//            mView.showDialog();
         }
         mIndicator.onInitChinaHistoryPeople(type, page, search_condition, this);
     }

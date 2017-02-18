@@ -2,6 +2,7 @@ package com.hjianfei.museum_beacon_exhibition.view.fragment.guide;
 
 
 import android.Manifest;
+import android.app.ActivityOptions;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
@@ -142,7 +143,8 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("beaconAppreciate", mBeaconAppreciateList.get(position));
                 intent.putExtra("guide_detail", bundle);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+
 
             }
 

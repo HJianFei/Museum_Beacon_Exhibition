@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.history;
 
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -76,28 +77,28 @@ public class HistoryFragment extends Fragment {
         return view;
     }
 
-    @OnClick({R.id.china_history, R.id.china_hey_day, R.id.china_history_war, R.id.china_history_big_thing,  R.id.foreign_history})
+    @OnClick({R.id.china_history, R.id.china_hey_day, R.id.china_history_war, R.id.china_history_big_thing, R.id.foreign_history})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.china_history:
                 Intent intent = new Intent(mContext, ChinaDynastyActivity.class);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 break;
             case R.id.china_hey_day:
                 Intent intent2 = new Intent(mContext, ChinaHistoryHeyDayActivity.class);
-                startActivity(intent2);
+                startActivity(intent2, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 break;
             case R.id.china_history_war:
                 Intent intent1 = new Intent(mContext, ChinaHistoryWarActivity.class);
-                startActivity(intent1);
+                startActivity(intent1, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 break;
             case R.id.china_history_big_thing:
                 Intent intent3 = new Intent(mContext, HistoryCheckActivity.class);
-                startActivity(intent3);
+                startActivity(intent3, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 break;
             case R.id.foreign_history:
                 Intent intent4 = new Intent(mContext, ForeignHistoryActivity.class);
-                startActivity(intent4);
+                startActivity(intent4, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 break;
         }
     }

@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.fragment.collection;
 
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -105,10 +106,11 @@ public class CulturalLoveFragment extends Fragment implements CollectionView {
             @Override
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(getActivity(), AppreciateDetailActivity.class);
-                intent.putExtra("cultural_detail_url", collectionsBeanList.get(i).getDetail_url());
+                intent.putExtra("id", collectionsBeanList.get(i).getDetail_url());
                 intent.putExtra("cultural_name", collectionsBeanList.get(i).getPost_id());
                 intent.putExtra("post_type", TYPE);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+
             }
 
             @Override

@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.foreign_history_detail;
 
 import android.Manifest;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -72,6 +74,9 @@ public class ForeignCountryDetailActivity extends AppCompatActivity implements F
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //滑动进入
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         id = getIntent().getStringExtra("id");
         title = getIntent().getStringExtra("title");
         setContentView(R.layout.activity_foreign_country_detail);
@@ -141,7 +146,7 @@ public class ForeignCountryDetailActivity extends AppCompatActivity implements F
                 Intent intent2 = new Intent(ForeignCountryDetailActivity.this, PhotoDetailActivity.class);
                 intent2.putExtra("img_urls", img_url);
                 intent2.putExtra("photo_title", title);
-                startActivity(intent2);
+                startActivity(intent2, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
             case R.id.foreign_country_detail_fab:
                 if (ContextCompat.checkSelfPermission(ForeignCountryDetailActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {

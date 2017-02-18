@@ -1,14 +1,13 @@
 package com.hjianfei.museum_beacon_exhibition.view.fragment.appreciate;
 
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.text.TextUtils;
@@ -127,17 +126,14 @@ public class AppreciateFragment extends Fragment implements AppreciateView {
             @Override
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(getActivity(), AppreciateDetailActivity.class);
-                intent.putExtra("id", appreciatesBeanList.get(i).getId()+"");
+                intent.putExtra("id", appreciatesBeanList.get(i).getId() + "");
                 intent.putExtra("cultural_name", appreciatesBeanList.get(i).getContent());
                 intent.putExtra("post_type", type);
                 Map<String, Object> map = new HashMap<>();
                 map.put("id", appreciatesBeanList.get(i).getId());
                 map.put("view_count", appreciatesBeanList.get(i).getView_count() + 1);
                 mAppreciatePresenter.updateAppreciateViewCount(map);
-                ActivityOptionsCompat options =
-                        ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
-                                view.findViewById(R.id.appreciate_item_image), getString(R.string.transition));
-                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
             }
 
             @Override
@@ -189,7 +185,7 @@ public class AppreciateFragment extends Fragment implements AppreciateView {
 
     @Override
     public void initAppreciateData(Appreciates appreciates) {
-        if (appreciates.getCode()==200) {
+        if (appreciates.getCode() == 200) {
             appreciatesBeanList.clear();
             appreciatesBeanList.addAll(appreciates.getAppreciates());
             appreciateRecyclerView.refreshComplete();
@@ -203,7 +199,7 @@ public class AppreciateFragment extends Fragment implements AppreciateView {
 
     @Override
     public void refreshAppreciateData(Appreciates appreciates) {
-        if (appreciates.getCode()==200) {
+        if (appreciates.getCode() == 200) {
             appreciatesBeanList.clear();
             appreciatesBeanList.addAll(appreciates.getAppreciates());
             appreciateRecyclerView.refreshComplete();
@@ -217,7 +213,7 @@ public class AppreciateFragment extends Fragment implements AppreciateView {
 
     @Override
     public void loadMoreAppreciateData(Appreciates appreciates) {
-        if (appreciates.getCode()==200) {
+        if (appreciates.getCode() == 200) {
             appreciatesBeanList.addAll(appreciates.getAppreciates());
             appreciateRecyclerView.refreshComplete();
             mAdapter.notifyDataSetChanged();

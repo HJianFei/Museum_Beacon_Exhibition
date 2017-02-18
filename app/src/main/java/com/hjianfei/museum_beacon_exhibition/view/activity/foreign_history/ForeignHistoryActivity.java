@@ -1,11 +1,13 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.foreign_history;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.view.View;
 
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
@@ -16,6 +18,7 @@ import com.github.jdsjlzx.util.RecyclerViewUtils;
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.CommonAdapter;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
+import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.view.activity.foreign_country_history.ForeignCountryActivity;
 
 import java.util.ArrayList;
@@ -39,6 +42,8 @@ public class ForeignHistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         setContentView(R.layout.activity_foreign_history);
         ButterKnife.bind(this);
         country.add("美国历史");
@@ -82,7 +87,8 @@ public class ForeignHistoryActivity extends AppCompatActivity {
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(ForeignHistoryActivity.this, ForeignCountryActivity.class);
                 intent.putExtra("country", country.get(i));
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(ForeignHistoryActivity.this).toBundle());
+
 
             }
 

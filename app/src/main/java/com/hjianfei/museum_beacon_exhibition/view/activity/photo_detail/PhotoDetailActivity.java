@@ -3,12 +3,14 @@ package com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.view.View;
 import android.widget.TextView;
 
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.adapter.PhotoDetailViewPagerAdapter;
 import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
+import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.photo_detail.PhotoDetailPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.photo_detail.PhotoDetailPresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
@@ -36,6 +38,9 @@ public class PhotoDetailActivity extends AppCompatActivity implements PhotoDetai
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //淡入淡出
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         img_urls = getIntent().getStringExtra("img_urls").split(",");
         title = getIntent().getStringExtra("photo_title");
         setContentView(R.layout.activity_photo_detail);

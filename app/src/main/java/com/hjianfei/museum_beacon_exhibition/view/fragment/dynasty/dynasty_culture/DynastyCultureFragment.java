@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.fragment.dynasty.dynasty_culture;
 
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -119,7 +120,7 @@ public class DynastyCultureFragment extends Fragment implements DynastyCultureVi
                 intent.putExtra("title", chinaHistoryCulturesBeanList.get(i).getTitle());
                 intent.putExtra("author", chinaHistoryCulturesBeanList.get(i).getAuthor());
                 intent.putExtra("time", chinaHistoryCulturesBeanList.get(i).getTime());
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
 
             }
 

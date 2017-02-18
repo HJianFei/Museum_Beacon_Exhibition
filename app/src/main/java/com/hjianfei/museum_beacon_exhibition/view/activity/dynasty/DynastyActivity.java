@@ -1,5 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.dynasty;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -10,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Slide;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -22,6 +24,7 @@ import com.hjianfei.museum_beacon_exhibition.adapter.common.OnItemClickListener;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryBigThing;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryPeople;
+import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.canstants.Urls;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.dynasty.DynastyPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.dynasty.DynastyPresenterImpl;
@@ -71,6 +74,9 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //淡入淡出
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         setContentView(R.layout.activity_dynasty);
         dynasty_name = getIntent().getStringExtra("dynasty_name");
         dynasty_img_url = getIntent().getStringExtra("dynasty_img_url");
@@ -97,9 +103,9 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
             public void onItemClick(ViewGroup parent, View view, Object o, int position) {
 
                 Intent intent = new Intent(DynastyActivity.this, ChinaHistoryPeopleDetailActivity.class);
-                intent.putExtra("id", chinaHistoryPeoplesBeanList.get(position).getId()+"");
+                intent.putExtra("id", chinaHistoryPeoplesBeanList.get(position).getId() + "");
                 intent.putExtra("img_url", chinaHistoryPeoplesBeanList.get(position).getImg_url());
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(DynastyActivity.this).toBundle());
             }
 
             @Override
@@ -134,7 +140,8 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
                 Intent intent = new Intent(DynastyActivity.this, ChinaHistoryBigThingDetailActivity.class);
                 intent.putExtra("big_thing_title", info.get(position));
                 intent.putExtra("id", chinaHistoryBigThing.getChina_History_Big_Things().get(position).getId() + "");
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(DynastyActivity.this).toBundle());
+
             }
         });
     }
@@ -181,19 +188,18 @@ public class DynastyActivity extends AppCompatActivity implements DynastyView {
                 bundle.putSerializable("HistoryBigThings", chinaHistoryBigThingBean);
                 intent.putExtra("bundle", bundle);
                 intent.putExtra("dynasty_name", dynasty_name);
-                startActivity(intent);
-
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
             case R.id.dynasty_people_more:
                 Intent intents = new Intent(DynastyActivity.this, ChinaHistoryPeopleActivity.class);
                 intents.putExtra("dynasty_name", dynasty_name);
-                startActivity(intents);
+                startActivity(intents, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
             case R.id.dynasty_bg_img:
                 Intent intent2 = new Intent(DynastyActivity.this, PhotoDetailActivity.class);
                 intent2.putExtra("img_urls", Urls.API_SERVER + dynasty_img_url);
                 intent2.putExtra("photo_title", dynasty_name + "历史");
-                startActivity(intent2);
+                startActivity(intent2, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
         }
     }

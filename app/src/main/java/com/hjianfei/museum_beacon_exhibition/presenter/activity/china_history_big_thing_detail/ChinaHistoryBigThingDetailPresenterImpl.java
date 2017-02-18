@@ -40,7 +40,7 @@ public class ChinaHistoryBigThingDetailPresenterImpl implements ChinaHistoryBigT
     public void getChinaHistoryBigThingDetail(String id) {
 
         if (mDetailView != null) {
-            mDetailView.showDialog();
+//            mDetailView.showDialog();
         }
         mIndicator.getChinaHistoryBigThingDetail(id, this);
     }

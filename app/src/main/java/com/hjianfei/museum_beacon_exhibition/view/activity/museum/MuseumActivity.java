@@ -1,5 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.museum;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -9,11 +10,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Slide;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hjianfei.museum_beacon_exhibition.R;
+import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.appreciate.AppreciateFragment;
 
@@ -41,6 +44,8 @@ public class MuseumActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         museum_name = getIntent().getStringExtra("museum_name");
         String img = getIntent().getStringExtra("img_url");
         String appreciate = getIntent().getStringExtra("appreciate_type");
@@ -69,7 +74,7 @@ public class MuseumActivity extends AppCompatActivity {
         Intent intent2 = new Intent(MuseumActivity.this, PhotoDetailActivity.class);
         intent2.putExtra("img_urls", imgs);
         intent2.putExtra("photo_title",museum_name);
-        startActivity(intent2);
+        startActivity(intent2, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
 
     }
 

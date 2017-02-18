@@ -42,7 +42,7 @@ public class HistoryCheckDetailPresenterImpl implements HistoryCheckDetailPresen
     @Override
     public void getHistoryHCheckDetail(String id) {
         if (mView != null) {
-            mView.showDialog();
+//            mView.showDialog();
             mIndicator.getHistoryHCheckDetail(id,this);
         }
 

@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.fragment.history_war;
 
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -117,7 +118,8 @@ public class HistoryWarFragment extends Fragment implements HistoryWarView {
                 intent.putExtra("id", chinaHistoryOldenWarsBeanList.get(i).getId()+"");
                 intent.putExtra("img_url", chinaHistoryOldenWarsBeanList.get(i).getImg_url());
                 intent.putExtra("title", chinaHistoryOldenWarsBeanList.get(i).getName());
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+
             }
 
             @Override

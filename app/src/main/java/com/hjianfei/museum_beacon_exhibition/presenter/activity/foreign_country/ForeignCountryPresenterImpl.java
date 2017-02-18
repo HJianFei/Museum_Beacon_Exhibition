@@ -55,7 +55,7 @@ public class ForeignCountryPresenterImpl implements ForeignCountryPresenter, For
     @Override
     public void onInit(String country, String type, String page, String search_condition) {
         if (mView != null) {
-            mView.showDialog();
+//            mView.showDialog();
             mIndicator.onInit(country, type, page, search_condition, this);
         }
     }

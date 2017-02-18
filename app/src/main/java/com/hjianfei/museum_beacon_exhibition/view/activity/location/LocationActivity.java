@@ -95,6 +95,8 @@ public class LocationActivity extends AppCompatActivity implements AbsListView.O
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+//        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         setContentView(R.layout.activity_location);
         ButterKnife.bind(this);
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

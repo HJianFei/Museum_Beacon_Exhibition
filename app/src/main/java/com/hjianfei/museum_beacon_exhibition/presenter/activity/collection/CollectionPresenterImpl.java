@@ -64,7 +64,7 @@ public class CollectionPresenterImpl implements CollectionPresenter, CollectionI
     @Override
     public void onInitCollectionData(String phone, String type, String page) {
         if (null != mCollectionView) {
-            mCollectionView.showDialog();
+//            mCollectionView.showDialog();
         }
         mCollectionIndicator.onInitCollectionByType(phone, type, page, this);
     }

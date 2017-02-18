@@ -41,7 +41,7 @@ public class ChinaHistoryPeopleDetailPresenterImpl implements ChinaHistoryPeople
     @Override
     public void getHistoryPeopleDetail(String id) {
         if (null != mView) {
-            mView.showDialog();
+//            mView.showDialog();
         }
         mIndicator.getHistoryPeopleDetail(id, this);
     }

@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.fragment.foreign_country;
 
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -114,9 +115,10 @@ public class ForeignCountryFragment extends Fragment implements ForeignCountryVi
             public void onItemClick(View view, int i) {
 
                 Intent intent = new Intent(mContext, ForeignCountryDetailActivity.class);
-                intent.putExtra("id", foreignHistoriesBeanList.get(i).getId()+"");
+                intent.putExtra("id", foreignHistoriesBeanList.get(i).getId() + "");
                 intent.putExtra("title", foreignHistoriesBeanList.get(i).getTitle());
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+
             }
 
             @Override

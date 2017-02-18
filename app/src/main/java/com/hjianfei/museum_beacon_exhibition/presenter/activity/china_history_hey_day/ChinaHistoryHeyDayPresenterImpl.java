@@ -56,7 +56,7 @@ public class ChinaHistoryHeyDayPresenterImpl implements ChinaHistoryHeyDayPresen
     @Override
     public void onInitChinaHistoryHeyDay(String page, String search_condition) {
         if (mView != null) {
-            mView.showDialog();
+//            mView.showDialog();
             mIndicator.onInitChinaHistoryHeyDay(page, search_condition, this);
         }
     }

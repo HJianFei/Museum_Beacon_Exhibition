@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail;
 
 import android.Manifest;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -75,6 +77,9 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //淡入淡出
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         setContentView(R.layout.activity_appreciate_detail);
         ButterKnife.bind(this);
         id = getIntent().getStringExtra("id");
@@ -181,7 +186,8 @@ public class AppreciateDetailActivity extends AppCompatActivity implements Appre
                 Intent intent = new Intent(AppreciateDetailActivity.this, PhotoDetailActivity.class);
                 intent.putExtra("img_urls", finalImg_url);
                 intent.putExtra("photo_title", appreciateDetail.getAppreciateDetail().getTitle());
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(AppreciateDetailActivity.this).toBundle());
+
             }
         });
 

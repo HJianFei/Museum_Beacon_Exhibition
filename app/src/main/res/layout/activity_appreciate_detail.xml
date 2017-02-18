@@ -5,10 +5,12 @@
     android:id="@+id/activity_appreciate_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     android:orientation="vertical"
     tools:context="com.hjianfei.museum_beacon_exhibition.view.activity.appreciate_detail.AppreciateDetailActivity">
 
     <include layout="@layout/cultural_detail_toolbar" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,6 +47,8 @@
                         android:id="@+id/cultural_detail_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
                         android:layout_marginTop="16dp"
                         android:gravity="center"
                         android:textColor="#333333"

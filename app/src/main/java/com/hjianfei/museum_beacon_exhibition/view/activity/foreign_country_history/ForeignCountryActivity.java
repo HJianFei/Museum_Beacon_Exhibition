@@ -7,10 +7,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Slide;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hjianfei.museum_beacon_exhibition.R;
+import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.foreign_country.ForeignCountryFragment;
 
 import butterknife.BindView;
@@ -32,6 +34,10 @@ public class ForeignCountryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //滑动进入
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         country = getIntent().getStringExtra("country");
         setContentView(R.layout.activity_foreign_country);
         ButterKnife.bind(this);

@@ -23,7 +23,7 @@ public class DynastyPresenterImpl implements DynastyPresenter, DynastyIndicator.
     @Override
     public void getDynastyBigThings(String type, String page) {
         if (mDynastyView != null) {
-            mDynastyView.showDialog();
+//            mDynastyView.showDialog();
         }
         mDynastyIndicator.getChinaHistoryBigThings(type, page, this);
 

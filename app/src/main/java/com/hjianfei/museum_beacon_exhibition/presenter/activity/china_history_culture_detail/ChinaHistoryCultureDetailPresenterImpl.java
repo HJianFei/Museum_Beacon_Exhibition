@@ -38,7 +38,7 @@ public class ChinaHistoryCultureDetailPresenterImpl implements ChinaHistoryCultu
     @Override
     public void getChinaHistoryCultureDetail(String id) {
         if (null != mView) {
-            mView.showDialog();
+//            mView.showDialog();
         }
         mIndicator.getHistoryCultureDetailDetail(id, this);
     }

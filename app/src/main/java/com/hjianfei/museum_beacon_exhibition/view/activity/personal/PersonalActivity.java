@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.personal;
 
 import android.Manifest;
+import android.app.ActivityOptions;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,11 +18,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.transition.Slide;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,8 +66,6 @@ public class PersonalActivity extends AppCompatActivity implements PersonalView 
     CircleImageView personalAvatar;
     @BindView(personal_name)
     TextView personalName;
-    @BindView(R.id.personal_avatar_bg)
-    LinearLayout personalAvatarBg;
     @BindView(R.id.tv_personal_love)
     TextView tvPersonalLove;
     @BindView(R.id.tv_personal_share)
@@ -101,6 +100,8 @@ public class PersonalActivity extends AppCompatActivity implements PersonalView 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         user_phone = (String) SPUtils.getParam(PersonalActivity.this, Constants.PHONE, "");
         setContentView(R.layout.activity_personal);
         ButterKnife.bind(this);
@@ -128,17 +129,13 @@ public class PersonalActivity extends AppCompatActivity implements PersonalView 
         super.onResume();
     }
 
-    @OnClick({R.id.personal_avatar_bg,
-            R.id.personal_avatar, personal_name,
+    @OnClick({R.id.personal_avatar, personal_name,
             R.id.tv_personal_love, R.id.tv_personal_share,
             R.id.tv_personal_phone, R.id.tv_personal_change_password,
             R.id.tv_personal_setting, R.id.tv_app_share})
     public void onClickListener(View v) {
         Intent intent;
         switch (v.getId()) {
-            case R.id.personal_avatar_bg:
-                show_Dialog();
-                break;
             case R.id.personal_avatar:
                 show_Dialog();
                 break;
@@ -162,7 +159,8 @@ public class PersonalActivity extends AppCompatActivity implements PersonalView 
                 break;
             case R.id.tv_personal_love:
                 intent = new Intent(PersonalActivity.this, CollectionActivity.class);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
 
                 break;
             case R.id.tv_personal_share:
@@ -171,17 +169,17 @@ public class PersonalActivity extends AppCompatActivity implements PersonalView 
                 break;
             case R.id.tv_personal_phone:
                 intent = new Intent(PersonalActivity.this, ChangePhoneActivity.class);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
 
                 break;
             case R.id.tv_personal_change_password:
                 intent = new Intent(PersonalActivity.this, ChangePasswordActivity.class);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
 
                 break;
             case R.id.tv_personal_setting:
                 intent = new Intent(PersonalActivity.this, SettingActivity.class);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
             case R.id.tv_app_share:
                 if (ContextCompat.checkSelfPermission(PersonalActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -368,8 +366,8 @@ public class PersonalActivity extends AppCompatActivity implements PersonalView 
 
     private void doShare() {
         new ShareAction(PersonalActivity.this)
-                .withTitle("博物展")
-                .withText("博物展，让沉睡千年的文物‘动’起来")
+                .withTitle("史博展")
+                .withText("史博展，让沉睡千年的文物‘动’起来")
                 .withMedia(new UMImage(this, R.mipmap.logo))
                 .withTargetUrl("http://fir.im/fzt8")
                 .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)

@@ -1,5 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.history_check;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.transition.Slide;
 import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -20,6 +22,7 @@ import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.CommonAdapter;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.HistoryCheck;
+import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.history_check.HistoryCheckPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.history_check.HistoryCheckPresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.view.activity.history_check_detail.HistoryCheckDetailActivity;
@@ -51,6 +54,8 @@ public class HistoryCheckActivity extends AppCompatActivity implements HistoryCh
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         setContentView(R.layout.activity_history_check);
         ButterKnife.bind(this);
         initData();
@@ -84,9 +89,10 @@ public class HistoryCheckActivity extends AppCompatActivity implements HistoryCh
             @Override
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(HistoryCheckActivity.this, HistoryCheckDetailActivity.class);
-                intent.putExtra("id", hiChecksBeenList.get(i).getId()+"");
+                intent.putExtra("id", hiChecksBeenList.get(i).getId() + "");
                 intent.putExtra("title", hiChecksBeenList.get(i).getTitle());
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(HistoryCheckActivity.this).toBundle());
+
 
             }
 

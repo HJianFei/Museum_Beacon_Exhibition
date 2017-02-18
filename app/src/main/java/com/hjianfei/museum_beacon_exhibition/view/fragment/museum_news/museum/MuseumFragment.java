@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.museum;
 
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -133,19 +134,15 @@ public class MuseumFragment extends Fragment implements MuseumView {
             @Override
             public void onItemClick(View view, int i) {
                 Intent intent = new Intent(mContext, MuseumDetailActivity.class);
-                intent.putExtra("id", museumsBeanList.get(i).getMuseum_id()+"");
+                intent.putExtra("id", museumsBeanList.get(i).getMuseum_id() + "");
                 intent.putExtra("museum_name", museumsBeanList.get(i).getMuseum_name());
                 Map<String, Object> map = new HashMap<>();
                 map.put("id", museumsBeanList.get(i).getMuseum_id());
                 map.put("view_count", museumsBeanList.get(i).getView_count() + 1);
                 intent.putExtra("post_type", TYPE);
-                intent.putExtra("appreciate_type",museumsBeanList.get(i).getType());
+                intent.putExtra("appreciate_type", museumsBeanList.get(i).getType());
                 mMuseumPresenter.updateMuseumViewCount(map);
-                startActivity(intent);
-//                ActivityOptionsCompat options =
-//                        ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
-//                                view.findViewById(R.id.museum_item_img), getString(R.string.transition));
-//                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
             }
 
             @Override

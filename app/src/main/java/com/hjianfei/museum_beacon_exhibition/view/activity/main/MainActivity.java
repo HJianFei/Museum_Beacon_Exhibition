@@ -3,7 +3,7 @@ package com.hjianfei.museum_beacon_exhibition.view.activity.main;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.transition.Explode;
+import android.transition.Slide;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.hjianfei.museum_beacon_exhibition.R;
+import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.utils.StatusBarUtils;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.guide.GuideFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.home.HomeFragment;
@@ -42,13 +43,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //淡入淡出
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         StatusBarUtils.setStatusBarTransparent(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        Explode explode = new Explode();
-        explode.setDuration(500);
-        getWindow().setExitTransition(explode);
-        getWindow().setEnterTransition(explode);
+//        Explode explode = new Explode();
+//        explode.setDuration(500);
+//        getWindow().setExitTransition(explode);
+//        getWindow().setEnterTransition(explode);
         //设置默认显示的fragment==home
         selectStyle(R.id.tab_home_rb);
     }

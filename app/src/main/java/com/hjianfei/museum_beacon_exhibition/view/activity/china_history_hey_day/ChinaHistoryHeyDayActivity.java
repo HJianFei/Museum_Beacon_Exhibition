@@ -1,5 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.china_history_hey_day;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.transition.Slide;
 import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -20,6 +22,7 @@ import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.CommonAdapter;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryHeyDay;
+import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_hey_day.ChinaHistoryHeyDayPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_hey_day.ChinaHistoryHeyDayPresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_hey_day_info.HistoryHeyDayInFoActivity;
@@ -51,6 +54,9 @@ public class ChinaHistoryHeyDayActivity extends AppCompatActivity implements Chi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //淡入淡出
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         setContentView(R.layout.activity_china_history_hey_day);
         ButterKnife.bind(this);
         initData();
@@ -85,9 +91,9 @@ public class ChinaHistoryHeyDayActivity extends AppCompatActivity implements Chi
             public void onItemClick(View view, int i) {
 
                 Intent intent = new Intent(ChinaHistoryHeyDayActivity.this, HistoryHeyDayInFoActivity.class);
-                intent.putExtra("id", chinaHistoryHeyDaysBeanList.get(i).getId()+"");
+                intent.putExtra("id", chinaHistoryHeyDaysBeanList.get(i).getId() + "");
                 intent.putExtra("title", chinaHistoryHeyDaysBeanList.get(i).getTitle());
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(ChinaHistoryHeyDayActivity.this).toBundle());
             }
 
             @Override

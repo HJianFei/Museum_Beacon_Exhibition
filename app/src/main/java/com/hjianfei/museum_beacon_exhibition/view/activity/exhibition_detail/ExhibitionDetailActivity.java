@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.exhibition_detail;
 
 import android.Manifest;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -75,6 +77,8 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         setContentView(R.layout.activity_exhibition_detail);
         ButterKnife.bind(this);
         exhibition_detail_url = getIntent().getStringExtra("exhibition_detail_url");
@@ -183,7 +187,8 @@ public class ExhibitionDetailActivity extends AppCompatActivity implements Exhib
                 Intent intent = new Intent(ExhibitionDetailActivity.this, PhotoDetailActivity.class);
                 intent.putExtra("img_urls", finalImg_url);
                 intent.putExtra("photo_title", exhibitionDetail.getExhibitionDetail().getTitle());
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(ExhibitionDetailActivity.this).toBundle());
+
             }
         });
     }

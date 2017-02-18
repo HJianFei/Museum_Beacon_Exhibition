@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.museum_detail;
 
 import android.Manifest;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,7 +29,6 @@ import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.museum_detail.MuseumDetailPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.museum_detail.MuseumDetailPresenterImpl;
-import com.hjianfei.museum_beacon_exhibition.utils.SPUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.view.activity.museum.MuseumActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
@@ -45,9 +46,7 @@ import com.yalantis.contextmenu.lib.MenuParams;
 import com.yalantis.contextmenu.lib.interfaces.OnMenuItemClickListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,8 +65,8 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
     @BindView(R.id.museum_detail_enter)
     LinearLayout museumDetailEnter;
     private MuseumDetailPresenter mMuseumDetailPresenter;
-    private String id="";
-    private String museum_name="";
+    private String id = "";
+    private String museum_name = "";
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
     private MuseumDetail museum_detail;
@@ -78,6 +77,8 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         setContentView(R.layout.activity_museum_detail);
         id = getIntent().getStringExtra("id");
         museum_name = getIntent().getStringExtra("museum_name");
@@ -107,14 +108,14 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
                         doShare();
                     }
                 } else if (position == 2) {
-                    String phone = (String) SPUtils.getParam(MuseumDetailActivity.this, Constants.PHONE, "");
-                    Map<String, Object> map = new HashMap<>();
-                    map.put("user_phone", phone);
-                    map.put("post_id", museum_detail.getMuseum_Detail().getMuseum_detail_name());
-                    map.put("post_type", post_type);
-                    map.put("img_url", img_urls[0]);
-                    map.put("id", museum_detail.getMuseum_Detail().getId()+"");
-                    mMuseumDetailPresenter.onSaveCollection(map);
+//                    String phone = (String) SPUtils.getParam(MuseumDetailActivity.this, Constants.PHONE, "");
+//                    Map<String, Object> map = new HashMap<>();
+//                    map.put("user_phone", phone);
+//                    map.put("post_id", museum_detail.getMuseum_Detail().getMuseum_detail_name());
+//                    map.put("post_type", post_type);
+//                    map.put("img_url", img_urls[0]);
+//                    map.put("id", museum_detail.getMuseum_Detail().getId()+"");
+//                    mMuseumDetailPresenter.onSaveCollection(map);
 
                 }
             }
@@ -139,12 +140,12 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
         MenuObject send = new MenuObject("分享");
         send.setResource(R.drawable.menu_share);
 
-        MenuObject like = new MenuObject("收藏");
-        like.setResource(R.drawable.menu_love);
+//        MenuObject like = new MenuObject("收藏");
+//        like.setResource(R.drawable.menu_love);
 
         menuObjects.add(close);
         menuObjects.add(send);
-        menuObjects.add(like);
+//        menuObjects.add(like);
         return menuObjects;
     }
 
@@ -185,7 +186,8 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
                 Intent intent = new Intent(MuseumDetailActivity.this, PhotoDetailActivity.class);
                 intent.putExtra("img_urls", finalImg_url);
                 intent.putExtra("photo_title", museumDetail.getMuseum_Detail().getMuseum_detail_name());
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(MuseumDetailActivity.this).toBundle());
+
             }
         });
 
@@ -290,6 +292,6 @@ public class MuseumDetailActivity extends AppCompatActivity implements MuseumDet
         intent.putExtra("museum_name", museum_name);
         intent.putExtra("img_url", museum_detail.getMuseum_Detail().getMuseum_detail_imgs());
         intent.putExtra("appreciate_type", appreciate_type);
-        startActivity(intent);
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 }

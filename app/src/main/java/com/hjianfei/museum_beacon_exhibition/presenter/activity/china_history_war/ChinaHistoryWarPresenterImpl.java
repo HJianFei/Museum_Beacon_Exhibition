@@ -55,7 +55,7 @@ public class ChinaHistoryWarPresenterImpl implements ChinaHistoryWarPresenter, C
     @Override
     public void onInit(String type, String page, String search_condition) {
         if (mView != null) {
-            mView.showDialog();
+//            mView.showDialog();
         }
         mIndicator.onInit(type, page, search_condition, this);
     }

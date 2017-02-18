@@ -5,8 +5,6 @@ import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
 import com.hjianfei.museum_beacon_exhibition.model.activity.appreciate.AppreciateIndicator;
 import com.hjianfei.museum_beacon_exhibition.model.activity.appreciate.AppreciateIndicatorImpl;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.appreciate.AppreciateView;
-
-import java.util.List;
 import java.util.Map;
 
 /**

@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.guide_detail;
 
 import android.Manifest;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -76,6 +78,9 @@ public class GuideDetailActivity extends AppCompatActivity implements GuideDetai
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //滑动进入
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
         beaconAppreciate = (BeaconAppreciate) getIntent().getBundleExtra("guide_detail").getSerializable("beaconAppreciate");
         setContentView(R.layout.activity_guide_detail);
         ButterKnife.bind(this);
@@ -133,7 +138,8 @@ public class GuideDetailActivity extends AppCompatActivity implements GuideDetai
                 Intent intent = new Intent(this, PhotoDetailActivity.class);
                 intent.putExtra("img_urls", beaconAppreciate.getBeaconAppreciate().getImg_url());
                 intent.putExtra("photo_title", beaconAppreciate.getBeaconAppreciate().getTitle());
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
                 break;
             case R.id.guide_detail_share:
                 if (ContextCompat.checkSelfPermission(GuideDetailActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {

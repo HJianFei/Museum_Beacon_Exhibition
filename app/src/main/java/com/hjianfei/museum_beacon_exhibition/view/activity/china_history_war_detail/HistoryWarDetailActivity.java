@@ -12,7 +12,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.view.View;
@@ -29,6 +28,7 @@ import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_wa
 import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
@@ -40,7 +40,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class HistoryWarDetailActivity extends AppCompatActivity implements HistoryWarDetailView, AppBarLayout.OnOffsetChangedListener {
+public class HistoryWarDetailActivity extends BaseActivity implements HistoryWarDetailView, AppBarLayout.OnOffsetChangedListener {
 
     private static final int PERCENTAGE_TO_SHOW_IMAGE = 20;
     private int mMaxScrollSize;

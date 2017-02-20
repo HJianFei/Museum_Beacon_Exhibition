@@ -3,7 +3,6 @@ package com.hjianfei.museum_beacon_exhibition.view.activity.history_big_thing;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -21,11 +20,12 @@ import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.bean.ChinaHistoryBigThing;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_big_thing_detail.ChinaHistoryBigThingDetailActivity;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HistoryBigThingActivity extends AppCompatActivity {
+public class HistoryBigThingActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

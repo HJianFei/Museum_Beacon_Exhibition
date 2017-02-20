@@ -40,7 +40,7 @@ public class BaseApplication extends Application {
         SMSSDK.initSDK(this, "19132ee4c2cc0", "d4558a302572fbb2657b34b394d06f0c");
         //友盟分享
         UMShareAPI.get(this);
-        PlatformConfig.setWeixin("wx2a66162383eda523", "c68e8e4e28fa82d6db1b57cc73ea88b7");
+        PlatformConfig.setWeixin("wx2a66162383eda523", "5aca080fdffb9a8c3745d5e18b56f637");
         PlatformConfig.setQQZone("1105746947", "8ipjCPurLMpe97dZ");
         PlatformConfig.setSinaWeibo("208018229", "a91e96352d72eac75528bac1bfef3046");
         Config.REDIRECT_URL = "http://sns.whalecloud.com/sina2/callback";

@@ -15,7 +15,6 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.transition.Slide;
@@ -40,6 +39,7 @@ import com.hjianfei.museum_beacon_exhibition.view.activity.change_password.Chang
 import com.hjianfei.museum_beacon_exhibition.view.activity.change_phone.ChangePhoneActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.collection.CollectionActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.setting.SettingActivity;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -58,7 +58,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.hjianfei.museum_beacon_exhibition.R.id.personal_name;
 
-public class PersonalActivity extends AppCompatActivity implements PersonalView {
+public class PersonalActivity extends BaseActivity implements PersonalView {
 
     @BindView(R.id.toolbar)
     Toolbar personalToolbar;
@@ -123,7 +123,7 @@ public class PersonalActivity extends AppCompatActivity implements PersonalView 
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         personalName.setText((String) SPUtils.getParam(PersonalActivity.this, Constants.NAME, ""));
         tvPersonalPhone.setText("手机号码：" + SPUtils.getParam(PersonalActivity.this, Constants.PHONE, ""));
         super.onResume();

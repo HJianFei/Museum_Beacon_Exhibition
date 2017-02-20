@@ -5,7 +5,6 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.transition.Slide;
@@ -26,6 +25,7 @@ import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.SPUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.utils.ValidatorUtils;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +39,7 @@ import cn.smssdk.SMSSDK;
 
 import static com.hjianfei.museum_beacon_exhibition.R.id.old_phone;
 
-public class ChangePhoneActivity extends AppCompatActivity implements ChangePhoneView {
+public class ChangePhoneActivity extends BaseActivity implements ChangePhoneView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
 android {
     compileSdkVersion 24
     buildToolsVersion '25.0.1'
@@ -16,13 +20,26 @@ android {
         release {
             // 不显示Log
             buildConfigField "boolean", "LOG_DEBUG", "false"
-            zipAlignEnabled true
+
+            minifyEnabled false
+            zipAlignEnabled false
             // 移除无用的resource文件
             shrinkResources false
-            minifyEnabled false
-            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def fileName = "史博展_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
         }
+
+
         debug {
             minifyEnabled false
             signingConfig signingConfigs.debug
@@ -48,6 +65,16 @@ android {
         }
     }
     productFlavors {
+//        xiaomi {}
+//        _360 {}
+//        baidu {}
+//        wandoujia {}
+        fir {}
+        tentcent {}
+    }
+
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
     }
 }
 
@@ -96,4 +123,5 @@ dependencies {
     compile 'com.sunfusheng:marqueeview:1.1.0'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
+    compile 'com.umeng.analytics:analytics:latest.integration'
 }

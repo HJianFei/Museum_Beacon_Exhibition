@@ -25,7 +25,7 @@ public class MuseumPresenterImpl implements MuseumPresenter, MuseumIndicator.onF
     @Override
     public void initMuseumsData(String type, String page,String search_condition) {
         if (null != mMuseumView) {
-            mMuseumView.showDialog();
+//            mMuseumView.showDialog();
         }
         mMuseumIndicator.getInitMuseumsData(type, page, this,search_condition);
 
@@ -66,7 +66,7 @@ public class MuseumPresenterImpl implements MuseumPresenter, MuseumIndicator.onF
     @Override
     public void onRefreshMuseumsFinished(List<Museum.MuseumsBean> museumsBeanList) {
         if (null != mMuseumView) {
-//            mMuseumView.hideDialog();
+            mMuseumView.hideDialog();
         }
         mMuseumView.refreshMuseumData(museumsBeanList);
     }

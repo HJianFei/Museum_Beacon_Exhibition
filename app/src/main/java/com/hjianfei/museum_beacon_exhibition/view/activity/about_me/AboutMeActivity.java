@@ -1,7 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.about_me;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,6 +19,7 @@ import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -29,7 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AboutMeActivity extends Activity implements AppBarLayout.OnOffsetChangedListener {
+public class AboutMeActivity extends BaseActivity implements AppBarLayout.OnOffsetChangedListener {
 
     private static final int PERCENTAGE_TO_SHOW_IMAGE = 20;
     @BindView(R.id.about_me_toolbar)
@@ -125,7 +125,7 @@ public class AboutMeActivity extends Activity implements AppBarLayout.OnOffsetCh
         public void onError(SHARE_MEDIA platform, Throwable t) {
             Toast.makeText(AboutMeActivity.this, "分享失败啦", Toast.LENGTH_SHORT).show();
             if (t != null) {
-                LogUtils.d("throw", "throw:" + t.getMessage());
+                LogUtils.d("onResponse", "throw:" + t.toString());
                 ToastUtil.showToast(AboutMeActivity.this, "请允许使用SDCard权限");
             }
         }

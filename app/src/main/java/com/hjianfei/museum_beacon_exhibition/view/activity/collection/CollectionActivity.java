@@ -6,13 +6,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.view.View;
 
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.collection.CulturalLoveFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.collection.HotExhibitionFragment;
 
@@ -22,7 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CollectionActivity extends AppCompatActivity {
+public class CollectionActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

@@ -1,7 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.view.View;
@@ -14,6 +13,7 @@ import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.photo_detail.PhotoDetailPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.photo_detail.PhotoDetailPresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.TextHintView;
@@ -22,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class PhotoDetailActivity extends AppCompatActivity implements PhotoDetailView {
+public class PhotoDetailActivity extends BaseActivity implements PhotoDetailView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

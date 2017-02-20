@@ -4,7 +4,6 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -26,6 +25,7 @@ import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.history_check.HistoryCheckPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.history_check.HistoryCheckPresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.view.activity.history_check_detail.HistoryCheckDetailActivity;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class HistoryCheckActivity extends AppCompatActivity implements HistoryCheckView {
+public class HistoryCheckActivity extends BaseActivity implements HistoryCheckView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

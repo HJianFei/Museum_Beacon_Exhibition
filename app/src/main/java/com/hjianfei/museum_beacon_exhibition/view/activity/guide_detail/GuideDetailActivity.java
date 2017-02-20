@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
@@ -38,6 +37,7 @@ import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.utils.widget.CustomVideoView;
 import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
@@ -52,7 +52,7 @@ import butterknife.OnClick;
 import static com.hjianfei.museum_beacon_exhibition.R.id.video_item;
 
 
-public class GuideDetailActivity extends AppCompatActivity implements GuideDetailView {
+public class GuideDetailActivity extends BaseActivity implements GuideDetailView {
 
 
     @BindView(R.id.guide_video_view)

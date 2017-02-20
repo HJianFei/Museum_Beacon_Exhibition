@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.transition.Slide;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,12 +14,13 @@ import android.widget.TextView;
 
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.history_war.HistoryWarFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ChinaHistoryWarActivity extends AppCompatActivity {
+public class ChinaHistoryWarActivity extends BaseActivity {
 
     @BindView(R.id.history_war_img_bg)
     ImageView historyWarImgBg;

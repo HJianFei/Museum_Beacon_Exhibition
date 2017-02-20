@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.transition.Transition;
@@ -32,6 +31,7 @@ import com.hjianfei.museum_beacon_exhibition.presenter.activity.register.Registe
 import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.utils.ValidatorUtils;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,7 +44,7 @@ import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
 
-public class RegisterActivity extends AppCompatActivity implements RegisterView {
+public class RegisterActivity extends BaseActivity implements RegisterView {
     @BindView(R.id.fab)
     FloatingActionButton fab;
     @BindView(R.id.cv_add)

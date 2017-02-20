@@ -4,6 +4,7 @@ import com.hjianfei.museum_beacon_exhibition.R;
 import com.stephentuso.welcome.WelcomeScreenBuilder;
 import com.stephentuso.welcome.ui.WelcomeActivity;
 import com.stephentuso.welcome.util.WelcomeScreenConfiguration;
+import com.umeng.analytics.MobclickAgent;
 
 public class SplashActivity extends WelcomeActivity {
 
@@ -19,5 +20,17 @@ public class SplashActivity extends WelcomeActivity {
                 .swipeToDismiss(true)
                 .exitAnimation(android.R.anim.fade_out)
                 .build();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

@@ -2,7 +2,6 @@ package com.hjianfei.museum_beacon_exhibition.view.activity.main;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.transition.Slide;
 import android.view.KeyEvent;
 import android.view.View;
@@ -15,6 +14,7 @@ import android.widget.Toast;
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.utils.StatusBarUtils;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.guide.GuideFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.home.HomeFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.MuseumNewsFragment;
@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     @BindView(R.id.tab_home_rb)
     RadioButton tabHomeRb;
     @BindView(R.id.tab_home_guide)

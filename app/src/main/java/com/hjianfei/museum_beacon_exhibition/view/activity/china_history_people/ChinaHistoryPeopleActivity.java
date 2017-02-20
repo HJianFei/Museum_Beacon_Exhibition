@@ -4,7 +4,6 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -27,6 +26,7 @@ import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_people.ChinaHistoryPeoplePresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_people.ChinaHistoryPeoplePresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_people_detail.ChinaHistoryPeopleDetailActivity;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class ChinaHistoryPeopleActivity extends AppCompatActivity implements ChinaHistoryPeopleView {
+public class ChinaHistoryPeopleActivity extends BaseActivity implements ChinaHistoryPeopleView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

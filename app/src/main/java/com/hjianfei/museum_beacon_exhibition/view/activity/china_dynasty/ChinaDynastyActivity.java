@@ -3,7 +3,6 @@ package com.hjianfei.museum_beacon_exhibition.view.activity.china_dynasty;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
@@ -23,6 +22,7 @@ import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_dynasty.ChinaDynastyPresenter;
 import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_dynasty.ChinaDynastyPresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.view.activity.dynasty.DynastyActivity;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class ChinaDynastyActivity extends AppCompatActivity implements ChinaDynastyView {
+public class ChinaDynastyActivity extends BaseActivity implements ChinaDynastyView {
 
 
     @BindView(R.id.toolbar)

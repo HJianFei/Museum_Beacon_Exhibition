@@ -10,7 +10,6 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.view.View;
@@ -27,6 +26,7 @@ import com.hjianfei.museum_beacon_exhibition.presenter.activity.china_history_pe
 import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
@@ -38,7 +38,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class ChinaHistoryPeopleDetailActivity extends AppCompatActivity implements ChinaHistoryPeopleDetailView {
+public class ChinaHistoryPeopleDetailActivity extends BaseActivity implements ChinaHistoryPeopleDetailView {
 
     @BindView(R.id.history_people_bg)
     ImageView historyPeopleBg;

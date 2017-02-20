@@ -1,7 +1,6 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.change_password;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.transition.Slide;
@@ -17,6 +16,7 @@ import com.hjianfei.museum_beacon_exhibition.presenter.user_info.UserInfoPresent
 import com.hjianfei.museum_beacon_exhibition.presenter.user_info.UserInfoPresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.utils.SPUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class ChangePasswordActivity extends AppCompatActivity implements ChangePasswordView {
+public class ChangePasswordActivity extends BaseActivity implements ChangePasswordView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

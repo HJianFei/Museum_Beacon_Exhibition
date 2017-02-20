@@ -13,7 +13,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.transition.Slide;
@@ -31,6 +30,7 @@ import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.view.activity.main.MainActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.register.RegisterActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.splash.SplashActivity;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.stephentuso.welcome.WelcomeScreenHelper;
 
 import java.util.HashMap;
@@ -42,7 +42,7 @@ import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
-public class LoginActivity extends AppCompatActivity implements LoginView {
+public class LoginActivity extends BaseActivity implements LoginView {
     @BindView(R.id.et_username)
     EditText etUsername;
     @BindView(R.id.et_password)

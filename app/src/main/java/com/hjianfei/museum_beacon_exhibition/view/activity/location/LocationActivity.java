@@ -12,7 +12,6 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -44,6 +43,7 @@ import com.hjianfei.museum_beacon_exhibition.utils.db.DBHelper;
 import com.hjianfei.museum_beacon_exhibition.utils.db.DatabaseHelper;
 import com.hjianfei.museum_beacon_exhibition.utils.widget.LetterListView;
 import com.hjianfei.museum_beacon_exhibition.utils.widget.PingYinUtil;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,7 +56,7 @@ import java.util.regex.Pattern;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LocationActivity extends AppCompatActivity implements AbsListView.OnScrollListener {
+public class LocationActivity extends BaseActivity implements AbsListView.OnScrollListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

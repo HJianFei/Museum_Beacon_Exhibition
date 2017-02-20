@@ -3,7 +3,6 @@ package com.hjianfei.museum_beacon_exhibition.view.activity.foreign_history;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -20,6 +19,7 @@ import com.hjianfei.museum_beacon_exhibition.adapter.common.CommonAdapter;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.view.activity.foreign_country_history.ForeignCountryActivity;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ForeignHistoryActivity extends AppCompatActivity {
+public class ForeignHistoryActivity extends BaseActivity {
 
 
     @BindView(R.id.toolbar)

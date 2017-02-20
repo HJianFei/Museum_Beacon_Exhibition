@@ -10,7 +10,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.util.Log;
@@ -32,6 +31,7 @@ import com.hjianfei.museum_beacon_exhibition.presenter.activity.museum_detail.Mu
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.view.activity.museum.MuseumActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
@@ -52,7 +52,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MuseumDetailActivity extends AppCompatActivity implements MuseumDetailView {
+public class MuseumDetailActivity extends BaseActivity implements MuseumDetailView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

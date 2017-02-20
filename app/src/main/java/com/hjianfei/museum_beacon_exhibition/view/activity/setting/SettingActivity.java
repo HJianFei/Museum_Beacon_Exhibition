@@ -3,7 +3,6 @@ package com.hjianfei.museum_beacon_exhibition.view.activity.setting;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.view.View;
@@ -23,13 +22,14 @@ import com.hjianfei.museum_beacon_exhibition.utils.fileload.DownLoadService;
 import com.hjianfei.museum_beacon_exhibition.view.activity.about_me.AboutMeActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.feedback.FeedBackActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.login.LoginActivity;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class SettingActivity extends AppCompatActivity implements SettingView {
+public class SettingActivity extends BaseActivity implements SettingView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -124,7 +124,8 @@ public class SettingActivity extends AppCompatActivity implements SettingView {
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
                         SPUtils.setParam(SettingActivity.this, Constants.PHONE, "");
                         Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
-                        startActivity(intent);
+                        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SettingActivity.this).toBundle());
+
                         finish();
 
                     }

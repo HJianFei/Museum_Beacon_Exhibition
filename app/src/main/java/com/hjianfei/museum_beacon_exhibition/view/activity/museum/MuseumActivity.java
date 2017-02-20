@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.transition.Slide;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,13 +17,14 @@ import com.bumptech.glide.Glide;
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.appreciate.AppreciateFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MuseumActivity extends AppCompatActivity {
+public class MuseumActivity extends BaseActivity {
 
     @BindView(R.id.museum_img_bg)
     ImageView museumImgBg;

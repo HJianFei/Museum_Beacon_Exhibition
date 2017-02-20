@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Slide;
@@ -33,6 +32,7 @@ import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_people.
 import com.hjianfei.museum_beacon_exhibition.view.activity.china_history_people_detail.ChinaHistoryPeopleDetailActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.history_big_thing.HistoryBigThingActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.photo_detail.PhotoDetailActivity;
+import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.dynasty.dynasty_culture.DynastyCultureFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.dynasty.dynasty_info.DynastyInfoFragment;
 import com.sunfusheng.marqueeview.MarqueeView;
@@ -45,7 +45,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class DynastyActivity extends AppCompatActivity implements DynastyView {
+public class DynastyActivity extends BaseActivity implements DynastyView {
 
 
     @BindView(R.id.dynasty_bg_img)

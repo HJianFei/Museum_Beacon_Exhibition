@@ -32,7 +32,7 @@ public class BeaconAppreciate implements Serializable {
         this.BeaconAppreciate = BeaconAppreciate;
     }
 
-    public static class BeaconAppreciateBean implements Serializable{
+    public static class BeaconAppreciateBean implements Serializable {
         /**
          * minor : 1001
          * major : 2002
@@ -116,5 +116,27 @@ public class BeaconAppreciate implements Serializable {
         public void setIs_new(boolean is_new) {
             this.is_new = is_new;
         }
+
+        @Override
+        public String toString() {
+            return "BeaconAppreciateBean{" +
+                    "minor='" + minor + '\'' +
+                    ", major='" + major + '\'' +
+                    ", img_url='" + img_url + '\'' +
+                    ", title='" + title + '\'' +
+                    ", content='" + content + '\'' +
+                    ", video_url='" + video_url + '\'' +
+                    ", audio_url='" + audio_url + '\'' +
+                    ", is_new=" + is_new +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "BeaconAppreciate{" +
+                "code=" + code +
+                ", BeaconAppreciate=" + BeaconAppreciate +
+                '}';
     }
 }

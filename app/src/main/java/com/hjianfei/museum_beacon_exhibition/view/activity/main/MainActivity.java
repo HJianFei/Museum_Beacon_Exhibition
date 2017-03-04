@@ -1,7 +1,14 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.main;
 
+import android.Manifest;
+import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.transition.Slide;
 import android.view.KeyEvent;
 import android.view.View;
@@ -13,7 +20,9 @@ import android.widget.Toast;
 
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
+import com.hjianfei.museum_beacon_exhibition.service.BeaconService;
 import com.hjianfei.museum_beacon_exhibition.utils.StatusBarUtils;
+import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.guide.GuideFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.home.HomeFragment;
@@ -39,6 +48,7 @@ public class MainActivity extends BaseActivity {
     private GuideFragment guideFragment;
     private HomeFragment homeFragment;
     private MuseumNewsFragment museumNewsFragment;
+    private String notify;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +59,34 @@ public class MainActivity extends BaseActivity {
         StatusBarUtils.setStatusBarTransparent(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-//        Explode explode = new Explode();
-//        explode.setDuration(500);
-//        getWindow().setExitTransition(explode);
-//        getWindow().setEnterTransition(explode);
         //设置默认显示的fragment==home
-        selectStyle(R.id.tab_home_rb);
+        notify = getIntent().getStringExtra("notify");
+        if (notify.equals("notify")) {
+            selectStyle(R.id.tab_home_guide);
+        } else {
+            selectStyle(R.id.tab_home_rb);
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, Constants.BAIDU_READ_PHONE_STATE);
+        }
+        //检测手机蓝牙是否开启
+        checkBlueToothIsOpen();
+    }
+
+    /**
+     * 检测手机蓝牙是否开启
+     */
+    private void checkBlueToothIsOpen() {
+        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
+            Intent mIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(mIntent, Constants.REQUEST_ENABLE_BT);
+
+        } else {
+            Intent intent = new Intent(this, BeaconService.class);
+            startService(intent);
+//            time.start();
+        }
     }
 
     private void selectStyle(int id) {
@@ -106,11 +138,44 @@ public class MainActivity extends BaseActivity {
                 Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();
             } else {
-                finish();
-                System.exit(0);
+                moveTaskToBack(true);
+//                finish();
+//                System.exit(0);
             }
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constants.REQUEST_ENABLE_BT) {
+            if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "使用此功能需要打开蓝牙", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(this, BeaconService.class);
+                startService(intent);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        switch (requestCode) {
+            // requestCode即所声明的权限获取码，在checkSelfPermission时传入
+            case Constants.BAIDU_READ_PHONE_STATE:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Intent intent = new Intent(this, BeaconService.class);
+                    startService(intent);
+                    // 获取到权限，作相应处理（调用定位SDK应当确保相关权限均被授权，否则可能引起定位失败）
+                } else {
+                    // 没有获取到权限，做特殊处理
+                    ToastUtil.showToast(this, "定位权限未授予");
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

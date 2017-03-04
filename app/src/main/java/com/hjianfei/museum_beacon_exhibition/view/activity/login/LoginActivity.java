@@ -71,6 +71,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
         phone = (String) SPUtils.getParam(this, Constants.PHONE, "");
         if (!phone.equals("") && null != phone) {
             Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("notify", "main");
+            intent.putExtra("step_name", "");
             startActivity(intent);
             this.finish();
         }
@@ -133,6 +135,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
             if (loginResult.getStatus().equals("0")) {
                 ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(this);
                 Intent i2 = new Intent(this, MainActivity.class);
+                i2.putExtra("notify", "main");
+                i2.putExtra("step_name", "");
                 startActivity(i2, oc2.toBundle());
                 ToastUtil.showToast(LoginActivity.this, loginResult.getMsg());
                 this.finish();
@@ -148,6 +152,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
                     if (loginResult.getStatus().equals("0")) {
                         ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
                         Intent i2 = new Intent(LoginActivity.this, MainActivity.class);
+                        i2.putExtra("notify", "main");
+                        i2.putExtra("step_name", "");
                         startActivity(i2, oc2.toBundle());
                         ToastUtil.showToast(LoginActivity.this, loginResult.getMsg());
                         LoginActivity.this.finish();

@@ -9,4 +9,6 @@ public interface GuidePresenter {
     void getStepView(String beacon_id);
 
     void getBeaconAppreciateByMinor(String minor);
+
+    void getNotify(String notify_id);
 }

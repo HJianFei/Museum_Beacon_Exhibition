@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -30,9 +29,6 @@ import com.hjianfei.museum_beacon_exhibition.bean.BeaconAppreciate;
 import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.canstants.Urls;
-import com.hjianfei.museum_beacon_exhibition.presenter.base.BasePresenter;
-import com.hjianfei.museum_beacon_exhibition.presenter.base.BasePresenterImpl;
-import com.hjianfei.museum_beacon_exhibition.utils.ImageVideoThumbUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.utils.widget.CustomVideoView;
@@ -72,8 +68,6 @@ public class GuideDetailActivity extends BaseActivity implements GuideDetailView
     @BindView(R.id.video_item)
     ImageView videoItem;
     private BeaconAppreciate beaconAppreciate;
-    private Bitmap thumbnail;
-    private BasePresenter mBasePresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +82,6 @@ public class GuideDetailActivity extends BaseActivity implements GuideDetailView
     }
 
     private void initView() {
-        mBasePresenter = new BasePresenterImpl(this);
         toolbar.setTitle(beaconAppreciate.getBeaconAppreciate().getTitle());
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -115,13 +108,6 @@ public class GuideDetailActivity extends BaseActivity implements GuideDetailView
 
             }
         });
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                thumbnail = ImageVideoThumbUtils.createVideoThumbnail(Urls.API_SERVER + beaconAppreciate.getBeaconAppreciate().getVideo_url(), 320);
-
-            }
-        }).start();
     }
 
     @Override
@@ -213,7 +199,7 @@ public class GuideDetailActivity extends BaseActivity implements GuideDetailView
         UMVideo video = new UMVideo(Urls.API_SERVER + beaconAppreciate.getBeaconAppreciate().getVideo_url());
 //        video.setTitle(beaconAppreciate.getBeaconAppreciate().getTitle());//视频的标题
 //        video.setDescription("my description");//视频的描述
-        video.setThumb(new UMImage(GuideDetailActivity.this, thumbnail));
+        video.setThumb(new UMImage(GuideDetailActivity.this, beaconAppreciate.getBeaconAppreciate().getImg_url()));
         new ShareAction(GuideDetailActivity.this)
                 .withTitle(beaconAppreciate.getBeaconAppreciate().getTitle())
                 .withText(beaconAppreciate.getBeaconAppreciate().getContent())

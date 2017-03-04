@@ -11,7 +11,7 @@ public class Urls {
     //服务器地址
 //    public static final String API_SERVER = "http://115.159.24.65:8080/BeaconSys/";
     public static final String API_SERVER = "http://139.199.194.98/BeaconSys/";
-//    public static final String API_SERVER = "http://192.168.16.100:8080/BeaconSys/";
+//    public static final String API_SERVER = "http://192.168.16.102:8080/BeaconSys/";
     //    public static final String API_SERVER = "http://123.207.250.79:8080/BeaconSys/";
     //首页ViewPager数据地址
     public static final String API_VIEWPAGER = "viewPager!getAllViewPager";
@@ -190,5 +190,11 @@ public class Urls {
      * 获取外国历史详情信息
      */
     public static final String GET_FOREIGN_HISTORY_DETAIL = "foreignHistoryDetail!getForeignHistoryDetail";
+
+    /**
+     * 获取公告
+     *
+     */
+    public static final String GET_NOTIFY="notify!getNotifyById";
 }
 

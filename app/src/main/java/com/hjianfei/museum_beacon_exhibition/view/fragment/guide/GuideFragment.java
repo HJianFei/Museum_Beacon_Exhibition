@@ -1,30 +1,18 @@
 package com.hjianfei.museum_beacon_exhibition.view.fragment.guide;
 
 
-import android.Manifest;
 import android.app.ActivityOptions;
-import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.brtbeacon.sdk.BRTBeacon;
-import com.brtbeacon.sdk.BRTBeaconManager;
-import com.brtbeacon.sdk.BRTThrowable;
-import com.brtbeacon.sdk.callback.BRTBeaconManagerListener;
 import com.hjianfei.museum_beacon_exhibition.R;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.CommonAdapter;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.OnItemClickListener;
@@ -32,27 +20,20 @@ import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
 import com.hjianfei.museum_beacon_exhibition.application.BaseApplication;
 import com.hjianfei.museum_beacon_exhibition.bean.BeaconAppreciate;
 import com.hjianfei.museum_beacon_exhibition.bean.StepView;
-import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
-import com.hjianfei.museum_beacon_exhibition.presenter.fragment.guide.GuidePresenter;
-import com.hjianfei.museum_beacon_exhibition.presenter.fragment.guide.GuidePresenterImpl;
 import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
-import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.utils.widget.radar_custom_view.RadarView;
 import com.hjianfei.museum_beacon_exhibition.view.activity.guide_detail.GuideDetailActivity;
-import com.hjianfei.museum_beacon_exhibition.view.activity.museum.MuseumActivity;
 
-import java.util.ArrayList;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.List;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
-import static android.app.Activity.RESULT_CANCELED;
 
 
-public class GuideFragment extends Fragment implements GuideView, BRTBeaconManagerListener {
+public class GuideFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -64,16 +45,9 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
     RecyclerView guide_recyclerview;
     @BindView(R.id.guide_info)
     TextView guideInfo;
-    private TimeCount time;
-    private SweetAlertDialog dialog;
-    private boolean show_dialog = true;
-
     private String mParam1;
     private String mParam2;
     private Context mContext;
-    private BRTBeaconManager beaconManager;
-    private Set<BRTBeacon> brtBeacons = BaseApplication.getInstance().getBrtBeacons();
-    private GuidePresenter mGuidePresenter;
     private List<BeaconAppreciate> mBeaconAppreciateList = BaseApplication.getInstance().getmBeaconAppreciateList();
     private CommonAdapter<BeaconAppreciate> mAdapter;
 
@@ -97,6 +71,8 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        EventBus.getDefault().register(this);
+
     }
 
     @Override
@@ -110,20 +86,11 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_guide, container, false);
         ButterKnife.bind(this, view);
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, Constants.BAIDU_READ_PHONE_STATE);
-        }
-        time = new TimeCount(30000, 1000);
-        //检测手机蓝牙是否开启
-        checkBlueToothIsOpen();
         initView();
         return view;
     }
 
     private void initView() {
-        mGuidePresenter = new GuidePresenterImpl(this);
-        beaconManager = BaseApplication.getInstance().getBRTBeaconManager();
-        beaconManager.setBRTBeaconManagerListener(this);
         mAdapter = new CommonAdapter<BeaconAppreciate>(mContext, R.layout.guide_recyclerview_item, mBeaconAppreciateList) {
             @Override
             public void setData(ViewHolder holder, BeaconAppreciate beaconAppreciate) {
@@ -144,8 +111,6 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
                 bundle.putSerializable("beaconAppreciate", mBeaconAppreciateList.get(position));
                 intent.putExtra("guide_detail", bundle);
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
-
-
             }
 
             @Override
@@ -153,201 +118,28 @@ public class GuideFragment extends Fragment implements GuideView, BRTBeaconManag
                 return false;
             }
         });
+        step_view.setText(BaseApplication.getInstance().getStep());
 
     }
 
-    /**
-     * 检测手机蓝牙是否开启
-     */
-    private void checkBlueToothIsOpen() {
-        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
-            guideInfo.setVisibility(View.VISIBLE);
-            guideInfo.setText("使用此功能需要打开蓝牙");
-            Intent mIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(mIntent, Constants.REQUEST_ENABLE_BT);
+    @Subscribe
+    public void eventBeaconMessage(BeaconAppreciate beaconAppreciate) {
 
-        } else {
-            time.start();
-        }
+        LogUtils.d("onResponse", beaconAppreciate.toString());
+//        mBeaconAppreciateList.add(beaconAppreciate);
+        mAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Constants.REQUEST_ENABLE_BT) {
-            if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(mContext, "使用此功能需要打开蓝牙", Toast.LENGTH_SHORT).show();
-            } else {
-                guideInfo.setVisibility(View.GONE);
-                time.start();
-            }
-        }
-    }
-
-    @Override
-    public void getStepViewSuccess(StepView stepView) {
+    @Subscribe
+    public void eventStepMessage(StepView stepView) {
+        LogUtils.d("onResponse", stepView.toString());
         step_view.setText(stepView.getStepView().getStep_name());
 
     }
 
     @Override
-    public void getBeaconAppreciateByMinorSuccess(BeaconAppreciate beaconAppreciate) {
-
-        if (null != beaconAppreciate) {
-            mBeaconAppreciateList.add(beaconAppreciate);
-            mAdapter.notifyDataSetChanged();
-            guide_recyclerview.scrollToPosition(mBeaconAppreciateList.size() - 1);
-        }
-
-    }
-
-    @Override
-    public void showDialog() {
-
-    }
-
-    @Override
-    public void hideDialog() {
-
-    }
-
-    @Override
-    public void showError() {
-
-    }
-
-    @Override
-    public void showEmpty() {
-
-    }
-
-    @Override
-    public void onUpdateBeacon(ArrayList<BRTBeacon> arrayList) {
-
-    }
-
-    @Override
-    public void onNewBeacon(BRTBeacon brtBeacon) {
-
-        if (show_dialog) {
-            show_dialog = false;
-            time.cancel();
-        }
-//        LogUtils.d(Constants.TAG,brtBeacon.getName());
-        LogUtils.d(Constants.TAG, brtBeacon.getMajor() + "");
-        LogUtils.d(Constants.TAG, brtBeacon.getMinor() + "");
-        if (brtBeacon.getMajor() == 2001) {//判断大范围的Beacon，一个区域
-            mGuidePresenter.getStepView(brtBeacon.getMinor() + "");
-        }
-
-        boolean contains = brtBeacons.contains(brtBeacon);
-
-        if (!contains) {//不在里面，新的Beacon
-            if (brtBeacon.getMajor() == 2002) {//某一件具体的文物
-                brtBeacons.add(brtBeacon);
-                mGuidePresenter.getBeaconAppreciateByMinor(brtBeacon.getMinor() + "");
-            }
-        }
-
-    }
-
-    @Override
-    public void onGoneBeacon(BRTBeacon brtBeacon) {
-
-    }
-
-    @Override
-    public void onError(BRTThrowable brtThrowable) {
-
-    }
-
-    @Override
-    public void onResume() {
-        beaconManager.startRanging();
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        beaconManager.stopRanging();
-        time.cancel();
-        super.onPause();
-    }
-
-    @Override
     public void onDestroy() {
         super.onDestroy();
-    }
-
-    class TimeCount extends CountDownTimer {
-
-        public TimeCount(long millisInFuture, long countDownInterval) {
-            super(millisInFuture, countDownInterval);
-        }
-
-        @Override
-        public void onTick(long millisUntilFinished) {
-            LogUtils.d(Constants.TAG, millisUntilFinished / 1000 + "s");
-
-        }
-
-        @Override
-        public void onFinish() {
-            BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-            if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
-                guideInfo.setVisibility(View.VISIBLE);
-                guideInfo.setText("使用此功能需要打开蓝牙");
-                Intent mIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                startActivityForResult(mIntent, Constants.REQUEST_ENABLE_BT);
-            } else if (show_dialog) {
-                showAlertDialog();
-            }
-
-        }
-    }
-
-    private void showAlertDialog() {
-        dialog = new SweetAlertDialog(mContext, SweetAlertDialog.WARNING_TYPE);
-        dialog.setTitleText("检测不到信号，切换浏览模式？");
-        dialog.showCancelButton(true);
-        dialog.setCancelText("取消");
-        dialog.setCancelable(false);
-        dialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-            @Override
-            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                dialog.dismiss();
-                time.start();
-            }
-        });
-        dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-            @Override
-            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                dialog.dismiss();
-                Intent intent = new Intent(mContext, MuseumActivity.class);
-                intent.putExtra("museum_name", "广东省博物馆");
-                intent.putExtra("img_url", "[http://www.chezhan168.com/userfiles/image/20151221/21133056edf7f86b0f0984.jpg]");
-                intent.putExtra("appreciate_type", "[青花瓷之约,珍品鉴赏,自然标本,专题鉴赏]");
-                startActivity(intent);
-            }
-        });
-        dialog.show();
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-
-        switch (requestCode) {
-            // requestCode即所声明的权限获取码，在checkSelfPermission时传入
-            case Constants.BAIDU_READ_PHONE_STATE:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // 获取到权限，作相应处理（调用定位SDK应当确保相关权限均被授权，否则可能引起定位失败）
-                } else {
-                    // 没有获取到权限，做特殊处理
-                    ToastUtil.showToast(mContext, "定位权限未授予");
-                }
-                break;
-            default:
-                break;
-        }
+        EventBus.getDefault().unregister(this);
     }
 }

@@ -27,6 +27,7 @@ import com.hjianfei.museum_beacon_exhibition.bean.HistoryWarDetail;
 import com.hjianfei.museum_beacon_exhibition.bean.LoginResult;
 import com.hjianfei.museum_beacon_exhibition.bean.Museum;
 import com.hjianfei.museum_beacon_exhibition.bean.MuseumDetail;
+import com.hjianfei.museum_beacon_exhibition.bean.NotifyResult;
 import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
 import com.hjianfei.museum_beacon_exhibition.bean.StepView;
 import com.hjianfei.museum_beacon_exhibition.bean.UpdateInfo;
@@ -379,5 +380,15 @@ public interface Api {
      */
     @GET(Urls.GET_FOREIGN_HISTORY_DETAIL)
     Observable<ForeignHistoryDetail> getForeignHistoryDetail(@Query("id") String id);
+
+    /**
+     * 获取公告
+     *
+     * @param notify_id
+     * @return
+     */
+    @GET(Urls.GET_NOTIFY)
+    Observable<NotifyResult> getNotify(@Query("notify_id") String notify_id);
+
 
 }

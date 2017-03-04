@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.presenter.fragment.guide;
 
 import com.hjianfei.museum_beacon_exhibition.bean.BeaconAppreciate;
+import com.hjianfei.museum_beacon_exhibition.bean.NotifyResult;
 import com.hjianfei.museum_beacon_exhibition.bean.StepView;
 import com.hjianfei.museum_beacon_exhibition.model.fragment.guide.GuideIndicator;
 import com.hjianfei.museum_beacon_exhibition.model.fragment.guide.GuideIndicatorImpl;
@@ -32,8 +33,13 @@ public class GuidePresenterImpl implements GuidePresenter, GuideIndicator.onGuid
     }
 
     @Override
+    public void getNotifyFinished(NotifyResult notifyResult) {
+        mGuideView.getNotifyFinished(notifyResult);
+
+    }
+
+    @Override
     public void onError() {
-        mGuideView.showError();
 
     }
 
@@ -47,5 +53,10 @@ public class GuidePresenterImpl implements GuidePresenter, GuideIndicator.onGuid
     public void getBeaconAppreciateByMinor(String minor) {
 
         mGuideIndicator.getBeaconAppreciateByMinor(minor, this);
+    }
+
+    @Override
+    public void getNotify(String notify_id) {
+        mGuideIndicator.getNotify(notify_id, this);
     }
 }

@@ -2,7 +2,6 @@ package com.hjianfei.museum_beacon_exhibition.application;
 
 import android.app.Application;
 
-import com.brtbeacon.sdk.BRTBeacon;
 import com.brtbeacon.sdk.BRTBeaconManager;
 import com.brtbeacon.sdk.utils.L;
 import com.hjianfei.museum_beacon_exhibition.bean.BeaconAppreciate;
@@ -27,9 +26,9 @@ public class BaseApplication extends Application {
 
     private BRTBeaconManager beaconManager;
 
-    private Set<BRTBeacon> brtBeacons;
-    private List<String> step;
-    private List<Integer> step_type;
+    private Set<Integer> brtBeacons;
+    private Set<Integer> notify;
+    private String step;
     List<BeaconAppreciate> mBeaconAppreciateList;
 
     @Override
@@ -42,7 +41,7 @@ public class BaseApplication extends Application {
         UMShareAPI.get(this);
         PlatformConfig.setWeixin("wx2a66162383eda523", "5aca080fdffb9a8c3745d5e18b56f637");
         PlatformConfig.setQQZone("1105746947", "8ipjCPurLMpe97dZ");
-        PlatformConfig.setSinaWeibo("208018229", "a91e96352d72eac75528bac1bfef3046");
+        PlatformConfig.setSinaWeibo("3496605578", "525296be2bdc29f70bf65d2d2bf4bba7");
         Config.REDIRECT_URL = "http://sns.whalecloud.com/sina2/callback";
 
         // 开启log打印
@@ -52,8 +51,8 @@ public class BaseApplication extends Application {
         // 开启Beacon扫描服务
         beaconManager.startService();
         brtBeacons = new HashSet<>();
-        step = new ArrayList<>();
-        step_type = new ArrayList<>();
+        notify = new HashSet<>();
+        step = new String();
         mBeaconAppreciateList = new ArrayList<>();
 
     }
@@ -76,20 +75,23 @@ public class BaseApplication extends Application {
      *
      * @return
      */
-    public Set<BRTBeacon> getBrtBeacons() {
+    public Set<Integer> getBrtBeacons() {
         return brtBeacons;
     }
 
-    public List<String> getStep() {
+    public Set<Integer> getNotify() {
+        return notify;
+    }
+
+    public String getStep() {
         return step;
     }
 
-    public List<Integer> getStep_type() {
-        return step_type;
+    public void setStep(String step) {
+        this.step = step;
     }
 
     public List<BeaconAppreciate> getmBeaconAppreciateList() {
         return mBeaconAppreciateList;
     }
-
 }

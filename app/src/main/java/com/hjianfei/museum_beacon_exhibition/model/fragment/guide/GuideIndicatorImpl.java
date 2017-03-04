@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.model.fragment.guide;
 
 import com.hjianfei.museum_beacon_exhibition.bean.BeaconAppreciate;
+import com.hjianfei.museum_beacon_exhibition.bean.NotifyResult;
 import com.hjianfei.museum_beacon_exhibition.bean.StepView;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
@@ -64,5 +65,31 @@ public class GuideIndicatorImpl implements GuideIndicator {
                         listener.getBeaconAppreciateSuccess(beaconAppreciate);
                     }
                 });
+    }
+
+    @Override
+    public void getNotify(String notify_id, final onGuideFinishedListener listener) {
+        NetWorkUtils.getApi().getNotify(notify_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<NotifyResult>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+
+
+                    }
+
+                    @Override
+                    public void onNext(NotifyResult notifyResult) {
+                        listener.getNotifyFinished(notifyResult);
+
+                    }
+                });
+
     }
 }

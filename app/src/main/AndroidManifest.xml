@@ -69,14 +69,15 @@
             android:process=":remote" />
         <!-- 百度地图 end -->
 
-        <!--友盟统计 start -->
+
+        <!-- 友盟统计 start -->
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5827d41e5312dd979e003193" />
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />
-        <!--友盟统计 end -->
+        <!-- 友盟统计 end -->
 
         <activity android:name=".view.activity.login.LoginActivity">
             <intent-filter>
@@ -147,38 +148,46 @@
         <activity android:name=".view.activity.feedback.FeedBackActivity" />
         <activity android:name=".view.activity.change_password.ChangePasswordActivity" />
         <activity android:name=".view.activity.change_phone.ChangePhoneActivity" />
-        <activity android:name=".view.activity.guide_detail.GuideDetailActivity"/>
-        <activity android:name=".view.activity.photo_detail.PhotoDetailActivity"/>
-        <activity android:name=".view.activity.museum.MuseumActivity"/>
-        <activity android:name=".view.activity.china_dynasty.ChinaDynastyActivity"/>
+        <activity android:name=".view.activity.guide_detail.GuideDetailActivity" />
+        <activity android:name=".view.activity.photo_detail.PhotoDetailActivity" />
+        <activity android:name=".view.activity.museum.MuseumActivity" />
+        <activity android:name=".view.activity.china_dynasty.ChinaDynastyActivity" />
         <activity android:name=".view.activity.dynasty.DynastyActivity" />
-        <activity android:name=".view.activity.history_big_thing.HistoryBigThingActivity"/>
+        <activity android:name=".view.activity.history_big_thing.HistoryBigThingActivity" />
         <activity
             android:name=".view.activity.china_history_big_thing_detail.ChinaHistoryBigThingDetailActivity"
-            android:theme="@style/AppTheme.Dynasty"/>
-        <activity android:name=".view.activity.china_history_people.ChinaHistoryPeopleActivity"/>
+            android:theme="@style/AppTheme.Dynasty" />
+        <activity android:name=".view.activity.china_history_people.ChinaHistoryPeopleActivity" />
         <activity
             android:name=".view.activity.china_history_people_detail.ChinaHistoryPeopleDetailActivity"
-            android:theme="@style/AppTheme.Dynasty"/>
+            android:theme="@style/AppTheme.Dynasty" />
         <activity
             android:name=".view.activity.china_history_culture_detail.ChinaHistoryCultureDetailActivity"
-            android:theme="@style/AppTheme.Dynasty"/>
+            android:theme="@style/AppTheme.Dynasty" />
         <activity
             android:name=".view.activity.china_history_history_detail.ChinaHistoryHistoryDetailActivity"
-            android:theme="@style/AppTheme.Dynasty"/>
-        <activity android:name=".view.activity.china_history_war.ChinaHistoryWarActivity"/>
-        <activity android:name=".view.activity.china_history_war_detail.HistoryWarDetailActivity"/>
-        <activity android:name=".view.activity.china_history_hey_day.ChinaHistoryHeyDayActivity"/>
+            android:theme="@style/AppTheme.Dynasty" />
+        <activity android:name=".view.activity.china_history_war.ChinaHistoryWarActivity" />
+        <activity android:name=".view.activity.china_history_war_detail.HistoryWarDetailActivity" />
+        <activity android:name=".view.activity.china_history_hey_day.ChinaHistoryHeyDayActivity" />
         <activity
             android:name=".view.activity.china_history_hey_day_info.HistoryHeyDayInFoActivity"
-            android:theme="@style/AppTheme.Dynasty"/>
-        <activity android:name=".view.activity.history_check.HistoryCheckActivity"/>
+            android:theme="@style/AppTheme.Dynasty" />
+        <activity android:name=".view.activity.history_check.HistoryCheckActivity" />
         <activity
             android:name=".view.activity.history_check_detail.HistoryCheckDetailActivity"
-            android:theme="@style/AppTheme.Dynasty"/>
-        <activity android:name=".view.activity.foreign_history.ForeignHistoryActivity"/>
-        <activity android:name=".view.activity.foreign_country_history.ForeignCountryActivity"/>
-        <activity android:name=".view.activity.foreign_history_detail.ForeignCountryDetailActivity"/>
+            android:theme="@style/AppTheme.Dynasty" />
+        <activity android:name=".view.activity.foreign_history.ForeignHistoryActivity" />
+        <activity android:name=".view.activity.foreign_country_history.ForeignCountryActivity" />
+        <activity android:name=".view.activity.foreign_history_detail.ForeignCountryDetailActivity" />
+
+        <service android:name=".service.BeaconService" />
+
+        <receiver android:name=".receiver.NotificationReceiver" />
+        <receiver android:name=".receiver.ShowNotificationReceiver" />
+
+        <activity android:name=".view.activity.stepview.StepViewActivity" />
+        <activity android:name=".view.activity.notify.NotifyActivity"></activity>
     </application>
 
 </manifest>

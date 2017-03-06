@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hjianfei.museum_beacon_exhibition.R;
+import com.hjianfei.museum_beacon_exhibition.any_event.Logout;
 import com.hjianfei.museum_beacon_exhibition.bean.UpdateInfo;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.app_update_info.AppUpdateInfoPresenter;
@@ -23,6 +24,8 @@ import com.hjianfei.museum_beacon_exhibition.view.activity.about_me.AboutMeActiv
 import com.hjianfei.museum_beacon_exhibition.view.activity.feedback.FeedBackActivity;
 import com.hjianfei.museum_beacon_exhibition.view.activity.login.LoginActivity;
 import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -123,9 +126,10 @@ public class SettingActivity extends BaseActivity implements SettingView {
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
                         SPUtils.setParam(SettingActivity.this, Constants.PHONE, "");
+                        SPUtils.setParam(SettingActivity.this, Constants.NAME, "");
                         Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
                         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SettingActivity.this).toBundle());
-
+                        EventBus.getDefault().post(new Logout());
                         finish();
 
                     }

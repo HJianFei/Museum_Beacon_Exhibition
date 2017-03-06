@@ -33,6 +33,8 @@ import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.utils.ValidatorUtils;
 import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -272,6 +274,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
         LogUtils.d(Constants.TAG, resultCode.toString());
         if (resultCode.code == 200) {
             ToastUtil.showToast(RegisterActivity.this, resultCode.msg);
+            EventBus.getDefault().post(etUsername.getText().toString());
             animateRevealClose();
         } else {
             ToastUtil.showToast(RegisterActivity.this, resultCode.msg);

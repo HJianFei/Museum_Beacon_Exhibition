@@ -19,6 +19,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.hjianfei.museum_beacon_exhibition.R;
+import com.hjianfei.museum_beacon_exhibition.any_event.Logout;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.service.BeaconService;
 import com.hjianfei.museum_beacon_exhibition.utils.StatusBarUtils;
@@ -27,6 +28,9 @@ import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.guide.GuideFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.home.HomeFragment;
 import com.hjianfei.museum_beacon_exhibition.view.fragment.museum_news.MuseumNewsFragment;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -71,6 +75,7 @@ public class MainActivity extends BaseActivity {
         }
         //检测手机蓝牙是否开启
         checkBlueToothIsOpen();
+        EventBus.getDefault().register(this);
     }
 
     /**
@@ -177,5 +182,17 @@ public class MainActivity extends BaseActivity {
             default:
                 break;
         }
+    }
+
+    @Subscribe
+    public void eventMessage(Logout logout) {
+        this.finish();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

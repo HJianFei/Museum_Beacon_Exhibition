@@ -115,5 +115,27 @@ public class LoginResult {
         public void setUser_qq(String user_qq) {
             this.user_qq = user_qq;
         }
+
+        @Override
+        public String toString() {
+            return "UserBean{" +
+                    "user_phone='" + user_phone + '\'' +
+                    ", user_id='" + user_id + '\'' +
+                    ", user_name='" + user_name + '\'' +
+                    ", user_password='" + user_password + '\'' +
+                    ", user_email='" + user_email + '\'' +
+                    ", user_sex='" + user_sex + '\'' +
+                    ", user_qq='" + user_qq + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "LoginResult{" +
+                "msg='" + msg + '\'' +
+                ", user=" + user +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

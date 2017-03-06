@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.hjianfei.museum_beacon_exhibition.R;
+import com.hjianfei.museum_beacon_exhibition.any_event.Logout;
 import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.presenter.user_info.UserInfoPresenter;
@@ -41,9 +42,13 @@ import com.hjianfei.museum_beacon_exhibition.view.activity.collection.Collection
 import com.hjianfei.museum_beacon_exhibition.view.activity.setting.SettingActivity;
 import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -106,6 +111,7 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
         setContentView(R.layout.activity_personal);
         ButterKnife.bind(this);
         initView();
+        EventBus.getDefault().register(this);
     }
 
     private void initView() {
@@ -307,6 +313,7 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
         }
 
         super.onActivityResult(requestCode, resultCode, intent);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, intent);
     }
 
     /**
@@ -421,7 +428,7 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(PersonalActivity.this, platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PersonalActivity.this, "分享失败啦", Toast.LENGTH_SHORT).show();
             if (t != null) {
                 LogUtils.d("throw", "throw:" + t.getMessage());
                 ToastUtil.showToast(PersonalActivity.this, "请允许使用SDCard权限");
@@ -430,7 +437,7 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(PersonalActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PersonalActivity.this, "分享取消了", Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -463,5 +470,17 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
             ToastUtil.showToast(PersonalActivity.this, resultCode.msg);
         }
 
+    }
+
+    @Subscribe
+    public void eventMessage(Logout logout) {
+        this.finish();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

@@ -33,6 +33,9 @@ import com.hjianfei.museum_beacon_exhibition.view.activity.splash.SplashActivity
 import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.stephentuso.welcome.WelcomeScreenHelper;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -83,6 +86,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, Constants.WRITE_EXTERNAL_CODE);
         }
+        EventBus.getDefault().register(this);
     }
 
     @OnClick({R.id.bt_go, R.id.fab})
@@ -128,11 +132,12 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void loginSuccess(final LoginResult loginResult) {
-        SPUtils.setParam(LoginActivity.this, Constants.PHONE, loginResult.getUser().getUser_phone());
-        SPUtils.setParam(LoginActivity.this, Constants.NAME, loginResult.getUser().getUser_name());
+
         stopTime = SystemClock.currentThreadTimeMillis();
         if (stopTime - startTime > 500) {
             if (loginResult.getStatus().equals("0")) {
+                SPUtils.setParam(LoginActivity.this, Constants.PHONE, loginResult.getUser().getUser_phone());
+                SPUtils.setParam(LoginActivity.this, Constants.NAME, loginResult.getUser().getUser_name() + "");
                 ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(this);
                 Intent i2 = new Intent(this, MainActivity.class);
                 i2.putExtra("notify", "main");
@@ -150,6 +155,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
             new Handler().postDelayed(new Runnable() {
                 public void run() {
                     if (loginResult.getStatus().equals("0")) {
+                        SPUtils.setParam(LoginActivity.this, Constants.PHONE, loginResult.getUser().getUser_phone());
+                        SPUtils.setParam(LoginActivity.this, Constants.NAME, loginResult.getUser().getUser_name() + "");
                         ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
                         Intent i2 = new Intent(LoginActivity.this, MainActivity.class);
                         i2.putExtra("notify", "main");
@@ -214,5 +221,17 @@ public class LoginActivity extends BaseActivity implements LoginView {
                 }
                 break;
         }
+    }
+
+    @Subscribe
+    public void eventMessage(String phone) {
+        etUsername.setText(phone);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

@@ -1,6 +1,7 @@
 package com.hjianfei.museum_beacon_exhibition.view.activity.about_me;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,6 +22,7 @@ import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
 import com.hjianfei.museum_beacon_exhibition.utils.ToastUtil;
 import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
@@ -105,11 +107,17 @@ public class AboutMeActivity extends BaseActivity implements AppBarLayout.OnOffs
     private void doShare() {
         new ShareAction(AboutMeActivity.this)
                 .withTitle("史博展")
-                .withText("，史博展让沉睡千年的文物‘动’起来")
+                .withText("史博展让沉睡千年的文物‘动’起来")
                 .withMedia(new UMImage(this, R.mipmap.logo))
                 .withTargetUrl("http://fir.im/fzt8")
                 .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)
                 .setCallback(umShareListener).open();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 
     private UMShareListener umShareListener = new UMShareListener() {

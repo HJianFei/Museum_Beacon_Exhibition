@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/lkd"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/lkd"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
+        <com.hjianfei.museum_beacon_exhibition.utils.widget.radar_custom_view.RadarViewGroup
+            android:id="@+id/radar"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
+
+            <com.hjianfei.museum_beacon_exhibition.utils.widget.radar_custom_view.RadarView
+                android:id="@id/id_scan_circle"
+                android:layout_width="270dp"
+                android:layout_height="270dp" />
+        </com.hjianfei.museum_beacon_exhibition.utils.widget.radar_custom_view.RadarViewGroup>
+
+        <com.baoyachi.stepview.HorizontalStepView
+            android:id="@+id/step_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/id_scan_circle"
+            android:textColor="@android:color/white" />
+
+        <RelativeLayout
+            android:id="@+id/ry_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="25dp"
+            android:clipChildren="false">
+
+            <com.hjianfei.museum_beacon_exhibition.utils.widget.radar_custom_view.RadarViewPager
+                android:id="@+id/vp"
+                android:layout_width="130dp"
+                android:layout_height="160dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="120dp"
+                android:layout_marginRight="120dp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

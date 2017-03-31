@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/guide_detail_image"
+        android:icon="@drawable/guide_image"
+        android:title="图片"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/guide_detail_share"
+        android:icon="@drawable/guide_share"
+        android:title="分享"
+        app:showAsAction="always"/>
+    <!--<item-->
+        <!--android:id="@+id/guide_detail_love"-->
+        <!--android:icon="@drawable/guide_love"-->
+        <!--android:title="收藏"-->
+        <!--app:showAsAction="never"/>-->
+</menu>

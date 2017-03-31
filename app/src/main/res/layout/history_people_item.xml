@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="2dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/dynasty_people_image"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"/>
+
+        <TextView
+            android:id="@+id/dynasty_people_name"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:text="后羿"
+            android:textColor="#333333"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/dynasty_people_view"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="4dp"
+            android:drawableLeft="@drawable/dynasty_people_view"
+            android:gravity="center"
+            android:text="123"
+            android:textColor="#333333"
+            android:textSize="12sp"/>
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

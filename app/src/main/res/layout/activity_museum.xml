@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    ​
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/museum_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        >
+        ​
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/museum_collapsing"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|snap">
+            ​
+
+            <ImageView
+                android:id="@+id/museum_img_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/banner1"
+                app:layout_collapseMode="parallax"/>
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        ​
+
+        <LinearLayout
+            android:id="@+id/museum_title_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_scrollFlags="scroll|enterAlways|snap">
+            ​
+            ​
+
+            <TextView
+                android:id="@+id/museum_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"/>
+            ​
+        </LinearLayout>
+        ​
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/museum_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="4dp"
+            app:tabMode="scrollable"
+            app:tabTextColor="#333333"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/museum_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    ​
+</android.support.design.widget.CoordinatorLayout>

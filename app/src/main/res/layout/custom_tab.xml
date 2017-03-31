@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_gravity="bottom"
+    android:background="#ECEDEE">
+
+    <RadioGroup
+        android:id="@+id/radio_group_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/tab_home_rb"
+            style="@style/main_bottom_tab_style"
+            android:drawablePadding="4dp"
+            android:drawableTop="@drawable/tab_home_rb"
+            android:text="首页" />
+
+
+        <RadioButton
+            android:id="@+id/tab_home_guide"
+            style="@style/main_bottom_tab_style"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="18dp"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/tab_home_museum_news"
+            style="@style/main_bottom_tab_style"
+            android:drawablePadding="4dp"
+            android:drawableTop="@drawable/tab_home_museum_news"
+            android:text="博史" />
+
+    </RadioGroup>
+
+</FrameLayout>

@@ -32,12 +32,13 @@
         android:id="@+id/city_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/search_tip"
         android:cacheColorHint="@color/white"
         android:divider="@color/white"
         android:dividerHeight="0dp"
         android:listSelector="@android:color/transparent"
-        android:scrollbars="none" />
+        android:scrollbars="none"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/search_result" />
 
     <ListView
         android:id="@+id/search_result"

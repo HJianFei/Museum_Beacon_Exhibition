@@ -174,7 +174,9 @@ public class AppreciateDetailActivity extends BaseActivity implements Appreciate
         culturalDetailName.setText(appreciateDetail.getAppreciateDetail().getTitle());
         culturalDetailContent.setText(appreciateDetail.getAppreciateDetail().getContent());
         String img_url = appreciateDetail.getAppreciateDetail().getImg_url();
-        img_url = img_url.substring(1, img_url.length() - 1);
+        if (img_url.startsWith("[") && img_url.endsWith("]")) {
+            img_url = img_url.substring(1, img_url.length() - 1);
+        }
         img_urls = img_url.split(",");
         culturalDetailViewPager.setPlayDelay(3000);
         culturalDetailViewPager.setAdapter(new CommonDetailViewPagerAdapter(img_urls));

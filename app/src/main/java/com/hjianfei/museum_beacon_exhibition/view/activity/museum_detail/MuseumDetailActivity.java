@@ -174,7 +174,9 @@ public class MuseumDetailActivity extends BaseActivity implements MuseumDetailVi
         museumDetailName.setText(museumDetail.getMuseum_Detail().getMuseum_detail_name());
         museumDetailContent.setText(museumDetail.getMuseum_Detail().getMuseum_detail_content());
         String img_url = museumDetail.getMuseum_Detail().getMuseum_detail_imgs();
-        img_url = img_url.substring(1, img_url.length() - 1);
+        if (img_url.startsWith("[") && img_url.endsWith("]")) {
+            img_url = img_url.substring(1, img_url.length() - 1);
+        }
         img_urls = img_url.split(",");
         museumDetailViewPager.setPlayDelay(3000);
         museumDetailViewPager.setAdapter(new CommonDetailViewPagerAdapter(img_urls));

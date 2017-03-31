@@ -174,7 +174,9 @@ public class ExhibitionDetailActivity extends BaseActivity implements Exhibition
         exhibitionDetailAddress.setText(exhibitionDetail.getExhibitionDetail().getAddress());
         exhibitionDetailContent.setText(exhibitionDetail.getExhibitionDetail().getContent());
         String img_url = exhibitionDetail.getExhibitionDetail().getImg_url();
-        img_url = img_url.substring(1, img_url.length() - 1);
+        if (img_url.startsWith("[") && img_url.endsWith("]")) {
+            img_url = img_url.substring(1, img_url.length() - 1);
+        }
         img_urls = img_url.split(",");
         exhibitionDetailViewPager.setPlayDelay(3000);
         exhibitionDetailViewPager.setAdapter(new CommonDetailViewPagerAdapter(img_urls));

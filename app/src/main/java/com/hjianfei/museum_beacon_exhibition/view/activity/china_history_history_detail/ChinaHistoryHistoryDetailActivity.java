@@ -11,7 +11,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -67,15 +71,25 @@ public class ChinaHistoryHistoryDetailActivity extends BaseActivity implements C
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_china_history_history_detail);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
+=======
+        //滑动进入
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+>>>>>>> tmp
         id = getIntent().getStringExtra("id");
         title = getIntent().getStringExtra("title");
         author = getIntent().getStringExtra("author");
         time = getIntent().getStringExtra("time");
+<<<<<<< HEAD
 
+=======
+        setContentView(R.layout.activity_china_history_history_detail);
+>>>>>>> tmp
         ButterKnife.bind(this);
         initData();
         initView();
@@ -104,8 +118,12 @@ public class ChinaHistoryHistoryDetailActivity extends BaseActivity implements C
         mHistoryDetail = chinaHistoryHistoryDetail;
         historyHistoryAuthor.setText(author);
         historyHistoryTime.setText(time);
+<<<<<<< HEAD
         Glide.with(this).load(chinaHistoryHistoryDetail.getChina_History_History_Detail().getImg_url()).placeholder(R.drawable.photo)
                 .error(R.drawable.photo).into(historyHistoryBg);
+=======
+        Glide.with(this).load(chinaHistoryHistoryDetail.getChina_History_History_Detail().getImg_url()).into(historyHistoryBg);
+>>>>>>> tmp
         historyHistoryTitle.setText(chinaHistoryHistoryDetail.getChina_History_History_Detail().getTitle());
         historyHistoryContent.setText(chinaHistoryHistoryDetail.getChina_History_History_Detail().getContent());
     }

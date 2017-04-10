@@ -7,7 +7,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.view.View;
 
 import com.hjianfei.museum_beacon_exhibition.R;
@@ -34,11 +38,18 @@ public class CollectionActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_collection);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
 
+=======
+        //淡入淡出
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        setContentView(R.layout.activity_collection);
+>>>>>>> tmp
         ButterKnife.bind(this);
         initView();
         initViewPager();

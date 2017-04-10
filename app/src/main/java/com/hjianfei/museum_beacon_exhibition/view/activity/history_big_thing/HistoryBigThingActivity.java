@@ -6,7 +6,11 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.view.View;
 
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
@@ -39,6 +43,7 @@ public class HistoryBigThingActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_history_big_thing);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
@@ -46,6 +51,14 @@ public class HistoryBigThingActivity extends BaseActivity {
         dynasty_name = getIntent().getStringExtra("dynasty_name");
         chinaHistoryBigThing = (ChinaHistoryBigThing) getIntent().getBundleExtra("bundle").getSerializable("HistoryBigThings");
 
+=======
+        //淡入淡出
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        dynasty_name = getIntent().getStringExtra("dynasty_name");
+        chinaHistoryBigThing = (ChinaHistoryBigThing) getIntent().getBundleExtra("bundle").getSerializable("HistoryBigThings");
+        setContentView(R.layout.activity_history_big_thing);
+>>>>>>> tmp
         ButterKnife.bind(this);
         initView();
     }

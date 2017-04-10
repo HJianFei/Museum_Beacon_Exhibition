@@ -7,7 +7,11 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -80,6 +84,7 @@ public class ChangePhoneActivity extends BaseActivity implements ChangePhoneView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_change_phone);
         //淡入淡出
         //淡入淡出
@@ -87,6 +92,13 @@ public class ChangePhoneActivity extends BaseActivity implements ChangePhoneView
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
         old_user_phone = (String) SPUtils.getParam(ChangePhoneActivity.this, Constants.PHONE, "");
 
+=======
+        //淡入淡出
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        old_user_phone = (String) SPUtils.getParam(ChangePhoneActivity.this, Constants.PHONE, "");
+        setContentView(R.layout.activity_change_phone);
+>>>>>>> tmp
         ButterKnife.bind(this);
         initView();
     }

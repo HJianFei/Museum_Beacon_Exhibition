@@ -30,9 +30,17 @@ public class Constants {
     //数据缓存
     public static final String PHONE = "USER_PHONE";
     public static final String NAME = "USER_NAME";
+<<<<<<< HEAD
 
     //动画时长
     public static final int DURATION = 1200;
+=======
+    public static final String AVATAR = "USER_AVATAR";
+    public static final String SEX = "USER_SEX";
+
+    //动画时长
+    public static final int DURATION = 500;
+>>>>>>> tmp
 
     /**
      * 用户头像存放目录

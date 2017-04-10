@@ -1,11 +1,22 @@
 package com.hjianfei.museum_beacon_exhibition.model.user_info;
 
 import com.hjianfei.museum_beacon_exhibition.bean.ResultCode;
+<<<<<<< HEAD
 import com.hjianfei.museum_beacon_exhibition.utils.NetWorkUtils;
 
 import java.util.Map;
 
 import okhttp3.MultipartBody;
+=======
+import com.hjianfei.museum_beacon_exhibition.bean.UploadFile;
+import com.hjianfei.museum_beacon_exhibition.utils.NetWorkUtils;
+
+import java.io.File;
+import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+>>>>>>> tmp
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -17,12 +28,22 @@ import rx.schedulers.Schedulers;
 public class UserInfoIndicatorImpl implements UserInfoIndicator {
 
     @Override
+<<<<<<< HEAD
     public void changeAvatar(MultipartBody parts, String user_phone, final onFinishedListener listener) {
 
         NetWorkUtils.getApi().uploadFile(parts, user_phone)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ResultCode>() {
+=======
+    public void changeAvatar(File file, String user_phone, final onFinishedListener listener) {
+        //创建RequestBody对象
+        RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), file);
+        NetWorkUtils.getApi().uploadFile(requestBody, user_phone)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<UploadFile>() {
+>>>>>>> tmp
                     @Override
                     public void onCompleted() {
 
@@ -34,8 +55,13 @@ public class UserInfoIndicatorImpl implements UserInfoIndicator {
                     }
 
                     @Override
+<<<<<<< HEAD
                     public void onNext(ResultCode resultCode) {
                         listener.changeAvatarSuccess(resultCode);
+=======
+                    public void onNext(UploadFile uploadFile) {
+//                        listener.changeAvatarSuccess();
+>>>>>>> tmp
 
                     }
                 });

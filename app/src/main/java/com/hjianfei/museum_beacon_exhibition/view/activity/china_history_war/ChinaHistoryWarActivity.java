@@ -7,7 +7,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -38,11 +42,17 @@ public class ChinaHistoryWarActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_china_history_war);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
 
+=======
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        setContentView(R.layout.activity_china_history_war);
+>>>>>>> tmp
         ButterKnife.bind(this);
         initView();
     }

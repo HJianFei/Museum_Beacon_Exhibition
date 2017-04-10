@@ -11,7 +11,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -67,15 +71,25 @@ public class ChinaHistoryCultureDetailActivity extends BaseActivity implements C
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_china_history_culture_detail);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
+=======
+        //滑动进入
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+>>>>>>> tmp
         id = getIntent().getStringExtra("id");
         title = getIntent().getStringExtra("title");
         author = getIntent().getStringExtra("author");
         time = getIntent().getStringExtra("time");
+<<<<<<< HEAD
 
+=======
+        setContentView(R.layout.activity_china_history_culture_detail);
+>>>>>>> tmp
         ButterKnife.bind(this);
         initData();
         initView();
@@ -106,8 +120,12 @@ public class ChinaHistoryCultureDetailActivity extends BaseActivity implements C
         mCultureDetail = chinaHistoryCultureDetail;
         historyCultureAuthor.setText(author);
         historyCultureTime.setText(time);
+<<<<<<< HEAD
         Glide.with(this).load(chinaHistoryCultureDetail.getChina_History_Culture_Detail().getImg_url()).placeholder(R.drawable.photo)
                 .error(R.drawable.photo).into(historyCultureBg);
+=======
+        Glide.with(this).load(chinaHistoryCultureDetail.getChina_History_Culture_Detail().getImg_url()).into(historyCultureBg);
+>>>>>>> tmp
         historyCultureCollapsing.setTitle(chinaHistoryCultureDetail.getChina_History_Culture_Detail().getTitle());
         historyCultureTitle.setText(chinaHistoryCultureDetail.getChina_History_Culture_Detail().getTitle());
         historyCultureContent.setText(chinaHistoryCultureDetail.getChina_History_Culture_Detail().getContent());

@@ -10,7 +10,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -74,11 +78,18 @@ public class DynastyActivity extends BaseActivity implements DynastyView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_dynasty);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
 
+=======
+        //淡入淡出
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        setContentView(R.layout.activity_dynasty);
+>>>>>>> tmp
         dynasty_name = getIntent().getStringExtra("dynasty_name");
         dynasty_img_url = getIntent().getStringExtra("dynasty_img_url");
         ButterKnife.bind(this);
@@ -87,8 +98,12 @@ public class DynastyActivity extends BaseActivity implements DynastyView {
     }
 
     private void initView() {
+<<<<<<< HEAD
         Glide.with(this).load(Urls.API_SERVER + dynasty_img_url).placeholder(R.drawable.photo)
                 .error(R.drawable.photo).into(dynastyBgImg);
+=======
+        Glide.with(this).load(Urls.API_SERVER + dynasty_img_url).into(dynastyBgImg);
+>>>>>>> tmp
         mAdapter = new CommonAdapter<ChinaHistoryPeople.ChinaHistoryPeoplesBean>(this, R.layout.dynasty_people_item, chinaHistoryPeoplesBeanList) {
             @Override
             public void setData(ViewHolder holder, ChinaHistoryPeople.ChinaHistoryPeoplesBean chinaHistoryPeoplesBean) {

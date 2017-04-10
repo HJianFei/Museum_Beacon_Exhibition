@@ -11,7 +11,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.Toolbar;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Toast;
@@ -48,11 +52,18 @@ public class AboutMeActivity extends BaseActivity implements AppBarLayout.OnOffs
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_about_me_activity);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
 
+=======
+        //淡入淡出
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        setContentView(R.layout.activity_about_me_activity);
+>>>>>>> tmp
         ButterKnife.bind(this);
         initView();
     }
@@ -151,7 +162,11 @@ public class AboutMeActivity extends BaseActivity implements AppBarLayout.OnOffs
         switch (requestCode) {
             case Constants.WRITE_EXTERNAL_CODE:
                 if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+<<<<<<< HEAD
 //                    ToastUtil.showToast(this, "请允许使用SDCard权限");
+=======
+                    ToastUtil.showToast(this, "请允许使用SDCard权限");
+>>>>>>> tmp
                 } else {
                     doShare();
                 }

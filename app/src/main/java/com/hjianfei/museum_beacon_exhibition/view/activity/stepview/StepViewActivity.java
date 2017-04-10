@@ -5,7 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,12 +42,20 @@ public class StepViewActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_step_view);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
         stepView = (StepView) getIntent().getBundleExtra("stepView").getSerializable("stepView");
 
+=======
+        //滑动进入
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        stepView = (StepView) getIntent().getBundleExtra("stepView").getSerializable("stepView");
+        setContentView(R.layout.activity_step_view);
+>>>>>>> tmp
         ButterKnife.bind(this);
         initView();
     }
@@ -60,11 +72,15 @@ public class StepViewActivity extends BaseActivity {
         stepViewContent.setText(stepView.getStepView().getContent());
         stepViewCollapsing.setTitle(stepView.getStepView().getStep_name());
         stepViewName.setText(stepView.getStepView().getStep_name());
+<<<<<<< HEAD
         Glide.with(this)
                 .load(stepView.getStepView().getImg_url())
                 .placeholder(R.drawable.photo)
                 .error(R.drawable.photo)
                 .into(stepViewBg);
+=======
+        Glide.with(this).load(stepView.getStepView().getImg_url()).into(stepViewBg);
+>>>>>>> tmp
     }
 
     @OnClick(R.id.step_view_bg)

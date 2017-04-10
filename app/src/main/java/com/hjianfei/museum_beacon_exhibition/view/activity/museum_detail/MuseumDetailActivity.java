@@ -11,7 +11,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -77,11 +81,17 @@ public class MuseumDetailActivity extends BaseActivity implements MuseumDetailVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_museum_detail);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
 
+=======
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        setContentView(R.layout.activity_museum_detail);
+>>>>>>> tmp
         id = getIntent().getStringExtra("id");
         museum_name = getIntent().getStringExtra("museum_name");
         post_type = getIntent().getStringExtra("post_type");

@@ -11,7 +11,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -77,11 +81,18 @@ public class AppreciateDetailActivity extends BaseActivity implements Appreciate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_appreciate_detail);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
 
+=======
+        //淡入淡出
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        setContentView(R.layout.activity_appreciate_detail);
+>>>>>>> tmp
         ButterKnife.bind(this);
         id = getIntent().getStringExtra("id");
         cultural_name = getIntent().getStringExtra("cultural_name");

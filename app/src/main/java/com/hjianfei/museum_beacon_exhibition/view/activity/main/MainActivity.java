@@ -9,7 +9,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -57,12 +61,20 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_main);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
         StatusBarUtils.setStatusBarTransparent(this);
 
+=======
+        //淡入淡出
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        StatusBarUtils.setStatusBarTransparent(this);
+        setContentView(R.layout.activity_main);
+>>>>>>> tmp
         ButterKnife.bind(this);
         //设置默认显示的fragment==home
         notify = getIntent().getStringExtra("notify");

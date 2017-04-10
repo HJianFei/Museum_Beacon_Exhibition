@@ -15,7 +15,11 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,10 +72,16 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_login);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
+=======
+        //淡入淡出
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+>>>>>>> tmp
         phone = (String) SPUtils.getParam(this, Constants.PHONE, "");
         if (!phone.equals("") && null != phone) {
             Intent intent = new Intent(this, MainActivity.class);
@@ -80,7 +90,11 @@ public class LoginActivity extends BaseActivity implements LoginView {
             startActivity(intent);
             this.finish();
         }
+<<<<<<< HEAD
 
+=======
+        setContentView(R.layout.activity_login);
+>>>>>>> tmp
         ButterKnife.bind(this);
         welcomeScreen = new WelcomeScreenHelper(this, SplashActivity.class);
         welcomeScreen.show(savedInstanceState);

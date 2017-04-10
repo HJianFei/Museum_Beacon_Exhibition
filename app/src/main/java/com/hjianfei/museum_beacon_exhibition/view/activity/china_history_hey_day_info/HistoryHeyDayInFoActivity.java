@@ -11,7 +11,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -60,6 +64,7 @@ public class HistoryHeyDayInFoActivity extends BaseActivity implements HistoryHe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_istory_hey_day_in_fo);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
@@ -67,6 +72,14 @@ public class HistoryHeyDayInFoActivity extends BaseActivity implements HistoryHe
         id = getIntent().getStringExtra("id");
         title = getIntent().getStringExtra("title");
 
+=======
+        //滑动进入
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        id = getIntent().getStringExtra("id");
+        title = getIntent().getStringExtra("title");
+        setContentView(R.layout.activity_istory_hey_day_in_fo);
+>>>>>>> tmp
         ButterKnife.bind(this);
         initData();
         initView();
@@ -93,8 +106,12 @@ public class HistoryHeyDayInFoActivity extends BaseActivity implements HistoryHe
     public void onFinished(HistoryHeyDayInFo historyHeyDayInFo) {
         mHistoryHeyDayInFo = historyHeyDayInFo;
         heyDayDetail.setText(historyHeyDayInFo.getChina_History_Hey_Day_InFo().getDetail());
+<<<<<<< HEAD
         Glide.with(this).load(historyHeyDayInFo.getChina_History_Hey_Day_InFo().getImg_url()).placeholder(R.drawable.photo)
                 .error(R.drawable.photo).into(heyDayBgImg);
+=======
+        Glide.with(this).load(historyHeyDayInFo.getChina_History_Hey_Day_InFo().getImg_url()).into(heyDayBgImg);
+>>>>>>> tmp
 
     }
 

@@ -84,6 +84,7 @@ public class ExhibitionDetail implements Serializable {
         public void setContent(String content) {
             this.content = content;
         }
+<<<<<<< HEAD
 
         @Override
         public String toString() {
@@ -104,5 +105,7 @@ public class ExhibitionDetail implements Serializable {
                 "exhibitionDetail=" + exhibitionDetail +
                 ", status='" + status + '\'' +
                 '}';
+=======
+>>>>>>> tmp
     }
 }

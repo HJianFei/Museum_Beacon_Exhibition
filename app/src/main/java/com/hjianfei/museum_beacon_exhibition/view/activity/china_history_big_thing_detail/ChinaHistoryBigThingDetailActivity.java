@@ -11,7 +11,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -68,6 +72,7 @@ public class ChinaHistoryBigThingDetailActivity extends BaseActivity implements 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_china_history_big_thing_detail);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
@@ -75,6 +80,14 @@ public class ChinaHistoryBigThingDetailActivity extends BaseActivity implements 
         big_thing_title = getIntent().getStringExtra("big_thing_title");
         id = getIntent().getStringExtra("id");
 
+=======
+        //滑动进入
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        big_thing_title = getIntent().getStringExtra("big_thing_title");
+        id = getIntent().getStringExtra("id");
+        setContentView(R.layout.activity_china_history_big_thing_detail);
+>>>>>>> tmp
         ButterKnife.bind(this);
         initView();
         initData();
@@ -102,8 +115,12 @@ public class ChinaHistoryBigThingDetailActivity extends BaseActivity implements 
 
         mBigThingDetail = chinaHistoryBigThingDetail;
         big_thing_content.setText(chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getContent());
+<<<<<<< HEAD
         Glide.with(this).load(chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getImg_url()).placeholder(R.drawable.photo)
                 .error(R.drawable.photo).into(bigThingBg);
+=======
+        Glide.with(this).load(chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getImg_url()).into(bigThingBg);
+>>>>>>> tmp
         bigThingTitle.setText(chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getTitle());
         bigThingAuthor.setText("作者：" + chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getAuthor());
         bigThingTime.setText("时间：" + chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getTime());

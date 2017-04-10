@@ -13,7 +13,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.Toolbar;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -74,6 +78,7 @@ public class ForeignCountryDetailActivity extends BaseActivity implements Foreig
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_foreign_country_detail);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
@@ -81,6 +86,14 @@ public class ForeignCountryDetailActivity extends BaseActivity implements Foreig
         id = getIntent().getStringExtra("id");
         title = getIntent().getStringExtra("title");
 
+=======
+        //滑动进入
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        id = getIntent().getStringExtra("id");
+        title = getIntent().getStringExtra("title");
+        setContentView(R.layout.activity_foreign_country_detail);
+>>>>>>> tmp
         ButterKnife.bind(this);
         initData();
         initView();
@@ -111,8 +124,12 @@ public class ForeignCountryDetailActivity extends BaseActivity implements Foreig
         foreignCountryDetailAuthor.setText("作者：" + foreignHistoryDetail.getForeign_History_Detail().getAuthor());
         foreignCountryDetailTime.setText("时间：" + foreignHistoryDetail.getForeign_History_Detail().getTime());
         foreignCountryDetailContent.setText(foreignHistoryDetail.getForeign_History_Detail().getDetail());
+<<<<<<< HEAD
         Glide.with(this).load(foreignHistoryDetail.getForeign_History_Detail().getImg_url()).placeholder(R.drawable.photo)
                 .error(R.drawable.photo).into(foreignCountryDetailBgImg);
+=======
+        Glide.with(this).load(foreignHistoryDetail.getForeign_History_Detail().getImg_url()).into(foreignCountryDetailBgImg);
+>>>>>>> tmp
         img_url = foreignHistoryDetail.getForeign_History_Detail().getImg_url();
     }
 

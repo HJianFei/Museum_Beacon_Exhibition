@@ -21,7 +21,10 @@ import com.hjianfei.museum_beacon_exhibition.adapter.HomeExhibitionViewPagerAdap
 import com.hjianfei.museum_beacon_exhibition.adapter.HomeViewPagerAdapter;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.CommonAdapter;
 import com.hjianfei.museum_beacon_exhibition.adapter.common.ViewHolder;
+<<<<<<< HEAD
 import com.hjianfei.museum_beacon_exhibition.any_event.LocationResult;
+=======
+>>>>>>> tmp
 import com.hjianfei.museum_beacon_exhibition.bean.Appreciates;
 import com.hjianfei.museum_beacon_exhibition.bean.Exhibitions;
 import com.hjianfei.museum_beacon_exhibition.bean.ViewPager;
@@ -41,9 +44,12 @@ import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.zhy.magicviewpager.transformer.AlphaPageTransformer;
 import com.zhy.magicviewpager.transformer.ScaleInTransformer;
 
+<<<<<<< HEAD
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+=======
+>>>>>>> tmp
 import java.util.List;
 
 import butterknife.BindView;
@@ -107,7 +113,10 @@ public class HomeFragment extends Fragment implements HomeView {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+<<<<<<< HEAD
         EventBus.getDefault().register(this);
+=======
+>>>>>>> tmp
     }
 
     @Override
@@ -162,6 +171,7 @@ public class HomeFragment extends Fragment implements HomeView {
         }
     }
 
+<<<<<<< HEAD
     //    @Override
 //    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        if (resultCode==RESULT_CODE) {
@@ -173,6 +183,19 @@ public class HomeFragment extends Fragment implements HomeView {
 //            }
 //        }
 //    }
+=======
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Constants.HOME_RESULT_CODE) {
+            if (requestCode == Constants.HOME_LOCATION) {
+                String result = data.getStringExtra("city");
+                home_local_city.setText(result);
+                mHomePresenter.loadExhibitionViewPager(result);
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+>>>>>>> tmp
 
     @Override
     public void initHomeViewPager(ViewPager viewPager) {
@@ -272,6 +295,7 @@ public class HomeFragment extends Fragment implements HomeView {
     public void showEmpty() {
 
     }
+<<<<<<< HEAD
 
     @Subscribe
     public void eventMessage(LocationResult locationResult) {
@@ -285,4 +309,6 @@ public class HomeFragment extends Fragment implements HomeView {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+=======
+>>>>>>> tmp
 }

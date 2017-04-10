@@ -7,10 +7,16 @@ import com.hjianfei.museum_beacon_exhibition.view.activity.change_password.Chang
 import com.hjianfei.museum_beacon_exhibition.view.activity.change_phone.ChangePhoneView;
 import com.hjianfei.museum_beacon_exhibition.view.activity.personal.PersonalView;
 
+<<<<<<< HEAD
 import java.util.Map;
 
 import okhttp3.MultipartBody;
 
+=======
+import java.io.File;
+import java.util.Map;
+
+>>>>>>> tmp
 /**
  * Created by HJianFei on 2016/11/21.
  */
@@ -40,8 +46,13 @@ public class UserInfoPresenterImpl implements UserInfoPresenter, UserInfoIndicat
     }
 
     @Override
+<<<<<<< HEAD
     public void changeAvatar(MultipartBody parts, String user_phone) {
         mUserInfoIndicator.changeAvatar(parts, user_phone, this);
+=======
+    public void changeAvatar(File file, String user_phone) {
+        mUserInfoIndicator.changeAvatar(file, user_phone, this);
+>>>>>>> tmp
 
     }
 

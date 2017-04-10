@@ -12,7 +12,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -72,12 +76,20 @@ public class GuideDetailActivity extends BaseActivity implements GuideDetailView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_guide_detail);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
         beaconAppreciate = (BeaconAppreciate) getIntent().getBundleExtra("guide_detail").getSerializable("beaconAppreciate");
 
+=======
+        //滑动进入
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        beaconAppreciate = (BeaconAppreciate) getIntent().getBundleExtra("guide_detail").getSerializable("beaconAppreciate");
+        setContentView(R.layout.activity_guide_detail);
+>>>>>>> tmp
         ButterKnife.bind(this);
         initView();
     }

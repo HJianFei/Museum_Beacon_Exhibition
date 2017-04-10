@@ -100,6 +100,7 @@ public class Exhibitions implements Serializable {
         public void setTime(String time) {
             this.time = time;
         }
+<<<<<<< HEAD
 
         @Override
         public String toString() {
@@ -120,5 +121,7 @@ public class Exhibitions implements Serializable {
                 "code=" + code +
                 ", exhibitions=" + exhibitions +
                 '}';
+=======
+>>>>>>> tmp
     }
 }

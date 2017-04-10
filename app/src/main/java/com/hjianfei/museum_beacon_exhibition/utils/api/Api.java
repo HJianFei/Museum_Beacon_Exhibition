@@ -37,15 +37,25 @@ import com.hjianfei.museum_beacon_exhibition.canstants.Urls;
 
 import java.util.Map;
 
+<<<<<<< HEAD
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+=======
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+>>>>>>> tmp
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+<<<<<<< HEAD
+=======
+import retrofit2.http.Part;
+>>>>>>> tmp
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
@@ -211,7 +221,12 @@ public interface Api {
     Observable<ResponseBody> downloadPicFromNet(@Url String fileUrl);
 
     @POST(Urls.CHANGE_USER_AVATAR)
+<<<<<<< HEAD
     Observable<ResultCode> uploadFile(@Body MultipartBody file, @Query("user_phone") String user_phone);
+=======
+    @Multipart
+    Observable<UploadFile> uploadFile(@Part("file\"; filename=\"avatar.png\"") RequestBody file, @Query("user_phone") String user_phone);
+>>>>>>> tmp
 
     /**
      * 獲取中國歷史朝代大事件

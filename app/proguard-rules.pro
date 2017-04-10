@@ -76,6 +76,7 @@
 -keep class net.sourceforge.pinyin4j.**{*;}
 -keep class net.sourceforge.pinyin4j.format.**{*;}
 -keep class net.sourceforge.pinyin4j.format.exception.**{*;}
+<<<<<<< HEAD
 
     -dontusemixedcaseclassnames
     -dontshrink
@@ -158,3 +159,5 @@
 
     -keep class com.linkedin.** { *; }
     -keepattributes Signature
+=======
+>>>>>>> tmp

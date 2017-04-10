@@ -35,7 +35,10 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.hjianfei.museum_beacon_exhibition.R;
+<<<<<<< HEAD
 import com.hjianfei.museum_beacon_exhibition.any_event.LocationResult;
+=======
+>>>>>>> tmp
 import com.hjianfei.museum_beacon_exhibition.bean.City;
 import com.hjianfei.museum_beacon_exhibition.canstants.Constants;
 import com.hjianfei.museum_beacon_exhibition.utils.LogUtils;
@@ -46,8 +49,11 @@ import com.hjianfei.museum_beacon_exhibition.utils.widget.LetterListView;
 import com.hjianfei.museum_beacon_exhibition.utils.widget.PingYinUtil;
 import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 
+<<<<<<< HEAD
 import org.greenrobot.eventbus.EventBus;
 
+=======
+>>>>>>> tmp
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -98,11 +104,17 @@ public class LocationActivity extends BaseActivity implements AbsListView.OnScro
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_location);
         //淡入淡出
 //        getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
 //        getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
 
+=======
+//        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+//        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        setContentView(R.layout.activity_location);
+>>>>>>> tmp
         ButterKnife.bind(this);
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, Constants.BAIDU_READ_PHONE_STATE);
@@ -558,7 +570,16 @@ public class LocationActivity extends BaseActivity implements AbsListView.OnScro
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
+<<<<<<< HEAD
                         EventBus.getDefault().post(new LocationResult(city_history.get(position)));
+=======
+
+
+                        Intent intent = new Intent();
+                        intent.putExtra("city", city_history.get(position));
+                        setResult(Constants.HOME_RESULT_CODE, intent);
+                        InsertCity(city_history.get(position));
+>>>>>>> tmp
                         finish();
 
                     }
@@ -576,7 +597,15 @@ public class LocationActivity extends BaseActivity implements AbsListView.OnScro
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
 
+<<<<<<< HEAD
                         EventBus.getDefault().post(new LocationResult(city_hot.get(position).getName()));
+=======
+
+                        Intent intent = new Intent();
+                        intent.putExtra("city", city_hot.get(position).getName());
+                        setResult(Constants.HOME_RESULT_CODE, intent);
+                        InsertCity(city_hot.get(position).getName());
+>>>>>>> tmp
                         finish();
 
 
@@ -813,7 +842,11 @@ public class LocationActivity extends BaseActivity implements AbsListView.OnScro
                     // 获取到权限，作相应处理（调用定位SDK应当确保相关权限均被授权，否则可能引起定位失败）
                 } else {
                     // 没有获取到权限，做特殊处理
+<<<<<<< HEAD
                     ToastUtil.showToast(LocationActivity.this, "定位权限未授予");
+=======
+                    ToastUtil.showToast(LocationActivity.this,"定位权限未授予");
+>>>>>>> tmp
                 }
                 break;
             default:

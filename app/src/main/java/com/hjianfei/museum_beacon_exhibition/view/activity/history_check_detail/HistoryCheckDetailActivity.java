@@ -11,7 +11,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -61,6 +65,7 @@ public class HistoryCheckDetailActivity extends BaseActivity implements HistoryC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_history_check_detail);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
@@ -68,6 +73,14 @@ public class HistoryCheckDetailActivity extends BaseActivity implements HistoryC
         id = getIntent().getStringExtra("id");
         title = getIntent().getStringExtra("title");
 
+=======
+        //滑动进入
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        id = getIntent().getStringExtra("id");
+        title = getIntent().getStringExtra("title");
+        setContentView(R.layout.activity_history_check_detail);
+>>>>>>> tmp
         ButterKnife.bind(this);
         initData();
         initView();
@@ -95,11 +108,15 @@ public class HistoryCheckDetailActivity extends BaseActivity implements HistoryC
         mCheckDetail = historyCheckDetail;
         historyCheckDetailTitle.setText(historyCheckDetail.getCheck_Detail().getTitle());
         historyCheckDetailContent.setText(historyCheckDetail.getCheck_Detail().getDetail());
+<<<<<<< HEAD
         Glide.with(this)
                 .load(historyCheckDetail.getCheck_Detail().getImg_url())
                 .placeholder(R.drawable.photo)
                 .error(R.drawable.photo)
                 .into(historyCheckDetailBg);
+=======
+        Glide.with(this).load(historyCheckDetail.getCheck_Detail().getImg_url()).into(historyCheckDetailBg);
+>>>>>>> tmp
 
 
     }

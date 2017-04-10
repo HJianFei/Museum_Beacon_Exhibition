@@ -7,7 +7,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -56,12 +60,20 @@ public class ChinaHistoryPeopleActivity extends BaseActivity implements ChinaHis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_china_history_people);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
         dynasty_name = getIntent().getStringExtra("dynasty_name");
 
+=======
+        //淡入淡出
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        dynasty_name = getIntent().getStringExtra("dynasty_name");
+        setContentView(R.layout.activity_china_history_people);
+>>>>>>> tmp
         ButterKnife.bind(this);
         initData();
         initView();

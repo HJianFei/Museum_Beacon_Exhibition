@@ -5,7 +5,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+<<<<<<< HEAD
 import com.hjianfei.museum_beacon_exhibition.R;
+=======
+>>>>>>> tmp
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 
 /**
@@ -25,8 +28,11 @@ public class PhotoDetailViewPagerAdapter extends StaticPagerAdapter {
         ImageView item_iv = new ImageView(container.getContext());
         Glide.with(container.getContext())
                 .load(imgUrl[position].trim())
+<<<<<<< HEAD
                 .placeholder(R.drawable.photo)
                 .error(R.drawable.photo)
+=======
+>>>>>>> tmp
                 .into(item_iv);
         return item_iv;
     }

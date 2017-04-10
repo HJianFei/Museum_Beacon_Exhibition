@@ -9,7 +9,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,10 +48,15 @@ public class MuseumActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_museum);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
+=======
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+>>>>>>> tmp
         museum_name = getIntent().getStringExtra("museum_name");
         String img = getIntent().getStringExtra("img_url");
         String appreciate = getIntent().getStringExtra("appreciate_type");
@@ -55,22 +64,34 @@ public class MuseumActivity extends BaseActivity {
         imgs = img.substring(1, img.length() - 1);
         appreciate_type = substring.split(",");
         img_urls = imgs.split(",");
+<<<<<<< HEAD
 
+=======
+        setContentView(R.layout.activity_museum);
+>>>>>>> tmp
         ButterKnife.bind(this);
         initView();
     }
 
     private void initView() {
+<<<<<<< HEAD
         if (appreciate_type.length < 4) {
+=======
+        if (appreciate_type.length<4){
+>>>>>>> tmp
             museumTabs.setTabMode(TabLayout.MODE_FIXED);
             museumTabs.setTabGravity(TabLayout.GRAVITY_FILL);
         }
         museumName.setText(museum_name);
+<<<<<<< HEAD
         Glide.with(this)
                 .load(img_urls[0])
                 .placeholder(R.drawable.photo)
                 .error(R.drawable.photo)
                 .into(museumImgBg);
+=======
+        Glide.with(this).load(img_urls[0]).into(museumImgBg);
+>>>>>>> tmp
         museumViewpager.setAdapter(new TabsAdapter(getSupportFragmentManager()));
         museumTabs.setupWithViewPager(museumViewpager);
     }
@@ -79,7 +100,11 @@ public class MuseumActivity extends BaseActivity {
     public void onClick() {
         Intent intent2 = new Intent(MuseumActivity.this, PhotoDetailActivity.class);
         intent2.putExtra("img_urls", imgs);
+<<<<<<< HEAD
         intent2.putExtra("photo_title", museum_name);
+=======
+        intent2.putExtra("photo_title",museum_name);
+>>>>>>> tmp
         startActivity(intent2, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
 
     }

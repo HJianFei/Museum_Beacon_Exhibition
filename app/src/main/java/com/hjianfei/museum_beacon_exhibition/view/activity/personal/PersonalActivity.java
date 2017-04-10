@@ -17,7 +17,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+<<<<<<< HEAD
 import android.transition.Fade;
+=======
+import android.transition.Slide;
+>>>>>>> tmp
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -60,9 +64,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
+<<<<<<< HEAD
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+=======
+>>>>>>> tmp
 
 import static com.hjianfei.museum_beacon_exhibition.R.id.personal_name;
 
@@ -108,12 +115,19 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_personal);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
         user_phone = (String) SPUtils.getParam(PersonalActivity.this, Constants.PHONE, "");
 
+=======
+        getWindow().setEnterTransition(new Slide().setDuration(Constants.DURATION));
+        getWindow().setExitTransition(new Slide().setDuration(Constants.DURATION));
+        user_phone = (String) SPUtils.getParam(PersonalActivity.this, Constants.PHONE, "");
+        setContentView(R.layout.activity_personal);
+>>>>>>> tmp
         ButterKnife.bind(this);
         initView();
         EventBus.getDefault().register(this);
@@ -332,14 +346,19 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
             try {
                 saveUserIcon(photo);
                 File filePath = new File(Constants.FILE_URI + "/" + IMAGE_FILE_NAME);
+<<<<<<< HEAD
                 MultipartBody parts = filesToMultipartBody(filePath);
                 mUserInfoPresenter.changeAvatar(parts, user_phone);
+=======
+                mUserInfoPresenter.changeAvatar(filePath, user_phone);
+>>>>>>> tmp
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
+<<<<<<< HEAD
     private static MultipartBody filesToMultipartBody(File file) {
         MultipartBody.Builder builder = new MultipartBody.Builder();
         // TODO:   这里为了简单起见，没有判断file的类型
@@ -350,13 +369,18 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
         return multipartBody;
     }
 
+=======
+>>>>>>> tmp
     private void saveUserIcon(Bitmap bitmap) throws IOException {
         File file = new File(Constants.FILE_URI);
         if (!file.exists()) {
             file.mkdirs();
         }
         File dir = new File(Constants.FILE_URI + "/" + IMAGE_FILE_NAME);
+<<<<<<< HEAD
         LogUtils.d("onResponse", dir.toString());
+=======
+>>>>>>> tmp
         if (!dir.exists()) {
             dir.createNewFile();
         }

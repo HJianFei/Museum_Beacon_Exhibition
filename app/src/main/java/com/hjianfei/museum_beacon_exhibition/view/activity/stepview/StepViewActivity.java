@@ -60,7 +60,11 @@ public class StepViewActivity extends BaseActivity {
         stepViewContent.setText(stepView.getStepView().getContent());
         stepViewCollapsing.setTitle(stepView.getStepView().getStep_name());
         stepViewName.setText(stepView.getStepView().getStep_name());
-        Glide.with(this).load(stepView.getStepView().getImg_url()).into(stepViewBg);
+        Glide.with(this)
+                .load(stepView.getStepView().getImg_url())
+                .placeholder(R.drawable.photo)
+                .error(R.drawable.photo)
+                .into(stepViewBg);
     }
 
     @OnClick(R.id.step_view_bg)

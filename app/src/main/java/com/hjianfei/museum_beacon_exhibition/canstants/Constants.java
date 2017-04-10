@@ -32,7 +32,7 @@ public class Constants {
     public static final String NAME = "USER_NAME";
 
     //动画时长
-    public static final int DURATION = 1000;
+    public static final int DURATION = 1200;
 
     /**
      * 用户头像存放目录

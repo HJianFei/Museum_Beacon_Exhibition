@@ -100,5 +100,25 @@ public class Exhibitions implements Serializable {
         public void setTime(String time) {
             this.time = time;
         }
+
+        @Override
+        public String toString() {
+            return "ExhibitionsBean{" +
+                    "id=" + id +
+                    ", img_url='" + img_url + '\'' +
+                    ", content='" + content + '\'' +
+                    ", detail_url='" + detail_url + '\'' +
+                    ", type='" + type + '\'' +
+                    ", time='" + time + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Exhibitions{" +
+                "code=" + code +
+                ", exhibitions=" + exhibitions +
+                '}';
     }
 }

@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.hjianfei.museum_beacon_exhibition.R;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 
 /**
@@ -25,8 +26,8 @@ public class CommonDetailViewPagerAdapter extends StaticPagerAdapter {
         item_iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
         Glide.with(container.getContext())
                 .load(imgUrl[position].trim())
-//                .placeholder(R.drawable.photo)
-//                .error(R.drawable.photo)
+                .placeholder(R.drawable.photo)
+                .error(R.drawable.photo)
                 .into(item_iv);
         return item_iv;
     }

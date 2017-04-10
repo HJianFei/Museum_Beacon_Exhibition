@@ -95,7 +95,11 @@ public class HistoryCheckDetailActivity extends BaseActivity implements HistoryC
         mCheckDetail = historyCheckDetail;
         historyCheckDetailTitle.setText(historyCheckDetail.getCheck_Detail().getTitle());
         historyCheckDetailContent.setText(historyCheckDetail.getCheck_Detail().getDetail());
-        Glide.with(this).load(historyCheckDetail.getCheck_Detail().getImg_url()).into(historyCheckDetailBg);
+        Glide.with(this)
+                .load(historyCheckDetail.getCheck_Detail().getImg_url())
+                .placeholder(R.drawable.photo)
+                .error(R.drawable.photo)
+                .into(historyCheckDetailBg);
 
 
     }

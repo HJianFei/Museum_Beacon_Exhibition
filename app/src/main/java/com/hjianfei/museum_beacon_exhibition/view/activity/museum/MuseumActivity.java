@@ -61,12 +61,16 @@ public class MuseumActivity extends BaseActivity {
     }
 
     private void initView() {
-        if (appreciate_type.length<4){
+        if (appreciate_type.length < 4) {
             museumTabs.setTabMode(TabLayout.MODE_FIXED);
             museumTabs.setTabGravity(TabLayout.GRAVITY_FILL);
         }
         museumName.setText(museum_name);
-        Glide.with(this).load(img_urls[0]).into(museumImgBg);
+        Glide.with(this)
+                .load(img_urls[0])
+                .placeholder(R.drawable.photo)
+                .error(R.drawable.photo)
+                .into(museumImgBg);
         museumViewpager.setAdapter(new TabsAdapter(getSupportFragmentManager()));
         museumTabs.setupWithViewPager(museumViewpager);
     }
@@ -75,7 +79,7 @@ public class MuseumActivity extends BaseActivity {
     public void onClick() {
         Intent intent2 = new Intent(MuseumActivity.this, PhotoDetailActivity.class);
         intent2.putExtra("img_urls", imgs);
-        intent2.putExtra("photo_title",museum_name);
+        intent2.putExtra("photo_title", museum_name);
         startActivity(intent2, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
 
     }

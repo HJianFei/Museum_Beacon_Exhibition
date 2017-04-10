@@ -84,5 +84,25 @@ public class ExhibitionDetail implements Serializable {
         public void setContent(String content) {
             this.content = content;
         }
+
+        @Override
+        public String toString() {
+            return "ExhibitionDetailBean{" +
+                    "detail_url='" + detail_url + '\'' +
+                    ", title='" + title + '\'' +
+                    ", show_time='" + show_time + '\'' +
+                    ", address='" + address + '\'' +
+                    ", img_url='" + img_url + '\'' +
+                    ", content='" + content + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ExhibitionDetail{" +
+                "exhibitionDetail=" + exhibitionDetail +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

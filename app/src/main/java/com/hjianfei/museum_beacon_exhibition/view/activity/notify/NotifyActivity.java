@@ -60,7 +60,11 @@ public class NotifyActivity extends BaseActivity {
         notifyContent.setText(notifyResult.getNotify().getNotify_content());
         notifyCollapsing.setTitle(notifyResult.getNotify().getNotify_title());
         notifyName.setText(notifyResult.getNotify().getNotify_title());
-        Glide.with(this).load(notifyResult.getNotify().getNotify_img_url()).into(notifyBg);
+        Glide.with(this)
+                .load(notifyResult.getNotify().getNotify_img_url())
+                .placeholder(R.drawable.photo)
+                .error(R.drawable.photo)
+                .into(notifyBg);
     }
 
     @OnClick(R.id.notify_bg)

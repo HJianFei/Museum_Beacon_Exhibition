@@ -104,7 +104,8 @@ public class ChinaHistoryHistoryDetailActivity extends BaseActivity implements C
         mHistoryDetail = chinaHistoryHistoryDetail;
         historyHistoryAuthor.setText(author);
         historyHistoryTime.setText(time);
-        Glide.with(this).load(chinaHistoryHistoryDetail.getChina_History_History_Detail().getImg_url()).into(historyHistoryBg);
+        Glide.with(this).load(chinaHistoryHistoryDetail.getChina_History_History_Detail().getImg_url()).placeholder(R.drawable.photo)
+                .error(R.drawable.photo).into(historyHistoryBg);
         historyHistoryTitle.setText(chinaHistoryHistoryDetail.getChina_History_History_Detail().getTitle());
         historyHistoryContent.setText(chinaHistoryHistoryDetail.getChina_History_History_Detail().getContent());
     }

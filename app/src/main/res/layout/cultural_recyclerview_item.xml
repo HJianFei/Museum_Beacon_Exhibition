@@ -18,6 +18,7 @@
             android:id="@+id/appreciate_item_image"
             android:layout_width="match_parent"
             android:layout_height="140dp"
+            android:scaleType="fitXY"
             android:src="@drawable/pic" />
 
         <TextView
@@ -29,7 +30,6 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:text="唐三彩刻花鸭"
             android:textColor="#333333"
             android:textSize="12sp" />
     </LinearLayout>

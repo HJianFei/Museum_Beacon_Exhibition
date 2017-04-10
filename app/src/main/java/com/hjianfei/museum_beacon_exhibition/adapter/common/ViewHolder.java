@@ -109,8 +109,8 @@ public class ViewHolder extends RecyclerView.ViewHolder {
                 .load(url)
                 .centerCrop()
                 .crossFade()
-//                .placeholder(R.drawable.pic_loading)
-//                .error(R.drawable.pic_loading)
+//                .placeholder(R.drawable.photo)
+//                .error(R.drawable.photo)
                 .into(view);
         return this;
     }

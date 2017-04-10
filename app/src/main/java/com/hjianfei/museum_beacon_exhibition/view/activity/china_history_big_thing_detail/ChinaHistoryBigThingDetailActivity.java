@@ -102,7 +102,8 @@ public class ChinaHistoryBigThingDetailActivity extends BaseActivity implements 
 
         mBigThingDetail = chinaHistoryBigThingDetail;
         big_thing_content.setText(chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getContent());
-        Glide.with(this).load(chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getImg_url()).into(bigThingBg);
+        Glide.with(this).load(chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getImg_url()).placeholder(R.drawable.photo)
+                .error(R.drawable.photo).into(bigThingBg);
         bigThingTitle.setText(chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getTitle());
         bigThingAuthor.setText("作者：" + chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getAuthor());
         bigThingTime.setText("时间：" + chinaHistoryBigThingDetail.getChina_History_Big_Thing_Detail().getTime());

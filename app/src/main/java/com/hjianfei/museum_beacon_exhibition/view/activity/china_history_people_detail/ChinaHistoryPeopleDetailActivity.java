@@ -87,7 +87,8 @@ public class ChinaHistoryPeopleDetailActivity extends BaseActivity implements Ch
                 onBackPressed();
             }
         });
-        Glide.with(this).load(img_url).into(historyPeopleBg);
+        Glide.with(this).load(img_url).placeholder(R.drawable.photo)
+                .error(R.drawable.photo).into(historyPeopleBg);
 
     }
 

@@ -102,7 +102,8 @@ public class HistoryWarDetailActivity extends BaseActivity implements HistoryWar
             }
         });
         historyWarDetailAppbar.addOnOffsetChangedListener(this);
-        Glide.with(this).load(img_url).into(historyWarDetailBgImg);
+        Glide.with(this).load(img_url).placeholder(R.drawable.photo)
+                .error(R.drawable.photo).into(historyWarDetailBgImg);
     }
 
     private void initData() {

@@ -93,7 +93,8 @@ public class HistoryHeyDayInFoActivity extends BaseActivity implements HistoryHe
     public void onFinished(HistoryHeyDayInFo historyHeyDayInFo) {
         mHistoryHeyDayInFo = historyHeyDayInFo;
         heyDayDetail.setText(historyHeyDayInFo.getChina_History_Hey_Day_InFo().getDetail());
-        Glide.with(this).load(historyHeyDayInFo.getChina_History_Hey_Day_InFo().getImg_url()).into(heyDayBgImg);
+        Glide.with(this).load(historyHeyDayInFo.getChina_History_Hey_Day_InFo().getImg_url()).placeholder(R.drawable.photo)
+                .error(R.drawable.photo).into(heyDayBgImg);
 
     }
 

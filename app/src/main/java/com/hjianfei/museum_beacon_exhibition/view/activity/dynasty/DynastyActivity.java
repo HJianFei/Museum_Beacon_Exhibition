@@ -87,7 +87,8 @@ public class DynastyActivity extends BaseActivity implements DynastyView {
     }
 
     private void initView() {
-        Glide.with(this).load(Urls.API_SERVER + dynasty_img_url).into(dynastyBgImg);
+        Glide.with(this).load(Urls.API_SERVER + dynasty_img_url).placeholder(R.drawable.photo)
+                .error(R.drawable.photo).into(dynastyBgImg);
         mAdapter = new CommonAdapter<ChinaHistoryPeople.ChinaHistoryPeoplesBean>(this, R.layout.dynasty_people_item, chinaHistoryPeoplesBeanList) {
             @Override
             public void setData(ViewHolder holder, ChinaHistoryPeople.ChinaHistoryPeoplesBean chinaHistoryPeoplesBean) {

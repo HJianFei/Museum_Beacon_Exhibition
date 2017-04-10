@@ -106,7 +106,8 @@ public class ChinaHistoryCultureDetailActivity extends BaseActivity implements C
         mCultureDetail = chinaHistoryCultureDetail;
         historyCultureAuthor.setText(author);
         historyCultureTime.setText(time);
-        Glide.with(this).load(chinaHistoryCultureDetail.getChina_History_Culture_Detail().getImg_url()).into(historyCultureBg);
+        Glide.with(this).load(chinaHistoryCultureDetail.getChina_History_Culture_Detail().getImg_url()).placeholder(R.drawable.photo)
+                .error(R.drawable.photo).into(historyCultureBg);
         historyCultureCollapsing.setTitle(chinaHistoryCultureDetail.getChina_History_Culture_Detail().getTitle());
         historyCultureTitle.setText(chinaHistoryCultureDetail.getChina_History_Culture_Detail().getTitle());
         historyCultureContent.setText(chinaHistoryCultureDetail.getChina_History_Culture_Detail().getContent());

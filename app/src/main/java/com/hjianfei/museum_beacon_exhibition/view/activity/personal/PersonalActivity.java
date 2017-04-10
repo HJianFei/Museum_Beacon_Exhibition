@@ -60,6 +60,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 import static com.hjianfei.museum_beacon_exhibition.R.id.personal_name;
 
@@ -329,11 +332,22 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
             try {
                 saveUserIcon(photo);
                 File filePath = new File(Constants.FILE_URI + "/" + IMAGE_FILE_NAME);
-                mUserInfoPresenter.changeAvatar(filePath, user_phone);
+                MultipartBody parts = filesToMultipartBody(filePath);
+                mUserInfoPresenter.changeAvatar(parts, user_phone);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private static MultipartBody filesToMultipartBody(File file) {
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        // TODO:   这里为了简单起见，没有判断file的类型
+        RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
+        builder.addFormDataPart("file", file.getName(), requestBody);
+        builder.setType(MultipartBody.FORM);
+        MultipartBody multipartBody = builder.build();
+        return multipartBody;
     }
 
     private void saveUserIcon(Bitmap bitmap) throws IOException {
@@ -342,6 +356,7 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
             file.mkdirs();
         }
         File dir = new File(Constants.FILE_URI + "/" + IMAGE_FILE_NAME);
+        LogUtils.d("onResponse", dir.toString());
         if (!dir.exists()) {
             dir.createNewFile();
         }

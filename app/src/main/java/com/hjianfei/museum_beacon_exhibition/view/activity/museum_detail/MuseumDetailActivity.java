@@ -128,7 +128,7 @@ public class MuseumDetailActivity extends BaseActivity implements MuseumDetailVi
         new ShareAction(MuseumDetailActivity.this)
                 .withTitle("博物展")
                 .withText(museum_detail.getMuseum_Detail().getMuseum_detail_name())
-                .withMedia(new UMImage(MuseumDetailActivity.this, museum_detail.getMuseum_Detail().getMuseum_detail_imgs()))
+                .withMedia(new UMImage(MuseumDetailActivity.this, museum_detail.getMuseum_Detail().getMuseum_detail_imgs().substring(1, museum_detail.getMuseum_Detail().getMuseum_detail_imgs().length() - 1)))
                 .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.SINA)
                 .setCallback(umShareListener).open();
     }
@@ -256,7 +256,7 @@ public class MuseumDetailActivity extends BaseActivity implements MuseumDetailVi
     private UMShareListener umShareListener = new UMShareListener() {
         @Override
         public void onResult(SHARE_MEDIA platform) {
-            Log.d("plat", "platform" + platform);
+            Log.d("onResponse", "platform" + platform);
 
             Toast.makeText(MuseumDetailActivity.this, "分享成功啦", Toast.LENGTH_SHORT).show();
 
@@ -266,7 +266,7 @@ public class MuseumDetailActivity extends BaseActivity implements MuseumDetailVi
         public void onError(SHARE_MEDIA platform, Throwable t) {
             Toast.makeText(MuseumDetailActivity.this, "分享失败啦", Toast.LENGTH_SHORT).show();
             if (t != null) {
-                Log.d("throw", "throw:" + t.getMessage());
+                Log.d("onResponse", "throw:" + t.getMessage());
             }
         }
 

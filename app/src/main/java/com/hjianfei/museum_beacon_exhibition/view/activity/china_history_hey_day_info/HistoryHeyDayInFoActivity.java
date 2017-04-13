@@ -38,6 +38,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+
 public class HistoryHeyDayInFoActivity extends BaseActivity implements HistoryHeyDayInFoView {
 
 
@@ -60,6 +61,7 @@ public class HistoryHeyDayInFoActivity extends BaseActivity implements HistoryHe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_istory_hey_day_in_fo);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));

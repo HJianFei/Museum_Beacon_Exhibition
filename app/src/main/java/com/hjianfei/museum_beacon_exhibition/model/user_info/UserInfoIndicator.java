@@ -6,6 +6,7 @@ import java.util.Map;
 
 import okhttp3.MultipartBody;
 
+
 /**
  * Created by HJianFei on 2016/11/21.
  */
@@ -26,6 +27,7 @@ public interface UserInfoIndicator {
     }
 
     void changeAvatar(MultipartBody parts, String user_phone, onFinishedListener listener);
+
 
     void changePassword(Map<String, Object> map, onFinishedListener listener);
 

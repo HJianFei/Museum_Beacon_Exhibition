@@ -24,6 +24,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
+
 public class MuseumActivity extends BaseActivity {
 
     @BindView(R.id.museum_img_bg)
@@ -44,10 +46,12 @@ public class MuseumActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_museum);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
+
         museum_name = getIntent().getStringExtra("museum_name");
         String img = getIntent().getStringExtra("img_url");
         String appreciate = getIntent().getStringExtra("appreciate_type");
@@ -61,16 +65,20 @@ public class MuseumActivity extends BaseActivity {
     }
 
     private void initView() {
+
         if (appreciate_type.length < 4) {
+
             museumTabs.setTabMode(TabLayout.MODE_FIXED);
             museumTabs.setTabGravity(TabLayout.GRAVITY_FILL);
         }
         museumName.setText(museum_name);
+
         Glide.with(this)
                 .load(img_urls[0])
                 .placeholder(R.drawable.photo)
                 .error(R.drawable.photo)
                 .into(museumImgBg);
+
         museumViewpager.setAdapter(new TabsAdapter(getSupportFragmentManager()));
         museumTabs.setupWithViewPager(museumViewpager);
     }
@@ -80,6 +88,7 @@ public class MuseumActivity extends BaseActivity {
         Intent intent2 = new Intent(MuseumActivity.this, PhotoDetailActivity.class);
         intent2.putExtra("img_urls", imgs);
         intent2.putExtra("photo_title", museum_name);
+
         startActivity(intent2, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
 
     }

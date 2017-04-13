@@ -4,6 +4,7 @@ import java.util.Map;
 
 import okhttp3.MultipartBody;
 
+
 /**
  * Created by HJianFei on 2016/11/21.
  */
@@ -11,6 +12,7 @@ import okhttp3.MultipartBody;
 public interface UserInfoPresenter {
 
     void changeAvatar(MultipartBody parts, String user_phone);
+
 
     void changePassword(Map<String, Object> map);
 

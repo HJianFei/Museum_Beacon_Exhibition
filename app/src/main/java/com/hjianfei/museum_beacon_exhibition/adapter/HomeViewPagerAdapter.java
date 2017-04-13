@@ -33,6 +33,7 @@ public class HomeViewPagerAdapter extends StaticPagerAdapter {
                 .load(Urls.API_SERVER + mViewPagers.get(position).getImg_url())
                 .placeholder(R.drawable.photo)
                 .error(R.drawable.photo)
+
                 .into(item_iv);
         return item_iv;
     }

@@ -31,6 +31,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
+
 public class AboutMeActivity extends BaseActivity implements AppBarLayout.OnOffsetChangedListener {
 
     private static final int PERCENTAGE_TO_SHOW_IMAGE = 20;
@@ -151,7 +153,6 @@ public class AboutMeActivity extends BaseActivity implements AppBarLayout.OnOffs
         switch (requestCode) {
             case Constants.WRITE_EXTERNAL_CODE:
                 if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-//                    ToastUtil.showToast(this, "请允许使用SDCard权限");
                 } else {
                     doShare();
                 }

@@ -51,6 +51,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
+
 public class HomeFragment extends Fragment implements HomeView {
 
     private static final String ARG_PARAM1 = "param1";
@@ -108,6 +109,7 @@ public class HomeFragment extends Fragment implements HomeView {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         EventBus.getDefault().register(this);
+
     }
 
     @Override
@@ -173,6 +175,7 @@ public class HomeFragment extends Fragment implements HomeView {
 //            }
 //        }
 //    }
+
 
     @Override
     public void initHomeViewPager(ViewPager viewPager) {
@@ -285,4 +288,5 @@ public class HomeFragment extends Fragment implements HomeView {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
 }

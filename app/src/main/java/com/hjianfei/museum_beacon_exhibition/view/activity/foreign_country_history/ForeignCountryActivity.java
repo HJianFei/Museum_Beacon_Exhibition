@@ -19,6 +19,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
+
 public class ForeignCountryActivity extends BaseActivity {
 
     @BindView(R.id.foreign_country_img_bg)
@@ -34,6 +36,7 @@ public class ForeignCountryActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_foreign_country);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));

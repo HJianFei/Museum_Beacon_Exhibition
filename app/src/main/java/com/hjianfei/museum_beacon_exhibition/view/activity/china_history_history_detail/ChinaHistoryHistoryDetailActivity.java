@@ -38,6 +38,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+
+
 public class ChinaHistoryHistoryDetailActivity extends BaseActivity implements ChinaHistoryHistoryDetailView {
 
     @BindView(R.id.history_history_bg)
@@ -71,6 +73,7 @@ public class ChinaHistoryHistoryDetailActivity extends BaseActivity implements C
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
+
         id = getIntent().getStringExtra("id");
         title = getIntent().getStringExtra("title");
         author = getIntent().getStringExtra("author");
@@ -106,6 +109,7 @@ public class ChinaHistoryHistoryDetailActivity extends BaseActivity implements C
         historyHistoryTime.setText(time);
         Glide.with(this).load(chinaHistoryHistoryDetail.getChina_History_History_Detail().getImg_url()).placeholder(R.drawable.photo)
                 .error(R.drawable.photo).into(historyHistoryBg);
+
         historyHistoryTitle.setText(chinaHistoryHistoryDetail.getChina_History_History_Detail().getTitle());
         historyHistoryContent.setText(chinaHistoryHistoryDetail.getChina_History_History_Detail().getContent());
     }

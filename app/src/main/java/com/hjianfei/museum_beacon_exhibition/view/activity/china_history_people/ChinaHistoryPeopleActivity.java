@@ -36,6 +36,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+
+
 public class ChinaHistoryPeopleActivity extends BaseActivity implements ChinaHistoryPeopleView {
 
     @BindView(R.id.toolbar)

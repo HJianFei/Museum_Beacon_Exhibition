@@ -23,6 +23,7 @@ public class UserInfoIndicatorImpl implements UserInfoIndicator {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ResultCode>() {
+
                     @Override
                     public void onCompleted() {
 
@@ -34,8 +35,10 @@ public class UserInfoIndicatorImpl implements UserInfoIndicator {
                     }
 
                     @Override
+
                     public void onNext(ResultCode resultCode) {
                         listener.changeAvatarSuccess(resultCode);
+
 
                     }
                 });

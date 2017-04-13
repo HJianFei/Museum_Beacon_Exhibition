@@ -11,6 +11,7 @@ import java.util.Map;
 
 import okhttp3.MultipartBody;
 
+
 /**
  * Created by HJianFei on 2016/11/21.
  */
@@ -42,6 +43,7 @@ public class UserInfoPresenterImpl implements UserInfoPresenter, UserInfoIndicat
     @Override
     public void changeAvatar(MultipartBody parts, String user_phone) {
         mUserInfoIndicator.changeAvatar(parts, user_phone, this);
+
 
     }
 

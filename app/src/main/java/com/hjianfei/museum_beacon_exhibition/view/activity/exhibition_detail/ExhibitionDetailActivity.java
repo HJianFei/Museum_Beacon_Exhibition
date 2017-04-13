@@ -51,6 +51,8 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
+
 public class ExhibitionDetailActivity extends BaseActivity implements ExhibitionDetailView {
 
     @BindView(R.id.toolbar)
@@ -77,10 +79,12 @@ public class ExhibitionDetailActivity extends BaseActivity implements Exhibition
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_exhibition_detail);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
+
 
         ButterKnife.bind(this);
         exhibition_detail_url = getIntent().getStringExtra("exhibition_detail_url");

@@ -38,6 +38,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+
+
 public class ChinaHistoryPeopleDetailActivity extends BaseActivity implements ChinaHistoryPeopleDetailView {
 
     @BindView(R.id.history_people_bg)
@@ -67,7 +69,6 @@ public class ChinaHistoryPeopleDetailActivity extends BaseActivity implements Ch
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
         id = getIntent().getStringExtra("id");
         img_url = getIntent().getStringExtra("img_url");
-
         ButterKnife.bind(this);
         initData();
         initView();
@@ -89,6 +90,7 @@ public class ChinaHistoryPeopleDetailActivity extends BaseActivity implements Ch
         });
         Glide.with(this).load(img_url).placeholder(R.drawable.photo)
                 .error(R.drawable.photo).into(historyPeopleBg);
+
 
     }
 

@@ -26,6 +26,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+
+
 public class ChangePasswordActivity extends BaseActivity implements ChangePasswordView {
 
     @BindView(R.id.toolbar)
@@ -46,6 +48,7 @@ public class ChangePasswordActivity extends BaseActivity implements ChangePasswo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_change_password);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));

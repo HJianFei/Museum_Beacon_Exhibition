@@ -20,6 +20,7 @@ import com.hjianfei.museum_beacon_exhibition.view.fragment.history_war.HistoryWa
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
 public class ChinaHistoryWarActivity extends BaseActivity {
 
     @BindView(R.id.history_war_img_bg)

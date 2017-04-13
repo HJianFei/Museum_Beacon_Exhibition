@@ -52,6 +52,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
+
 public class MuseumDetailActivity extends BaseActivity implements MuseumDetailView {
 
     @BindView(R.id.toolbar)
@@ -77,6 +79,7 @@ public class MuseumDetailActivity extends BaseActivity implements MuseumDetailVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_museum_detail);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));

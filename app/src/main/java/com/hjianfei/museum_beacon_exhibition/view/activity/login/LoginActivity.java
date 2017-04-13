@@ -45,6 +45,7 @@ import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
+
 public class LoginActivity extends BaseActivity implements LoginView {
     @BindView(R.id.et_username)
     EditText etUsername;
@@ -72,6 +73,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
+
         phone = (String) SPUtils.getParam(this, Constants.PHONE, "");
         if (!phone.equals("") && null != phone) {
             Intent intent = new Intent(this, MainActivity.class);

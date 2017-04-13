@@ -31,6 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+
 public class ChinaDynastyActivity extends BaseActivity implements ChinaDynastyView {
 
 

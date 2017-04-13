@@ -40,6 +40,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+
 public class HistoryWarDetailActivity extends BaseActivity implements HistoryWarDetailView, AppBarLayout.OnOffsetChangedListener {
 
     private static final int PERCENTAGE_TO_SHOW_IMAGE = 20;
@@ -87,6 +88,7 @@ public class HistoryWarDetailActivity extends BaseActivity implements HistoryWar
         img_url = getIntent().getStringExtra("img_url");
         title = getIntent().getStringExtra("title");
 
+
         ButterKnife.bind(this);
         initData();
         initView();
@@ -104,6 +106,7 @@ public class HistoryWarDetailActivity extends BaseActivity implements HistoryWar
         historyWarDetailAppbar.addOnOffsetChangedListener(this);
         Glide.with(this).load(img_url).placeholder(R.drawable.photo)
                 .error(R.drawable.photo).into(historyWarDetailBgImg);
+
     }
 
     private void initData() {

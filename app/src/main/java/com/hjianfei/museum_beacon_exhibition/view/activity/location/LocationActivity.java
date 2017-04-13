@@ -58,6 +58,7 @@ import java.util.regex.Pattern;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
 public class LocationActivity extends BaseActivity implements AbsListView.OnScrollListener {
 
     @BindView(R.id.toolbar)
@@ -101,6 +102,7 @@ public class LocationActivity extends BaseActivity implements AbsListView.OnScro
         //淡入淡出
 //        getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
 //        getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
+        setContentView(R.layout.activity_location);
 
         ButterKnife.bind(this);
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -566,6 +568,7 @@ public class LocationActivity extends BaseActivity implements AbsListView.OnScro
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
                         EventBus.getDefault().post(new LocationResult(city_history.get(position)));
+
                         finish();
 
                     }
@@ -584,6 +587,7 @@ public class LocationActivity extends BaseActivity implements AbsListView.OnScro
                                             int position, long id) {
 
                         EventBus.getDefault().post(new LocationResult(city_hot.get(position).getName()));
+
                         finish();
 
 
@@ -821,6 +825,7 @@ public class LocationActivity extends BaseActivity implements AbsListView.OnScro
                 } else {
                     // 没有获取到权限，做特殊处理
                     ToastUtil.showToast(LocationActivity.this, "定位权限未授予");
+
                 }
                 break;
             default:

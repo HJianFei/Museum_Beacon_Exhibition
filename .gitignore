@@ -34,4 +34,9 @@ proguard/
 *.ipr
 *.iws
 .idea/
+<<<<<<< HEAD
+=======
+.externalNativeBuild
+
+>>>>>>> c86c4e55bfba65798140b3e0991ee446ca3d8df3
 git

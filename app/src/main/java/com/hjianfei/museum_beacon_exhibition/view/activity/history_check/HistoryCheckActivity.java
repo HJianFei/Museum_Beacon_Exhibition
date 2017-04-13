@@ -35,6 +35,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+
 public class HistoryCheckActivity extends BaseActivity implements HistoryCheckView {
 
     @BindView(R.id.toolbar)

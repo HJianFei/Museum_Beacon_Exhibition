@@ -39,6 +39,8 @@ import cn.smssdk.SMSSDK;
 
 import static com.hjianfei.museum_beacon_exhibition.R.id.old_phone;
 
+
+
 public class ChangePhoneActivity extends BaseActivity implements ChangePhoneView {
 
     @BindView(R.id.toolbar)
@@ -80,6 +82,7 @@ public class ChangePhoneActivity extends BaseActivity implements ChangePhoneView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_change_phone);
         //淡入淡出
         //淡入淡出

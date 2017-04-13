@@ -40,6 +40,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+
 public class ForeignCountryDetailActivity extends BaseActivity implements ForeignCountryDetailView, AppBarLayout.OnOffsetChangedListener {
 
 
@@ -111,8 +112,10 @@ public class ForeignCountryDetailActivity extends BaseActivity implements Foreig
         foreignCountryDetailAuthor.setText("作者：" + foreignHistoryDetail.getForeign_History_Detail().getAuthor());
         foreignCountryDetailTime.setText("时间：" + foreignHistoryDetail.getForeign_History_Detail().getTime());
         foreignCountryDetailContent.setText(foreignHistoryDetail.getForeign_History_Detail().getDetail());
+
         Glide.with(this).load(foreignHistoryDetail.getForeign_History_Detail().getImg_url()).placeholder(R.drawable.photo)
                 .error(R.drawable.photo).into(foreignCountryDetailBgImg);
+
         img_url = foreignHistoryDetail.getForeign_History_Detail().getImg_url();
     }
 

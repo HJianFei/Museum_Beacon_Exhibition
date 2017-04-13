@@ -25,6 +25,8 @@ import com.hjianfei.museum_beacon_exhibition.view.base.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
+
 public class HistoryBigThingActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)

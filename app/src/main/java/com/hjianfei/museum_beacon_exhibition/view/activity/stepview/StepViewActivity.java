@@ -21,6 +21,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
+
 public class StepViewActivity extends BaseActivity {
 
     @BindView(R.id.step_view_bg)
@@ -38,11 +40,13 @@ public class StepViewActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_step_view);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
         stepView = (StepView) getIntent().getBundleExtra("stepView").getSerializable("stepView");
+
 
         ButterKnife.bind(this);
         initView();
@@ -65,6 +69,7 @@ public class StepViewActivity extends BaseActivity {
                 .placeholder(R.drawable.photo)
                 .error(R.drawable.photo)
                 .into(stepViewBg);
+
     }
 
     @OnClick(R.id.step_view_bg)

@@ -22,6 +22,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+
+
 public class PhotoDetailActivity extends BaseActivity implements PhotoDetailView {
 
     @BindView(R.id.toolbar)
@@ -38,6 +40,7 @@ public class PhotoDetailActivity extends BaseActivity implements PhotoDetailView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_photo_detail);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));

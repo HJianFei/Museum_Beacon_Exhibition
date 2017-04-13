@@ -35,6 +35,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+
+
 public class ChinaHistoryHeyDayActivity extends BaseActivity implements ChinaHistoryHeyDayView {
 
     @BindView(R.id.history_hey_day_recyclerView)
@@ -58,6 +60,7 @@ public class ChinaHistoryHeyDayActivity extends BaseActivity implements ChinaHis
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
+
 
         ButterKnife.bind(this);
         initData();

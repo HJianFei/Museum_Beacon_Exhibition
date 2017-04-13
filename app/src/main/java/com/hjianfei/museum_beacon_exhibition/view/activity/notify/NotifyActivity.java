@@ -21,6 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
 public class NotifyActivity extends BaseActivity {
 
     @BindView(R.id.notify_bg)
@@ -38,11 +39,13 @@ public class NotifyActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_notify);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
         notifyResult = (NotifyResult) getIntent().getBundleExtra("notifyResult").getSerializable("notifyResult");
+
 
         ButterKnife.bind(this);
         initView();
@@ -65,6 +68,7 @@ public class NotifyActivity extends BaseActivity {
                 .placeholder(R.drawable.photo)
                 .error(R.drawable.photo)
                 .into(notifyBg);
+
     }
 
     @OnClick(R.id.notify_bg)

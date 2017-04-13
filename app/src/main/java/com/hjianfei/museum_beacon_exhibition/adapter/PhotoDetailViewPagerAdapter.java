@@ -27,6 +27,7 @@ public class PhotoDetailViewPagerAdapter extends StaticPagerAdapter {
                 .load(imgUrl[position].trim())
                 .placeholder(R.drawable.photo)
                 .error(R.drawable.photo)
+
                 .into(item_iv);
         return item_iv;
     }

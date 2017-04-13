@@ -2,7 +2,6 @@ package com.hjianfei.museum_beacon_exhibition.view.activity.location;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -59,6 +58,7 @@ import java.util.regex.Pattern;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
 public class LocationActivity extends BaseActivity implements AbsListView.OnScrollListener {
 
     @BindView(R.id.toolbar)
@@ -102,6 +102,7 @@ public class LocationActivity extends BaseActivity implements AbsListView.OnScro
         //淡入淡出
 //        getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
 //        getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
+        setContentView(R.layout.activity_location);
 
         ButterKnife.bind(this);
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -162,11 +163,15 @@ public class LocationActivity extends BaseActivity implements AbsListView.OnScro
                 if (position >= 4) {
                     LogUtils.d("onResponse", "全部" + allCity_lists.get(position));
 
-                    Intent intent = new Intent();
-                    intent.putExtra("city", allCity_lists.get(position).getName());
-                    setResult(Constants.HOME_RESULT_CODE, intent);
-                    InsertCity(allCity_lists.get(position).getName());
+
+                    EventBus.getDefault().post(new LocationResult(allCity_lists.get(position).getName()));
                     finish();
+
+//                    Intent intent = new Intent();
+//                    intent.putExtra("city", allCity_lists.get(position).getName());
+//                    setResult(Constants.HOME_RESULT_CODE, intent);
+//                    InsertCity(allCity_lists.get(position).getName());
+//                    finish();
                 }
             }
         });
@@ -181,11 +186,13 @@ public class LocationActivity extends BaseActivity implements AbsListView.OnScro
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                Intent intent = new Intent();
-                intent.putExtra("city", allCity_lists.get(position).getName());
-                setResult(Constants.HOME_RESULT_CODE, intent);
-                InsertCity(allCity_lists.get(position).getName());
+                EventBus.getDefault().post(new LocationResult(allCity_lists.get(position).getName()));
                 finish();
+//                Intent intent = new Intent();
+//                intent.putExtra("city", allCity_lists.get(position).getName());
+//                setResult(Constants.HOME_RESULT_CODE, intent);
+//                InsertCity(allCity_lists.get(position).getName());
+//                finish();
             }
         });
         initOverlay();
@@ -511,12 +518,14 @@ public class LocationActivity extends BaseActivity implements AbsListView.OnScro
                     public void onClick(View v) {
                         if (locateProcess == 2) {
 
-
-                            Intent intent = new Intent();
-                            intent.putExtra("city", city.getText().toString());
-                            setResult(Constants.HOME_RESULT_CODE, intent);
-                            InsertCity(city.getText().toString());
+                            EventBus.getDefault().post(new LocationResult( city.getText().toString()));
                             finish();
+
+//                            Intent intent = new Intent();
+//                            intent.putExtra("city", city.getText().toString());
+//                            setResult(Constants.HOME_RESULT_CODE, intent);
+//                            InsertCity(city.getText().toString());
+//                            finish();
                         } else if (locateProcess == 3) {
                             locateProcess = 1;
                             city_list_view.setAdapter(adapter);
@@ -559,6 +568,7 @@ public class LocationActivity extends BaseActivity implements AbsListView.OnScro
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
                         EventBus.getDefault().post(new LocationResult(city_history.get(position)));
+
                         finish();
 
                     }
@@ -577,6 +587,7 @@ public class LocationActivity extends BaseActivity implements AbsListView.OnScro
                                             int position, long id) {
 
                         EventBus.getDefault().post(new LocationResult(city_hot.get(position).getName()));
+
                         finish();
 
 
@@ -814,6 +825,7 @@ public class LocationActivity extends BaseActivity implements AbsListView.OnScro
                 } else {
                     // 没有获取到权限，做特殊处理
                     ToastUtil.showToast(LocationActivity.this, "定位权限未授予");
+
                 }
                 break;
             default:

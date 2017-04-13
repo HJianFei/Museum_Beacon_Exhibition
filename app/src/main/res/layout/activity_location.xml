@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
@@ -32,13 +34,13 @@
         android:id="@+id/city_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/search_result"
         android:cacheColorHint="@color/white"
         android:divider="@color/white"
         android:dividerHeight="0dp"
         android:listSelector="@android:color/transparent"
-        android:scrollbars="none"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/search_result" />
+        android:scrollbars="none" />
 
     <ListView
         android:id="@+id/search_result"
@@ -73,3 +75,4 @@
         android:layout_marginRight="2dp" />
 
 </LinearLayout>
+

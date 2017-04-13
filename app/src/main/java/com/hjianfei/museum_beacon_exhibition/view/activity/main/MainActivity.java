@@ -36,6 +36,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
+
 public class MainActivity extends BaseActivity {
     @BindView(R.id.tab_home_rb)
     RadioButton tabHomeRb;

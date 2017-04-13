@@ -38,6 +38,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+
+
 public class ChinaHistoryCultureDetailActivity extends BaseActivity implements ChinaHistoryCultureDetailView {
 
     @BindView(R.id.history_culture_bg)
@@ -67,15 +69,16 @@ public class ChinaHistoryCultureDetailActivity extends BaseActivity implements C
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_china_history_culture_detail);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
+
         id = getIntent().getStringExtra("id");
         title = getIntent().getStringExtra("title");
         author = getIntent().getStringExtra("author");
         time = getIntent().getStringExtra("time");
-
         ButterKnife.bind(this);
         initData();
         initView();
@@ -108,6 +111,7 @@ public class ChinaHistoryCultureDetailActivity extends BaseActivity implements C
         historyCultureTime.setText(time);
         Glide.with(this).load(chinaHistoryCultureDetail.getChina_History_Culture_Detail().getImg_url()).placeholder(R.drawable.photo)
                 .error(R.drawable.photo).into(historyCultureBg);
+
         historyCultureCollapsing.setTitle(chinaHistoryCultureDetail.getChina_History_Culture_Detail().getTitle());
         historyCultureTitle.setText(chinaHistoryCultureDetail.getChina_History_Culture_Detail().getTitle());
         historyCultureContent.setText(chinaHistoryCultureDetail.getChina_History_Culture_Detail().getContent());

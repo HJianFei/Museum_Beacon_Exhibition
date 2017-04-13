@@ -34,6 +34,7 @@ public class Constants {
     //动画时长
     public static final int DURATION = 1200;
 
+
     /**
      * 用户头像存放目录
      */

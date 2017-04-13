@@ -66,6 +66,7 @@ import okhttp3.RequestBody;
 
 import static com.hjianfei.museum_beacon_exhibition.R.id.personal_name;
 
+
 public class PersonalActivity extends BaseActivity implements PersonalView {
 
     @BindView(R.id.toolbar)
@@ -108,6 +109,7 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_personal);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
@@ -334,6 +336,7 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
                 File filePath = new File(Constants.FILE_URI + "/" + IMAGE_FILE_NAME);
                 MultipartBody parts = filesToMultipartBody(filePath);
                 mUserInfoPresenter.changeAvatar(parts, user_phone);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -356,7 +359,6 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
             file.mkdirs();
         }
         File dir = new File(Constants.FILE_URI + "/" + IMAGE_FILE_NAME);
-        LogUtils.d("onResponse", dir.toString());
         if (!dir.exists()) {
             dir.createNewFile();
         }

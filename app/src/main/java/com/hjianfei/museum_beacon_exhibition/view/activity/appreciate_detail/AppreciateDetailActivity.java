@@ -53,6 +53,8 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
+
 public class AppreciateDetailActivity extends BaseActivity implements AppreciateDetailView {
 
     @BindView(R.id.toolbar)
@@ -81,6 +83,7 @@ public class AppreciateDetailActivity extends BaseActivity implements Appreciate
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
+
 
         ButterKnife.bind(this);
         id = getIntent().getStringExtra("id");

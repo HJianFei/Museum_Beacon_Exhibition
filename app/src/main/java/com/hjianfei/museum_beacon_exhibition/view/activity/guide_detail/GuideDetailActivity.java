@@ -48,6 +48,7 @@ import butterknife.OnClick;
 import static com.hjianfei.museum_beacon_exhibition.R.id.video_item;
 
 
+
 public class GuideDetailActivity extends BaseActivity implements GuideDetailView {
 
 
@@ -72,6 +73,7 @@ public class GuideDetailActivity extends BaseActivity implements GuideDetailView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_guide_detail);
         //淡入淡出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));

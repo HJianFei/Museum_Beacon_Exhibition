@@ -26,6 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+
 public class FeedBackActivity extends BaseActivity implements FeedBackView {
 
     @BindView(R.id.toolbar)

@@ -38,6 +38,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+
 public class HistoryCheckDetailActivity extends BaseActivity implements HistoryCheckDetailView {
 
     @BindView(R.id.history_check_detail_bg)
@@ -100,6 +101,7 @@ public class HistoryCheckDetailActivity extends BaseActivity implements HistoryC
                 .placeholder(R.drawable.photo)
                 .error(R.drawable.photo)
                 .into(historyCheckDetailBg);
+
 
 
     }

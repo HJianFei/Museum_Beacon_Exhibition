@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 import cn.smssdk.SMSSDK;
+import retrofit2.http.HEAD;
 
 /**
  * Created by HJianFei on 2016/8/26.
@@ -39,7 +40,7 @@ public class BaseApplication extends Application {
         SMSSDK.initSDK(this, "19132ee4c2cc0", "d4558a302572fbb2657b34b394d06f0c");
         //友盟分享
         UMShareAPI.get(this);
-        PlatformConfig.setWeixin("wxf1d84e5ebfc6a5e7", "ae460603faa1ad6ba613d3faf0456188");
+        PlatformConfig.setWeixin("wx13a25a6f476a1eed", "3d3bf2840d13f75cd296af9dfee27f99");
         PlatformConfig.setQQZone("1105746947", "8ipjCPurLMpe97dZ");
         PlatformConfig.setSinaWeibo("3496605578", "525296be2bdc29f70bf65d2d2bf4bba7");
         Config.REDIRECT_URL = "http://sns.whalecloud.com/sina2/callback";

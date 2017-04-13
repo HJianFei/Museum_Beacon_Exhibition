@@ -32,6 +32,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+
+
 public class SettingActivity extends BaseActivity implements SettingView {
 
     @BindView(R.id.toolbar)
@@ -54,10 +56,12 @@ public class SettingActivity extends BaseActivity implements SettingView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_setting);
         //淡入浅出
         getWindow().setEnterTransition(new Fade().setDuration(Constants.DURATION));
         getWindow().setReturnTransition(new Fade().setDuration(Constants.DURATION));
+
 
         ButterKnife.bind(this);
         initView();

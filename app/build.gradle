@@ -32,7 +32,7 @@ android {
                 variant.outputs.each { output ->
                     def outputFile = output.outputFile
                     if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                        def fileName = "史博展_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+                        def fileName = "史博展_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}_${variant.buildType.name}.apk"
                         output.outputFile = new File(outputFile.parent, fileName)
                     }
                 }
@@ -70,7 +70,7 @@ android {
 //        baidu {}
 //        wandoujia {}
         fir {}
-        tentcent {}
+        tencent {}
     }
 
     productFlavors.all {
@@ -123,7 +123,6 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.github.jdsjlzx:LRecyclerView:1.1.0'
     compile 'org.greenrobot:eventbus:3.0.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.1'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
 }

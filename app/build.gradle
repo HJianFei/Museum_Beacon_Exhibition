@@ -70,7 +70,7 @@ android {
 //        baidu {}
 //        wandoujia {}
         fir {}
-        tentcent {}
+        tencent {}
     }
 
     productFlavors.all {

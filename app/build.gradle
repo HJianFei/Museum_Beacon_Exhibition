@@ -65,10 +65,10 @@ android {
         }
     }
     productFlavors {
-//        xiaomi {}
-//        _360 {}
-//        baidu {}
-//        wandoujia {}
+        xiaomi {}
+        _360 {}
+        baidu {}
+        wandoujia {}
         fir {}
         tencent {}
     }
